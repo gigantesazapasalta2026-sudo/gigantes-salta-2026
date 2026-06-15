@@ -134,7 +134,59 @@ const GIGANTES = {
   });
 })();
 
-// ─── 2. CORREGIR LOGOS ROTOS ─────────────────────────────────────────────────
+// ─── 2. VIDEO DE FONDO EN HERO ───────────────────────────────────────────────
+(function injectHeroVideo() {
+  // Solo en páginas que tienen .hero pero no tienen ya un video
+  const hero = document.querySelector('.hero');
+  if (!hero || hero.querySelector('video')) return;
+
+  // Crear video de fondo
+  const videoWrap = document.createElement('div');
+  videoWrap.style.cssText = 'position:absolute;inset:0;z-index:0;overflow:hidden;';
+
+  const video = document.createElement('video');
+  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.style.cssText = 'width:100%;height:100%;object-fit:cover;opacity:.45;';
+
+  const source = document.createElement('source');
+  source.src = GIGANTES.FOTOS.video;
+  source.type = 'video/mp4';
+  video.appendChild(source);
+
+  // Fallback: si el video no carga, usa foto de niños
+  video.onerror = () => {
+    videoWrap.style.backgroundImage = `url("${GIGANTES.FOTOS.ninos2}")`;
+    videoWrap.style.backgroundSize = 'cover';
+    videoWrap.style.backgroundPosition = 'center';
+    video.remove();
+  };
+
+  videoWrap.appendChild(video);
+
+  // Overlay oscuro encima del video
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,15,20,.35) 0%,rgba(11,15,20,.7) 60%,rgba(11,15,20,.97) 100%);';
+
+  // El hero necesita position relative y sus hijos z-index
+  hero.style.position = 'relative';
+  hero.style.overflow = 'hidden';
+
+  // Poner todos los hijos actuales sobre el video
+  Array.from(hero.children).forEach(child => {
+    if (!child.style.position || child.style.position === 'static') {
+      child.style.position = 'relative';
+      child.style.zIndex = '2';
+    }
+  });
+
+  hero.insertBefore(overlay, hero.firstChild);
+  hero.insertBefore(videoWrap, hero.firstChild);
+})();
+
+// ─── 3. CORREGIR LOGOS ROTOS ─────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
   // Reemplazar logos con rutas rotas
   document.querySelectorAll('img').forEach(img => {

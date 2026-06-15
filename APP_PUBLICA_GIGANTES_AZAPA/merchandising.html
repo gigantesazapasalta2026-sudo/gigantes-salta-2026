@@ -3,673 +3,460 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Merchandising - Gigantes de Azapa Salta 2026</title>
+  <title>Merchandising Oficial — Gigantes de Azapa Salta 2026</title>
   <script src="config.js"></script>
   <style>
-    :root {
-      --club-black: #0b0f14;
-      --club-charcoal: #171717;
-      --club-orange: #f36b21;
-      --club-orange-dark: #c2410c;
-      --club-cream: #fff7ed;
-      --club-line: rgba(243, 107, 33, .32);
-      --club-text: #111827;
-      --club-muted: #4b5563;
-      --club-success: #0f766e;
+    :root{--naranja:#f36b21;--naranja-oscuro:#c2410c;--negro:#0b0f14;--negro2:#171717;--blanco:#fff}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:var(--negro);color:#fff;min-height:100vh}
+
+    /* HERO */
+    .hero{min-height:52vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:80px 20px 32px}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,15,20,.92),rgba(194,65,12,.55)),url("Polera_de_Juego.png") center/cover}
+    .hero-inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}
+    .hero-tag{display:inline-block;background:var(--naranja);border-radius:99px;padding:6px 16px;font-size:.8rem;font-weight:900;margin-bottom:12px}
+    .hero h1{font-size:clamp(2.2rem,6vw,5rem);line-height:.95;font-weight:900;margin-bottom:10px}
+    .hero h1 em{color:var(--naranja);font-style:normal}
+    .hero p{font-size:clamp(.9rem,2vw,1.15rem);color:rgba(255,255,255,.82);max-width:580px;line-height:1.5;margin-bottom:20px}
+    .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:11px 20px;font-weight:900;font-size:.9rem;text-decoration:none;cursor:pointer;border:none;font-family:Arial,sans-serif}
+    .btn-naranja{background:var(--naranja);color:#fff}
+    .btn-blanco{background:#fff;color:var(--naranja-oscuro)}
+    .btn-dark{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+
+    /* SECCIÓN */
+    .section{padding:40px 20px;background:var(--negro2)}
+    .section:nth-child(odd){background:var(--negro)}
+    .section-inner{width:min(1180px,100%);margin:0 auto}
+    .section-title{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;margin-bottom:6px}
+    .section-sub{color:rgba(255,255,255,.55);font-size:.88rem;margin-bottom:24px}
+
+    /* GRID PRODUCTOS */
+    .productos{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .producto{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+    .producto:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(243,107,33,.2)}
+    .producto-img{aspect-ratio:4/3;overflow:hidden;background:#0b0f14;display:flex;align-items:center;justify-content:center}
+    .producto-img img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .3s}
+    .producto:hover .producto-img img{transform:scale(1.06)}
+    .producto-body{padding:16px}
+    .producto-nombre{font-size:1rem;font-weight:900;margin-bottom:4px}
+    .producto-desc{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:12px}
+    .producto-precio{font-size:1.4rem;font-weight:900;color:var(--naranja);margin-bottom:12px}
+    .producto-precio span{font-size:.75rem;color:rgba(255,255,255,.4);font-weight:400;margin-left:4px}
+    .producto-footer{display:flex;gap:8px;align-items:center}
+    .qty{width:50px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:.9rem;text-align:center}
+    .btn-agregar{flex:1;background:var(--naranja);color:#fff;border:none;border-radius:8px;padding:10px;font-weight:900;font-size:.85rem;cursor:pointer}
+    .btn-agregar:hover{background:var(--naranja-oscuro)}
+
+    /* CAMISETA SPONSOR */
+    .sponsor-section{background:linear-gradient(135deg,#111827,#1a0a00);border:1px solid rgba(243,107,33,.3);border-radius:12px;padding:28px;margin-bottom:20px}
+    .sponsor-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+    .sponsor-grid img{width:100%;border-radius:8px;object-fit:contain;background:#0b0f14;padding:10px}
+    .sponsor-info h3{font-size:clamp(1.3rem,3vw,2rem);font-weight:900;margin-bottom:10px}
+    .sponsor-info p{color:rgba(255,255,255,.75);font-size:.9rem;line-height:1.6;margin-bottom:16px}
+    .sponsor-badge{display:inline-block;background:rgba(243,107,33,.2);border:1px solid var(--naranja);border-radius:6px;padding:6px 12px;font-size:.78rem;font-weight:700;color:var(--naranja);margin-bottom:12px}
+
+    /* CARRITO */
+    .carrito-float{position:fixed;bottom:24px;right:24px;z-index:100}
+    .carrito-btn{background:var(--naranja);color:#fff;border:none;border-radius:99px;padding:14px 20px;font-weight:900;font-size:.9rem;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 8px 30px rgba(243,107,33,.4)}
+    .carrito-count{background:#fff;color:var(--naranja-oscuro);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900}
+
+    /* MODAL CARRITO */
+    .modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);align-items:flex-end;justify-content:center}
+    .modal-overlay.open{display:flex}
+    .modal{background:#1a1f2e;border-radius:16px 16px 0 0;width:min(560px,100%);max-height:90vh;overflow-y:auto;padding:24px}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .modal-close{background:rgba(255,255,255,.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer}
+    .carrito-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .carrito-item:last-child{border-bottom:none}
+    .carrito-total{font-size:1.2rem;font-weight:900;color:var(--naranja);text-align:right;margin:16px 0}
+
+    /* FORM PEDIDO */
+    .form-pedido{display:grid;gap:12px;margin-top:16px}
+    .form-pedido label{font-size:.82rem;color:rgba(255,255,255,.7);display:block;margin-bottom:4px}
+    .form-pedido input,.form-pedido textarea,.form-pedido select{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:.9rem}
+    .form-pedido textarea{min-height:80px;resize:vertical}
+    .btn-enviar{background:var(--naranja);color:#fff;border:none;border-radius:8px;padding:14px;font-weight:900;font-size:1rem;cursor:pointer;width:100%;margin-top:8px}
+
+    /* TRANSFERENCIA */
+    .transf{background:rgba(243,107,33,.1);border:1px solid rgba(243,107,33,.3);border-radius:10px;padding:16px;margin-top:16px;font-size:.85rem;line-height:1.8}
+    .transf strong{color:var(--naranja)}
+
+    footer{text-align:center;padding:24px;color:rgba(255,255,255,.35);font-size:.78rem;border-top:1px solid rgba(255,255,255,.1)}
+
+    @media(max-width:700px){
+      .sponsor-grid{grid-template-columns:1fr}
+      .productos{grid-template-columns:1fr 1fr}
+      .carrito-float{bottom:16px;right:16px}
     }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background:
-        linear-gradient(115deg, rgba(5, 8, 12, .96), rgba(88, 28, 12, .84)),
-        url("../m10m12.jpg") center/cover fixed;
-      color: var(--club-text);
-    }
-    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
-    .hero, .panel, .product, .cart-box {
-      background: rgba(255,255,255,.97);
-      border: 1px solid var(--club-line);
-      border-radius: 8px;
-      box-shadow: 0 18px 46px rgba(2,6,23,.28);
-      backdrop-filter: blur(10px);
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0,1.05fr) minmax(300px,.95fr);
-      gap: 20px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
-    .brand span { color: var(--club-orange-dark); font-weight: 900; text-transform: uppercase; font-size: .82rem; }
-    h1 { margin: 0 0 10px; font-size: clamp(2.15rem,5vw,3.9rem); line-height: .96; letter-spacing: 0; }
-    p, li { line-height: 1.55; }
-    .hero-media {
-      min-height: 340px;
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      background: #020617;
-      color: #fff;
-    }
-    .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82)); }
-    .hero-media div { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
-    .button, button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border: 0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      background: var(--club-charcoal);
-      color: #fff;
-      font: inherit;
-      font-weight: 900;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 4px 6px 4px 0;
-    }
-    .button.secondary, button.secondary { background: var(--club-orange); color: #fff; }
-    .panel { padding: 18px; margin-bottom: 18px; }
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, .42fr);
-      gap: 16px;
-      align-items: start;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .catalog-section {
-      display: grid;
-      gap: 12px;
-    }
-    .catalog-heading {
-      background: rgba(255,255,255,.97);
-      border: 1px solid var(--club-line);
-      border-left: 5px solid var(--club-orange);
-      border-radius: 8px;
-      padding: 14px;
-      box-shadow: 0 12px 28px rgba(2,6,23,.18);
-    }
-    .catalog-heading h2 {
-      margin: 0 0 6px;
-    }
-    .catalog-products {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .product {
-      overflow: hidden;
-      border-left: 5px solid var(--club-orange);
-    }
-    .product-visual {
-      min-height: 230px;
-      position: relative;
-      background: #020617;
-      color: #fff;
-    }
-    .product-visual img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .product-crop {
-      background-image:
-        linear-gradient(180deg, rgba(15,23,42,.03), rgba(15,23,42,.72)),
-        var(--product-image);
-      background-size: var(--product-zoom, 260%) auto;
-      background-position: var(--product-position, center);
-      background-repeat: no-repeat;
-    }
-    .product-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.76));
-    }
-    .product-visual span {
-      position: absolute;
-      left: 12px;
-      bottom: 12px;
-      z-index: 1;
-      border-radius: 999px;
-      background: var(--club-orange);
-      color: #fff;
-      padding: 6px 10px;
-      font-weight: 900;
-    }
-    .product-body { padding: 14px; }
-    .price { display: block; color: var(--club-orange-dark); font-size: 1.35rem; font-weight: 900; margin: 8px 0; }
-    .product-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .controls {
-      display: grid;
-      grid-template-columns: 1fr 90px;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    label { display: grid; gap: 6px; font-weight: 800; }
-    input, select, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid rgba(15, 23, 42, .18);
-      border-radius: 8px;
-      padding: 11px;
-      font: inherit;
-      background: #fff;
-    }
-    textarea { resize: vertical; }
-    .cart-box {
-      padding: 16px;
-      position: sticky;
-      top: 12px;
-      border-left: 5px solid var(--club-orange);
-    }
-    .cart-help {
-      background: var(--club-cream);
-      border-left: 5px solid var(--club-orange);
-      border-radius: 8px;
-      padding: 12px;
-      margin: 10px 0;
-      font-weight: 800;
-    }
-    .cart-list { display: grid; gap: 10px; margin: 12px 0; }
-    .cart-item {
-      display: grid;
-      gap: 5px;
-      border-radius: 8px;
-      background: #f8fafc;
-      border: 1px solid rgba(15,23,42,.1);
-      padding: 10px;
-    }
-    .cart-item strong { color: var(--club-orange-dark); }
-    .cart-item button { min-height: 34px; padding: 6px 10px; justify-self: start; background: #e2e8f0; color: #0f172a; }
-    .total {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 2px solid #e2e8f0;
-      padding-top: 12px;
-      margin-top: 12px;
-      font-weight: 900;
-    }
-    .total strong { color: var(--club-orange-dark); font-size: 1.45rem; }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .result {
-      margin-top: 12px;
-      border-radius: 8px;
-      padding: 12px;
-      border: 1px solid #a7f3d0;
-      background: #ecfdf5;
-      color: #065f46;
-      white-space: pre-wrap;
-    }
-    .result:empty { display: none; }
-    .note {
-      background: var(--club-cream);
-      border-left: 5px solid var(--club-orange);
-      padding: 14px;
-      border-radius: 8px;
-    }
-    .special-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
-      gap: 16px;
-      align-items: center;
-    }
-    .special-panel img {
-      width: 100%;
-      border-radius: 8px;
-      display: block;
-      box-shadow: 0 14px 34px rgba(2, 6, 23, .24);
-      background: #fff;
-    }
-    .tag {
-      display: inline-flex;
-      border-radius: 999px;
-      background: var(--club-orange);
-      color: #fff;
-      padding: 6px 10px;
-      font-weight: 900;
-      font-size: .82rem;
-      margin-bottom: 10px;
-    }
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(2, 6, 23, .78);
-    }
-    .modal.is-open { display: flex; }
-    .modal-card {
-      width: min(980px, 100%);
-      max-height: 92vh;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
-      gap: 0;
-      overflow: auto;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 28px 70px rgba(0,0,0,.45);
-    }
-    .modal-image {
-      min-height: 540px;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      background:
-        linear-gradient(135deg, rgba(11,15,20,.96), rgba(124,45,18,.84)),
-        #111827;
-    }
-    .modal-image img {
-      width: 100%;
-      max-height: 76vh;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 16px 40px rgba(0,0,0,.28);
-    }
-    .modal-body { padding: 22px; }
-    .modal-body h2 { margin: 0 0 8px; font-size: clamp(1.7rem, 3vw, 2.6rem); }
-    .modal-close {
-      float: right;
-      min-height: 34px;
-      padding: 6px 10px;
-      background: #e5e7eb;
-      color: #111827;
-    }
-    .modal-price { color: var(--club-orange-dark); font-size: 2rem; font-weight: 900; margin: 10px 0; }
-    @media print {
-      body { background: #fff; }
-      main { padding: 0; }
-      .hero, .product-grid, button, .button { display: none; }
-      .panel, .cart-box { box-shadow: none; }
-      .cart-box { position: static; }
-    }
-    @media (max-width: 980px) {
-      main { padding: 14px; }
-      .hero, .layout, .product-grid, .catalog-products, .form-grid, .special-panel, .modal-card { grid-template-columns: 1fr; }
-      .cart-box { position: static; }
-      .modal-image { min-height: 320px; }
+    @media(max-width:480px){
+      .productos{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <div>
-        <div class="brand">
-          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
-          <span>Tienda solidaria</span>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <span class="hero-tag">👕 Tienda oficial</span>
+    <h1>Merch <em>Gigantes</em><br>Salta 2026</h1>
+    <p>Colección oficial de la gira. Negro y naranja, diseño exclusivo "Ruta a Jujuy 2026". Cada compra apoya directamente el viaje de los jugadores.</p>
+    <div class="hero-btns">
+      <button class="btn btn-naranja" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver catálogo →</button>
+      <button class="btn btn-dark" onclick="abrirCarrito()">🛒 Ver pedido</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAMISETA SPONSOR -->
+<section class="section">
+  <div class="section-inner">
+    <div class="sponsor-section">
+      <div class="sponsor-grid">
+        <img src="Polera_de_salida.png" alt="Camiseta oficial con sponsor Gigantes de Azapa">
+        <div class="sponsor-info">
+          <span class="sponsor-badge">⭐ Sponsor Principal — Espacio disponible</span>
+          <h3>Tu empresa en la camiseta oficial</h3>
+          <p>La camiseta de la gira ya tiene sponsors confirmados en el dorso. Hay espacios disponibles como <strong>Auspiciador Principal</strong> — tu logo en el frente de la camiseta que viajarán usando 80+ personas en Argentina.</p>
+          <p style="color:rgba(255,255,255,.5);font-size:.8rem;margin-bottom:12px">Sponsors actuales: Centro Ortopédico Astor · Transportes Andina · Frutas y Verduras de Azapa · Gráfica Print · Constructora Ferranorte · El Sabor de Azapa · Alto del Valle · TP Print & Diseño</p>
+          <a class="btn btn-naranja" href="sponsors.html">Ver paquetes de auspicio →</a>
         </div>
-        <h1>Merchandising del club</h1>
-        <p>Preventa de productos oficiales y solidarios para apoyar la gira Salta 2026. Los valores son sugeridos y deben ser validados por la directiva antes de publicar.</p>
-        <a class="button" href="actividades.html">Volver a actividades</a>
-        <a class="button secondary" href="manual_merchandising_sponsors.html">Manual</a>
-        <a class="button secondary" href="catalogo_merchandising.html">Catalogo PDF</a>
-        <a class="button secondary" href="control_merchandising.html">Control interno</a>
-        <a class="button secondary" href="validacion_merchandising.html">Validar precios</a>
-        <a class="button secondary" href="avance.html">Ver avance</a>
-        <a class="button secondary" href="material_difusion.html">Difusion</a>
-        <a class="button secondary" href="COPIAR_APPS_SCRIPT_ACTUALIZADO.html">Activar pedidos</a>
-      </div>
-      <div class="hero-media">
-        <img src="../Entrenadores.jpg" alt="Gigantes de Azapa">
-        <div>
-          <strong>Comprar tambien es apoyar</strong>
-          <p>Cada pedido ayuda a financiar una experiencia deportiva y formativa.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="note">
-        <strong>Nota para directiva:</strong> precios, tallas, stock y fechas de entrega son editables. Esta pagina queda como modelo funcional para preventa y control de pedidos.
-      </div>
-      <div class="note" style="margin-top:12px">
-        <strong>Entrega de productos:</strong> todos los productos se entregan en los entrenamientos o en las actividades oficiales del club. La directiva confirmara fecha y lugar de retiro.
-      </div>
-    </section>
-
-    <section class="panel special-panel">
-      <div>
-        <span class="tag">Edicion especial de gira</span>
-        <h2 style="margin-top:0">Linea Ruta a Jujuy / Salta 2026</h2>
-        <p>Esta coleccion especial usa el arte creado para la gira: poleron, camiseta, jockey, gorro de invierno, vaso termico, tazon, pulsera, llavero, banderin, mochila y garrafa.</p>
-        <p>Tambien incluye espacios para sponsors en la indumentaria, lo que puede ayudar a vender auspicios junto con el merchandising.</p>
-        <button type="button" onclick="addSpecialPack()">Agregar pack especial sugerido</button>
-        <a class="button secondary" href="propuesta_sponsors.html">Ver propuesta sponsors</a>
-      </div>
-      <img src="../09_DISENO_MERCHANDISING/Polera de Juego.png" alt="Merchandising oficial de la gira">
-    </section>
-
-    <section class="layout">
-      <div class="product-grid" id="productGrid"></div>
-
-      <aside class="cart-box">
-        <h2 style="margin-top:0">Carro de pedido</h2>
-        <div class="cart-help">
-          Paso siguiente: revisa tu carro y baja al formulario "Datos para realizar pedido" para completar nombre, correo y telefono.
-        </div>
-        <div id="cartList" class="cart-list"></div>
-        <div class="total"><span>Total sugerido</span><strong id="cartTotal">$0</strong></div>
-        <a class="button secondary" href="#datosPedido">Continuar pedido</a>
-        <button class="secondary" type="button" onclick="clearCart()">Vaciar carro</button>
-      </aside>
-    </section>
-
-    <section class="panel" id="datosPedido">
-      <h2 style="margin-top:0">Datos para realizar pedido</h2>
-      <div class="note">
-        <strong>Como finalizar:</strong> despues de agregar productos al carro, completa tus datos y presiona "Enviar pedido". Llegara al Centro Operativo y la directiva confirmara por correo o telefono el pago, stock y entrega.
-      </div>
-      <form id="orderForm">
-        <input type="hidden" name="type" value="merchandising">
-        <input type="hidden" name="actividad" value="Merchandising del club">
-        <input type="hidden" name="comision" value="Pedido tienda club">
-        <input type="hidden" name="pedido_detalle" id="pedidoDetalle">
-        <input type="hidden" name="monto" id="pedidoMonto">
-        <input type="hidden" name="total" id="pedidoTotal">
-        <div class="form-grid">
-          <label>Nombre comprador
-            <input name="nombre" required placeholder="Nombre y apellido">
-          </label>
-          <label>RUT/DNI
-            <input name="rut" placeholder="Opcional">
-          </label>
-          <label>Correo
-            <input name="email" type="email" required placeholder="correo@ejemplo.com">
-          </label>
-          <label>Telefono
-            <input name="telefono" required placeholder="+56 9...">
-          </label>
-          <label>Jugador/familia asociada
-            <input name="jugador" placeholder="Nombre del jugador o familia">
-          </label>
-          <label>Forma de pago
-            <select name="forma_pago">
-              <option>Pendiente</option>
-              <option>Transferencia</option>
-              <option>Efectivo</option>
-              <option>Pago confirmado por directiva</option>
-            </select>
-          </label>
-          <label>Estado del pedido
-            <select name="estado_pedido">
-              <option>Pedido recibido</option>
-              <option>Pendiente de pago</option>
-              <option>Pagado</option>
-              <option>En produccion</option>
-              <option>Listo para entrega</option>
-              <option>Entregado</option>
-            </select>
-          </label>
-          <label>Fecha deseada de entrega
-            <input name="fecha_entrega" placeholder="Ej: proximo entrenamiento o actividad del club">
-          </label>
-        </div>
-        <label style="margin-top:12px">Observaciones
-          <textarea name="observaciones" rows="4" placeholder="Ej: retirar en entrenamiento, retirar en actividad del club, consultar talla, pedido para regalo..."></textarea>
-        </label>
-        <button type="submit">Enviar pedido</button>
-        <button class="secondary" type="button" onclick="window.print()">Imprimir pedido</button>
-        <div id="result" class="result"></div>
-      </form>
-    </section>
-  </main>
-
-  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-label="Vista de producto" onclick="if(event.target === this) closeProduct()">
-    <div class="modal-card">
-      <div class="modal-image">
-        <img id="modalImage" src="" alt="">
-      </div>
-      <div class="modal-body">
-        <button class="modal-close" type="button" onclick="closeProduct()">Cerrar</button>
-        <span class="tag">Producto seleccionado</span>
-        <h2 id="modalTitle"></h2>
-        <div class="modal-price" id="modalPrice"></div>
-        <p id="modalDescription"></p>
-        <p id="modalSizes"></p>
-        <div class="note">
-          Esta vista sirve para revisar bien el producto antes de pedirlo. Todos los productos se entregan en entrenamientos o actividades del club. Los valores siguen como referencia hasta validacion de directiva.
-        </div>
-        <button class="secondary" id="modalAdd" type="button">Agregar al carro</button>
       </div>
     </div>
   </div>
+</section>
 
-  <script>
-    const PRODUCTS = [
-      { collection: "base", id: "polera_juego", name: "Polera de juego", price: 25000, img: "../09_DISENO_MERCHANDISING/Polera de Juego.png", desc: "Polera estilo juego del club. Precio referencial.", sizes: ["6", "8", "10", "12", "14", "S", "M", "L", "XL", "XXL", "XXXL"] },
-      { collection: "base", id: "polera_salida", name: "Polera de salida", price: 18000, img: "../09_DISENO_MERCHANDISING/Polera de salida.png", desc: "Polera para viaje, salida o actividades del club.", sizes: ["6", "8", "10", "12", "14", "S", "M", "L", "XL", "XXL", "XXXL"] },
-      { collection: "base", id: "poleron", name: "Poleron del club", price: 35000, img: "../Entrenadores.jpg", desc: "Poleron oficial o de campana Salta 2026.", sizes: ["8", "10", "12", "14", "S", "M", "L", "XL", "XXL", "XXXL"] },
-      { collection: "base", id: "gorro", name: "Gorro Gigantes", price: 9000, img: "../09_DISENO_MERCHANDISING/Jockey oficial.png", desc: "Gorro con identidad del club.", sizes: ["Unica"] },
-      { collection: "base", id: "vaso", name: "Vaso reutilizable", price: 5000, img: "../09_DISENO_MERCHANDISING/Vaso Termico.png", desc: "Vaso para actividades, bingos y ventas solidarias.", sizes: ["Unica"] },
-      { collection: "base", id: "pack_hincha", name: "Pack hincha", price: 30000, img: "../fogata formando club.jpg", desc: "Polera de salida + vaso + gorro. Precio referencial.", sizes: ["6", "8", "10", "12", "14", "S", "M", "L", "XL", "XXL", "XXXL"] },
-      { collection: "special", id: "ed_poleron_gira", name: "Poleron oficial de gira", price: 42000, img: "../09_DISENO_MERCHANDISING/1780547050260.png", desc: "Producto separado de la edicion especial Ruta a Jujuy / Salta 2026. Valor sugerido por validar.", sizes: ["8", "10", "12", "14", "S", "M", "L", "XL", "XXL", "XXXL"] },
-      { collection: "special", id: "ed_camiseta_gira", name: "Camiseta gira", price: 28000, img: "../09_DISENO_MERCHANDISING/Polera de Juego.png", desc: "Camiseta especial de gira con espacio para sponsors. Valor sugerido.", sizes: ["6", "8", "10", "12", "14", "S", "M", "L", "XL", "XXL", "XXXL"] },
-      { collection: "special", id: "ed_jockey", name: "Jockey oficial", price: 12000, img: "../09_DISENO_MERCHANDISING/Jockey oficial.png", desc: "Jockey oficial de gira como producto individual.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_gorro_invierno", name: "Gorro de invierno", price: 11000, img: "../09_DISENO_MERCHANDISING/Gorro invierno.png", desc: "Gorro de invierno Gigantes separado para pedido individual.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_vaso_termico", name: "Vaso termico", price: 14000, img: "../09_DISENO_MERCHANDISING/Vaso Termico.png", desc: "Vaso termico de gira como producto individual.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_tazon", name: "Tazon", price: 8000, img: "../09_DISENO_MERCHANDISING/Tazon.png", desc: "Tazon de la gira para venta solidaria.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_pulsera", name: "Pulsera", price: 3000, img: "../09_DISENO_MERCHANDISING/Pulsera.png", desc: "Pulsera solidaria de bajo costo para venta masiva.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_llavero", name: "Llavero", price: 5000, img: "../09_DISENO_MERCHANDISING/Llavero.png", desc: "Llavero camiseta de gira como producto individual.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_banderin", name: "Banderin", price: 10000, img: "../09_DISENO_MERCHANDISING/Banderin.png", desc: "Banderin de recuerdo y apoyo. Producto individual.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_mochila", name: "Mochila", price: 22000, img: "../09_DISENO_MERCHANDISING/Mochila.png", desc: "Mochila de gira como producto individual.", sizes: ["Unica"] },
-      { collection: "special", id: "ed_garrafa", name: "Garrafa / botella", price: 12000, img: "../09_DISENO_MERCHANDISING/Botella Aluminio.png", desc: "Botella/garrafa del club para entrenamientos.", sizes: ["Unica"] }
-    ];
+<!-- CATÁLOGO -->
+<section class="section" id="catalogo">
+  <div class="section-inner">
+    <h2 class="section-title">Catálogo oficial</h2>
+    <p class="section-sub">Todos los productos tienen el diseño exclusivo "Ruta a Jujuy 2026" · Colores negro y naranja oficial del club</p>
+    <div class="productos">
 
-    const productGrid = document.getElementById("productGrid");
-    const cartList = document.getElementById("cartList");
-    const cartTotal = document.getElementById("cartTotal");
-    const result = document.getElementById("result");
-    const orderForm = document.getElementById("orderForm");
-    const pedidoDetalle = document.getElementById("pedidoDetalle");
-    const pedidoMonto = document.getElementById("pedidoMonto");
-    const pedidoTotal = document.getElementById("pedidoTotal");
-    let cart = JSON.parse(localStorage.getItem("gigantes_merch_cart") || "[]");
-
-    function money(value) {
-      return "$" + Number(value || 0).toLocaleString("es-CL");
-    }
-
-    function renderProducts() {
-      productGrid.innerHTML = "";
-      renderProductSection("Productos base del club", "Poleras, poleron, gorro, vaso y pack hincha para apoyar la gira.", PRODUCTS.filter((product) => product.collection === "base"));
-      renderProductSection("Edicion especial de gira", "Cada producto aparece separado para que la familia pueda pedir solo banderin, solo gorro, solo llavero, etc.", PRODUCTS.filter((product) => product.collection === "special"));
-    }
-
-    function renderProductSection(title, description, products) {
-      const section = document.createElement("section");
-      section.className = "catalog-section";
-      section.innerHTML = `
-        <div class="catalog-heading">
-          <h2>${title}</h2>
-          <p>${description}</p>
+      <div class="producto">
+        <div class="producto-img"><img src="Polera_de_Juego.png" alt="Camiseta de juego Gigantes de Azapa Salta 2026"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Camiseta de Juego</div>
+          <div class="producto-desc">Camiseta oficial de rugby. Diseño exclusivo "Ruta a Jujuy 2026". Sublimación total. Bandera chilena en manga.</div>
+          <div class="producto-precio">$25.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-camiseta-juego">
+            <button class="btn-agregar" onclick="agregar('Camiseta de Juego','Polera_de_Juego.png',25000,'qty-camiseta-juego')">+ Agregar</button>
+          </div>
         </div>
-        <div class="catalog-products"></div>
-      `;
-      const container = section.querySelector(".catalog-products");
-      products.forEach((product) => {
-        const card = document.createElement("article");
-        card.className = "product";
-        const visual = product.focus
-          ? `<div class="product-visual product-crop" style="--product-image: url('${product.img}'); --product-position: ${product.focus}; --product-zoom: ${product.zoom || "300%"};"><span>${money(product.price)}</span></div>`
-          : `<div class="product-visual"><img src="${product.img}" alt="${product.name}"><span>${money(product.price)}</span></div>`;
-        card.innerHTML = `
-          ${visual}
-          <div class="product-body">
-            <h3>${product.name}</h3>
-            <span class="price">${money(product.price)}</span>
-            <p>${product.desc}</p>
-            <div class="controls">
-              <label>Talla
-                <select id="size-${product.id}">
-                  ${product.sizes.map((size) => `<option>${size}</option>`).join("")}
-                </select>
-              </label>
-              <label>Cantidad
-                <input id="qty-${product.id}" type="number" min="1" value="1">
-              </label>
-            </div>
-            <div class="product-actions">
-              <button type="button" onclick="openProduct('${product.id}')">Ver producto</button>
-              <button class="secondary" type="button" onclick="addToCart('${product.id}')">Agregar al carro</button>
-            </div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="Polera_de_salida.png" alt="Camiseta de salida Gigantes de Azapa"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Camiseta de Salida</div>
+          <div class="producto-desc">Polerón oficial de salida. Mismo diseño exclusivo con logos de sponsors. Ideal para entrenamientos y viaje.</div>
+          <div class="producto-precio">$28.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-camiseta-salida">
+            <button class="btn-agregar" onclick="agregar('Camiseta de Salida','Polera_de_salida.png',28000,'qty-camiseta-salida')">+ Agregar</button>
           </div>
-        `;
-        container.appendChild(card);
-      });
-      productGrid.appendChild(section);
-    }
+        </div>
+      </div>
 
-    function addToCart(id) {
-      const product = PRODUCTS.find((item) => item.id === id);
-      const size = document.getElementById("size-" + id).value;
-      const qty = Math.max(Number(document.getElementById("qty-" + id).value || 1), 1);
-      const existing = cart.find((item) => item.id === id && item.size === size);
-      if (existing) {
-        existing.qty += qty;
-      } else {
-        cart.push({ id: product.id, name: product.name, size, qty, price: product.price });
-      }
-      saveCart();
-      result.textContent = product.name + " agregado al carro. Para finalizar, baja a Datos para realizar pedido, completa tu nombre, correo y telefono, y presiona Enviar pedido.";
-    }
-
-    function openProduct(id) {
-      const product = PRODUCTS.find((item) => item.id === id);
-      if (!product) return;
-      document.getElementById("modalImage").src = product.img;
-      document.getElementById("modalImage").alt = product.name;
-      document.getElementById("modalTitle").textContent = product.name;
-      document.getElementById("modalPrice").textContent = money(product.price);
-      document.getElementById("modalDescription").textContent = product.desc;
-      document.getElementById("modalSizes").textContent = "Tallas disponibles: " + product.sizes.join(", ");
-      document.getElementById("modalAdd").onclick = () => {
-        addToCart(product.id);
-        closeProduct();
-      };
-      document.getElementById("productModal").classList.add("is-open");
-    }
-
-    function closeProduct() {
-      document.getElementById("productModal").classList.remove("is-open");
-    }
-
-    function addSpecialPack() {
-      const pack = [
-        "ed_camiseta_gira",
-        "ed_jockey",
-        "ed_vaso_termico",
-        "ed_pulsera"
-      ];
-      pack.forEach((id) => {
-        const product = PRODUCTS.find((item) => item.id === id);
-        cart.push({ id: product.id, name: product.name, size: product.sizes[0], qty: 1, price: product.price });
-      });
-      saveCart();
-      result.textContent = "Pack especial sugerido agregado al carro.";
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      saveCart();
-    }
-
-    function clearCart() {
-      cart = [];
-      saveCart();
-      result.textContent = "Carro vaciado.";
-    }
-
-    function saveCart() {
-      localStorage.setItem("gigantes_merch_cart", JSON.stringify(cart));
-      renderCart();
-    }
-
-    function getTotal() {
-      return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    }
-
-    function renderCart() {
-      if (!cart.length) {
-        cartList.innerHTML = "<p>Aun no hay productos en el carro.</p>";
-      } else {
-        cartList.innerHTML = cart.map((item, index) => `
-          <div class="cart-item">
-            <strong>${item.name}</strong>
-            <span>Talla: ${item.size} | Cantidad: ${item.qty}</span>
-            <span>${money(item.price)} c/u | Subtotal: ${money(item.price * item.qty)}</span>
-            <button type="button" onclick="removeFromCart(${index})">Quitar</button>
+      <div class="producto">
+        <div class="producto-img"><img src="Jockey_oficial.png" alt="Jockey oficial Gigantes de Azapa"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Jockey Oficial</div>
+          <div class="producto-desc">Cap estilo New Era. Negro con detalles naranjo. Logo bordado al frente. "GIGANTES" en el dorso.</div>
+          <div class="producto-precio">$15.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-jockey">
+            <button class="btn-agregar" onclick="agregar('Jockey Oficial','Jockey_oficial.png',15000,'qty-jockey')">+ Agregar</button>
           </div>
-        `).join("");
-      }
-      cartTotal.textContent = money(getTotal());
-      const detail = cart.map((item) => `${item.name} | talla ${item.size} | cantidad ${item.qty} | ${money(item.price)} c/u | subtotal ${money(item.price * item.qty)}`).join("\n");
-      pedidoDetalle.value = detail;
-      pedidoMonto.value = String(getTotal());
-      pedidoTotal.value = String(getTotal());
-    }
+        </div>
+      </div>
 
-    orderForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      if (!cart.length) {
-        result.textContent = "Agrega al menos un producto al carro antes de enviar.";
-        return;
-      }
-      renderCart();
-      result.textContent = "Enviando pedido...";
-      const url = window.GIGANTES_APPS_SCRIPT_URL;
-      if (!url || url.includes("PEGAR")) {
-        result.textContent = "Falta configurar Apps Script. El pedido queda visible en pantalla para registro manual.";
-        return;
-      }
-      const payload = new URLSearchParams(new FormData(orderForm));
-      try {
-        await fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: payload.toString()
-        });
-        result.textContent = "Pedido enviado. Revisa WEB_MERCHANDISING en el Centro Operativo. Se enviara correo de respaldo si Apps Script esta actualizado.";
-        clearCart();
-        orderForm.reset();
-      } catch (error) {
-        result.textContent = "No se pudo enviar el pedido. Puedes imprimirlo o registrarlo manualmente.";
-      }
-    });
+      <div class="producto">
+        <div class="producto-img"><img src="Gorro_invierno.png" alt="Gorro de invierno Gigantes de Azapa"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Gorro Invierno</div>
+          <div class="producto-desc">Gorro pompón negro y naranja. "GIGANTES" bordado. Logo del club. Perfecto para el frío de Salta y Jujuy.</div>
+          <div class="producto-precio">$12.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-gorro">
+            <button class="btn-agregar" onclick="agregar('Gorro Invierno','Gorro_invierno.png',12000,'qty-gorro')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeProduct();
-    });
+      <div class="producto">
+        <div class="producto-img"><img src="Vaso_Termico.png" alt="Vaso térmico Gigantes de Azapa Ruta a Jujuy"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Vaso Térmico</div>
+          <div class="producto-desc">Vaso térmico negro con logo y ruta Arica-Jujuy-Salta. "Más que un club, una familia." Capacidad 400ml.</div>
+          <div class="producto-precio">$18.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-vaso">
+            <button class="btn-agregar" onclick="agregar('Vaso Térmico','Vaso_Termico.png',18000,'qty-vaso')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
 
-    renderProducts();
-    renderCart();
-  </script>
+      <div class="producto">
+        <div class="producto-img"><img src="Tazon.png" alt="Tazón Gigantes de Azapa Ruta a Jujuy 2026"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Tazón</div>
+          <div class="producto-desc">Tazón negro con interior naranja. Logo Gigantes al frente. "Más que un club, una familia" en el dorso.</div>
+          <div class="producto-precio">$10.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-tazon">
+            <button class="btn-agregar" onclick="agregar('Tazón','Tazon.png',10000,'qty-tazon')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="Botella_Aluminio.png" alt="Garrafa aluminio Gigantes de Azapa"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Garrafa Aluminio</div>
+          <div class="producto-desc">Botella aluminio negra con ruta Arica-Jujuy-Salta grabada. Logo y "Más que un club, una familia."</div>
+          <div class="producto-precio">$16.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-garrafa">
+            <button class="btn-agregar" onclick="agregar('Garrafa Aluminio','Botella_Aluminio.png',16000,'qty-garrafa')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="Mochila.png" alt="Mochila Gigantes de Azapa Ruta a Jujuy"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Mochila</div>
+          <div class="producto-desc">Mochila negra con logo bordado y "GIGANTES DE AZAPA" en el dorso. Ideal para el viaje.</div>
+          <div class="producto-precio">$35.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-mochila">
+            <button class="btn-agregar" onclick="agregar('Mochila','Mochila.png',35000,'qty-mochila')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="Banderin.png" alt="Banderín Gigantes de Azapa Ruta a Jujuy 2026"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Banderín</div>
+          <div class="producto-desc">Banderín oficial negro y naranja con flecos. "Ruta a Jujuy 2026" y mapa de la ruta. Ideal para coleccionar.</div>
+          <div class="producto-precio">$8.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-banderin">
+            <button class="btn-agregar" onclick="agregar('Banderín','Banderin.png',8000,'qty-banderin')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="Llavero.png" alt="Llavero camiseta Gigantes de Azapa"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Llavero Camiseta</div>
+          <div class="producto-desc">Llavero en forma de camiseta. Diseño exclusivo de la gira. Frente y dorso personalizados.</div>
+          <div class="producto-precio">$4.000 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-llavero">
+            <button class="btn-agregar" onclick="agregar('Llavero Camiseta','Llavero.png',4000,'qty-llavero')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="Pulsera.png" alt="Pulsera Gigantes de Azapa Ruta a Jujuy 2026"></div>
+        <div class="producto-body">
+          <div class="producto-nombre">Pulsera</div>
+          <div class="producto-desc">"Ruta a Jujuy 2026" en el frente. "Gigantes de Azapa" en el dorso. Silicona negra y naranja.</div>
+          <div class="producto-precio">$2.500 <span>CLP</span></div>
+          <div class="producto-footer">
+            <input class="qty" type="number" min="1" max="20" value="1" id="qty-pulsera">
+            <button class="btn-agregar" onclick="agregar('Pulsera','Pulsera.png',2500,'qty-pulsera')">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOTOS DEL CLUB CON MERCH -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">El club que hay detrás de cada producto</h2>
+    <p class="section-sub">Cada compra apoya directamente a estos jugadores y sus familias para llegar a Salta 2026</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px">
+      <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1KIAs8jwr5kv6XfsfcRulr6jjIvHaeU37" alt="M10 M12 Gigantes de Azapa" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1xV3V7SsFf0vFQHFeZyYR-QaQU3P6SWHs" alt="Niños reunidos Gigantes de Azapa" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1_Q_4Sx1NBksBFpPNEA2wYMusz5OHFUlM" alt="Entrenadores Gigantes de Azapa" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1kkrcFg-Xgh9OoItl5VuZq-Plf5Sfr6AL" alt="Entrenamiento Gigantes de Azapa" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1AUJVv1Vs_PxBHsQXWy2IaOaePhIZSZm2" alt="Tercer tiempo Gigantes de Azapa" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="border-radius:10px;overflow:hidden;aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1pe5-hfPw4Ed5PkoRGg80pBlzWmoaN1UK" alt="Fogata formando club Gigantes" style="width:100%;height:100%;object-fit:cover"></div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(243,107,33,.15),rgba(194,65,12,.1));border:1px solid rgba(243,107,33,.3);border-radius:12px;padding:24px;text-align:center">
+      <div style="font-size:1.5rem;margin-bottom:8px">🏉 Más que un club, una familia</div>
+      <p style="color:rgba(255,255,255,.75);max-width:600px;margin:0 auto 16px;line-height:1.6">Somos Gigantes de Azapa Rugby Club, Arica, Chile. Llevamos años formando jugadores y comunidad. Esta gira a Salta 2026 es el sueño colectivo de todos. Tu compra hace posible el viaje.</p>
+      <a href="inscripcion.html" class="btn btn-naranja" style="display:inline-flex">Inscribirse al viaje →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Gigantes de Azapa Rugby Club · Arica, Chile · Gira Salta 2026</p>
+  <p style="margin-top:4px">Transferencias: <strong style="color:#f36b21">Angélica Urbina González</strong> · RUT 13.013.011-9 · BCI Cta. Cte. 01-999-124695-7</p>
+</footer>
+
+<!-- CARRITO FLOTANTE -->
+<div class="carrito-float">
+  <button class="carrito-btn" onclick="abrirCarrito()">
+    🛒 Mi pedido <span class="carrito-count" id="carritoCount">0</span>
+  </button>
+</div>
+
+<!-- MODAL CARRITO -->
+<div class="modal-overlay" id="modalCarrito">
+  <div class="modal">
+    <div class="modal-head">
+      <strong style="font-size:1.1rem">🛒 Mi pedido</strong>
+      <button class="modal-close" onclick="cerrarCarrito()">✕</button>
+    </div>
+    <div id="carritoItems"><p style="color:rgba(255,255,255,.5);text-align:center;padding:20px">Aún no tienes productos.</p></div>
+    <div class="carrito-total" id="carritoTotal" style="display:none"></div>
+
+    <div id="formPedido" style="display:none">
+      <div class="form-pedido">
+        <div>
+          <label>Nombre completo</label>
+          <input type="text" id="pedidoNombre" placeholder="Tu nombre" required>
+        </div>
+        <div>
+          <label>WhatsApp</label>
+          <input type="tel" id="pedidoTel" placeholder="+56 9..." required>
+        </div>
+        <div>
+          <label>Correo</label>
+          <input type="email" id="pedidoCorreo" placeholder="tu@correo.cl">
+        </div>
+        <div>
+          <label>¿Cómo retiras?</label>
+          <select id="pedidoRetiro">
+            <option>Retiro en el club</option>
+            <option>Entrega en Arica (coordinar)</option>
+            <option>Recibo en la gira (Salta)</option>
+          </select>
+        </div>
+        <div>
+          <label>Observaciones (tallas, colores, dedicatorias)</label>
+          <textarea id="pedidoObs" placeholder="Ej: camiseta talla M, gorro talla única..."></textarea>
+        </div>
+      </div>
+      <div class="transf">
+        <strong>Transferencia a:</strong><br>
+        Angélica Urbina González · RUT 13.013.011-9<br>
+        BCI Cta. Cte. <strong>01-999-124695-7</strong><br>
+        Correo: <strong>gigantesazapa.salta2026@gmail.com</strong><br>
+        <span style="color:rgba(255,255,255,.5);font-size:.78rem">Envía el comprobante por WhatsApp para confirmar tu pedido.</span>
+      </div>
+      <button class="btn-enviar" onclick="enviarPedido()">Confirmar pedido →</button>
+    </div>
+  </div>
+</div>
+
+<script src="form-bridge.js"></script>
+<script>
+const carrito = [];
+
+function agregar(nombre, img, precio, qtyId) {
+  const qty = parseInt(document.getElementById(qtyId).value) || 1;
+  const exist = carrito.find(i => i.nombre === nombre);
+  if (exist) exist.qty += qty;
+  else carrito.push({ nombre, img, precio, qty });
+  actualizarCarrito();
+  abrirCarrito();
+}
+
+function actualizarCarrito() {
+  const count = carrito.reduce((a, i) => a + i.qty, 0);
+  document.getElementById('carritoCount').textContent = count;
+
+  const container = document.getElementById('carritoItems');
+  const totalEl = document.getElementById('carritoTotal');
+  const formEl = document.getElementById('formPedido');
+
+  if (carrito.length === 0) {
+    container.innerHTML = '<p style="color:rgba(255,255,255,.5);text-align:center;padding:20px">Aún no tienes productos.</p>';
+    totalEl.style.display = 'none';
+    formEl.style.display = 'none';
+    return;
+  }
+
+  let html = '';
+  let total = 0;
+  carrito.forEach((item, idx) => {
+    total += item.precio * item.qty;
+    html += `<div class="carrito-item">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="${item.img}" style="width:44px;height:44px;object-fit:contain;background:#0b0f14;border-radius:6px;padding:4px">
+        <div>
+          <div style="font-weight:700;font-size:.9rem">${item.nombre}</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.5)">$${item.precio.toLocaleString('es-CL')} c/u</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <input type="number" min="1" value="${item.qty}" style="width:46px;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;text-align:center;font-size:.85rem" onchange="cambiarQty(${idx},this.value)">
+        <button onclick="eliminar(${idx})" style="background:rgba(255,0,0,.2);border:none;color:#ff6b6b;border-radius:6px;width:30px;height:30px;cursor:pointer;font-size:1rem">×</button>
+      </div>
+    </div>`;
+  });
+  container.innerHTML = html;
+  totalEl.style.display = 'block';
+  totalEl.textContent = `Total: $${total.toLocaleString('es-CL')} CLP`;
+  formEl.style.display = 'block';
+}
+
+function cambiarQty(idx, val) {
+  carrito[idx].qty = Math.max(1, parseInt(val)||1);
+  actualizarCarrito();
+}
+function eliminar(idx) { carrito.splice(idx,1); actualizarCarrito(); }
+function abrirCarrito() { document.getElementById('modalCarrito').classList.add('open'); }
+function cerrarCarrito() { document.getElementById('modalCarrito').classList.remove('open'); }
+
+async function enviarPedido() {
+  const nombre = document.getElementById('pedidoNombre').value.trim();
+  const tel = document.getElementById('pedidoTel').value.trim();
+  if (!nombre || !tel) { alert('Ingresa tu nombre y WhatsApp.'); return; }
+
+  const total = carrito.reduce((a,i) => a + i.precio * i.qty, 0);
+  const items = carrito.map(i => `${i.qty}x ${i.nombre} $${(i.precio*i.qty).toLocaleString('es-CL')}`).join(', ');
+  const retiro = document.getElementById('pedidoRetiro').value;
+  const obs = document.getElementById('pedidoObs').value;
+
+  const data = {
+    action: 'merchandising',
+    nombre, telefono: tel,
+    correo: document.getElementById('pedidoCorreo').value,
+    items, total: String(total), retiro, observaciones: obs
+  };
+
+  const wa = `https://wa.me/56900000000?text=${encodeURIComponent(`🛍 PEDIDO MERCH GIGANTES 2026\n\nNombre: ${nombre}\nTel: ${tel}\nRetiro: ${retiro}\nProductos: ${items}\nTotal: $${total.toLocaleString('es-CL')}\n\nObs: ${obs || 'Sin obs.'}`)}`;
+
+  if (window.GIGANTES_APPS_SCRIPT_URL && !window.GIGANTES_APPS_SCRIPT_URL.includes('PEGAR')) {
+    await sendToGigantes(data);
+  }
+
+  alert(`✅ Pedido registrado.\n\nTotal: $${total.toLocaleString('es-CL')}\nEnvía el comprobante de transferencia al WhatsApp del club.\n\n📦 ${retiro}`);
+  window.open(wa, '_blank');
+  carrito.length = 0;
+  actualizarCarrito();
+  cerrarCarrito();
+}
+
+document.getElementById('modalCarrito').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalCarrito')) cerrarCarrito();
+});
+</script>
 </body>
 </html>

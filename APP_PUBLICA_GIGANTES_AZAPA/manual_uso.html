@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual de Uso - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5,16,31,.94), rgba(7,61,49,.84)),
+        url("../Niños reunidos 2.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main { max-width: 1160px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .step, .role-card {
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0,1.08fr) minmax(280px,.92fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: #0f766e; font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.15rem,5vw,3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .photo {
+      min-height: 310px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+      color: #fff;
+    }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82)); }
+    .photo div { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: #facc15; color: #0f172a; }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .role-grid, .step-grid { display: grid; gap: 14px; margin-top: 14px; }
+    .role-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .step-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .role-card, .step { padding: 15px; border-left: 5px solid #0f766e; }
+    .role-card.warn, .step.warn { border-left-color: #facc15; }
+    .role-card strong, .step strong { display: block; margin-bottom: 7px; color: #0f766e; }
+    .number {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #facc15;
+      color: #0f172a;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .do-dont {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+    .box {
+      border-radius: 8px;
+      padding: 14px;
+      background: #f8fafc;
+      border-left: 5px solid #0f766e;
+    }
+    .box.warn { border-left-color: #dc2626; }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .step, .role-card { box-shadow: none; }
+      .panel { break-inside: avoid; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .role-grid, .step-grid, .do-dont { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Manual simple de uso</span>
+        </div>
+        <h1>Como usar la app</h1>
+        <p>Guia rapida para familias, jugadores, encargados, directiva y sponsors. La idea es que nadie tenga que adivinar donde entrar ni que completar.</p>
+        <a class="button" href="index.html">Ir al inicio</a>
+        <a class="button secondary" href="manual_merchandising_sponsors.html">Manual merch</a>
+        <a class="button secondary" href="guia_familias.html">Guia familias</a>
+        <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+        <button class="secondary" onclick="window.print()">Imprimir manual</button>
+      </div>
+      <div class="photo">
+        <img src="../entrenamiento.jpg" alt="Entrenamiento Gigantes de Azapa">
+        <div>
+          <strong>Una herramienta ordenada se usa mejor</strong>
+          <p>Primero leer, luego completar, despues revisar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Ruta rapida por persona</h2>
+      <div class="role-grid">
+        <article class="role-card"><strong>Familia o apoderado</strong><p>Entrar a Inicio, completar Inscripcion, subir Documentos y revisar Mi Estado.</p><a class="button secondary" href="inscripcion.html">Inscripcion</a></article>
+        <article class="role-card"><strong>Jugador</strong><p>Revisar Album visual, completar ficha de album y participar en actividades segun edad y autorizacion familiar.</p><a class="button secondary" href="album.html">Ficha album</a></article>
+        <article class="role-card"><strong>Encargado documentos</strong><p>Revisar cargas en Drive/Centro Operativo y marcar documentos pendientes por jugador.</p><a class="button secondary" href="documentos_carga.html">Documentos</a></article>
+        <article class="role-card"><strong>Encargado actividades</strong><p>Usar Actividades y Bingos para ordenar comisiones, insumos, premios y responsables.</p><a class="button secondary" href="actividades.html">Actividades</a></article>
+        <article class="role-card"><strong>Empresa o sponsor</strong><p>Entrar a Sponsors, revisar propuesta imprimible y registrar interes de apoyo.</p><a class="button secondary" href="sponsors.html">Sponsors</a></article>
+        <article class="role-card warn"><strong>Directiva</strong><p>Revisar Panel de Lanzamiento, Checklist Final y Acta de Validacion antes de publicar.</p><a class="button secondary" href="revision_directiva.html">Revision</a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Pasos para una familia</h2>
+      <div class="step-grid">
+        <article class="step"><span class="number">1</span><strong>Inscribir al jugador</strong><p>Completar la ficha con datos del jugador y adulto responsable.</p><a class="button secondary" href="inscripcion.html">Abrir inscripcion</a></article>
+        <article class="step"><span class="number">2</span><strong>Subir documentos</strong><p>Cargar cedula, certificado, ficha medica, autorizaciones, seguro y RSH si corresponde.</p><a class="button secondary" href="documentos_carga.html">Subir documentos</a></article>
+        <article class="step"><span class="number">3</span><strong>Consultar estado</strong><p>Entrar con RUT/DNI y codigo familiar para ver que documentos faltan.</p><a class="button secondary" href="mi_estado.html">Mi estado</a></article>
+        <article class="step"><span class="number">4</span><strong>Anotarse en actividades</strong><p>Elegir una comision o aporte concreto: insumos, venta, cobro, premios, difusion.</p><a class="button secondary" href="actividades.html">Actividades</a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Pasos para directiva y organizacion</h2>
+      <div class="step-grid">
+        <article class="step warn"><span class="number">1</span><strong>Validar privacidad</strong><p>Confirmar que cedulas, fichas medicas y RSH se manejan como informacion privada.</p></article>
+        <article class="step warn"><span class="number">2</span><strong>Revisar contenido publico</strong><p>Confirmar textos oficiales, fechas, Salta 2026, fotos y video autorizados.</p></article>
+        <article class="step"><span class="number">3</span><strong>Generar acta</strong><p>Dejar por escrito si la app queda aprobada para piloto, publicacion o ajustes.</p><a class="button secondary" href="acta_validacion_directiva.html">Acta</a></article>
+        <article class="step"><span class="number">4</span><strong>Preparar difusion</strong><p>Usar mensajes listos para WhatsApp, redes y empresas una vez exista enlace publico.</p><a class="button secondary" href="material_difusion.html">Difusion</a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Que hacer y que evitar</h2>
+      <div class="do-dont">
+        <div class="box">
+          <h3>Hacer</h3>
+          <ul>
+            <li>Completar una ficha por jugador.</li>
+            <li>Usar el mismo RUT/DNI y codigo familiar para documentos y Mi Estado.</li>
+            <li>Registrar aportes y sponsors en sus formularios.</li>
+            <li>Revisar el avance de meta para mantener transparencia.</li>
+          </ul>
+        </div>
+        <div class="box warn">
+          <h3>Evitar</h3>
+          <ul>
+            <li>Compartir enlaces internos de pruebas o diagnostico.</li>
+            <li>Subir documentos desde correos o chats sin registrarlos.</li>
+            <li>Publicar datos personales de jugadores.</li>
+            <li>Enviar mensajes de difusion sin el enlace publico final.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Album motivacional | Gigantes de Azapa</title>
+  <meta name="theme-color" content="#b11226" />
+  <style>
+    :root { --rojo:#b11226; --oscuro:#171717; --linea:#e5e7eb; --amarillo:#f7c948; --verde:#0f766e; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#171717; background:#fff; line-height:1.5; }
+    a { color:inherit; text-decoration:none; }
+    .hero { min-height:56vh; color:#fff; display:grid; align-content:end; padding:22px; background:linear-gradient(90deg,rgba(23,23,23,.9),rgba(177,18,38,.66)),url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/hero-gigantes.jpg") center/cover no-repeat; }
+    .hero-inner { width:min(1120px,100%); margin:0 auto; padding:42px 0 30px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:58px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:900; }
+    .brand img { width:58px; height:58px; border-radius:50%; object-fit:cover; background:#fff; }
+    .top a, .btn { display:inline-flex; justify-content:center; align-items:center; min-height:42px; padding:11px 15px; border-radius:8px; font-weight:800; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.13); color:#fff; }
+    h1 { margin:0; font-size:clamp(2.2rem,6vw,4.8rem); line-height:.95; letter-spacing:0; max-width:920px; }
+    .hero p { max-width:760px; color:rgba(255,255,255,.88); font-size:1.12rem; }
+    main { width:min(1120px,calc(100% - 32px)); margin:28px auto 50px; display:grid; gap:22px; }
+    .section { border:1px solid var(--linea); border-radius:8px; padding:clamp(20px,4vw,34px); background:#fff; box-shadow:0 12px 28px rgba(17,24,39,.06); }
+    h2 { margin:0 0 10px; font-size:clamp(1.6rem,4vw,2.6rem); line-height:1.05; }
+    .lead { color:#4b5563; max-width:790px; margin-bottom:18px; }
+    .layout { display:grid; grid-template-columns:1fr 380px; gap:20px; align-items:start; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    label { display:grid; gap:6px; font-weight:800; color:#374151; }
+    input, select, textarea { width:100%; min-height:44px; border:1px solid #d1d5db; border-radius:8px; padding:11px 12px; font:inherit; background:#fff; }
+    textarea { min-height:96px; resize:vertical; }
+    .wide { grid-column:1 / -1; }
+    .checkline { display:flex; align-items:flex-start; gap:10px; padding:14px; border:1px solid #fed7aa; background:#fff7ed; border-radius:8px; color:#7c2d12; font-weight:700; }
+    .checkline input { width:20px; min-height:20px; margin-top:2px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .btn.red { background:var(--rojo); border-color:var(--rojo); color:#fff; }
+    .btn.yellow { background:var(--amarillo); border-color:var(--amarillo); color:#2b1d00; }
+    .btn.dark { background:#171717; border-color:#171717; color:#fff; }
+    .card-preview { border-radius:8px; overflow:hidden; border:3px solid #111827; background:#111827; color:#fff; box-shadow:0 16px 32px rgba(17,24,39,.18); }
+    .photo { aspect-ratio:4 / 5; background:#d1d5db; display:grid; place-items:center; color:#374151; overflow:hidden; }
+    .photo img { width:100%; height:100%; object-fit:cover; display:none; }
+    .card-body { padding:18px; display:grid; gap:10px; background:linear-gradient(180deg,#b11226,#171717); }
+    .card-body h3 { margin:0; font-size:1.65rem; line-height:1; }
+    .meta { display:flex; flex-wrap:wrap; gap:8px; }
+    .pill { padding:5px 9px; border-radius:999px; background:#f7c948; color:#2b1d00; font-weight:900; font-size:.82rem; }
+    .quote { font-style:italic; color:rgba(255,255,255,.88); }
+    .notice { background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:16px; color:#064e3b; font-weight:700; }
+    footer { text-align:center; padding:28px 16px; background:#171717; color:#fff; }
+    @media (max-width:900px){ .top{align-items:flex-start; flex-direction:column;} .layout,.form-grid{grid-template-columns:1fr;} .actions .btn,.top a{width:100%;} }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="top">
+        <a class="brand" href="index.html"><img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Logo Gigantes" /> Gigantes de Azapa</a>
+        <a href="index.html">Volver a la portada</a>
+      </div>
+      <h1>Album motivacional de la gira</h1>
+      <p>Fichas tipo album deportivo para jugadores, entrenadores y voluntarios. Sirven para motivar, presentar al equipo y vender mejor el sueno de la gira.</p>
+      <div class="actions">
+        <a class="btn yellow" href="#ficha">Crear mi ficha</a>
+        <a class="btn" href="mi_estado.html">Mi estado documental</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>Importante sobre imagen y autorizacion</h2>
+      <p class="notice">Si la ficha corresponde a un menor de edad, la foto debe ser autorizada por su adulto responsable. La publicacion final queda sujeta a revision del comite organizador.</p>
+    </section>
+
+    <section class="section" id="ficha">
+      <h2>Crear ficha de album</h2>
+      <p class="lead">Completa los datos y sube una foto. La ficha quedara preparada para revision y publicacion motivacional.</p>
+      <div class="layout">
+        <form id="albumForm">
+          <div class="form-grid">
+            <label>Nombre
+              <input name="nombre" required />
+            </label>
+            <label>Rol
+              <select name="rol" required>
+                <option>Jugador</option>
+                <option>Entrenador</option>
+                <option>Voluntario</option>
+                <option>Apoderado</option>
+                <option>Staff</option>
+              </select>
+            </label>
+            <label>Categoria
+              <select name="categoria">
+                <option>M10</option>
+                <option>M12</option>
+                <option>M14</option>
+                <option>Classic</option>
+                <option>Adultos</option>
+                <option>Staff</option>
+              </select>
+            </label>
+            <label>Apodo o nombre corto
+              <input name="apodo" placeholder="Opcional" />
+            </label>
+            <label class="wide">Frase motivacional
+              <input name="frase" placeholder="Ej: Vamos por este sueno de club" />
+            </label>
+            <label class="wide">Que significa esta gira para mi
+              <textarea name="sueno_gira" placeholder="Ej: Quiero representar a Arica y vivir una experiencia con mis companeros."></textarea>
+            </label>
+            <label>Correo adulto responsable
+              <input type="email" name="correo" required />
+            </label>
+            <label>Foto para ficha
+              <input type="file" name="foto" id="foto" accept="image/*" />
+            </label>
+            <label class="wide">Nombre adulto que autoriza
+              <input name="adulto_autoriza" required />
+            </label>
+            <div class="wide checkline">
+              <input type="checkbox" name="autoriza" required />
+              <span>Autorizo que esta ficha y foto sean revisadas por el comite y puedan usarse en el album motivacional de la gira.</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn red" type="submit">Enviar ficha</button>
+            <button class="btn dark" type="button" id="printCard">Imprimir vista previa</button>
+          </div>
+        </form>
+
+        <aside class="card-preview" id="cardPreview">
+          <div class="photo">
+            <span id="photoText">Foto</span>
+            <img id="previewImage" alt="Vista previa foto" />
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill" id="previewRole">Jugador</span>
+              <span class="pill" id="previewCategory">M10</span>
+            </div>
+            <h3 id="previewName">Nombre jugador</h3>
+            <p class="quote" id="previewQuote">Vamos por este sueno de club.</p>
+            <p id="previewDream">Representar a Arica y vivir una experiencia con el equipo.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>Gigantes de Azapa Rugby Club | Ruta a Jujuy / Salta 2026</footer>
+
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <script>
+    const form = document.getElementById("albumForm");
+    const image = document.getElementById("previewImage");
+    const photoText = document.getElementById("photoText");
+    let fotoBase64 = "";
+
+    function updatePreview() {
+      const data = Object.fromEntries(new FormData(form).entries());
+      document.getElementById("previewName").textContent = data.apodo || data.nombre || "Nombre jugador";
+      document.getElementById("previewRole").textContent = data.rol || "Jugador";
+      document.getElementById("previewCategory").textContent = data.categoria || "M10";
+      document.getElementById("previewQuote").textContent = data.frase || "Vamos por este sueno de club.";
+      document.getElementById("previewDream").textContent = data.sueno_gira || "Representar a Arica y vivir una experiencia con el equipo.";
+    }
+
+    async function compressImage(file) {
+      if (!file) return "";
+      const bitmap = await createImageBitmap(file);
+      const max = 900;
+      const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(bitmap.width * scale);
+      canvas.height = Math.round(bitmap.height * scale);
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL("image/jpeg", 0.78);
+    }
+
+    form.addEventListener("input", updatePreview);
+    document.getElementById("foto").addEventListener("change", async (event) => {
+      const file = event.target.files && event.target.files[0];
+      fotoBase64 = await compressImage(file);
+      if (fotoBase64) {
+        image.src = fotoBase64;
+        image.style.display = "block";
+        photoText.style.display = "none";
+      }
+    });
+
+    document.getElementById("printCard").addEventListener("click", () => window.print());
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const sent = await sendToGigantes({
+        tipo: "album",
+        nombre: data.nombre,
+        rol: data.rol,
+        categoria: data.categoria,
+        apodo: data.apodo,
+        frase: data.frase,
+        sueno_gira: data.sueno_gira,
+        adulto_autoriza: data.adulto_autoriza,
+        correo: data.correo,
+        foto_base64: fotoBase64
+      });
+      alert(sent.configured ? "Ficha enviada correctamente para revision del comite." : "Ficha preparada. El comite debe activar el guardado automatico para recibirla en la planilla.");
+    });
+  </script>
+</body>
+</html>

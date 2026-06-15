@@ -1,0 +1,23 @@
+Carpeta final recomendada para publicar las imagenes de productos.
+
+Hoy la app usa las imagenes desde:
+../09_DISENO_MERCHANDISING/
+
+Para publicar en internet, copiar aqui los productos con nombres simples:
+- polera-de-juego.png
+- polera-de-salida.png
+- poleron-gira.png
+- jockey-oficial.png
+- gorro-invierno.png
+- vaso-termico.png
+- tazon.png
+- pulsera.png
+- llavero.png
+- banderin.png
+- mochila.png
+- botella-aluminio.png
+
+Luego cambiar las rutas en:
+- merchandising.html
+- catalogo_merchandising.html
+

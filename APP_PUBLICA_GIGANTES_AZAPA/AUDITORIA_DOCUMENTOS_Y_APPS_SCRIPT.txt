@@ -1,0 +1,83 @@
+AUDITORIA RAPIDA - DOCUMENTOS Y APPS SCRIPT
+
+Fecha: 2026-06-03
+
+ESTADO ACTUAL
+
+1. La app publica esta conectada en config.js a una URL tipo /exec.
+   URL actual conectada:
+   https://script.google.com/macros/s/AKfycbzCSSDoP5K9Khk3f7SVNICJGJgMNPrOjwIXL2jdNoDZrRPOEaetarNsZ2y8EMTL7y1pOA/exec
+
+2. No se deben usar enlaces tipo /library/d/.
+   Esos enlaces son de biblioteca y no sirven para conectar formularios.
+
+3. Se creo la pagina nueva:
+   documentos_carga.html
+
+4. La pagina documentos_carga.html permite adjuntar:
+   - Cedula frente
+   - Cedula reverso
+   - Certificado de nacimiento
+   - Autorizacion notarial
+   - Ficha medica
+   - Autorizacion del club
+   - Seguro o cobertura
+
+5. Se agrego categoria a la pagina de carga documental.
+
+6. Se corrigio el codigo Apps Script local:
+   APPS_SCRIPT_GIGANTES_WEBAPP.gs
+
+7. Se corrigio el copiador:
+   COPIAR_APPS_SCRIPT_CARGA_DOCUMENTOS.html
+
+8. El inicio index.html ahora apunta a documentos_carga.html para la seccion de documentos.
+
+9. Se corrigio la ruta de guardado de documentos.
+   Desde ahora los archivos deben guardarse en:
+   04_DOCUMENTOS_JUGADORES
+   https://drive.google.com/drive/folders/1tlxFR5UKjjSm12EqPC4bNJwukF44YZTI
+
+10. Dentro de 04_DOCUMENTOS_JUGADORES el sistema crea una carpeta por jugador:
+   RUT_NOMBRE_JUGADOR
+
+11. Los archivos se nombran con:
+   fecha_hora + rut + jugador + tipo_documento + nombre_original
+
+PLANILLA CENTRO OPERATIVO
+
+La hoja WEB_DOCUMENTOS tenia estructura antigua de checklist simple:
+fecha_registro, tipo, jugador, categoria, cedula, certificado, notarial, medica, club, seguro, observaciones, estado_revision
+
+El codigo nuevo respeta esos encabezados y agregara columnas nuevas al final cuando llegue una carga real:
+rut, codigo_familiar, correo, modo, cedula_frente, cedula_frente_url, cedula_reverso, cedula_reverso_url, certificado_url, notarial_url, medica_url, club_url, seguro_url
+
+PASO SEGURO PARA CONTINUAR
+
+1. Abrir:
+   COPIAR_APPS_SCRIPT_CARGA_DOCUMENTOS.html
+
+2. Copiar codigo completo.
+
+3. Abrir Apps Script correcto:
+   https://script.google.com/home/projects/1qJsCYQwUCcfF9ZeYUkxCG75YZ3cRfs6tkWdwyjjMP-w6lIYt3hnDCsnG/edit
+
+4. En Codigo.gs:
+   Ctrl + A
+   Borrar
+   Pegar
+   Ctrl + S
+
+5. Implementar:
+   Implementar > Administrar implementaciones > lapiz > Version > Nueva version > Implementar
+
+6. Probar:
+   documentos_carga.html
+
+7. Revisar:
+   Centro Operativo > WEB_DOCUMENTOS
+
+IMPORTANTE
+
+Si aparece otro enlace /library/d/, ignorarlo.
+El enlace que sirve para formularios siempre termina en /exec.

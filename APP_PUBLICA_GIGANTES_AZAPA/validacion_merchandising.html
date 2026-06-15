@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validacion Merchandising - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root {
+      --club-black: #0b0f14;
+      --club-charcoal: #171717;
+      --club-orange: #f36b21;
+      --club-orange-dark: #c2410c;
+      --club-cream: #fff7ed;
+      --club-line: rgba(243, 107, 33, .32);
+      --club-text: #111827;
+      --club-muted: #4b5563;
+      --club-success: #0f766e;
+      --club-danger: #dc2626;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 8, 12, .96), rgba(88, 28, 12, .84)),
+        url("file:///C:/Users/roger/Desktop/Pack_Completo_Gigantes_Azapa_Jujuy_2026/01_App_PWA/merchandising-oficial.jpg") center/cover fixed;
+      color: var(--club-text);
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .metric {
+      background: rgba(255,255,255,.97);
+      border: 1px solid var(--club-line);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: var(--club-orange-dark); font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.1rem,5vw,3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      background: #020617;
+      color: #fff;
+    }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.82)); }
+    .photo div { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: var(--club-charcoal);
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: var(--club-orange); color: #fff; }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .metric { padding: 16px; border-left: 5px solid var(--club-orange); }
+    .metric strong { display: block; color: var(--club-orange-dark); font-size: 1.35rem; margin-top: 6px; }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #d6d3d1;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--club-charcoal); color: #fff; }
+    td input, td select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #d6d3d1;
+      border-radius: 6px;
+      padding: 7px;
+      font: inherit;
+    }
+    .note {
+      background: var(--club-cream);
+      border-left: 5px solid var(--club-orange);
+      padding: 14px;
+      border-radius: 8px;
+    }
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .sponsor-card {
+      background: #fff;
+      border: 1px solid var(--club-line);
+      border-left: 5px solid var(--club-orange);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 12px 28px rgba(2,6,23,.18);
+    }
+    .sponsor-card strong {
+      display: block;
+      color: var(--club-orange-dark);
+      margin-bottom: 7px;
+    }
+    .approved { color: var(--club-success); font-weight: 900; }
+    .pending { color: var(--club-orange-dark); font-weight: 900; }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .metric { box-shadow: none; }
+      table { min-width: 0; font-size: 10px; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .metrics, .sponsor-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Directiva / proveedor</span>
+        </div>
+        <h1>Validacion merchandising</h1>
+        <p>Antes de publicar la tienda de forma masiva, la directiva debe validar precios, costo proveedor, margen para la gira, tallas disponibles y fecha de entrega.</p>
+        <a class="button" href="merchandising.html">Ver tienda</a>
+        <a class="button secondary" href="manual_merchandising_sponsors.html">Manual merch</a>
+        <a class="button secondary" href="catalogo_merchandising.html">Catalogo PDF</a>
+        <a class="button secondary" href="espacios_sponsor_merchandising.html">Espacios sponsor</a>
+        <a class="button secondary" href="control_merchandising.html">Control interno</a>
+        <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+        <button class="secondary" onclick="window.print()">Imprimir validacion</button>
+      </div>
+      <div class="photo">
+        <img src="file:///C:/Users/roger/Desktop/Pack_Completo_Gigantes_Azapa_Jujuy_2026/01_App_PWA/merchandising-oficial.jpg" alt="Merchandising oficial">
+        <div>
+          <strong>Vender con margen claro</strong>
+          <p>Precio final, costo, utilidad y entrega deben estar definidos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric"><span>Productos</span><strong id="totalProductos">0</strong></article>
+      <article class="metric"><span>Aprobados</span><strong id="totalAprobados">0</strong></article>
+      <article class="metric"><span>Margen estimado</span><strong id="margenEstimado">$0</strong></article>
+      <article class="metric"><span>Estado</span><strong id="estadoGeneral">Pendiente</strong></article>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Tabla de precios y stock</h2>
+      <p>Los valores que aparecen son sugeridos. La directiva puede editarlos aqui para imprimir una propuesta final o registrar acuerdos con proveedor.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio sugerido</th>
+              <th>Costo proveedor</th>
+              <th>Margen gira</th>
+              <th>Tallas / variantes</th>
+              <th>Stock inicial</th>
+              <th>Fecha entrega</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="note">
+        <strong>Faltante clave:</strong> cuando la directiva apruebe estos valores, se deben copiar los precios definitivos a la tienda y actualizar el material de difusion antes de publicar.
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Opciones de sponsor en merchandising</h2>
+      <p>Esta linea permite que una empresa apoye produciendo o financiando productos, y que su logo aparezca en espacios definidos por directiva.</p>
+      <div class="sponsor-grid">
+        <article class="sponsor-card"><strong>Auspiciador principal</strong><span>Logo destacado en camiseta/poleron de gira y presencia en catalogo.</span></article>
+        <article class="sponsor-card"><strong>Auspiciador oro/plata</strong><span>Logo en sectores secundarios de indumentaria o piezas graficas.</span></article>
+        <article class="sponsor-card"><strong>Aporte en especie</strong><span>Empresa produce, imprime, borda, sublima o dona productos para venta solidaria.</span></article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const PRODUCTS = [
+      ["Polera de juego", 25000, "6, 8, 10, 12, 14, S, M, L, XL"],
+      ["Polera de salida", 18000, "6, 8, 10, 12, 14, S, M, L, XL"],
+      ["Poleron del club", 35000, "8, 10, 12, 14, S, M, L, XL, XXL"],
+      ["Gorro Gigantes", 9000, "Unica"],
+      ["Vaso reutilizable", 5000, "Unica"],
+      ["Pack hincha", 30000, "6, 8, 10, 12, 14, S, M, L, XL"],
+      ["Poleron oficial de gira", 42000, "8, 10, 12, 14, S, M, L, XL, XXL"],
+      ["Camiseta gira", 28000, "6, 8, 10, 12, 14, S, M, L, XL"],
+      ["Jockey oficial", 12000, "Unica"],
+      ["Gorro de invierno", 11000, "Unica"],
+      ["Vaso termico", 14000, "Unica"],
+      ["Tazon", 8000, "Unica"],
+      ["Pulsera", 3000, "Unica"],
+      ["Llavero", 5000, "Unica"],
+      ["Banderin", 10000, "Unica"],
+      ["Mochila", 22000, "Unica"],
+      ["Garrafa / botella", 12000, "Unica"]
+    ];
+    const rows = document.getElementById("rows");
+    const money = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+
+    function renderRows() {
+      rows.innerHTML = "";
+      PRODUCTS.forEach(([name, price, sizes]) => {
+        const cost = Math.round(price * 0.65);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${name}</strong></td>
+          <td><input type="number" value="${price}" min="0" oninput="update()"></td>
+          <td><input type="number" value="${cost}" min="0" oninput="update()"></td>
+          <td class="margin">$0</td>
+          <td><input value="${sizes}"></td>
+          <td><input type="number" min="0" value="0"></td>
+          <td><input placeholder="Pendiente"></td>
+          <td><select onchange="update()"><option>Pendiente</option><option>Aprobado</option><option>Revisar proveedor</option><option>No publicar</option></select></td>
+        `;
+        rows.appendChild(tr);
+      });
+      update();
+    }
+
+    function update() {
+      const trs = Array.from(rows.querySelectorAll("tr"));
+      let approved = 0;
+      let margin = 0;
+      trs.forEach((tr) => {
+        const inputs = tr.querySelectorAll("input");
+        const price = Number(inputs[0].value || 0);
+        const cost = Number(inputs[1].value || 0);
+        const rowMargin = Math.max(price - cost, 0);
+        tr.querySelector(".margin").textContent = money.format(rowMargin);
+        margin += rowMargin;
+        if (tr.querySelector("select").value === "Aprobado") approved += 1;
+      });
+      document.getElementById("totalProductos").textContent = trs.length;
+      document.getElementById("totalAprobados").textContent = approved;
+      document.getElementById("margenEstimado").textContent = money.format(margin);
+      document.getElementById("estadoGeneral").textContent = approved === trs.length ? "Listo" : "Pendiente";
+      document.getElementById("estadoGeneral").className = approved === trs.length ? "approved" : "pending";
+    }
+
+    renderRows();
+  </script>
+</body>
+</html>

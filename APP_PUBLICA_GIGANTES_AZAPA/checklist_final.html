@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checklist final - Salta 2026</title>
+  <style>
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,16,31,.94),rgba(7,61,49,.84)),url("../rugby playa.jpg") center/cover fixed;color:#0f172a}
+    main{max-width:1100px;margin:0 auto;padding:24px}
+    section{background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.36);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2rem,5vw,3.8rem);line-height:.96;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:#0f766e;color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:#facc15;color:#0f172a}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .item{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border-left:5px solid #0f766e;border-radius:8px;padding:10px;margin-bottom:8px}
+    .item.warn{border-left-color:#facc15}
+    input{width:20px;height:20px;flex:0 0 auto}
+    strong{display:block}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section{box-shadow:none}}
+    @media(max-width:820px){main{padding:14px}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Checklist final antes de publicar</h1>
+      <p>Lista de validacion para Presidenta, Directiva y equipo organizador antes de compartir la app con familias, sponsors y comunidad.</p>
+      <a class="button" href="revision_directiva.html">Revision directiva</a>
+      <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+      <a class="button secondary" href="manual_uso.html">Manual de uso</a>
+      <a class="button secondary" href="acta_validacion_directiva.html">Acta validacion</a>
+      <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+      <a class="button secondary" href="simulacion_piloto.html">Simulacion piloto</a>
+      <a class="button secondary" href="correos_automaticos.html">Correos automaticos</a>
+      <a class="button secondary" href="auditoria_final_piloto.html">Auditoria final</a>
+      <a class="button secondary" href="material_difusion.html">Material de difusion</a>
+      <a class="button secondary" href="merchandising.html">Merchandising</a>
+      <a class="button secondary" href="index.html">Inicio</a>
+      <button class="button secondary" onclick="window.print()">Imprimir checklist</button>
+    </section>
+
+    <div class="grid">
+      <section>
+        <h2 style="margin-top:0">Validacion institucional</h2>
+        <label class="item"><input type="checkbox"><span><strong>Presidenta revisa la app</strong>Portada, relato general y flujo principal.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Directiva valida contenido</strong>Destino Salta 2026, fechas y textos oficiales.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Acta directiva generada</strong>Debe indicar si queda aprobada para piloto, publicacion o ajustes.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Carta oficial revisada</strong>Logo Tigres, carta e informacion formal.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Fotos y videos autorizados</strong>Uso en app, sponsors y campana.</span></label>
+      </section>
+
+      <section>
+        <h2 style="margin-top:0">Privacidad</h2>
+        <label class="item warn"><input type="checkbox"><span><strong>Cedulas privadas</strong>No visibles en pagina publica.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Ficha medica privada</strong>Solo Centro Operativo/Drive privado.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>RSH privado</strong>Solo para postulacion/gestion interna.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Mi Estado protegido</strong>Consulta con RUT/DNI + codigo familiar.</span></label>
+      </section>
+
+      <section>
+        <h2 style="margin-top:0">Pruebas funcionales</h2>
+        <label class="item"><input type="checkbox"><span><strong>Inscripcion</strong>Llega al Centro Operativo.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Documentos</strong>Archivos quedan en carpeta correcta.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Mi Estado</strong>Muestra pendientes y recibidos.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Actividades/Bingos</strong>Registros ordenados.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Aportes/Sponsors</strong>Llegan a planilla.</span></label>
+        <label class="item"><input type="checkbox" checked><span><strong>Aporte con comprobante</strong>Probado: llega a planilla, guarda comprobante y envia diploma automatico.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Pedido de merchandising</strong>Agregar producto al carro, completar comprador y confirmar que llegue a WEB_MERCHANDISING.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Vista de producto</strong>Revisar que pulsera, llavero, gorro, banderin y poleras se vean grandes y claros.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Avance</strong>Carga datos del Centro Operativo.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Simulacion piloto completa</strong>Completar la ruta guiada antes de enviar a presidenta/directiva.</span></label>
+      </section>
+
+      <section>
+        <h2 style="margin-top:0">Merchandising</h2>
+        <label class="item warn"><input type="checkbox"><span><strong>Precios validados</strong>La directiva confirma precio de venta, costo, margen y stock.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Fotos revisadas</strong>Cada producto tiene imagen limpia y representativa.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Entrega definida</strong>Todos los productos se entregan en entrenamientos o actividades oficiales del club.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Catalogo imprimible</strong>Catalogo listo para PDF, WhatsApp o sponsor.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Espacios para sponsors</strong>Definir si una empresa financiara productos con logo incluido.</span></label>
+      </section>
+
+      <section>
+        <h2 style="margin-top:0">Publicacion</h2>
+        <label class="item warn"><input type="checkbox"><span><strong>Definir hosting</strong>Netlify, GitHub Pages, Firebase u otro.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Imagenes dentro de la app</strong>Copiar fotos finales a carpetas publicas para que no dependan del computador local.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Revisar panel de lanzamiento</strong>Confirmar paginas publicas, privadas e internas.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Reemplazar enlaces en difusion</strong>Los mensajes deben llevar el enlace publico real de la app y sponsors.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Ocultar herramientas internas</strong>Pruebas, diagnostico, copiadores y auditorias.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Probar en celular</strong>Android/iPhone antes de enviar.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Piloto con familias</strong>Antes del lanzamiento masivo.</span></label>
+        <label class="item"><input type="checkbox"><span><strong>Manual revisado</strong>Confirmar que familias y encargados entienden donde entrar.</span></label>
+        <label class="item warn"><input type="checkbox"><span><strong>Correo oficial definido</strong>Correo del proyecto configurado para recibir registros y enviar respuestas automaticas.</span></label>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

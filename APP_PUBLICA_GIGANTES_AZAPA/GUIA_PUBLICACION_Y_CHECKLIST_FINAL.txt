@@ -1,0 +1,164 @@
+GUIA DE PUBLICACION Y CHECKLIST FINAL
+APP GIGANTES DE AZAPA - SALTA 2026
+
+ESTADO
+
+La app esta en etapa piloto interno avanzado.
+No publicar masivamente hasta completar checklist de privacidad, pruebas y aprobacion directiva.
+
+
+1. QUE SE DEBE PUBLICAR
+
+Carpeta publica:
+APP_PUBLICA_GIGANTES_AZAPA
+
+Archivos publicos principales:
+- index.html
+- inscripcion.html
+- documentos_carga.html
+- mi_estado.html
+- actividades.html
+- bingos.html
+- sponsors.html
+- aportes.html
+- avance.html
+- respaldo_institucional.html
+- carta_invitacion_salta.html
+- postulacion_ind.html
+- album.html
+- album_visual.html
+- calendario.html
+- diploma.html
+- revision_directiva.html
+- config.js
+- form-bridge.js si se usa
+
+Medios publicos:
+- niños llegando a jugar.mov
+- niños reunidos.jpg
+- rugby estadio.jpg
+- rugby playa.jpg
+- logo-tigres-rugby-club.jpg
+- logo del club
+
+
+2. QUE NO SE DEBE PUBLICAR
+
+No publicar en carpetas publicas:
+- Cedulas
+- Fichas medicas
+- RSH
+- Autorizaciones notariales
+- Planillas privadas con datos personales
+- Comprobantes personales
+- Archivos con RUT, telefono o correo de familias
+
+Esos datos deben quedar solo en:
+- Centro Operativo privado
+- Carpetas Drive privadas del proyecto
+- Apps Script/Google Sheets bajo control del club
+
+
+3. OPCIONES PARA PUBLICAR
+
+Opcion recomendada para empezar:
+Netlify Drop
+
+Ventajas:
+- Arrastrar carpeta y publicar.
+- Entrega enlace web real.
+- Funciona en celulares.
+- No requiere servidor propio.
+
+Otras opciones:
+- GitHub Pages
+- Firebase Hosting
+- Hosting del club si existe
+
+
+4. PASOS PARA PUBLICAR EN NETLIFY DROP
+
+1. Crear una copia limpia de la carpeta APP_PUBLICA_GIGANTES_AZAPA.
+2. Revisar que config.js tenga la URL correcta de Apps Script.
+3. Eliminar archivos internos que no deben publicarse si corresponde:
+   - COPIAR_APPS_SCRIPT_CARGA_DOCUMENTOS.html
+   - COPIAR_CODIGO_APPS_SCRIPT.html
+   - APPS_SCRIPT_GIGANTES_WEBAPP.gs
+   - diagnostico_avance.html
+   - pruebas.html
+4. Mantener revision_directiva.html solo si se quiere compartir con directiva.
+5. Subir la carpeta a Netlify Drop.
+6. Probar en celular.
+7. Recién despues compartir enlace.
+
+
+5. CHECKLIST ANTES DE PUBLICAR A FAMILIAS
+
+[ ] Presidenta revisa portada.
+[ ] Directiva valida textos y privacidad.
+[ ] Confirmar destino: Salta 2026.
+[ ] Confirmar montos sponsors.
+[ ] Confirmar categorias reales del club.
+[ ] Confirmar uso de fotos y videos.
+[ ] Probar inscripcion real.
+[ ] Probar carga de documentos.
+[ ] Probar Mi Estado.
+[ ] Probar actividad.
+[ ] Probar bingo.
+[ ] Probar sponsor.
+[ ] Probar aporte.
+[ ] Probar diploma.
+[ ] Probar avance automatico.
+[ ] Revisar Centro Operativo.
+[ ] Revisar correo automatico.
+[ ] Confirmar que RSH y documentos privados no se muestran publicamente.
+
+
+6. CHECKLIST PARA PRUEBA PILOTO
+
+Participantes sugeridos:
+- 1 familia
+- 1 jugador
+- 1 entrenador
+- 1 voluntario
+- 1 sponsor ficticio
+
+Flujo:
+1. Abrir index.
+2. Inscribir jugador.
+3. Subir documentos de prueba.
+4. Consultar Mi Estado.
+5. Anotarse en actividad.
+6. Registrar aporte.
+7. Generar diploma.
+8. Registrar sponsor.
+9. Revisar avance.
+10. Revisar Centro Operativo.
+
+
+7. ARCHIVOS QUE CONVIENE OCULTAR EN VERSION PUBLICA FINAL
+
+Para familias/comunidad:
+- pruebas.html
+- diagnostico_avance.html
+- COPIAR_APPS_SCRIPT_CARGA_DOCUMENTOS.html
+- COPIAR_CODIGO_APPS_SCRIPT.html
+- APPS_SCRIPT_GIGANTES_WEBAPP.gs
+- auditorias TXT internas
+
+Se pueden mantener en una carpeta privada de administracion.
+
+
+8. RECOMENDACION FINAL
+
+No lanzar todo de golpe.
+
+Orden recomendado:
+1. Revision Presidenta.
+2. Revision Directiva.
+3. Piloto con 3 familias.
+4. Ajustes.
+5. Publicacion oficial.
+6. Difusion a familias.
+7. Difusion a sponsors/comunidad.
+

@@ -1,0 +1,72 @@
+PASO A PASO PARA ACTIVAR GUARDADO AUTOMATICO
+
+1. Abrir Google Apps Script:
+   https://script.google.com/
+
+2. Crear un proyecto nuevo llamado:
+   GIGANTES_AZAPA_WEBAPP_FORMULARIOS
+
+3. Borrar el contenido inicial y pegar el codigo del archivo:
+   APPS_SCRIPT_GIGANTES_WEBAPP.gs
+
+4. Guardar el proyecto.
+
+5. Ir a Implementar > Nueva implementacion.
+
+6. Tipo:
+   Aplicacion web
+
+7. Ejecutar como:
+   Yo
+
+8. Quien tiene acceso:
+   Cualquier persona con el enlace
+
+9. Autorizar permisos de Google Sheets y Gmail/Mail.
+
+10. Copiar la URL de la aplicacion web.
+
+11. Abrir el archivo:
+   config.js
+
+12. Pegar la URL entre comillas:
+   window.GIGANTES_APPS_SCRIPT_URL = "PEGAR_AQUI_LA_URL_DE_APPS_SCRIPT";
+
+13. Guardar y probar:
+   - inscripcion.html
+   - documentos.html
+   - actividades.html
+   - sponsors.html
+
+14. Revisar en el Centro Operativo las pestanas:
+   WEB_INSCRIPCIONES
+   WEB_DOCUMENTOS
+   WEB_ACTIVIDADES
+   WEB_SPONSORS
+   WEB_APORTES_DIPLOMAS
+   WEB_ALBUM_MOTIVACIONAL
+
+15. Probar consulta privada:
+   - Abrir mi_estado.html
+   - Ingresar RUT/DNI del jugador
+   - Ingresar codigo familiar creado en la inscripcion
+   - Revisar que muestre documentos pendientes, recibidos u observados
+
+16. Probar album motivacional:
+   - Abrir album.html
+   - Completar ficha
+   - Subir foto autorizada
+   - Revisar que aparezca en WEB_ALBUM_MOTIVACIONAL
+   - Revisar carpeta FOTOS_ALBUM_MOTIVACIONAL dentro de la carpeta madre
+
+IMPORTANTE PARA MI_ESTADO.HTML
+La consulta privada usa:
+- RUT / DNI
+- Codigo familiar
+
+Ese codigo familiar se llena en inscripcion.html.
+Debe guardarse tambien en la pestana WEB_INSCRIPCIONES.
+
+IMPORTANTE
+Mientras config.js este vacio, las fichas solo preparan/copiaran el resumen.
+Cuando config.js tenga la URL publicada, tambien enviaran los datos a Google Sheets.

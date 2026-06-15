@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auditoria General - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root {
+      --club-black: #0b0f14;
+      --club-charcoal: #171717;
+      --club-orange: #f36b21;
+      --club-orange-dark: #c2410c;
+      --club-cream: #fff7ed;
+      --club-line: rgba(243, 107, 33, .32);
+      --club-text: #111827;
+      --ok: #0f766e;
+      --warn: #f59e0b;
+      --bad: #dc2626;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 8, 12, .96), rgba(88, 28, 12, .84)),
+        url("../entrenamiento.jpg") center/cover fixed;
+      color: var(--club-text);
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .item, .score {
+      background: rgba(255,255,255,.97);
+      border: 1px solid var(--club-line);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: var(--club-orange-dark); font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.1rem, 5vw, 3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .photo { min-height: 320px; border-radius: 8px; overflow: hidden; position: relative; background: #020617; color: #fff; }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.82)); }
+    .photo div { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: var(--club-charcoal);
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: var(--club-orange); }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .score-grid, .audit-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .score-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .audit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .score, .item { padding: 14px; border-left: 5px solid var(--club-orange); }
+    .score strong { display: block; color: var(--club-orange-dark); font-size: 1.35rem; margin-top: 5px; }
+    .item.ok { border-left-color: var(--ok); }
+    .item.warn { border-left-color: var(--warn); }
+    .item.bad { border-left-color: var(--bad); }
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: var(--club-cream);
+      color: var(--club-orange-dark);
+    }
+    .sources a { color: var(--club-orange-dark); font-weight: 900; }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .item, .score { box-shadow: none; break-inside: avoid; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .score-grid, .audit-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Revision general</span>
+        </div>
+        <h1>Auditoria general 04-06-2026</h1>
+        <p>Revision de avance de la app, merchandising, sponsors, documentos, recaudacion y publicacion. Incluye comparacion con buenas practicas de tiendas solidarias y sponsorship deportivo.</p>
+        <a class="button" href="panel_lanzamiento.html">Panel lanzamiento</a>
+        <a class="button secondary" href="checklist_final.html">Checklist final</a>
+        <a class="button secondary" href="manual_uso.html">Manual uso</a>
+        <button class="secondary" onclick="window.print()">Imprimir auditoria</button>
+      </div>
+      <div class="photo">
+        <img src="../Entrenadores.jpg" alt="Entrenadores Gigantes de Azapa">
+        <div>
+          <strong>La app ya tiene estructura seria</strong>
+          <p>Ahora falta cerrar publicacion, datos finales y pruebas reales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Resumen ejecutivo</h2>
+      <div class="score-grid">
+        <article class="score"><span>Contenido</span><strong>85%</strong><p>La app ya cubre casi todo el proyecto.</p></article>
+        <article class="score"><span>Datos reales</span><strong>60%</strong><p>Faltan precios finales, QR, stock y pruebas completas.</p></article>
+        <article class="score"><span>Publicacion</span><strong>40%</strong><p>Falta hosting/enlace publico y limpieza de paginas internas.</p></article>
+        <article class="score"><span>Operacion</span><strong>75%</strong><p>Hay manuales, controles y formularios, falta piloto.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Lo que esta fuerte</h2>
+      <div class="audit-grid">
+        <article class="item ok"><span class="tag">Listo</span><h3>Inscripcion y documentos</h3><p>Ya existe ficha de jugador, carga documental, consulta privada de estado y respaldo en Centro Operativo.</p></article>
+        <article class="item ok"><span class="tag">Listo</span><h3>Recaudacion organizada</h3><p>Actividades, bingos, aportes, sponsors, avance de meta y diplomas estan cubiertos.</p></article>
+        <article class="item ok"><span class="tag">Listo</span><h3>Merchandising avanzado</h3><p>Hay tienda, carro, catalogo, validacion, control, sponsors en especie, espacios de logo y compromiso.</p></article>
+        <article class="item ok"><span class="tag">Listo</span><h3>Revision directiva</h3><p>Existe panel de lanzamiento, checklist, acta y manuales para operar sin depender de memoria.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Faltantes criticos antes de publicar</h2>
+      <div class="audit-grid">
+        <article class="item bad"><span class="tag">Critico</span><h3>Publicar en internet</h3><p>Mientras sea file:/// solo lo ve el computador local. Hay que subir la app a hosting y generar enlace publico.</p></article>
+        <article class="item bad"><span class="tag">Critico</span><h3>Mover imagenes locales</h3><p>La lamina merchandising usa una ruta del escritorio. Debe copiarse a la carpeta publica para que funcione en celulares.</p></article>
+        <article class="item bad"><span class="tag">Critico</span><h3>Actualizar Apps Script</h3><p>La tienda requiere pegar el Apps Script actualizado para crear WEB_MERCHANDISING y sumar ventas al avance.</p></article>
+        <article class="item bad"><span class="tag">Critico</span><h3>Ocultar paginas internas</h3><p>Pruebas, copiadores, diagnosticos, validaciones y controles no deben ir al menu publico final.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Mejoras recomendadas por buenas practicas externas</h2>
+      <div class="audit-grid">
+        <article class="item warn"><span class="tag">Merch</span><h3>Imagen individual por producto</h3><p>Las tiendas de recaudacion recomiendan imagen clara por item. Hoy usamos recortes visuales; ideal crear archivos reales por producto.</p></article>
+        <article class="item warn"><span class="tag">Merch</span><h3>Retiro y entrega visibles</h3><p>Agregar fecha, lugar de retiro, responsable y politica de cambios/tallas en tienda y correo de confirmacion.</p></article>
+        <article class="item warn"><span class="tag">Precios</span><h3>Margen real</h3><p>Validar costo proveedor, comisiones, merma y utilidad. Evitar vender barato si la meta es financiar la gira.</p></article>
+        <article class="item warn"><span class="tag">Sponsors</span><h3>Paquetes con beneficios medibles</h3><p>Bronce/Plata/Oro deben indicar exactamente donde aparece el logo, por cuanto tiempo y que recibe la empresa.</p></article>
+        <article class="item warn"><span class="tag">Sponsors</span><h3>Acuerdo escrito</h3><p>Los sponsors en especie deben quedar con compromiso firmado: aporte, valorizacion, logo, plazo y condiciones.</p></article>
+        <article class="item warn"><span class="tag">Transparencia</span><h3>Reporte publico simple</h3><p>Mostrar meta, recaudado, faltante, fuentes y proximo hito aumenta confianza de familias y empresas.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Prioridad de proximos avances</h2>
+      <ol>
+        <li>Copiar imagen merchandising a carpeta publica y reemplazar rutas file:///.</li>
+        <li>Actualizar Apps Script con el copiador nuevo y probar un pedido de merchandising.</li>
+        <li>Crear imagenes individuales reales por producto o recortes exportados.</li>
+        <li>Definir precios finales, costos, stock, tallas y lugar de entrega.</li>
+        <li>Limpiar menu publico para esconder paginas internas.</li>
+        <li>Publicar en hosting y generar QR real para tienda, sponsors e inicio.</li>
+        <li>Hacer piloto con 3 familias, 1 sponsor y 1 pedido merchandising.</li>
+      </ol>
+    </section>
+
+    <section class="panel sources">
+      <h2 style="margin-top:0">Referencias revisadas</h2>
+      <ul>
+        <li><a href="https://kpisports.com.au/blogs/knowledge-centre/how-to-price-club-merchandise">KPI Sports: pricing club merchandise</a></li>
+        <li><a href="https://schoolauction.helpscoutdocs.com/article/1442-tips-and-best-practices-online-stores-or-pre-orders">SchoolAuction: online stores/pre-orders best practices</a></li>
+        <li><a href="https://youthsportsauthority.com/youth-sports-sponsorship-and-fundraising">Youth Sports Authority: sponsorship and fundraising</a></li>
+        <li><a href="https://youthsportsauthority.com/youth-sports-fundraising-strategies">Youth Sports Authority: fundraising strategies</a></li>
+        <li><a href="https://www.sponsorside.com/templates/youth-sports-sponsorship-package-template">SponsorSide: youth sports sponsorship package template</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

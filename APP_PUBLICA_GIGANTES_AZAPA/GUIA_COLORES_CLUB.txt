@@ -1,0 +1,35 @@
+GUIA DE COLORES - GIGANTES DE AZAPA
+
+Objetivo:
+Unificar la app para que no parezca una mezcla de colores distintos. La identidad visual debe sentirse mas cercana al club y al merchandising oficial.
+
+Paleta sugerida:
+- Negro carbon: #0b0f14
+- Negro suave / recuadros oscuros: #171717
+- Naranjo Gigantes principal: #f36b21
+- Naranjo oscuro para titulos/detalles: #c2410c
+- Blanco: #ffffff
+- Crema suave para avisos: #fff7ed
+- Gris texto secundario: #4b5563
+- Verde solo para estados correctos: #0f766e
+- Rojo solo para alertas o "no publicar": #dc2626
+
+Uso recomendado:
+- Botones principales: negro carbon o naranjo.
+- Botones secundarios: naranjo.
+- Bordes laterales de recuadros: naranjo.
+- Textos importantes: negro o naranjo oscuro.
+- Mensajes de exito: verde.
+- Alertas de privacidad/no publicar: rojo.
+
+Prioridad de aplicacion:
+1. merchandising.html
+2. sponsors.html
+3. propuesta_sponsors.html
+4. index.html
+5. actividades.html
+6. panel_lanzamiento.html
+7. revision_directiva.html
+
+Nota:
+Mantener fondos con fotos reales del club y overlays oscuros/naranjos para que el texto sea legible.

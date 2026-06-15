@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sponsors - Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../Entrenadores.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .package,
+    .benefit {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .photo {
+      min-height: 260px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background: #020617;
+    }
+    .photo video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, .08), rgba(15, 23, 42, .78));
+    }
+    .photo > div {
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+      align-self: end;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .package {
+      padding: 16px;
+      border-left: 5px solid #a16207;
+      cursor: pointer;
+      transition: transform .18s ease;
+    }
+    .package:hover,
+    .package.active {
+      transform: translateY(-2px);
+      outline: 2px solid #facc15;
+    }
+    .package.plata {
+      border-left-color: #64748b;
+    }
+    .package.oro {
+      border-left-color: #facc15;
+    }
+    .package.producto {
+      border-left-color: #0f766e;
+    }
+    .package small {
+      display: block;
+      color: #475569;
+      font-weight: 800;
+      margin-top: 10px;
+    }
+    .amount {
+      display: block;
+      color: #0f766e;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .benefit {
+      padding: 14px;
+      border-left: 5px solid #0f766e;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 800;
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(15, 23, 42, .18);
+      border-radius: 8px;
+      padding: 11px;
+      font: inherit;
+      background: #fff;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .result {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #a7f3d0;
+      background: #ecfdf5;
+      color: #065f46;
+      white-space: pre-wrap;
+    }
+    .result:empty {
+      display: none;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      place-items: center;
+      padding: 16px;
+      background: rgba(2, 6, 23, .72);
+    }
+    .modal.open {
+      display: grid;
+    }
+    .modal-card {
+      width: min(940px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.42);
+    }
+    .modal-visual {
+      min-height: 260px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.76)),
+        url("../m10m12.jpg") center/cover;
+      color: #fff;
+      display: flex;
+      align-items: end;
+      padding: 22px;
+      box-sizing: border-box;
+    }
+    .modal-body {
+      padding: 22px;
+    }
+    .modal-body h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .impact-grid div {
+      background: #f8fafc;
+      border-left: 5px solid #0f766e;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .impact-grid strong {
+      display: block;
+      color: #0f766e;
+      font-size: 1.35rem;
+    }
+    .close-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+    .close-button {
+      background: #e2e8f0;
+      color: #0f172a;
+      min-height: 36px;
+    }
+    .media-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .media-strip div {
+      min-height: 96px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.62)),
+        url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-suenos.jpg") center/cover;
+    }
+    .media-strip div:nth-child(1) {
+      background-image: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.62)), url("../m10m12.jpg");
+    }
+    .media-strip div:nth-child(2) {
+      background-image: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.62)), url("../m14.jpg");
+    }
+    .media-strip div:nth-child(3) {
+      background-image: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.62)), url("../Entrenadores.jpg");
+    }
+    .media-strip div:nth-child(4) {
+      background-image: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.62)), url("../entrenamiento.jpg");
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .story-card {
+      min-height: 260px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+      color: #fff;
+      box-shadow: 0 14px 34px rgba(2, 6, 23, .24);
+    }
+    .story-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .story-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82));
+    }
+    .story-card div {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 1;
+    }
+    .story-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.05rem;
+    }
+    @media (max-width: 920px) {
+      main {
+        padding: 14px;
+      }
+      .hero,
+      .packages,
+      .benefits,
+      .impact-grid,
+      .media-strip,
+      .story-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Invitacion a auspiciar</span>
+        </div>
+        <h1>Empresas que impulsan la gira</h1>
+        <p>Gigantes de Azapa Rugby Club fue invitado a participar en un intercambio deportivo y formativo en Salta, Argentina, del 26 al 30 de agosto de 2026. Buscamos empresas y personas que quieran apoyar a los jugadores con aportes en dinero, productos o servicios.</p>
+        <a class="button" href="respaldo_institucional.html">Ver respaldo institucional</a>
+        <a class="button secondary" href="carta_invitacion_salta.html">Ver carta de invitacion</a>
+        <a class="button secondary" href="galeria_club.html">Ver galeria del club</a>
+        <a class="button secondary" href="material_difusion.html">Material para compartir</a>
+        <a class="button secondary" href="propuesta_sponsors.html">Propuesta imprimible</a>
+        <a class="button secondary" href="espacios_sponsor_merchandising.html">Espacios en merch</a>
+        <a class="button secondary" href="compromiso_sponsor_merchandising.html">Compromiso merch</a>
+        <a class="button secondary" href="https://www.instagram.com/gigantesdeazaparugby/" target="_blank" rel="noopener">Instagram oficial</a>
+        <a class="button secondary" href="index.html">Inicio</a>
+      </div>
+      <div class="photo">
+        <video src="../niños llegando a jugar.mov" autoplay muted loop playsinline></video>
+        <div>
+          <strong>Tu marca puede viajar con el equipo</strong>
+          <p>El apoyo se transforma en experiencia deportiva, formacion y comunidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Paquetes sugeridos</h2>
+      <p>Elige un paquete o propone un aporte distinto. Los montos son referenciales y pueden adaptarse segun el tipo de apoyo.</p>
+      <div class="packages" id="packageGrid">
+        <article class="package bronce" data-pack="Bronce" data-amount="100000">
+          <h3>Bronce</h3>
+          <span class="amount">$100.000</span>
+          <ul>
+            <li>Agradecimiento en redes.</li>
+            <li>Logo en pagina de sponsors.</li>
+            <li>Certificado digital de apoyo.</li>
+          </ul>
+          <small>Click para ver propuesta</small>
+        </article>
+        <article class="package plata" data-pack="Plata" data-amount="250000">
+          <h3>Plata</h3>
+          <span class="amount">$250.000</span>
+          <ul>
+            <li>Logo destacado en pagina y redes.</li>
+            <li>Mencion en publicaciones de avance.</li>
+            <li>Certificado imprimible de apoyo.</li>
+          </ul>
+          <small>Click para ver propuesta</small>
+        </article>
+        <article class="package oro" data-pack="Oro" data-amount="500000">
+          <h3>Oro</h3>
+          <span class="amount">$500.000+</span>
+          <ul>
+            <li>Marca destacada en campana.</li>
+            <li>Logo en material grafico principal.</li>
+            <li>Reconocimiento especial del club.</li>
+          </ul>
+          <small>Click para ver propuesta</small>
+        </article>
+        <article class="package producto" data-pack="Productos o servicios" data-amount="">
+          <h3>Productos o servicios</h3>
+          <span class="amount">Aporte valorizado</span>
+          <ul>
+            <li>Alimentos, bebidas o insumos.</li>
+            <li>Merchandising, impresion o transporte.</li>
+            <li>Premios para rifas o ventas solidarias.</li>
+          </ul>
+          <small>Click para ver propuesta</small>
+        </article>
+        <article class="package producto" data-pack="Sponsor merchandising" data-amount="">
+          <h3>Sponsor merchandising</h3>
+          <span class="amount">Produccion financiada</span>
+          <ul>
+            <li>Empresa produce o financia productos.</li>
+            <li>Logo en poleras, polerones o catalogo.</li>
+            <li>Reconocimiento como colaborador oficial.</li>
+          </ul>
+          <small>Click para ver propuesta</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Por que una empresa deberia apoyar</h2>
+      <p>La empresa no solo aporta dinero: se asocia a una historia real de formacion deportiva, esfuerzo familiar y trabajo comunitario. Estas imagenes son parte del material que puede acompanar agradecimientos, publicaciones y propuestas a auspiciadores.</p>
+      <div class="story-grid">
+        <article class="story-card">
+          <img src="../m10m12.jpg" alt="Jugadores M10 y M12">
+          <div><strong>Formacion desde pequenos</strong><span>El apoyo llega directo a ninos que entrenan, aprenden y representan al club.</span></div>
+        </article>
+        <article class="story-card">
+          <img src="../entrenamiento.jpg" alt="Entrenamiento Gigantes de Azapa">
+          <div><strong>Esfuerzo antes del viaje</strong><span>La gira se gana desde los entrenamientos, la disciplina y la constancia.</span></div>
+        </article>
+        <article class="story-card">
+          <img src="../Entrenadores.jpg" alt="Entrenadores Gigantes de Azapa">
+          <div><strong>Acompanamiento responsable</strong><span>Entrenadores y adultos sostienen una experiencia segura y formativa.</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Beneficios para auspiciadores</h2>
+      <div class="benefits">
+        <article class="benefit"><strong>Visibilidad local</strong><p>Presencia en publicaciones, pagina y material de campana.</p></article>
+        <article class="benefit"><strong>Impacto social</strong><p>Apoyo directo a ninos, familias y deporte formativo.</p></article>
+        <article class="benefit"><strong>Respaldo formal</strong><p>Carta de invitacion oficial y control transparente del proyecto.</p></article>
+        <article class="benefit"><strong>Comunidad</strong><p>Vinculacion con el club, familias, entrenadores y voluntarios.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Registrar interes de sponsor</h2>
+      <form id="sponsorForm">
+        <input type="hidden" name="type" value="sponsor">
+        <div class="form-grid">
+          <label>Empresa o persona
+            <input name="empresa" required placeholder="Nombre empresa o persona">
+          </label>
+          <label>Contacto
+            <input name="contacto" required placeholder="Nombre de contacto">
+          </label>
+          <label>Correo
+            <input name="email" type="email" required placeholder="correo@empresa.cl">
+          </label>
+          <label>Telefono
+            <input name="telefono" placeholder="+56 9...">
+          </label>
+          <label>Categoria de apoyo
+            <select name="categoria" id="categoriaInput">
+              <option>Bronce</option>
+              <option>Plata</option>
+              <option>Oro</option>
+              <option>Productos o servicios</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label>Aporte estimado
+            <input name="aporte" id="aporteInput" placeholder="$100.000 / productos / servicios">
+          </label>
+        </div>
+        <label style="margin-top:12px">Beneficio o ubicacion de publicidad solicitada
+          <textarea name="beneficio" rows="3" placeholder="Ej: logo en redes, logo en polera, mencion en evento, pendon..."></textarea>
+        </label>
+        <label style="margin-top:12px">Observaciones
+          <textarea name="observaciones" rows="4" placeholder="Ej: empresa quiere aportar bebidas, premio para rifa, descuento en transporte..."></textarea>
+        </label>
+        <button type="submit">Registrar sponsor</button>
+        <button class="secondary" type="reset">Limpiar</button>
+        <div id="result" class="result"></div>
+      </form>
+    </section>
+
+    <div class="modal" id="sponsorModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-visual">
+          <div>
+            <strong id="modalEyebrow">Gigantes de Azapa Salta 2026</strong>
+            <h2 id="modalTitle">Tu apoyo cambia una experiencia</h2>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="close-row">
+            <button class="close-button" type="button" id="closeModal">Cerrar</button>
+          </div>
+          <p id="modalText"></p>
+          <div class="impact-grid">
+            <div><strong>80+</strong><span>ninos y jovenes proyectados en la invitacion.</span></div>
+            <div><strong>26-30 ago</strong><span>encuentro deportivo y cultural en Salta.</span></div>
+            <div><strong>1 equipo</strong><span>familias, entrenadores y comunidad trabajando juntos.</span></div>
+          </div>
+          <h3>Que recibe la empresa</h3>
+          <ul id="modalBenefits"></ul>
+          <h3>Por que importa</h3>
+          <p>Este viaje no es solo competencia. Es disciplina, amistad, cultura, esfuerzo familiar y una oportunidad para que los jugadores vivan el rugby como una experiencia formativa real.</p>
+          <div class="media-strip">
+            <div></div><div></div><div></div><div></div>
+          </div>
+          <button type="button" id="choosePackage">Quiero apoyar con este paquete</button>
+          <a class="button secondary" href="respaldo_institucional.html">Ver respaldo formal</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById("sponsorForm");
+    const result = document.getElementById("result");
+    const categoriaInput = document.getElementById("categoriaInput");
+    const aporteInput = document.getElementById("aporteInput");
+    const modal = document.getElementById("sponsorModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalEyebrow = document.getElementById("modalEyebrow");
+    const modalText = document.getElementById("modalText");
+    const modalBenefits = document.getElementById("modalBenefits");
+    const closeModal = document.getElementById("closeModal");
+    const choosePackage = document.getElementById("choosePackage");
+    let selectedCard = null;
+
+    const PACKAGE_COPY = {
+      Bronce: {
+        title: "Bronce: una empresa que abre camino",
+        eyebrow: "Apoyo inicial con impacto real",
+        text: "Con un auspicio Bronce, tu empresa ayuda a que una familia sienta que no esta sola en este desafio. Cada aporte suma para pasajes, alimentacion, documentos y logistica de una gira que los ninos recordaran por anos.",
+        benefits: [
+          "Agradecimiento publico en redes del proyecto.",
+          "Logo en la pagina de sponsors de la gira.",
+          "Certificado digital de apoyo para compartir con clientes y equipo.",
+          "Registro transparente del aporte en el Centro Operativo."
+        ]
+      },
+      Plata: {
+        title: "Plata: presencia visible en una causa de comunidad",
+        eyebrow: "Auspicio destacado",
+        text: "El paquete Plata permite que tu marca aparezca con mas fuerza en la campana y se asocie a una experiencia deportiva formativa. No es publicidad fria: es apoyar a ninos que entrenan, viajan, aprenden y representan a su club.",
+        benefits: [
+          "Logo destacado en pagina y publicaciones.",
+          "Mencion especial en avances de recaudacion.",
+          "Certificado imprimible de apoyo institucional.",
+          "Posibilidad de sumar material grafico o promocional."
+        ]
+      },
+      Oro: {
+        title: "Oro: una marca que viaja con el equipo",
+        eyebrow: "Apoyo principal",
+        text: "Un sponsor Oro se transforma en parte central de la historia. Este apoyo puede marcar la diferencia entre llegar justo o viajar con tranquilidad, orden y respaldo para que los jugadores se concentren en vivir la experiencia.",
+        benefits: [
+          "Marca destacada en campana principal.",
+          "Logo en material grafico prioritario.",
+          "Reconocimiento especial del club.",
+          "Espacio preferente en agradecimientos y piezas para redes."
+        ]
+      },
+      "Productos o servicios": {
+        title: "Productos o servicios: apoyo que resuelve necesidades concretas",
+        eyebrow: "Aporte valorizado",
+        text: "No todo apoyo tiene que ser dinero. Alimentos, bebidas, impresion, premios, transporte, indumentaria o servicios pueden bajar costos y ayudar directamente a las actividades de recaudacion.",
+        benefits: [
+          "Reconocimiento como empresa colaboradora.",
+          "Registro del aporte valorizado.",
+          "Uso del producto o servicio en actividades reales.",
+          "Agradecimiento publico segun el tipo de aporte."
+        ]
+      },
+      "Sponsor merchandising": {
+        title: "Sponsor merchandising: tu marca se convierte en parte de la gira",
+        eyebrow: "Aporte en produccion o financiamiento",
+        text: "Algunas empresas no aportan dinero directo, pero si pueden producir poleras, polerones, jockeys, vasos, banderines o articulos de la gira. Ese apoyo reduce costos, permite vender con margen y puede dar presencia de marca en productos oficiales.",
+        benefits: [
+          "Logo de la empresa en espacios definidos del merchandising.",
+          "Reconocimiento como sponsor oficial de la linea de productos.",
+          "Aparicion en catalogo, pagina de sponsors y publicaciones.",
+          "Registro transparente del aporte valorizado en el Centro Operativo."
+        ]
+      }
+    };
+
+    document.querySelectorAll(".package").forEach((card) => {
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".package").forEach((item) => item.classList.remove("active"));
+        card.classList.add("active");
+        selectedCard = card;
+        openPackage(card);
+      });
+    });
+
+    function openPackage(card) {
+      const pack = card.dataset.pack;
+      const copy = PACKAGE_COPY[pack] || PACKAGE_COPY.Bronce;
+      modalTitle.textContent = copy.title;
+      modalEyebrow.textContent = copy.eyebrow;
+      modalText.textContent = copy.text;
+      modalBenefits.innerHTML = copy.benefits.map((item) => `<li>${item}</li>`).join("");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function applyPackage(card) {
+      categoriaInput.value = card.dataset.pack;
+      aporteInput.value = card.dataset.amount ? `$${Number(card.dataset.amount).toLocaleString("es-CL")}` : "Aporte en productos o servicios";
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal.click();
+    });
+
+    choosePackage.addEventListener("click", () => {
+      if (selectedCard) applyPackage(selectedCard);
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      result.textContent = "Registrando interes de sponsor...";
+      const url = window.GIGANTES_APPS_SCRIPT_URL;
+      if (!url || url.includes("PEGAR")) {
+        result.textContent = "Falta configurar Apps Script.";
+        return;
+      }
+      const payload = new URLSearchParams(new FormData(form));
+      try {
+        await fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: payload.toString()
+        });
+        result.textContent = "Registro enviado. Revisa WEB_SPONSORS en el Centro Operativo.";
+      } catch (error) {
+        result.textContent = "No se pudo enviar el registro.";
+      }
+    });
+
+    form.addEventListener("reset", () => {
+      result.textContent = "";
+      document.querySelectorAll(".package").forEach((item) => item.classList.remove("active"));
+    });
+  </script>
+</body>
+</html>

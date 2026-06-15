@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administrador maestro - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--cream:#fff7ed;--text:#111827;--green:#0f766e;--yellow:#f59e0b;--red:#dc2626;--line:rgba(243,107,33,.28)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.82)),url("../Entrenadores.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1180px;margin:0 auto;padding:92px 24px 24px}
+    .topbar{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;background:rgba(5,8,12,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.14)}
+    .topbar-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}
+    .topbar-brand img{width:44px;height:44px;object-fit:contain;background:#fff;border-radius:8px;padding:5px}
+    .topbar-brand small{display:block;color:var(--orange);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+    .menu-btn{width:46px;height:46px;border:1px solid rgba(255,255,255,.24);border-radius:8px;background:rgba(255,255,255,.12);color:#fff;font-size:1.55rem;cursor:pointer}
+    .scrim{position:fixed;z-index:35;inset:0;background:rgba(2,6,23,.58);opacity:0;pointer-events:none;transition:.22s ease}
+    .scrim.open{opacity:1;pointer-events:auto}
+    .drawer{position:fixed;z-index:40;top:0;right:0;width:min(380px,92vw);height:100vh;background:#fff;color:var(--text);padding:18px;box-shadow:-24px 0 60px rgba(0,0,0,.36);transform:translateX(110%);transition:.22s ease;overflow:auto}
+    .drawer.open{transform:translateX(0)}
+    .drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .drawer-head button{width:42px;height:42px;border:0;border-radius:8px;background:#111827;color:#fff;font-size:1.35rem;cursor:pointer}
+    .drawer-section{margin:14px 0}
+    .drawer-section h3{margin:0 0 8px;color:#64748b;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+    .drawer-section a{display:block;color:inherit;text-decoration:none;border-left:5px solid var(--orange);background:#f8fafc;border-radius:8px;padding:12px;margin:8px 0;font-weight:900}
+    .drawer-section a small{display:block;margin-top:3px;color:#64748b;font-weight:700;line-height:1.35}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:18px;align-items:stretch}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .brand img{width:66px;height:66px;object-fit:contain;background:#fff;border-radius:8px;padding:6px}
+    .brand span{display:block;color:var(--orange);font-weight:900;text-transform:uppercase;font-size:.82rem}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.4rem);line-height:.92;letter-spacing:0}
+    h2{margin-top:0}
+    p,li{line-height:1.55}
+    .photo{min-height:310px;border-radius:8px;overflow:hidden;position:relative;background:#020617;color:#fff}
+    .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,12,.05),rgba(5,8,12,.85))}
+    .photo div{position:absolute;left:18px;right:18px;bottom:18px;z-index:1}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--green)}
+    .card.warn{border-left-color:var(--yellow)}
+    .card.stop{border-left-color:var(--red)}
+    .card a{color:inherit;text-decoration:none}
+    .tag{display:inline-flex;border-radius:999px;background:#ecfdf5;color:#065f46;padding:6px 10px;font-size:.78rem;font-weight:900;margin-bottom:8px}
+    .tag.warn{background:#fef3c7;color:#92400e}.tag.stop{background:#fee2e2;color:#991b1b}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    .priority-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+    .priority{background:rgba(255,255,255,.97);border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:8px;padding:14px;box-shadow:0 16px 38px rgba(0,0,0,.24)}
+    .priority span{display:block;color:#64748b;font-size:.76rem;font-weight:900;text-transform:uppercase}
+    .priority strong{display:block;margin-top:5px;font-size:1.05rem;line-height:1.15}
+    @media(max-width:900px){main{padding:84px 14px 14px}.hero,.grid,.priority-strip{grid-template-columns:1fr}.topbar-brand span{display:none}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="topbar-brand" href="admin_maestro.html">
+      <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+      <span><small>Directiva y comité</small>Panel interno Salta 2026</span>
+    </a>
+    <button class="menu-btn" type="button" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false" onclick="toggleMenu()">☰</button>
+  </header>
+  <div class="scrim" id="scrim" onclick="closeMenu()"></div>
+  <nav class="drawer" id="drawer">
+    <div class="drawer-head">
+      <strong>Menú directiva</strong>
+      <button type="button" aria-label="Cerrar menú" onclick="closeMenu()">x</button>
+    </div>
+    <div class="drawer-section">
+      <h3>Vista pública</h3>
+      <a href="accesos_publicos.html">App pública<small>Entrada que ven familias, comunidad y sponsors.</small></a>
+      <a href="ruta_familias.html">Familias y jugadores<small>Inscripción, documentos y estado.</small></a>
+      <a href="ruta_comunidad.html">Comunidad y aportes<small>Ventas, aportes, tienda y avance.</small></a>
+      <a href="ruta_empresas.html">Empresas y sponsors<small>Propuesta, carta y respaldo institucional.</small></a>
+    </div>
+    <div class="drawer-section">
+      <h3>Decisiones</h3>
+      <a href="revision_directiva.html">Revisión directiva<small>Resumen para aprobar, corregir o publicar.</small></a>
+      <a href="checklist_final.html">Checklist final<small>Privacidad, pruebas, publicación y responsabilidades.</small></a>
+      <a href="panel_lanzamiento.html">Panel lanzamiento<small>Qué queda público, privado o interno.</small></a>
+      <a href="presentacion_presidenta.html">Presentación Presidenta<small>Vista ejecutiva para revisión institucional.</small></a>
+    </div>
+    <div class="drawer-section">
+      <h3>Recaudación</h3>
+      <a href="avance.html">Avance de meta<small>Meta, recaudado y faltante cuando Finanzas informe.</small></a>
+      <a href="merchandising.html">Merchandising<small>Tienda pública con carro de pedidos.</small></a>
+      <a href="control_merchandising.html">Control merchandising<small>Pedidos, pagos, entregas y validación interna.</small></a>
+      <a href="material_difusion.html">Material de difusión<small>Mensajes listos para WhatsApp y redes.</small></a>
+    </div>
+    <div class="drawer-section">
+      <h3>Uso interno</h3>
+      <a href="manual_uso.html">Manual de uso<small>Guía rápida para operar la app.</small></a>
+      <a href="auditoria_final_piloto.html">Auditoría final<small>Semáforo de estado y riesgos.</small></a>
+      <a href="pruebas.html">Pruebas internas<small>Solo para comité, no reenviar.</small></a>
+    </div>
+  </nav>
+  <main>
+    <div class="priority-strip">
+      <div class="priority"><span>1. Revisar</span><strong>App pública y relato</strong></div>
+      <div class="priority"><span>2. Validar</span><strong>Privacidad y documentos</strong></div>
+      <div class="priority"><span>3. Ordenar</span><strong>Recaudación y sponsors</strong></div>
+      <div class="priority"><span>4. Aprobar</span><strong>Lanzamiento o piloto</strong></div>
+    </div>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <div><span>Uso interno</span><strong>Administrador maestro</strong></div>
+        </div>
+        <h1>Panel claro para decidir y avanzar</h1>
+        <p>Entrada interna para directiva y comité organizador. Aquí se revisa la app pública, se validan pendientes, se ordena la recaudación y se decide cuándo pasar de piloto a publicación oficial.</p>
+        <a class="button" href="accesos_publicos.html">Ver app pública</a>
+        <a class="button secondary" href="manual_uso.html">Manual de uso</a>
+        <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+        <a class="button secondary" href="revision_directiva.html">Revisión directiva</a>
+        <button class="button secondary" onclick="window.print()">Imprimir</button>
+      </div>
+      <div class="photo">
+        <img src="../Niños reunidos 2.jpg" alt="Gigantes de Azapa">
+        <div>
+          <strong>Una app pública, una administración interna</strong>
+          <p>La comunidad ve lo simple. La organización controla lo completo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Orden recomendado para directiva</h2>
+      <div class="note">
+        <strong>Para compartir:</strong> usar solamente la app pública. <strong>Para administrar:</strong> usar este panel interno, el Centro Operativo y los manuales. No reenviar herramientas internas al grupo general.
+      </div>
+    </section>
+
+    <section>
+      <h2>Uso público</h2>
+      <div class="grid">
+        <article class="card"><span class="tag">Público</span><a href="accesos_publicos.html"><h3>Entrada pública</h3><p>Vista limpia para familias, comunidad, sponsors y autoridades.</p></a></article>
+        <article class="card"><span class="tag">Familias</span><a href="ruta_familias.html"><h3>Familias y jugadores</h3><p>Inscripcion, documentos, estado, actividades y bingos.</p></a></article>
+        <article class="card"><span class="tag">Comunidad</span><a href="ruta_comunidad.html"><h3>Aportes y ventas</h3><p>Aportes, merchandising, catalogo, avance y galeria.</p></a></article>
+        <article class="card"><span class="tag">Empresas</span><a href="ruta_empresas.html"><h3>Empresas y autoridades</h3><p>Sponsors, propuesta, carta y respaldo institucional.</p></a></article>
+        <article class="card"><span class="tag">Meta</span><a href="avance.html"><h3>Avance de meta</h3><p>Recaudado, faltante y detalle de fuentes de ingreso.</p></a></article>
+        <article class="card"><span class="tag">Tienda</span><a href="merchandising.html"><h3>Merchandising</h3><p>Catalogo con carro de pedidos.</p></a></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Control interno</h2>
+      <div class="grid">
+        <article class="card warn"><span class="tag warn">Directiva</span><a href="revision_directiva.html"><h3>Revision directiva</h3><p>Resumen ejecutivo para revisar y aprobar.</p></a></article>
+        <article class="card warn"><span class="tag warn">Presidenta</span><a href="presentacion_presidenta.html"><h3>Presentacion presidenta</h3><p>Texto y resumen formal del piloto.</p></a></article>
+        <article class="card warn"><span class="tag warn">Auditoria</span><a href="auditoria_final_piloto.html"><h3>Auditoria final</h3><p>Semaforo, pruebas y pendientes.</p></a></article>
+        <article class="card warn"><span class="tag warn">Checklist</span><a href="checklist_final.html"><h3>Checklist final</h3><p>Control antes de publicar o masificar.</p></a></article>
+        <article class="card warn"><span class="tag warn">Publicacion</span><a href="despues_de_publicar.html"><h3>Despues de publicar</h3><p>Pasos para actualizar Netlify, QR y enlaces.</p></a></article>
+        <article class="card warn"><span class="tag warn">Correos</span><a href="correos_automaticos.html"><h3>Correos automaticos</h3><p>Correo oficial y respuestas automaticas.</p></a></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ventas, sponsors y recaudación</h2>
+      <div class="grid">
+        <article class="card warn"><span class="tag warn">Merch</span><a href="control_merchandising.html"><h3>Control merchandising</h3><p>Seguimiento interno de pedidos, pagos y entregas.</p></a></article>
+        <article class="card warn"><span class="tag warn">Validacion</span><a href="validacion_merchandising.html"><h3>Validar merchandising</h3><p>Precios, stock, costos y fechas.</p></a></article>
+        <article class="card warn"><span class="tag warn">Sponsors</span><a href="manual_merchandising_sponsors.html"><h3>Manual merch/sponsor</h3><p>Ruta para gestionar productos y empresas.</p></a></article>
+        <article class="card warn"><span class="tag warn">Compromiso</span><a href="compromiso_sponsor_merchandising.html"><h3>Compromiso sponsor</h3><p>Acuerdo simple para aportes y logos.</p></a></article>
+        <article class="card warn"><span class="tag warn">Espacios</span><a href="espacios_sponsor_merchandising.html"><h3>Espacios sponsor</h3><p>Ubicacion de logos en productos.</p></a></article>
+        <article class="card warn"><span class="tag warn">Difusión</span><a href="material_difusion.html"><h3>Material difusión</h3><p>Mensajes listos para copiar y enviar.</p></a></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Herramientas técnicas internas</h2>
+      <div class="grid">
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="pruebas.html"><h3>Pruebas</h3><p>Simulaciones de formularios.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="prueba_correos.html"><h3>Probar correos</h3><p>Verificar envio automatico.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="diagnostico_avance.html"><h3>Diagnóstico avance</h3><p>Prueba técnica del contador.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="COPIAR_APPS_SCRIPT_ACTUALIZADO.html"><h3>Copiar Apps Script</h3><p>Codigo interno para actualizar Google.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="orden_medios_publicacion.html"><h3>Orden medios</h3><p>Inventario de fotos, logos y video.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="admin_maestro.html"><h3>Administrador maestro</h3><p>Esta misma pagina de control interno.</p></a></article>
+      </div>
+    </section>
+  </main>
+  <script>
+    function setMenu(open){
+      document.getElementById("drawer").classList.toggle("open",open);
+      document.getElementById("scrim").classList.toggle("open",open);
+      document.querySelector(".menu-btn").setAttribute("aria-expanded",String(open));
+    }
+    function toggleMenu(){setMenu(!document.getElementById("drawer").classList.contains("open"));}
+    function closeMenu(){setMenu(false);}
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu();});
+  </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pruebas del sistema | Gigantes de Azapa</title>
+  <meta name="theme-color" content="#b11226" />
+  <style>
+    :root { --rojo:#b11226; --linea:#e5e7eb; --verde:#0f766e; --amarillo:#f7c948; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#171717; background:#fff; line-height:1.5; }
+    a { color:inherit; text-decoration:none; }
+    header { color:#fff; padding:42px 18px; background:linear-gradient(90deg,#171717,#b11226); }
+    .wrap { width:min(1080px,calc(100% - 32px)); margin:0 auto; }
+    h1 { margin:0; font-size:clamp(2rem,5vw,4rem); line-height:1; }
+    h2 { margin:0 0 10px; font-size:clamp(1.5rem,3vw,2.3rem); }
+    p { margin:0; }
+    main { width:min(1080px,calc(100% - 32px)); margin:28px auto 50px; display:grid; gap:18px; }
+    section { border:1px solid var(--linea); border-radius:8px; padding:22px; background:#fff; box-shadow:0 12px 28px rgba(17,24,39,.06); }
+    .status { padding:14px; border-radius:8px; background:#fff7ed; border:1px solid #fed7aa; color:#7c2d12; font-weight:800; margin-top:12px; }
+    .status.ok { background:#ecfdf5; border-color:#a7f3d0; color:#064e3b; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .test { border:1px solid var(--linea); border-radius:8px; padding:16px; background:#fafafa; display:grid; gap:10px; }
+    button, .btn { display:inline-flex; align-items:center; justify-content:center; min-height:42px; border-radius:8px; border:0; padding:11px 14px; font-weight:900; color:#fff; background:var(--rojo); cursor:pointer; }
+    .btn.dark { background:#171717; }
+    .btn.green { background:var(--verde); }
+    pre { white-space:pre-wrap; background:#111827; color:#fff; border-radius:8px; padding:14px; overflow:auto; }
+    @media (max-width:760px){ .grid{grid-template-columns:1fr;} button,.btn{width:100%;} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Pruebas del sistema</h1>
+      <p>Usa esta pagina despues de publicar Apps Script y pegar la URL en config.js.</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Estado de conexion</h2>
+      <p>Primero revisamos si la URL de Apps Script ya esta pegada.</p>
+      <div id="connection" class="status">Revisando...</div>
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn dark" href="index.html">Volver a portada</a>
+        <a class="btn green" href="CONFIGURAR_APPS_SCRIPT_PASO_A_PASO.txt">Ver paso a paso</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pruebas rapidas</h2>
+      <div class="grid">
+        <article class="test">
+          <strong>1. Inscripcion</strong>
+          <p>Envia jugador de prueba a WEB_INSCRIPCIONES.</p>
+          <button type="button" data-test="inscripcion">Probar inscripcion</button>
+        </article>
+        <article class="test">
+          <strong>2. Documentos</strong>
+          <p>Envia estados de documentos a WEB_DOCUMENTOS.</p>
+          <button type="button" data-test="documentos">Probar documentos</button>
+        </article>
+        <article class="test">
+          <strong>3. Actividad</strong>
+          <p>Envia tarea “llevar vianesas” a WEB_ACTIVIDADES.</p>
+          <button type="button" data-test="actividad">Probar vianesas</button>
+        </article>
+        <article class="test">
+          <strong>4. Aporte</strong>
+          <p>Envia aporte de prueba a WEB_APORTES_DIPLOMAS.</p>
+          <button type="button" data-test="aporte">Probar aporte</button>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Resultado</h2>
+      <pre id="log">Sin pruebas aun.</pre>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <script>
+    const connection = document.getElementById("connection");
+    const log = document.getElementById("log");
+    const endpoint = window.GIGANTES_APPS_SCRIPT_URL || "";
+
+    if (endpoint) {
+      connection.textContent = "URL configurada. Ya puedes ejecutar pruebas.";
+      connection.classList.add("ok");
+    } else {
+      connection.textContent = "Falta pegar la URL publicada de Apps Script en config.js.";
+    }
+
+    const payloads = {
+      inscripcion: {
+        tipo: "inscripcion",
+        jugador: "Jugador Prueba",
+        categoria: "M12",
+        rut: "11111111-1",
+        nacimiento: "2014-01-01",
+        adulto: "Adulto Prueba",
+        telefono: "+56900000000",
+        correo: "prueba@gigantes.cl",
+        pago: "Pendiente",
+        observaciones: "Prueba de inscripcion",
+        codigo: "PRUEBA123"
+      },
+      documentos: {
+        tipo: "documentos",
+        jugador: "Jugador Prueba",
+        categoria: "M12",
+        cedula: "Recibido",
+        certificado: "Pendiente",
+        notarial: "Pendiente",
+        medica: "Recibido",
+        club: "Pendiente",
+        seguro: "Pendiente",
+        observaciones: "Prueba documental"
+      },
+      actividad: {
+        tipo: "actividad",
+        nombre: "Voluntario Prueba",
+        correo: "prueba@gigantes.cl",
+        telefono: "+56900000000",
+        fecha: "2026-06-09",
+        actividad: "Martes completos solidarios",
+        tarea: "Llevar vianesas",
+        detalle: "Prueba: llevo 100 vianesas"
+      },
+      aporte: {
+        tipo: "aporte",
+        nombre: "Aporte Prueba",
+        correo: "prueba@gigantes.cl",
+        monto_o_aporte: "$10.000 prueba",
+        actividad: "General gira",
+        detalle: "Prueba de aporte"
+      }
+    };
+
+    document.querySelectorAll("[data-test]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const key = button.dataset.test;
+        log.textContent = "Enviando prueba: " + key + "...";
+        try {
+          const result = await sendToGigantes(payloads[key]);
+          log.textContent = JSON.stringify({ prueba: key, resultado: result, datos: payloads[key] }, null, 2);
+        } catch (error) {
+          log.textContent = "Error: " + error.message;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

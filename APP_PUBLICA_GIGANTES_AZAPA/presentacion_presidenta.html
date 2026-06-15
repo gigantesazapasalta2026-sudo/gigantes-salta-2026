@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presentacion Presidenta - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e;--yellow:#f59e0b}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../Niños reunidos 2.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.3rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .card{border-left:5px solid var(--green)}
+    .warn{border-left-color:var(--yellow)}
+    .tag{display:inline-flex;border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:900;margin-bottom:8px;background:#ecfdf5;color:#065f46}
+    .tag.warn{background:#fef3c7;color:#92400e}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    textarea{width:100%;box-sizing:border-box;border:1px solid rgba(15,23,42,.18);border-radius:8px;min-height:220px;padding:12px;font:inherit}
+    @media(max-width:900px){main{padding:14px}.grid,.two{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <span class="tag warn">Para revision interna</span>
+      <h1>Presentacion a Presidenta</h1>
+      <p>Resumen formal del avance de la app de gestion para la gira Salta 2026. Esta version se presenta como piloto interno para revision, observaciones y autorizacion de siguiente etapa.</p>
+      <a class="button" href="accesos_publicos.html">Ver accesos publicos</a>
+      <a class="button secondary" href="auditoria_final_piloto.html">Auditoria final</a>
+      <a class="button secondary" href="manual_presentacion_app.html">Manual explicativo</a>
+      <a class="button secondary" href="simulacion_piloto.html">Simulacion piloto</a>
+      <a class="button secondary" href="acta_validacion_directiva.html">Acta validacion</a>
+      <button class="button secondary" onclick="window.print()">Imprimir presentacion</button>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Estado del proyecto</h2>
+      <div class="note">
+        La app ya funciona como administrador general de la gira: ordena inscripciones, documentos, aportes, merchandising, sponsors, actividades, bingos, avance de meta, correos automaticos, comprobantes y documentos imprimibles.
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Lo que ya esta probado</h2>
+      <div class="grid">
+        <article class="card"><span class="tag">Probado</span><h3>Correo oficial</h3><p>Se creo y probo el correo gigantesazapa.salta2026@gmail.com.</p></article>
+        <article class="card"><span class="tag">Probado</span><h3>Merchandising</h3><p>Carro de compra, tallas, correo y planilla WEB_MERCHANDISING funcionando.</p></article>
+        <article class="card"><span class="tag">Probado</span><h3>Aportes</h3><p>Aporte con comprobante, enlace de comprobante y diploma automatico funcionando.</p></article>
+        <article class="card"><span class="tag">Listo piloto</span><h3>Accesos publicos</h3><p>Menu limpio para familias, comunidad, sponsors y autoridades.</p></article>
+        <article class="card"><span class="tag">Listo piloto</span><h3>Documentos</h3><p>Carga de archivos y estado por jugador/familia preparados.</p></article>
+        <article class="card"><span class="tag">Listo piloto</span><h3>Actividades</h3><p>Comisiones, bingos, insumos y turnos listos para organizar trabajo.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Decision que se solicita</h2>
+      <div class="grid two">
+        <article class="card warn">
+          <h3>Autorizar piloto interno</h3>
+          <p>Permitir prueba con directiva y un grupo pequeno de familias para revisar flujo completo antes de publicacion masiva.</p>
+        </article>
+        <article class="card warn">
+          <h3>Revisar privacidad e imagenes</h3>
+          <p>Validar uso de fotos, documentos personales, ficha medica, RSH, datos familiares y responsables de administracion.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Mensaje listo para enviar por WhatsApp</h2>
+      <textarea readonly>Hola Presidenta, le comparto el avance del sistema de gestion para la gira Salta 2026 de Gigantes de Azapa.
+
+La app ya permite revisar la informacion general de la gira, inscripciones, documentos, actividades, bingos, sponsors, aportes, merchandising, avance de meta, correos automaticos y comprobantes.
+
+Ya probamos:
+- Correo oficial del proyecto.
+- Pedido de merchandising.
+- Aporte con comprobante.
+- Diploma automatico de agradecimiento.
+- Registro en el Centro Operativo.
+
+Esto aun no es lanzamiento publico masivo. La idea es presentarlo como piloto interno para que usted y la directiva lo revisen, indiquen ajustes y autoricen la siguiente etapa.
+
+Pagina sugerida para revisar primero:
+APP_PUBLICA_GIGANTES_AZAPA/presentacion_presidenta.html
+
+Manual explicativo de la aplicacion:
+APP_PUBLICA_GIGANTES_AZAPA/manual_presentacion_app.html
+
+Luego se puede revisar:
+- Accesos publicos.
+- Auditoria final piloto.
+- Simulacion piloto.
+- Acta de validacion directiva.</textarea>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Siguiente etapa recomendada</h2>
+      <ol>
+        <li>Presidenta revisa esta presentacion.</li>
+        <li>Directiva revisa privacidad, imagenes, precios y textos oficiales.</li>
+        <li>Se ejecuta simulacion piloto con pocas familias.</li>
+        <li>Se corrigen observaciones.</li>
+        <li>Se publica en enlace real y se genera QR.</li>
+        <li>Se lanza oficialmente a familias, empresas y comunidad.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

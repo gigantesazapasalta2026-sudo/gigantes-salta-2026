@@ -1,0 +1,105 @@
+AUDITORIA GENERAL - GIRO A SALTA, CARTA INVITACION Y RSH
+
+Fecha: 2026-06-03
+
+1. CORRECCION DE DESTINO
+
+La carta oficial subida a Drive confirma que el intercambio/torneo sera en:
+Salta, Argentina.
+
+Fechas indicadas en la carta:
+26 al 30 de agosto de 2026.
+
+Club anfitrion:
+Tigres Rugby Club, Salta, Argentina.
+
+Se recomienda corregir toda mencion publica a "Jujuy/Salta" y dejar:
+"Gira deportiva a Salta 2026"
+o
+"Gigantes de Azapa Salta 2026".
+
+2. CARTA DE INVITACION
+
+Archivo encontrado:
+20260529 Nota INVITACION Club Gigantes de Azapa Rugby Club.pdf
+
+Enlace:
+https://drive.google.com/file/d/1qdJ7XsFVyPNhsiRGEalYlX3Osmg4HD8V/view
+
+Uso recomendado:
+- Agregarla como respaldo institucional en la pagina.
+- Mostrarla a sponsors.
+- Mostrarla al Gobierno Regional/IND.
+- Usarla como antecedente serio en dossier y cartas de solicitud.
+
+Pagina nueva creada:
+respaldo_institucional.html
+
+3. RSH - REGISTRO SOCIAL DE HOGARES
+
+Opinion:
+Si el club postula a un proyecto IND para pasajes o apoyo de viaje, SI conviene integrarlo.
+Pero debe manejarse como documento sensible y privado, no como informacion publica.
+
+Recomendacion:
+- Solicitar Cartola RSH solo cuando sea necesaria para la postulacion.
+- Cargarla en documentos privados.
+- Revisarla solo desde Centro Operativo.
+- No publicar datos sociales en la pagina abierta.
+
+Enlace oficial sugerido:
+https://registrosocial.gob.cl/
+
+Ya se integro:
+- Campo de carga RSH en documentos_carga.html.
+- Visualizacion RSH en mi_estado.html.
+- Apps Script preparado para guardar rsh y rsh_url.
+- Centro Operativo preparado con columnas rsh y rsh_url.
+
+IMPORTANTE:
+Para que Apps Script guarde RSH, se debe copiar nuevamente el codigo desde:
+COPIAR_APPS_SCRIPT_CARGA_DOCUMENTOS.html
+
+Y luego implementar nueva version en:
+https://script.google.com/home/projects/1qJsCYQwUCcfF9ZeYUkxCG75YZ3cRfs6tkWdwyjjMP-w6lIYt3hnDCsnG/edit
+
+4. MEJORAS PRIORITARIAS PENDIENTES
+
+A. Corregir textos globales de la app:
+- Cambiar Jujuy/Salta por Salta 2026.
+- Revisar index, sponsors, aportes, avance, calendario, album y documentos.
+
+B. Agregar enlace visible a respaldo institucional:
+- En index.
+- En sponsors.
+- En cartas/dossier para empresas.
+
+C. Crear seccion "Postulacion IND":
+- Objetivo: pasajes.
+- Documentos requeridos.
+- RSH.
+- Carta de invitacion.
+- Listado de jugadores.
+- Presupuesto transporte.
+
+D. Auditoria de privacidad:
+- RUT, documentos, RSH y datos medicos deben quedar solo en Drive/planilla privada.
+- La pagina publica no debe mostrar datos personales.
+
+E. Preparar piloto:
+- 3 familias.
+- 1 entrenador.
+- 1 voluntario.
+- 1 sponsor de prueba.
+
+5. ESTADO ACTUAL
+
+Sistema base funcional:
+- Inscripcion llega al Centro Operativo.
+- Carga documental con archivos funciona.
+- Mi Estado permite revision privada.
+- Actividades tienen comisiones, insumos y calculadora.
+
+No publicar masivamente todavia.
+Recomendacion:
+Completar correccion Salta + respaldo institucional + prueba RSH antes de lanzar.

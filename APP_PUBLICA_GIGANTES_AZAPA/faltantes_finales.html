@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faltantes finales - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e;--red:#dc2626}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../Entrenadores.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--green)}
+    .warn{border-left-color:#f59e0b}.danger{border-left-color:var(--red)}
+    .status{display:inline-flex;border-radius:999px;padding:6px 10px;font-weight:900;background:var(--cream);color:var(--orange-dark)}
+    label{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border-left:5px solid var(--green);border-radius:8px;padding:10px;margin:8px 0}
+    input{width:20px;height:20px;flex:0 0 auto}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <span class="status">Prioridad: cerrar operacion real</span>
+      <h1>Faltantes finales</h1>
+      <p>La app ya tiene contenido, formularios, organizacion y venta. Lo pendiente ahora es dejarla lista para funcionar sin depender del computador y sin exponer informacion privada.</p>
+      <a class="button" href="simulacion_piloto.html">Hacer simulacion piloto</a>
+      <a class="button secondary" href="cierre_para_publicar.html">Cierre para publicar</a>
+      <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+      <a class="button secondary" href="checklist_final.html">Checklist final</a>
+      <button class="button secondary" onclick="window.print()">Imprimir faltantes</button>
+    </section>
+
+    <div class="grid">
+      <section class="card danger">
+        <h2 style="margin-top:0">1. Publicar en internet</h2>
+        <p>Hoy se abre como archivo local <strong>file:///</strong>. Eso sirve para trabajar, pero no para compartir con familias desde otros celulares.</p>
+        <label><input type="checkbox"> Definir plataforma de publicacion.</label>
+        <label><input type="checkbox"> Obtener enlace publico real.</label>
+        <label><input type="checkbox"> Crear QR oficial de la app.</label>
+      </section>
+
+      <section class="card danger">
+        <h2 style="margin-top:0">2. Revisar Apps Script</h2>
+        <p>Debe estar actualizado para guardar inscripciones, documentos, actividades, aportes, sponsors y merchandising.</p>
+        <label><input type="checkbox"> Confirmar ultima version pegada en Apps Script.</label>
+        <label><input type="checkbox"> Confirmar despliegue actualizado.</label>
+        <label><input type="checkbox"> Probar WEB_MERCHANDISING.</label>
+      </section>
+
+      <section class="card warn">
+        <h2 style="margin-top:0">3. Ordenar imagenes finales</h2>
+        <p>Las imagenes deben quedar dentro de carpetas publicas o rutas estables para que no fallen al compartir.</p>
+        <label><input type="checkbox"> Fotos del club dentro de medios/club.</label>
+        <label><input type="checkbox"> Carta y logos dentro de medios/institucional.</label>
+        <label><input type="checkbox"> Merchandising dentro de medios/merchandising o ruta final definida.</label>
+      </section>
+
+      <section class="card warn">
+        <h2 style="margin-top:0">4. Separar publico de interno</h2>
+        <p>Familias y sponsors no deben ver paginas tecnicas, copiadores, pruebas o validaciones internas.</p>
+        <label><input type="checkbox"> Menu publico limpio.</label>
+        <label><input type="checkbox"> Herramientas internas solo para directiva/equipo.</label>
+        <label><input type="checkbox"> No compartir enlaces de diagnostico o copiadores.</label>
+      </section>
+
+      <section class="card warn">
+        <h2 style="margin-top:0">5. Validar privacidad</h2>
+        <p>Documentos personales, ficha medica, cedula, RSH y datos familiares deben tratarse como privados.</p>
+        <label><input type="checkbox"> Directiva aprueba politica de uso de datos.</label>
+        <label><input type="checkbox"> Mi Estado mantiene acceso por codigo familiar.</label>
+        <label><input type="checkbox"> Fotos de menores autorizadas por el club/familias.</label>
+      </section>
+
+      <section class="card">
+        <h2 style="margin-top:0">6. Hacer piloto controlado</h2>
+        <p>Antes del lanzamiento masivo, probar con pocas personas evita confusiones y errores publicos.</p>
+        <label><input type="checkbox"> 1 prueba familiar completa.</label>
+        <label><input type="checkbox"> 1 prueba sponsor.</label>
+        <label><input type="checkbox"> 1 prueba merchandising.</label>
+        <label><input type="checkbox" checked> 1 prueba aporte con comprobante y diploma automatico.</label>
+        <label><input type="checkbox"> 1 prueba actividad/bingo.</label>
+      </section>
+    </div>
+
+    <section>
+      <h2 style="margin-top:0">Conclusion</h2>
+      <p><strong>Contenido y estructura: muy avanzado.</strong> Lo que falta es terminar la parte operativa: publicar, probar, proteger datos y confirmar que todo llegue bien al Centro Operativo. Despues de eso, la app queda lista para presentarla y empezar a usarla con familias y sponsors.</p>
+    </section>
+  </main>
+</body>
+</html>

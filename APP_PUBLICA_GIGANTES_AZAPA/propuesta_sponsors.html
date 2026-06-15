@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propuesta para Sponsors - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../Entrenadores.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .sheet,
+    .panel,
+    .tier,
+    .impact {
+      background: rgba(255, 255, 255, .97);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .sheet {
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .cover {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+      gap: 0;
+      min-height: 440px;
+    }
+    .cover-text {
+      padding: 26px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .brand img {
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+      box-shadow: 0 10px 26px rgba(2, 6, 23, .16);
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2.2rem, 5vw, 4.1rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .cover-photo {
+      position: relative;
+      min-height: 440px;
+      background: #020617;
+      color: #fff;
+      overflow: hidden;
+    }
+    .cover-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cover-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82));
+    }
+    .cover-photo div {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      z-index: 1;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .impact-grid,
+    .tiers,
+    .two-col {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .impact-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .tiers {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .two-col {
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+    }
+    .impact,
+    .tier {
+      padding: 14px;
+      border-left: 5px solid #0f766e;
+    }
+    .impact strong {
+      display: block;
+      color: #0f766e;
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+    .tier.bronce { border-left-color: #a16207; }
+    .tier.plata { border-left-color: #64748b; }
+    .tier.oro { border-left-color: #facc15; }
+    .amount {
+      display: block;
+      color: #0f766e;
+      font-size: 1.55rem;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .photo-strip img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      box-shadow: 0 10px 26px rgba(2, 6, 23, .18);
+    }
+    .contact-box {
+      background: #ecfeff;
+      border-left: 5px solid #0f766e;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .qr-box {
+      display: grid;
+      place-items: center;
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      color: #475569;
+      text-align: center;
+      padding: 14px;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      main {
+        padding: 0;
+      }
+      .button,
+      button {
+        display: none;
+      }
+      .sheet,
+      .panel,
+      .tier,
+      .impact {
+        box-shadow: none;
+      }
+      .panel {
+        break-inside: avoid;
+      }
+    }
+    @media (max-width: 900px) {
+      main {
+        padding: 14px;
+      }
+      .cover,
+      .impact-grid,
+      .tiers,
+      .two-col,
+      .photo-strip {
+        grid-template-columns: 1fr;
+      }
+      .cover-photo {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="sheet">
+      <div class="cover">
+        <div class="cover-text">
+          <div class="brand">
+            <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+            <span>Propuesta de auspicio</span>
+          </div>
+          <h1>Gigantes de Azapa rumbo a Salta 2026</h1>
+          <p>Invitamos a empresas, comercios y personas colaboradoras a apoyar la gira deportiva y formativa de Gigantes de Azapa Rugby Club a Salta, Argentina, del 26 al 30 de agosto de 2026.</p>
+          <p>Su apoyo se transforma en pasajes, alimentacion, documentacion, implementacion, actividades de recaudacion y una experiencia que los jugadores recordaran con orgullo.</p>
+          <a class="button" href="sponsors.html">Registrar sponsor</a>
+          <a class="button secondary" href="respaldo_institucional.html">Ver respaldo</a>
+          <a class="button secondary" href="espacios_sponsor_merchandising.html">Espacios merchandising</a>
+          <a class="button secondary" href="material_difusion.html">Difusion</a>
+          <button class="secondary" onclick="window.print()">Imprimir / guardar PDF</button>
+        </div>
+        <div class="cover-photo">
+          <img src="../m10m12.jpg" alt="Jugadores Gigantes de Azapa">
+          <div>
+            <strong>Una marca que apoya tambien educa</strong>
+            <p>Deporte, familia, disciplina y comunidad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Impacto del apoyo</h2>
+      <div class="impact-grid">
+        <article class="impact"><strong>Salta</strong><span>Intercambio deportivo internacional.</span></article>
+        <article class="impact"><strong>26-30 ago</strong><span>Fechas oficiales de la gira 2026.</span></article>
+        <article class="impact"><strong>Familias</strong><span>Organizacion transparente y comunitaria.</span></article>
+        <article class="impact"><strong>Club</strong><span>Formacion deportiva y valores del rugby.</span></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Opciones de auspicio</h2>
+      <div class="tiers">
+        <article class="tier bronce">
+          <h3>Bronce</h3>
+          <span class="amount">$100.000</span>
+          <ul>
+            <li>Agradecimiento en redes.</li>
+            <li>Logo en pagina de sponsors.</li>
+            <li>Diploma digital de apoyo.</li>
+          </ul>
+        </article>
+        <article class="tier plata">
+          <h3>Plata</h3>
+          <span class="amount">$250.000</span>
+          <ul>
+            <li>Logo destacado en pagina y redes.</li>
+            <li>Mencion en avances de recaudacion.</li>
+            <li>Diploma imprimible de apoyo.</li>
+          </ul>
+        </article>
+        <article class="tier oro">
+          <h3>Oro</h3>
+          <span class="amount">$500.000+</span>
+          <ul>
+            <li>Marca destacada en campana.</li>
+            <li>Reconocimiento especial del club.</li>
+            <li>Presencia preferente en piezas graficas.</li>
+          </ul>
+        </article>
+      </div>
+      <p><strong>Tambien recibimos aportes en productos o servicios:</strong> alimentos, bebidas, premios para bingos/rifas, impresion, transporte, merchandising, indumentaria, implementacion o apoyo logistico.</p>
+      <p><strong>Sponsor merchandising:</strong> una empresa puede financiar o producir poleras, polerones, jockeys, vasos, banderines, mochilas u otros productos. A cambio, su logo puede incorporarse en espacios definidos del merchandising, catalogo y publicaciones oficiales de la campana.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Sponsor de merchandising</h2>
+      <div class="two-col">
+        <div>
+          <p>Esta alternativa permite que una empresa apoye sin entregar dinero directo: puede hacerse cargo de la produccion, aportar materiales, imprimir, bordar, sublimar o financiar una parte de los productos.</p>
+          <ul>
+            <li>Logo en espacios definidos de poleras o polerones.</li>
+            <li>Logo en catalogo de merchandising.</li>
+            <li>Mencion como colaborador oficial de la linea de productos.</li>
+            <li>Agradecimiento en redes y en la app de la gira.</li>
+          </ul>
+        </div>
+        <div class="contact-box">
+          <h3>Ejemplos de aporte</h3>
+          <p>Produccion de 100 poleras, impresion de logos, jockeys, vasos, botellas, mochilas, banderines o descuento proveedor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="two-col">
+        <div>
+          <h2>Respaldo y transparencia</h2>
+          <p>El proyecto cuenta con invitacion formal del club anfitrion en Argentina y con un Centro Operativo para ordenar inscripciones, documentos, actividades, aportes, sponsors y avance de meta.</p>
+          <p>Cada colaboracion puede ser registrada para mantener control y trazabilidad del apoyo recibido.</p>
+          <div class="photo-strip">
+            <img src="../entrenamiento.jpg" alt="Entrenamiento">
+            <img src="../Entrenadores.jpg" alt="Entrenadores">
+            <img src="../3er tiempo.jpg" alt="Tercer tiempo">
+          </div>
+        </div>
+        <div class="contact-box">
+          <h2>Contacto</h2>
+          <p><strong>Proyecto:</strong> Gira Gigantes de Azapa Rugby Club a Salta 2026</p>
+          <p><strong>Formulario sponsors:</strong> completar en la app oficial.</p>
+          <p><strong>Instagram:</strong> @gigantesdeazaparugby</p>
+          <div class="qr-box">
+            Espacio para QR del enlace publico cuando la app este publicada.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

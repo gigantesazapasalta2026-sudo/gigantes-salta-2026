@@ -1,0 +1,335 @@
+AUDITORIA GENERAL APP GIGANTES DE AZAPA - SALTA 2026
+
+Fecha: 2026-06-03
+
+RESUMEN EJECUTIVO
+
+La app ya funciona como administrador general del proyecto:
+- Portada principal.
+- Inscripcion de jugadores.
+- Carga documental con archivos.
+- Consulta privada Mi Estado.
+- Actividades de recaudacion con comisiones e insumos.
+- Aportes.
+- Sponsors.
+- Avance de meta.
+- Respaldo institucional.
+- Postulacion IND/RSH.
+- Diploma de agradecimiento.
+
+El proyecto ya tiene base funcional para piloto. Antes de publicarlo masivamente conviene terminar los puntos de esta auditoria.
+
+
+1. DESTINO Y RELATO GENERAL
+
+Estado:
+- Se corrigio el enfoque principal a Salta 2026.
+- La carta oficial confirma Salta, Argentina, del 26 al 30 de agosto de 2026.
+- Se recomienda que todo texto publico diga "Gira deportiva a Salta 2026".
+
+Pendiente:
+- Revisar paginas antiguas que puedan mantener "Jujuy" en textos internos:
+  calendario.html
+  album.html
+  pruebas.html
+  archivos TXT antiguos
+
+Mejora recomendada:
+- Mantener el nombre de carpeta si ya esta creado, pero publicamente hablar de "Salta 2026".
+
+
+2. CARTA DE INVITACION
+
+Estado:
+- La carta original fue encontrada en Drive.
+- Se creo version local interna:
+  carta_invitacion_salta.html
+- Se agrego vista dentro de:
+  respaldo_institucional.html
+- Ya no depende de Drive para que familias o sponsors la vean.
+
+Mejora realizada:
+- Se agrego encabezado institucional de Tigres Rugby Club en la carta interna.
+
+Pendiente importante:
+- Conseguir o extraer el logo real de Tigres Rugby Club desde el PDF original.
+- Reemplazar el recuadro actual "TIGRES RUGBY CLUB" por imagen real del logo.
+
+Recomendacion:
+- Pedir/subir el logo como archivo:
+  logo-tigres-rugby-club.png
+  o
+  logo-tigres-rugby-club.jpg
+
+
+3. PORTADA PRINCIPAL
+
+Archivo:
+index.html
+
+Estado:
+- Reconstruida como tablero central.
+- Incluye video real.
+- Incluye accesos principales:
+  inscripcion, documentos, mi estado, actividades, aportes, sponsors, avance, respaldo, IND, album, calendario, pruebas.
+- Tiene mensaje claro Salta 2026.
+
+Mejoras sugeridas:
+- Agregar barra/resumen de avance real cuando avance.html este conectado automaticamente.
+- Agregar boton "Instalar en celular" o instrucciones visuales para Android/iPhone.
+- Ocultar "Pruebas internas" antes de publicar masivamente.
+
+
+4. INSCRIPCION
+
+Archivo:
+inscripcion.html
+
+Estado:
+- Ya fue probada y llega al Centro Operativo.
+- Incluye codigo familiar.
+
+Pendiente:
+- Auditoria visual para que use fotos/video reales.
+- Revisar si categorias deben ser desplegable:
+  M10, M12, M14, M17, entrenador, delegado, apoderado.
+- Confirmar si se requiere autorizacion de uso de imagen.
+
+
+5. DOCUMENTOS
+
+Archivo:
+documentos_carga.html
+
+Estado:
+- Permite subir archivos.
+- Guarda en Drive dentro de 04_DOCUMENTOS_JUGADORES.
+- Crea carpeta por jugador.
+- Centro Operativo guarda enlaces.
+- Incluye RSH.
+
+Correcto:
+- Documentos sensibles no se muestran publicamente.
+- Mi Estado solo muestra estado mediante RUT/DNI + codigo familiar.
+
+Pendiente:
+- Probar RSH real con archivo pequeno.
+- Confirmar que cada documento se guarda con nombre ordenado.
+- Mejorar mensaje de privacidad: cedula, ficha medica y RSH son privados.
+
+
+6. MI ESTADO
+
+Archivo:
+mi_estado.html
+
+Estado:
+- Consulta privada por RUT/DNI + codigo familiar.
+- Muestra documentos recibidos y pendientes.
+- Abre enlaces si existen.
+
+Pendiente:
+- Probar con jugador real y varios documentos.
+- Revisar que no permita consultar sin codigo familiar.
+- Si se publica masivamente, explicar a familias que el codigo familiar es privado.
+
+
+7. ACTIVIDADES
+
+Archivo:
+actividades.html
+
+Estado:
+- Muy avanzado.
+- Incluye actividades:
+  martes completos solidarios, rifa, merchandising, sponsors, venta comida, transporte.
+- Incluye comisiones.
+- Incluye calculadora de cantidad objetivo.
+- Incluye insumos como pan, vianesas, tomate, palta, cafe, te, vasos, termos, etc.
+
+Pendiente:
+- Conectar resumen de insumos por actividad desde planilla.
+- Crear reporte imprimible por actividad:
+  quien lleva que, cuanto lleva, horario, contacto.
+- Agregar capacidad real por insumo:
+  ejemplo meta 300 completos, ya anotados 220 panes, faltan 80.
+
+Mejora recomendada:
+- Una pagina especial para "Martes completos solidarios" con tablero propio.
+
+
+8. SPONSORS
+
+Archivo:
+sponsors.html
+
+Estado:
+- Reconstruido comercialmente.
+- Tiene paquetes Bronce, Plata, Oro, Productos/Servicios.
+- Cada click abre modal emocional.
+- Usa video y fotos reales.
+- Conecta con Centro Operativo.
+- Incluye carta y respaldo institucional.
+
+Pendiente:
+- Agregar logos de sponsors confirmados.
+- Agregar seccion "Donde aparecera tu marca".
+- Agregar mockups:
+  logo en redes, logo en polera, agradecimiento, cartel evento.
+
+Mejora recomendada:
+- Crear dossier imprimible para sponsors desde la misma app.
+
+
+9. APORTES
+
+Archivo:
+aportes.html
+
+Estado:
+- Reconstruido.
+- Usa video real.
+- Registra aportes.
+- Permite productos/servicios.
+- Incluye opcion de diploma.
+- Conecta con Centro Operativo.
+
+Pendiente:
+- Confirmar correo automatico real.
+- Automatizar diploma por correo.
+- Sumar aportes automaticamente en avance.html.
+
+
+10. AVANCE / META
+
+Archivo:
+avance.html
+
+Estado:
+- Tablero visual listo.
+- Manual por ahora.
+- Tiene meta, recaudado, faltante, barra de avance e impresion.
+
+Pendiente mayor:
+- Conectar automaticamente al Centro Operativo:
+  WEB_APORTES_DIPLOMAS
+  WEB_SPONSORS
+  WEB_ACTIVIDADES
+
+Mejora recomendada:
+- Separar ingresos confirmados vs prometidos.
+- Agregar gastos estimados y gastos pagados.
+- Agregar reporte mensual imprimible.
+
+
+11. DIPLOMA
+
+Archivo:
+diploma.html
+
+Estado:
+- Plantilla creada.
+- Imprimible / guardable como PDF.
+- Conectada desde aportes.html.
+
+Pendiente:
+- Generacion automatica por correo desde Apps Script.
+- Diseno con firma/escudo oficial si se desea.
+
+
+12. POSTULACION IND / RSH
+
+Archivo:
+postulacion_ind.html
+
+Estado:
+- Pagina creada.
+- Explica carta, RSH, listado de jugadores y presupuesto de pasajes.
+- Enlaza a RSH oficial.
+
+Correcto:
+- RSH se trata como documento privado.
+
+Pendiente:
+- Agregar checklist de documentos IND:
+  carta invitacion, presupuesto transporte, listado jugadores, RSH, documentos club, cuenta bancaria, cotizaciones.
+
+
+13. PRIVACIDAD
+
+Estado:
+- La app publica no debe mostrar:
+  cedulas, fichas medicas, RSH, telefonos privados, correos privados.
+
+Recomendacion:
+- Mantener esos documentos solo en Drive y Centro Operativo.
+- Mi Estado debe ser la unica pantalla familiar de consulta.
+- Sponsors y aportes pueden ser publicos solo si el colaborador autoriza.
+
+
+14. MEDIOS VISUALES
+
+Archivos integrados:
+- niños llegando a jugar.mov
+- niños reunidos.jpg
+- rugby estadio.jpg
+- rugby playa.jpg
+
+Estado:
+- Integrados en index, sponsors, aportes, avance y respaldo institucional.
+
+Pendiente:
+- Revisar peso del video para celular.
+- Si pesa mucho, crear version comprimida mp4.
+- Crear carpeta app/medios y mover copias publicas ahi para mas orden.
+
+
+15. PUBLICACION / INSTALACION EN CELULAR
+
+Estado:
+- Funciona como app local/Drive.
+
+Pendiente:
+- Preparar instrucciones:
+  Android: abrir index.html, menu, agregar a pantalla de inicio.
+  iPhone: abrir, compartir, agregar a pantalla de inicio.
+
+Riesgo:
+- Si se abre desde archivo local en celulares, algunas funciones pueden comportarse distinto.
+- Ideal final: publicar en hosting simple o Google Drive web no siempre sirve como hosting moderno.
+
+Mejora recomendada:
+- Publicar como sitio estatico en Netlify, GitHub Pages, Firebase Hosting o similar.
+- Mantener Apps Script como backend.
+
+
+16. PRUEBA PILOTO RECOMENDADA
+
+Antes de publicar:
+
+1. Una familia inscribe jugador.
+2. Sube cedula frente/reverso.
+3. Sube RSH de prueba o archivo no sensible.
+4. Revisa Mi Estado.
+5. Se anota en Martes completos.
+6. Registra aporte.
+7. Genera diploma.
+8. Un sponsor ficticio selecciona Bronce.
+9. Revisar Centro Operativo.
+10. Revisar correos.
+
+
+17. SIGUIENTE PASO RECOMENDADO
+
+Prioridad 1:
+Conectar avance.html automaticamente al Centro Operativo.
+
+Prioridad 2:
+Mejorar Apps Script para correos y diploma automatico.
+
+Prioridad 3:
+Crear dossier sponsor imprimible.
+
+Prioridad 4:
+Crear manual familiar simple:
+"Como inscribirse, subir documentos y revisar estado".

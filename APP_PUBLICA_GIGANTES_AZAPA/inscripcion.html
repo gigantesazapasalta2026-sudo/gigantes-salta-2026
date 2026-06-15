@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscripción de jugadores y familias | Gigantes de Azapa</title>
+  <meta name="theme-color" content="#b11226" />
+  <style>
+    :root { --rojo:#b11226; --oscuro:#171717; --gris:#f3f4f6; --linea:#e5e7eb; --amarillo:#f7c948; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#171717; background:#fff; line-height:1.5; }
+    a { color:inherit; text-decoration:none; }
+    .hero { min-height:54vh; color:#fff; display:grid; align-content:end; padding:22px; background:linear-gradient(90deg,rgba(23,23,23,.86),rgba(177,18,38,.72)),url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-suenos.jpg") center/cover no-repeat; }
+    .hero-inner { width:min(1100px,100%); margin:0 auto; padding:48px 0 28px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:58px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:900; }
+    .brand img { width:58px; height:58px; border-radius:50%; object-fit:cover; background:#fff; }
+    .top a, .btn { display:inline-flex; justify-content:center; align-items:center; min-height:42px; padding:11px 15px; border-radius:8px; font-weight:800; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.13); color:#fff; }
+    h1 { margin:0; font-size:clamp(2.2rem,6vw,4.8rem); line-height:.95; letter-spacing:0; max-width:860px; }
+    .hero p { max-width:720px; color:rgba(255,255,255,.88); font-size:1.12rem; }
+    main { width:min(1120px,calc(100% - 32px)); margin:28px auto 50px; display:grid; gap:22px; }
+    .section { border:1px solid var(--linea); border-radius:8px; padding:clamp(20px,4vw,34px); background:#fff; box-shadow:0 12px 28px rgba(17,24,39,.06); }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .card { border:1px solid var(--linea); border-radius:8px; padding:18px; display:grid; gap:10px; background:#fafafa; }
+    .card strong { color:var(--rojo); font-size:1.06rem; }
+    h2 { margin:0 0 10px; font-size:clamp(1.6rem,4vw,2.6rem); line-height:1.05; }
+    label { display:grid; gap:6px; font-weight:800; color:#374151; }
+    input, select, textarea { width:100%; min-height:44px; border:1px solid #d1d5db; border-radius:8px; padding:11px 12px; font:inherit; background:#fff; }
+    textarea { min-height:96px; resize:vertical; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .wide { grid-column:1 / -1; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .btn.red { background:var(--rojo); border-color:var(--rojo); color:#fff; }
+    .btn.yellow { background:var(--amarillo); border-color:var(--amarillo); color:#2b1d00; }
+    .btn.dark { background:#171717; border-color:#171717; color:#fff; }
+    .notice { background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; padding:16px; color:#7c2d12; font-weight:700; }
+    footer { text-align:center; padding:28px 16px; background:#171717; color:#fff; }
+    @media (max-width:760px){ .top{align-items:flex-start; flex-direction:column;} .grid,.form-grid{grid-template-columns:1fr;} .actions .btn,.top a{width:100%;} }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="top">
+        <a class="brand" href="index.html"><img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Logo Gigantes" /> Gigantes de Azapa</a>
+        <a href="index.html">Volver a la portada</a>
+      </div>
+      <h1>Inscripción de jugadores y familias</h1>
+      <p>Datos del jugador, adulto responsable, familiares que viajan y necesidades de alojamiento. Esta información permitirá organizar nómina, documentos, bus y habitaciones por familia.</p>
+      <div class="actions">
+        <a class="btn yellow" href="https://docs.google.com/spreadsheets/d/17X5I67lWcGWNPa7q1pG3ZS0a_1K-eF2E3t_Q_igEsdE/edit" target="_blank" rel="noopener">Abrir planilla original</a>
+        <a class="btn" href="documentos_carga.html">Ir a carga de documentos</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>Flujo correcto</h2>
+      <div class="grid">
+        <div class="card"><strong>1. Completar inscripción</strong><span>Jugador, categoría, adulto responsable y datos familiares.</span></div>
+        <div class="card"><strong>2. Informar alojamiento</strong><span>Quiénes viajan, cuántas habitaciones necesita la familia y observaciones.</span></div>
+        <div class="card"><strong>3. Subir documentos</strong><span>Cédula, certificado, autorizaciones, ficha médica y seguro.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Ficha llenable</h2>
+      <p class="notice">Completa una ficha por jugador. Si viajan varios integrantes de la familia, informa aquí el grupo familiar para organizar bus, hotel y habitaciones.</p>
+      <form id="playerForm">
+        <div class="form-grid">
+          <label>Nombre completo del jugador
+            <input name="jugador" required />
+          </label>
+          <label>Categoria
+            <select name="categoria" required>
+              <option value="">Seleccionar</option>
+              <option>M10</option>
+              <option>M12</option>
+              <option>M14</option>
+              <option>Classic</option>
+              <option>Adultos</option>
+            </select>
+          </label>
+          <label>RUT / DNI
+            <input name="rut" />
+          </label>
+          <label>Fecha de nacimiento
+            <input type="date" name="nacimiento" />
+          </label>
+          <label>Adulto responsable
+            <input name="adulto" required />
+          </label>
+          <label>Telefono WhatsApp
+            <input name="telefono" inputmode="tel" required />
+          </label>
+          <label>Correo
+            <input type="email" name="correo" />
+          </label>
+          <label>Codigo familiar para consultar estado
+            <input name="codigo" placeholder="Ej: apellido + 4 numeros" required />
+          </label>
+          <label>Estado de pago
+            <select name="pago">
+              <option>Pendiente</option>
+              <option>Abono realizado</option>
+              <option>Completo</option>
+              <option>Beca / apoyo</option>
+            </select>
+          </label>
+          <label>¿El jugador viaja?
+            <select name="jugador_viaja" required>
+              <option>Sí, viaja</option>
+              <option>No está confirmado</option>
+              <option>No viaja</option>
+            </select>
+          </label>
+          <label>Adultos de la familia que viajan
+            <input type="number" min="0" name="adultos_viajan" placeholder="Ej: 1" />
+          </label>
+          <label>Niños / jugadores de la familia que viajan
+            <input type="number" min="0" name="ninos_viajan" placeholder="Ej: 1" />
+          </label>
+          <label>Total personas del grupo familiar
+            <input type="number" min="1" name="total_familia_viaja" placeholder="Ej: 3" />
+          </label>
+          <label>Habitaciones requeridas
+            <input type="number" min="0" name="habitaciones_requeridas" placeholder="Ej: 1" />
+          </label>
+          <label>Tipo de habitación preferida
+            <select name="tipo_habitacion">
+              <option>Por definir</option>
+              <option>Single</option>
+              <option>Doble matrimonial</option>
+              <option>Doble twin</option>
+              <option>Triple</option>
+              <option>Cuádruple / familiar</option>
+              <option>Compartida con otra familia</option>
+            </select>
+          </label>
+          <label class="wide">Nombres de familiares que viajan
+            <textarea name="familiares_viajan" placeholder="Ej: mamá, papá, hermano/a, otro jugador de la familia"></textarea>
+          </label>
+          <label class="wide">Observaciones de alojamiento
+            <textarea name="observaciones_alojamiento" placeholder="Ej: necesita compartir con otra familia, cama separada, movilidad reducida, alergias, llegada diferente, etc."></textarea>
+          </label>
+          <label class="wide">Observaciones médicas, familiares o logísticas
+            <textarea name="observaciones"></textarea>
+          </label>
+        </div>
+        <div class="actions">
+          <button class="btn red" type="submit">Enviar / preparar inscripción</button>
+          <a class="btn dark" href="https://docs.google.com/spreadsheets/d/17X5I67lWcGWNPa7q1pG3ZS0a_1K-eF2E3t_Q_igEsdE/edit" target="_blank" rel="noopener">Registrar en planilla</a>
+          <a class="btn yellow" href="mi_estado.html">Consultar estado</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>Gigantes de Azapa Rugby Club | Ruta a Salta 2026</footer>
+
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <script>
+    document.getElementById("playerForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+      const sent = await sendToGigantes({ tipo: "inscripcion", ...data });
+      const texto = [
+        "INSCRIPCION JUGADOR Y FAMILIA - GIGANTES DE AZAPA",
+        `Jugador: ${data.jugador || ""}`,
+        `Categoria: ${data.categoria || ""}`,
+        `RUT/DNI: ${data.rut || ""}`,
+        `Nacimiento: ${data.nacimiento || ""}`,
+        `Adulto responsable: ${data.adulto || ""}`,
+        `Telefono: ${data.telefono || ""}`,
+        `Correo: ${data.correo || ""}`,
+        `Codigo familiar: ${data.codigo || ""}`,
+        `Pago: ${data.pago || ""}`,
+        `Jugador viaja: ${data.jugador_viaja || ""}`,
+        `Adultos que viajan: ${data.adultos_viajan || ""}`,
+        `Niños/jugadores que viajan: ${data.ninos_viajan || ""}`,
+        `Total grupo familiar: ${data.total_familia_viaja || ""}`,
+        `Habitaciones requeridas: ${data.habitaciones_requeridas || ""}`,
+        `Tipo habitacion: ${data.tipo_habitacion || ""}`,
+        `Familiares que viajan: ${data.familiares_viajan || ""}`,
+        `Observaciones alojamiento: ${data.observaciones_alojamiento || ""}`,
+        `Observaciones: ${data.observaciones || ""}`
+      ].join("\n");
+      navigator.clipboard?.writeText(texto);
+      alert(sent.configured ? "Ficha enviada correctamente al comite organizador." : "Ficha preparada. El comite organizador debe confirmar el registro en la planilla oficial.");
+    });
+  </script>
+</body>
+</html>

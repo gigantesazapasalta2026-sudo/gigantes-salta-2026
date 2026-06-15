@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copiar Apps Script actualizado - Gigantes de Azapa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    section {
+      background: #fff;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 18px 46px rgba(0,0,0,.28);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    textarea {
+      width: 100%;
+      min-height: 560px;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: pre;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .status {
+      color: #065f46;
+      font-weight: 900;
+      min-height: 24px;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 5px solid #facc15;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Copiar Apps Script actualizado</h1>
+      <p>Este codigo incluye la tienda de merchandising y crea la hoja <strong>WEB_MERCHANDISING</strong> cuando llegue el primer pedido.</p>
+      <a class="button" href="https://script.google.com/home/projects/1qJsCYQwUCcfF9ZeYUkxCG75YZ3cRfs6tkWdwyjjMP-w6lIYt3hnDCsnG/edit" target="_blank" rel="noopener">Abrir Apps Script</a>
+      <a class="button secondary" href="merchandising.html">Volver a tienda</a>
+      <button class="secondary" type="button" onclick="loadCode()">Recargar codigo</button>
+    </section>
+
+    <section class="warn">
+      <h2 style="margin-top:0">Como pegar sin equivocarse</h2>
+      <ol>
+        <li>Presiona <strong>Copiar codigo completo</strong>.</li>
+        <li>Abre Apps Script con el boton de arriba.</li>
+        <li>En <strong>Codigo.gs</strong> presiona <strong>Ctrl + A</strong>.</li>
+        <li>Borra todo y pega el codigo nuevo.</li>
+        <li>Guarda.</li>
+        <li>Implementar &gt; Administrar implementaciones &gt; lapiz &gt; Nueva version &gt; Implementar.</li>
+      </ol>
+    </section>
+
+    <section>
+      <button type="button" onclick="copyCode()">Copiar codigo completo</button>
+      <span class="status" id="status"></span>
+      <textarea id="code" spellcheck="false">Cargando codigo...</textarea>
+    </section>
+  </main>
+
+  <script>
+    const code = document.getElementById("code");
+    const status = document.getElementById("status");
+
+    async function loadCode() {
+      status.textContent = "Cargando...";
+      try {
+        const response = await fetch("APPS_SCRIPT_GIGANTES_WEBAPP.gs?ts=" + Date.now());
+        code.value = await response.text();
+        status.textContent = "Codigo cargado.";
+      } catch (error) {
+        status.textContent = "No se pudo cargar automaticamente. Abre APPS_SCRIPT_GIGANTES_WEBAPP.gs y copia manualmente.";
+      }
+    }
+
+    async function copyCode() {
+      code.select();
+      try {
+        await navigator.clipboard.writeText(code.value);
+      } catch (error) {
+        document.execCommand("copy");
+      }
+      status.textContent = "Copiado completo.";
+    }
+
+    loadCode();
+  </script>
+</body>
+</html>

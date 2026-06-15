@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orden de medios para publicar - Gigantes de Azapa</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e;--yellow:#f59e0b}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../entrenamiento.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--green)}
+    .warn{border-left-color:var(--yellow)}
+    code{background:#f1f5f9;border-radius:6px;padding:2px 6px}
+    table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff;border-radius:8px;overflow:hidden}
+    th,td{border:1px solid #e5e7eb;padding:10px;text-align:left;vertical-align:top}
+    th{background:#111827;color:#fff}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Orden de medios para publicar</h1>
+      <p>Revision de fotos, logos, video y productos. Sirve para saber que esta suelto, que carpeta lo contiene y como publicar sin que se rompan las imagenes.</p>
+      <a class="button" href="publicar_en_netlify.html">Publicar en Netlify</a>
+      <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+      <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+      <button class="button secondary" onclick="window.print()">Imprimir orden</button>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Decision practica para publicar</h2>
+      <p><strong>Publicar la carpeta madre completa:</strong> <code>GIGANTES_AZAPA_JUJUY_2026</code>.</p>
+      <p>Esto mantiene funcionando las rutas actuales de la app, porque muchas paginas leen fotos desde la carpeta madre y productos desde <code>09_DISENO_MERCHANDISING</code>.</p>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Inventario revisado</h2>
+      <table>
+        <thead><tr><th>Grupo</th><th>Archivos detectados</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Fotos del club sueltas en carpeta madre</td>
+            <td>Niños reunidos.jpg, Niños reunidos 2.jpg, Rugby estadio.jpg, rugby playa.jpg, entrenamiento.jpg, Entrenadores.jpg, entrenador 1.jpg, entrenador 2.jpg, entrenador 3.jpg, m10m12.jpg, 1 m10m12.jpg, m14.jpg, 3er tiempo.jpg, fogata formando club.jpg</td>
+            <td>Funcionan si se publica carpeta madre completa. Para orden definitivo, copiar a <code>APP_PUBLICA_GIGANTES_AZAPA/medios/club</code>.</td>
+          </tr>
+          <tr>
+            <td>Video</td>
+            <td>niños llegando a jugar.mov</td>
+            <td>Funciona si se publica carpeta madre completa. Ideal: copiar a <code>medios/club</code> y usar nombre sin ñ.</td>
+          </tr>
+          <tr>
+            <td>Institucional</td>
+            <td>20260529 Nota INVITACION Club Gigantes de Azapa Rugby Club.pdf, logo-tigres-rugby-club.jpg</td>
+            <td>Funcionan desde carpeta madre. Ideal: copiar a <code>medios/institucional</code>.</td>
+          </tr>
+          <tr>
+            <td>Merchandising</td>
+            <td>Polera de Juego.png, Polera de salida.png, Jockey oficial.png, Gorro invierno.png, Vaso Termico.png, Tazon.png, Pulsera.png, Llavero.png, Banderin.png, Mochila.png, Botella Aluminio.png, LOGO GIGANTES.jpeg</td>
+            <td>Ordenado en <code>09_DISENO_MERCHANDISING</code>. La app ya usa esa carpeta.</td>
+          </tr>
+          <tr>
+            <td>Carpetas medios dentro de app</td>
+            <td>medios/club, medios/institucional, medios/merchandising</td>
+            <td>Existen, pero hoy tienen instructivos. Son destino recomendado para una version final mas limpia.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Orden ideal despues del piloto</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>medios/club</h3>
+          <p>Fotos y video del club, entrenamientos, viajes, niños reunidos, entrenadores y actividades.</p>
+        </article>
+        <article class="card">
+          <h3>medios/institucional</h3>
+          <p>Carta de invitacion, logo Tigres, documentos de respaldo, logos institucionales.</p>
+        </article>
+        <article class="card">
+          <h3>medios/merchandising</h3>
+          <p>Productos separados con nombres simples para catalogo y tienda.</p>
+        </article>
+        <article class="card warn">
+          <h3>Nombres recomendados</h3>
+          <p>Usar minusculas, sin espacios ni tildes: <code>ninos-reunidos.jpg</code>, <code>rugby-estadio.jpg</code>, <code>polera-juego.png</code>.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

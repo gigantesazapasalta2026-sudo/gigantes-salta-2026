@@ -1,0 +1,37 @@
+CARPETA OBJETIVO PARA FOTOS DEL CLUB
+
+Esta carpeta queda preparada para la publicacion final.
+
+Por ahora las paginas usan las fotos desde la carpeta madre porque ahi fueron subidas:
+- ../m10m12.jpg
+- ../1 m10m12.jpg
+- ../m14.jpg
+- ../Entrenadores.jpg
+- ../entrenador 1.jpg
+- ../entrenador 2.jpg
+- ../entrenador 3.jpg
+- ../entrenamiento.jpg
+- ../3er tiempo.jpg
+- ../fogata formando club.jpg
+- ../Niños reunidos.jpg
+- ../Niños reunidos 2.jpg
+- ../Rugby estadio.jpg
+- ../rugby playa.jpg
+- ../niños llegando a jugar.mov
+
+Antes de publicar en internet conviene copiar aqui las fotos con nombres limpios:
+- m10-m12-01.jpg
+- m10-m12-02.jpg
+- m14-01.jpg
+- entrenadores-01.jpg
+- entrenador-01.jpg
+- entrenador-02.jpg
+- entrenador-03.jpg
+- entrenamiento-01.jpg
+- tercer-tiempo-01.jpg
+- fogata-formando-club-01.jpg
+- ninos-reunidos-01.jpg
+- ninos-reunidos-02.jpg
+- rugby-estadio-01.jpg
+- rugby-playa-01.jpg
+- ninos-llegando-a-jugar.mp4

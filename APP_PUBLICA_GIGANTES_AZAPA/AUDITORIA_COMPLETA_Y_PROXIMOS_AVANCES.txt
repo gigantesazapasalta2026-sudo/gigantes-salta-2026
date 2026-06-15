@@ -1,0 +1,153 @@
+AUDITORIA COMPLETA Y PROXIMOS AVANCES
+GIGANTES DE AZAPA - GIRA JUJUY / SALTA 2026
+Fecha: 2026-06-03
+
+1. ESTADO GENERAL
+El proyecto ya dejo de ser solo una planilla o una pagina simple.
+Ahora funciona como una app web informativa con formularios llenables y estructura administrativa.
+
+Paginas principales creadas:
+- index.html: portada publica de la gira.
+- inscripcion.html: ficha de jugador.
+- documentos.html: checklist y seguimiento documental.
+- mi_estado.html: consulta privada del estado documental.
+- actividades.html: turnos y comisiones de trabajo.
+- aportes.html: cooperaciones, insumos, premios, servicios y dinero.
+- sponsors.html: empresas, paquetes y merchandising.
+- avance.html: meta, avance y reporte imprimible.
+- calendario.html: cuenta regresiva y dias de recaudacion.
+
+2. LO QUE ESTA BIEN
+- La portada recupero el espiritu del primer index.
+- Las imagenes del club y campana quedaron conectadas desde la carpeta inicial.
+- Hay flujo de jugador: inscripcion, documentos, consulta de estado.
+- Hay flujo de recaudacion: actividades, aportes, avance, calendario.
+- Hay flujo de empresas: sponsors, merchandising, paquetes.
+- Hay centro operativo en Google Sheets con pestanas receptoras.
+- Hay codigo Apps Script listo para recibir formularios.
+- Hay base para correos automaticos.
+- Hay base para diploma automatico.
+- Hay reportes imprimibles.
+
+3. CORRECCIONES REALIZADAS EN ESTA AUDITORIA
+- Se agrego codigo familiar a inscripcion.
+- Se agrego pagina mi_estado.html para consulta privada.
+- Se amplio documentos.html para incluir:
+  cedula
+  certificado
+  autorizacion notarial
+  ficha medica
+  autorizacion club
+  seguro viaje
+- Se corrigio Apps Script para guardar club y seguro.
+- Se corrigieron encabezados en Google Sheets:
+  WEB_INSCRIPCIONES ahora incluye codigo_familiar.
+  WEB_DOCUMENTOS ahora incluye club y seguro.
+
+4. RIESGOS IMPORTANTES
+- Datos personales y documentos de jugadores no deben quedar publicos.
+- La pagina publica no debe mostrar cedulas ni certificados.
+- mi_estado.html solo debe mostrar estados, no documentos.
+- La consulta privada con RUT + codigo familiar es una proteccion basica, no una cuenta completa.
+- Para mayor seguridad futura se recomienda usar login real o enlaces unicos por familia.
+
+5. LO QUE ESTA PREPARADO PERO AUN NO ACTIVO
+- Guardado automatico real en Google Sheets.
+- Correos automaticos.
+- Consulta privada real del estado documental.
+- Diploma automatico por aporte confirmado.
+- Contador de meta conectado a datos reales.
+
+Para activar todo lo anterior falta:
+- Publicar APPS_SCRIPT_GIGANTES_WEBAPP.gs como aplicacion web.
+- Copiar la URL publicada.
+- Pegarla en config.js.
+- Probar formularios.
+
+6. PRIORIDAD 1 - ACTIVAR SISTEMA REAL
+Antes de seguir agregando muchas secciones, conviene activar el circuito real:
+1. Publicar Apps Script.
+2. Pegar URL en config.js.
+3. Probar inscripcion de jugador.
+4. Probar documentos.
+5. Probar mi_estado.html.
+6. Probar actividad "llevar vianesas".
+7. Probar aporte.
+8. Confirmar correo automatico.
+
+7. PRIORIDAD 2 - MEJORAR SEGURIDAD Y PRIVACIDAD
+- Agregar texto de privacidad en inscripcion.html y documentos.html.
+- Explicar que la informacion sera usada solo por el comite organizador.
+- No publicar documentos personales.
+- Crear codigos familiares no faciles de adivinar.
+- Definir responsables de acceso a carpeta documentos.
+
+8. PRIORIDAD 3 - HACER MAS INTERACTIVA LA RECAUDACION
+Mejoras recomendadas:
+- Lista publica de insumos faltantes por actividad.
+- Semaforo por actividad: pendiente, en preparacion, completado.
+- Boton "ya esta cubierto" para tareas.
+- Cupos por tarea, por ejemplo:
+  2 personas cobran
+  4 personas arman completos
+  1 persona lleva vianesas
+  1 persona lleva pan
+- Resumen automatico de voluntarios por fecha.
+
+9. PRIORIDAD 4 - SPONSORS MAS VENDIBLE
+Mejoras recomendadas:
+- Pagina por paquete:
+  bronce.html
+  plata.html
+  oro.html
+  principal.html
+- Mostrar ejemplos visuales de donde ira el logo.
+- Crear carta comercial imprimible desde la pagina.
+- Agregar galeria de sponsors confirmados.
+- Agregar boton "quiero que me contacten".
+
+10. PRIORIDAD 5 - APORTES Y DIPLOMAS
+Mejoras recomendadas:
+- Confirmacion de aporte por el comite.
+- Al confirmar aporte, enviar diploma.
+- Registrar si diploma fue enviado.
+- Crear listado de agradecimientos publicos sin mostrar datos sensibles.
+- Crear imagen/diploma con nombre del colaborador.
+
+11. PRIORIDAD 6 - AVANCE PUBLICO
+Mejoras recomendadas:
+- Conectar avance.html con Google Sheets.
+- Mostrar recaudado real.
+- Mostrar faltante real.
+- Mostrar ultima actualizacion.
+- Mostrar reporte semanal imprimible.
+- Mostrar lista de actividades realizadas.
+
+12. PRIORIDAD 7 - PUBLICACION FINAL
+Para compartir por WhatsApp y celular se requiere:
+- Publicar como web real HTTPS.
+- Revisar en celular.
+- Crear mensaje corto de difusion.
+- Crear QR de la pagina.
+- Crear boton "Instalar app" si se publica como PWA.
+
+13. BUENAS PRACTICAS REVISADAS
+Las campanas deportivas funcionan mejor cuando:
+- La meta es visible.
+- Los aportes se agradecen rapido.
+- Hay reportes frecuentes.
+- Las tareas son pequeñas y faciles de tomar.
+- Los sponsors entienden beneficios concretos.
+- La transparencia esta al frente.
+- Los datos personales quedan protegidos.
+
+14. SIGUIENTE PASO RECOMENDADO
+Activar Apps Script y hacer una prueba real.
+Si funciona:
+- pasamos a contador real
+- diploma automatico
+- reportes automáticos
+- publicacion HTTPS
+
+Si no funciona:
+- corregimos el script antes de seguir agregando secciones.

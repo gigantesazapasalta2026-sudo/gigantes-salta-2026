@@ -1,0 +1,69 @@
+ORDEN EXACTO PARA ACTIVAR Y PROBAR
+
+1. PUBLICAR APPS SCRIPT
+- Abrir https://script.google.com/
+- Crear proyecto GIGANTES_AZAPA_WEBAPP_FORMULARIOS
+- Pegar codigo desde APPS_SCRIPT_GIGANTES_WEBAPP.gs
+- Guardar
+- Implementar > Nueva implementacion
+- Tipo: Aplicacion web
+- Ejecutar como: Yo
+- Acceso: Cualquier persona con el enlace
+- Autorizar permisos
+- Copiar URL final de la aplicacion web
+
+2. PEGAR URL EN CONFIG.JS
+Abrir:
+config.js
+
+Cambiar:
+window.GIGANTES_APPS_SCRIPT_URL = "";
+
+Por:
+window.GIGANTES_APPS_SCRIPT_URL = "URL_DE_APPS_SCRIPT";
+
+3. PROBAR INSCRIPCION
+- Abrir inscripcion.html
+- Registrar jugador de prueba
+- Revisar WEB_INSCRIPCIONES
+- Revisar si llega correo de confirmacion
+
+4. PROBAR DOCUMENTOS
+- Abrir documentos.html
+- Registrar estado documental del jugador de prueba
+- Revisar WEB_DOCUMENTOS
+
+5. PROBAR MI_ESTADO.HTML
+- Abrir mi_estado.html
+- RUT: 11111111-1
+- Codigo: PRUEBA123
+- Debe mostrar checklist documental
+
+6. PROBAR ACTIVIDAD LLEVAR VIANESAS
+- Abrir actividades.html
+- Registrar tarea: Llevar vianesas
+- Revisar WEB_ACTIVIDADES
+- Revisar correo recordatorio
+
+7. PROBAR APORTE
+- Abrir aportes.html
+- Registrar aporte de prueba
+- Revisar WEB_APORTES_DIPLOMAS
+- Revisar correo de agradecimiento
+
+8. PROBAR TODO RAPIDO
+- Abrir pruebas.html
+- Ejecutar botones de prueba
+- Revisar las pestanas del Centro Operativo
+
+9. SI ALGO FALLA
+- Revisar que config.js tenga URL correcta
+- Revisar que Apps Script este implementado como aplicacion web
+- Revisar permisos autorizados
+- Revisar que las pestanas existan con estos nombres:
+  WEB_INSCRIPCIONES
+  WEB_DOCUMENTOS
+  WEB_ACTIVIDADES
+  WEB_SPONSORS
+  WEB_APORTES_DIPLOMAS
+  WEB_ALBUM_MOTIVACIONAL

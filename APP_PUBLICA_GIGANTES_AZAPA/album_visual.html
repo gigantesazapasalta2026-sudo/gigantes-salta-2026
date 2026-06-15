@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Album visual - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../m10m12.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .sticker {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    p {
+      line-height: 1.55;
+    }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.72)),
+        url("../Entrenadores.jpg") center/cover;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font-weight: 900;
+      text-decoration: none;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+    .tab {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: #e2e8f0;
+      color: #0f172a;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: #facc15;
+    }
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .sticker {
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+      background: linear-gradient(145deg, #fff, #f8fafc);
+      border: 2px solid #facc15;
+    }
+    .sticker::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15,118,110,.08), rgba(250,204,21,.16));
+      pointer-events: none;
+    }
+    .sticker-photo {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0f172a;
+      margin-bottom: 10px;
+    }
+    .sticker-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .sticker-body {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .sticker-body h3 {
+      margin: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+    .role {
+      display: inline-flex;
+      margin: 8px 0;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: #0f766e;
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+    .phrase {
+      color: #475569;
+      font-size: .9rem;
+      min-height: 42px;
+    }
+    .number {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      background: #facc15;
+      color: #0f172a;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      .hero,
+      .tabs,
+      .button {
+        display: none;
+      }
+      main {
+        padding: 0;
+      }
+      .panel,
+      .sticker {
+        box-shadow: none;
+      }
+    }
+    @media (max-width: 980px) {
+      .album-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 560px) {
+      main {
+        padding: 14px;
+      }
+      .album-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Album motivacional</span>
+        </div>
+        <h1>Album Salta 2026</h1>
+        <p>Un espacio visual para reconocer a jugadores, entrenadores, directivos, apoderados y voluntarios que hacen posible la gira.</p>
+        <a class="button" href="album.html">Subir ficha/foto</a>
+        <a class="button secondary" href="index.html">Inicio</a>
+        <a class="button secondary" href="galeria_club.html">Galeria del club</a>
+        <button class="button secondary" onclick="window.print()">Imprimir album</button>
+      </div>
+      <div class="photo">
+        <div>
+          <strong>Como album mundial, pero nuestro</strong>
+          <p>Cada ficha cuenta una parte de la historia del equipo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Categorias</h2>
+      <div class="tabs" id="tabs"></div>
+      <div class="album-grid" id="albumGrid"></div>
+    </section>
+  </main>
+
+  <script>
+    const PEOPLE = [
+      { cat: "M10", name: "M10 Gigantes", role: "Jugador", phrase: "Primeros pasos, gran corazon.", photo: "../m10m12.jpg" },
+      { cat: "M12", name: "M12 Gigantes", role: "Jugador", phrase: "Entrena, aprende y comparte.", photo: "../1 m10m12.jpg" },
+      { cat: "M14", name: "M14 Gigantes", role: "Jugador", phrase: "Disciplina dentro y fuera de la cancha.", photo: "../m14.jpg" },
+      { cat: "Entrenadores", name: "Staff Tecnico", role: "Staff", phrase: "Formar personas antes que resultados.", photo: "../Entrenadores.jpg" },
+      { cat: "Entrenadores", name: "Entrenador 1", role: "Staff", phrase: "Acompanamiento, disciplina y confianza.", photo: "../entrenador 1.jpg" },
+      { cat: "Entrenadores", name: "Entrenador 2", role: "Staff", phrase: "Cada entrenamiento tambien educa.", photo: "../entrenador 2.jpg" },
+      { cat: "Entrenadores", name: "Entrenador 3", role: "Staff", phrase: "Guiar al equipo es cuidar el proceso.", photo: "../entrenador 3.jpg" },
+      { cat: "Directivos", name: "Directiva", role: "Gestion", phrase: "Orden para que el sueno avance.", photo: "../Niños reunidos 2.jpg" },
+      { cat: "Voluntarios", name: "Voluntariado", role: "Apoyo", phrase: "Cada ayuda cuenta.", photo: "../3er tiempo.jpg" },
+      { cat: "Apoderados", name: "Familias Gigantes", role: "Familia", phrase: "La gira se construye en comunidad.", photo: "../fogata formando club.jpg" }
+    ];
+
+    const categories = ["Todos", "M10", "M12", "M14", "Entrenadores", "Directivos", "Voluntarios", "Apoderados"];
+    const tabs = document.getElementById("tabs");
+    const grid = document.getElementById("albumGrid");
+    let current = "Todos";
+
+    function renderTabs() {
+      tabs.innerHTML = "";
+      categories.forEach((cat) => {
+        const btn = document.createElement("button");
+        btn.className = "tab" + (cat === current ? " active" : "");
+        btn.textContent = cat;
+        btn.addEventListener("click", () => {
+          current = cat;
+          renderTabs();
+          renderGrid();
+        });
+        tabs.appendChild(btn);
+      });
+    }
+
+    function renderGrid() {
+      const list = current === "Todos" ? PEOPLE : PEOPLE.filter((item) => item.cat === current);
+      grid.innerHTML = "";
+      list.forEach((person, index) => {
+        const card = document.createElement("article");
+        card.className = "sticker";
+        card.innerHTML = `
+          <span class="number">GA-${String(index + 1).padStart(3, "0")}</span>
+          <div class="sticker-photo"><img src="${person.photo}" alt="${person.name}"></div>
+          <div class="sticker-body">
+            <h3>${person.name}</h3>
+            <span class="role">${person.cat} · ${person.role}</span>
+            <p class="phrase">${person.phrase}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    renderTabs();
+    renderGrid();
+  </script>
+</body>
+</html>

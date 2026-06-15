@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Itinerario Gira Salta 2026 — Gigantes de Azapa</title>
+  <script src="config.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:#f3f4f6;color:#111827;min-height:100vh}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(135deg,#111827,#B11226);box-shadow:0 2px 12px rgba(0,0,0,.3)}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:900}
+    .brand img{width:40px;height:40px;object-fit:contain;background:#fff;border-radius:6px;padding:4px}
+    .brand span{font-size:1rem;line-height:1.2}
+    .brand small{display:block;color:#D4AF37;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px}
+    .back-btn{color:#fff;text-decoration:none;font-size:.82rem;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);padding:7px 12px;border-radius:6px}
+
+    .hero-strip{background:linear-gradient(135deg,#B11226,#8B0D1C);color:#fff;padding:20px 16px;text-align:center}
+    .hero-strip h1{font-size:clamp(1.4rem,4vw,2rem);margin-bottom:6px}
+    .hero-strip p{font-size:.88rem;opacity:.88;margin-bottom:12px}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+    .chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:4px 12px;font-size:.75rem;font-weight:700}
+
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border-bottom:1px solid #e5e7eb}
+    .sum-item{padding:14px 10px;text-align:center;border-right:1px solid #e5e7eb}
+    .sum-item:last-child{border-right:none}
+    .sum-num{font-size:1.6rem;font-weight:900;color:#B11226;line-height:1}
+    .sum-lbl{font-size:.7rem;color:#6B7280;margin-top:3px;text-transform:uppercase;letter-spacing:.3px}
+
+    .tab-bar{display:flex;overflow-x:auto;background:#fff;border-bottom:2px solid #e5e7eb;-webkit-overflow-scrolling:touch}
+    .tab-bar::-webkit-scrollbar{display:none}
+    .tab{flex-shrink:0;padding:12px 14px;font-size:.78rem;font-weight:700;color:#6B7280;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;text-align:center;line-height:1.3}
+    .tab.active{color:#B11226;border-bottom-color:#B11226}
+    .tab span{display:block;font-size:.66rem;font-weight:400;color:#9CA3AF;margin-top:2px}
+
+    .day-panel{display:none;padding:16px}
+    .day-panel.active{display:block}
+    .day-header{display:flex;align-items:center;gap:12px;background:#fff;border-radius:10px;padding:14px;margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .day-circle{width:46px;height:46px;border-radius:50%;background:#B11226;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;flex-shrink:0}
+    .day-circle.gold{background:#D4AF37;color:#111}
+    .day-circle.blue{background:#185FA5;color:#fff}
+    .day-title{font-size:1rem;font-weight:700;color:#111827}
+    .day-sub{font-size:.78rem;color:#6B7280;margin-top:2px}
+
+    .timeline{position:relative;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:#E5E7EB}
+    .event{position:relative;margin-bottom:10px}
+    .dot{position:absolute;left:-24px;top:16px;width:14px;height:14px;border-radius:50%;border:2px solid #f3f4f6;flex-shrink:0}
+    .ecard{background:#fff;border-radius:8px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .etime{font-size:.72rem;color:#9CA3AF;font-weight:700;margin-bottom:2px}
+    .etitle{font-size:.9rem;font-weight:700;color:#111827;margin-bottom:3px}
+    .edesc{font-size:.8rem;color:#6B7280;line-height:1.5}
+    .etag{display:inline-block;font-size:.68rem;padding:3px 8px;border-radius:99px;margin-top:6px;font-weight:700}
+    .t-bus{background:#EFF6FF;color:#1D4ED8}
+    .t-food{background:#F0FDF4;color:#166534}
+    .t-sport{background:#FEF2F2;color:#991B1B}
+    .t-hotel{background:#FFFBEB;color:#92400E}
+    .t-doc{background:#F5F3FF;color:#5B21B6}
+    .t-free{background:#F0FDF4;color:#065F46}
+
+    .nota{background:#FFFBEB;border-left:4px solid #D4AF37;border-radius:0 6px 6px 0;padding:10px 12px;font-size:.78rem;color:#92400E;line-height:1.5;margin-bottom:12px}
+
+    /* EDITABLE */
+    .edit-section{margin-bottom:20px}
+    .edit-section h3{font-size:.85rem;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #E5E7EB}
+    .field{background:#fff;border-radius:8px;padding:12px 14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .field label{font-size:.72rem;font-weight:700;color:#9CA3AF;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
+    .field input,.field textarea{width:100%;font-size:.88rem;color:#111827;border:1.5px solid #E5E7EB;border-radius:6px;padding:8px 10px;font-family:Arial,sans-serif;transition:border .15s}
+    .field input:focus,.field textarea:focus{outline:none;border-color:#B11226}
+    .field textarea{resize:vertical;min-height:70px}
+    .save-btn{background:#B11226;color:#fff;border:none;border-radius:8px;padding:12px 24px;font-size:.9rem;font-weight:700;cursor:pointer;width:100%;margin-top:4px}
+    .wa-btn{background:#25D366;color:#fff;border:none;border-radius:8px;padding:12px 24px;font-size:.9rem;font-weight:700;cursor:pointer;width:100%;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .saved-ok{color:#166534;font-size:.82rem;margin-top:8px;text-align:center;display:none}
+
+    @media(max-width:480px){.summary{grid-template-columns:repeat(2,1fr)}.sum-item:nth-child(2){border-right:none}.sum-item:nth-child(3){border-right:1px solid #e5e7eb;border-top:1px solid #e5e7eb}.sum-item:nth-child(4){border-top:1px solid #e5e7eb}}
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="accesos_publicos.html">
+    <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+    <span><small>Gigantes de Azapa</small>Salta 2026</span>
+  </a>
+  <a class="back-btn" href="accesos_publicos.html">← Inicio</a>
+</header>
+
+<div class="hero-strip">
+  <h1>🗓 Itinerario del Viaje</h1>
+  <p>Guía completa para toda la delegación — 26 al 30 de agosto 2026</p>
+  <div class="chips">
+    <span class="chip">🚌 Arica → Calama → Salta</span>
+    <span class="chip">🏉 4 partidos amistosos</span>
+    <span class="chip">🏆 Los Pumas vs Australia</span>
+    <span class="chip">~80 personas</span>
+  </div>
+</div>
+
+<div class="summary">
+  <div class="sum-item"><div class="sum-num">5</div><div class="sum-lbl">Días</div></div>
+  <div class="sum-item"><div class="sum-num">4</div><div class="sum-lbl">Partidos</div></div>
+  <div class="sum-item"><div class="sum-num">1</div><div class="sum-lbl">Los Pumas</div></div>
+  <div class="sum-item"><div class="sum-num">~80</div><div class="sum-lbl">Viajeros</div></div>
+</div>
+
+<nav class="tab-bar">
+  <button class="tab active" onclick="showDay(0)">Mié 26<span>Salida</span></button>
+  <button class="tab" onclick="showDay(1)">Jue 27<span>Amistosos</span></button>
+  <button class="tab" onclick="showDay(2)">Vie 28<span>Amistosos</span></button>
+  <button class="tab" onclick="showDay(3)">Sáb 29<span>Los Pumas</span></button>
+  <button class="tab" onclick="showDay(4)">Dom 30<span>Regreso</span></button>
+  <button class="tab" onclick="showDay(5)">✏️ Datos<span>Editar</span></button>
+</nav>
+
+<!-- DÍA 1 -->
+<div class="day-panel active" id="day0">
+  <div class="day-header">
+    <div class="day-circle">D1</div>
+    <div><div class="day-title">Miércoles 26 de agosto — Salida desde Arica</div><div class="day-sub">Ruta: Arica → Calama → Paso Jama → Purmamarca → Salta</div></div>
+  </div>
+  <div class="timeline">
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">05:00 hrs</div><div class="etitle">Concentración en el club</div><div class="edesc">Punto de encuentro en Club Gigantes de Azapa. Revisión de documentos y equipaje. Subida al bus. Todos deben estar puntual.</div><span class="etag t-bus">Concentración</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">06:00 hrs</div><div class="etitle">Salida desde Arica</div><div class="edesc">Bus parte rumbo a Calama. Ruta 5 Norte. Aprox. 3.5 hrs. Descanso recomendado a bordo.</div><span class="etag t-bus">Transporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">07:30 hrs</div><div class="etitle">Desayuno a bordo</div><div class="edesc">Desayuno preparado por comisión de alimentación: sándwich, jugo, fruta. Hidratación importante antes de la altura.</div><span class="etag t-food">Comida</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">09:30 hrs</div><div class="etitle">Parada en Calama</div><div class="edesc">45 minutos. Baños, estiramiento, refrigerio. Punto de control de pasajeros antes de la frontera.</div><span class="etag t-bus">Parada técnica</span></div></div>
+    <div class="event"><div class="dot" style="background:#5B21B6"></div><div class="ecard"><div class="etime">13:00 hrs</div><div class="etitle">Cruce fronterizo Paso Jama</div><div class="edesc">Control migratorio Chile → Argentina. Documentos en mano. Menores necesitan autorización notarial obligatoria. Duración: 1 a 2 hrs.</div><span class="etag t-doc">Documentos</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">14:30 hrs</div><div class="etitle">Almuerzo en Purmamarca</div><div class="edesc">Parada en Purmamarca, Argentina. Almuerzo en restaurante coordinado. Vista al famoso Cerro de los 7 Colores. 1 hora.</div><span class="etag t-food">Almuerzo</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">16:00 hrs</div><div class="etitle">Tramo final hacia Salta</div><div class="edesc">Ruta 9 hacia Salta. Aprox. 2 hrs. Paisaje de quebradas y valles andinos.</div><span class="etag t-bus">Transporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#92400E"></div><div class="ecard"><div class="etime">18:30 hrs</div><div class="etitle">Llegada al hotel — Check-in</div><div class="edesc">Llegada al hotel en Salta. Check-in y distribución de habitaciones. Descanso libre hasta la cena.</div><span class="etag t-hotel">Alojamiento</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">20:30 hrs</div><div class="etitle">Cena en el hotel</div><div class="edesc">Cena grupal toda la delegación. Reunión de entrenadores y directiva para coordinar el día siguiente.</div><span class="etag t-food">Cena</span></div></div>
+  </div>
+</div>
+
+<!-- DÍA 2 -->
+<div class="day-panel" id="day1">
+  <div class="day-header">
+    <div class="day-circle">D2</div>
+    <div><div class="day-title">Jueves 27 de agosto — Amistosos M10 y M12</div><div class="day-sub">Primer día deportivo en Salta — categorías formativas</div></div>
+  </div>
+  <div class="timeline">
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">07:30 hrs</div><div class="etitle">Desayuno en el hotel</div><div class="edesc">Desayuno completo para toda la delegación. Hidratación especial para los niños que juegan hoy.</div><span class="etag t-food">Desayuno</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">09:00 hrs</div><div class="etitle">Traslado al complejo deportivo</div><div class="edesc">Bus al club anfitrión en Salta. Aprox. 30 min. Toda la delegación asiste como barra y apoyo.</div><span class="etag t-bus">Transporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">09:30 hrs</div><div class="etitle">Entrada en calor M10</div><div class="edesc">Calentamiento dirigido por entrenadores. Coordinación con árbitro y club anfitrión. Adultos responsables en borde de cancha.</div><span class="etag t-sport">Deporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">10:00 hrs</div><div class="etitle">⚽ Partido M10 — Gigantes vs Club Salta</div><div class="edesc">Formato Ten a Side. 2 tiempos de 20 min. Reglas adaptadas para formativas. Barra de apoderados en las graderías.</div><span class="etag t-sport">Partido</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">11:00 hrs</div><div class="etitle">⚽ Partido M12 — Gigantes vs Club Salta</div><div class="edesc">Formato Ten a Side. 2 tiempos de 25 min. Hidratación obligatoria entre tiempos.</div><span class="etag t-sport">Partido</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">12:00 hrs</div><div class="etitle">Tercer tiempo M10 y M12</div><div class="edesc">Compartir con el equipo rival. Intercambio de camisetas, fotos grupales. Momento especial para los niños.</div><span class="etag t-sport">Tercer tiempo</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">13:00 hrs</div><div class="etitle">Almuerzo en el club anfitrión</div><div class="edesc">Almuerzo compartido con el club de Salta. Menú coordinado previamente.</div><span class="etag t-food">Almuerzo</span></div></div>
+    <div class="event"><div class="dot" style="background:#065F46"></div><div class="ecard"><div class="etime">15:00 hrs</div><div class="etitle">Tarde libre en Salta</div><div class="edesc">Tiempo libre para familias. Centro histórico, Cabildo, Catedral, Mercado Artesanal. Grupos con adulto responsable. Punto de regreso acordado.</div><span class="etag t-free">Libre</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">20:00 hrs</div><div class="etitle">Cena en el hotel</div><div class="edesc">Cena grupal. Reunión de entrenadores para coordinar partidos del día siguiente (M14 y Classic).</div><span class="etag t-food">Cena</span></div></div>
+  </div>
+</div>
+
+<!-- DÍA 3 -->
+<div class="day-panel" id="day2">
+  <div class="day-header">
+    <div class="day-circle">D3</div>
+    <div><div class="day-title">Viernes 28 de agosto — Amistosos M14 y Classic</div><div class="day-sub">Segundo día deportivo — categorías juvenil y adultos</div></div>
+  </div>
+  <div class="timeline">
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">07:30 hrs</div><div class="etitle">Desayuno en el hotel</div><div class="edesc">Desayuno completo. Hidratación especial para jugadores M14 y Classic que compiten hoy.</div><span class="etag t-food">Desayuno</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">09:00 hrs</div><div class="etitle">Traslado a cancha de rugby XV</div><div class="edesc">Bus al complejo deportivo. Cancha XV oficial para M14 y Classic.</div><span class="etag t-bus">Transporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">09:30 hrs</div><div class="etitle">⚽ Partido M14 — Rugby XV</div><div class="edesc">Partido oficial XV. 2 tiempos de 30 min. Referee designado por el club anfitrión. Equipamiento completo requerido.</div><span class="etag t-sport">Partido</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">11:00 hrs</div><div class="etitle">⚽ Partido Classic — Rugby XV</div><div class="edesc">Partido adultos. 2 tiempos de 35 min. Tercer tiempo protocolar con autoridades del club anfitrión.</div><span class="etag t-sport">Partido</span></div></div>
+    <div class="event"><div class="dot" style="background:#5B21B6"></div><div class="ecard"><div class="etime">12:30 hrs</div><div class="etitle">Acto protocolar institucional</div><div class="edesc">Intercambio de presentes entre directivas. Foto oficial de la delegación completa. Palabras del presidente del club.</div><span class="etag t-doc">Protocolo</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">13:30 hrs</div><div class="etitle">Almuerzo de cierre en Salta</div><div class="edesc">Almuerzo compartido con el club anfitrión. Gran tercer tiempo grupal toda la delegación.</div><span class="etag t-food">Almuerzo</span></div></div>
+    <div class="event"><div class="dot" style="background:#92400E"></div><div class="ecard"><div class="etime">15:30 hrs</div><div class="etitle">Regreso al hotel — descanso</div><div class="edesc">Descanso obligatorio antes del gran día. Los jugadores no deben salir esta noche.</div><span class="etag t-hotel">Descanso</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">19:30 hrs</div><div class="etitle">Cena temprana en el hotel</div><div class="edesc">Cena temprana. Instrucciones finales para el día del partido de Los Pumas. Horarios de salida para Jujuy.</div><span class="etag t-food">Cena</span></div></div>
+    <div class="event"><div class="dot" style="background:#92400E"></div><div class="ecard"><div class="etime">22:00 hrs</div><div class="etitle">Luces apagadas</div><div class="edesc">Descanso total obligatorio para toda la delegación. Gran día mañana. Los niños deben estar en sus habitaciones.</div><span class="etag t-hotel">Descanso</span></div></div>
+  </div>
+</div>
+
+<!-- DÍA 4 -->
+<div class="day-panel" id="day3">
+  <div class="day-header">
+    <div class="day-circle gold">D4</div>
+    <div><div class="day-title">Sábado 29 de agosto — LOS PUMAS vs Australia 🏆</div><div class="day-sub">Estadio 23 de Agosto, San Salvador de Jujuy — El día grande</div></div>
+  </div>
+  <div class="nota">Hora oficial del partido por confirmar en canales UAR. Horario tentativo 16:00 hrs. Las entradas deben estar listas la noche anterior.</div>
+  <div class="timeline">
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">07:00 hrs</div><div class="etitle">Desayuno temprano en el hotel</div><div class="edesc">Desayuno completo. Preparar mochila del día: documentos, entradas, hidratación, ropa de abrigo para la noche.</div><span class="etag t-food">Desayuno</span></div></div>
+    <div class="event"><div class="dot" style="background:#92400E"></div><div class="ecard"><div class="etime">08:00 hrs</div><div class="etitle">Check-out del hotel</div><div class="edesc">Devolución de llaves y check-out. Equipaje cargado en el bus antes de salir a Jujuy. No se regresa al hotel.</div><span class="etag t-hotel">Check-out</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">08:30 hrs</div><div class="etitle">Salida en bus hacia Jujuy</div><div class="edesc">Bus sale desde el hotel. Salta → Jujuy: 90 km, aprox. 1 hr 15 min. No se puede llegar tarde.</div><span class="etag t-bus">Transporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#065F46"></div><div class="ecard"><div class="etime">09:45 hrs</div><div class="etitle">Llegada a Jujuy — recorrido libre</div><div class="edesc">Tiempo libre en Jujuy. Plaza Belgrano, Casa de Gobierno, Catedral. Grupos con adulto responsable. Punto de reunión a las 11:30 hrs.</div><span class="etag t-free">Libre</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">12:00 hrs</div><div class="etitle">Almuerzo grupal en Jujuy</div><div class="edesc">Almuerzo en restaurante acordado previamente. Menú único para toda la delegación. Pausa antes del partido.</div><span class="etag t-food">Almuerzo</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">13:30 hrs</div><div class="etitle">Traslado al Estadio 23 de Agosto</div><div class="edesc">Bus al estadio. Llegar con tiempo para evitar filas. Punto de emergencia definido fuera del estadio.</div><span class="etag t-bus">Transporte</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">14:00 hrs</div><div class="etitle">Ingreso al estadio</div><div class="edesc">Control de entradas. Menores siempre con adulto responsable. Sector asignado para la delegación Gigantes.</div><span class="etag t-sport">Estadio</span></div></div>
+    <div class="event"><div class="dot" style="background:#991B1B"></div><div class="ecard"><div class="etime">16:00 hrs</div><div class="etitle">🏆 LOS PUMAS vs AUSTRALIA</div><div class="edesc">Estadio 23 de Agosto, San Salvador de Jujuy. Rugby Championship. El partido que nos trajo hasta acá. ¡Arriba los Pumas!</div><span class="etag t-sport">Partido oficial</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">18:30 hrs</div><div class="etitle">Salida del estadio — punto de reunión</div><div class="edesc">Reunión en punto acordado. Contar personas antes de subir al bus. No separarse del grupo.</div><span class="etag t-bus">Reunión</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">19:30 hrs</div><div class="etitle">Cena de celebración en Jujuy</div><div class="edesc">Cena de celebración en restaurante de Jujuy. El mejor cierre para el mejor día del viaje.</div><span class="etag t-food">Cena</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">21:30 hrs</div><div class="etitle">Regreso a Arica en bus</div><div class="edesc">El bus inicia el regreso directo hacia Arica. Noche a bordo. Llegada estimada al día siguiente.</div><span class="etag t-bus">Transporte</span></div></div>
+  </div>
+</div>
+
+<!-- DÍA 5 -->
+<div class="day-panel" id="day4">
+  <div class="day-header">
+    <div class="day-circle">D5</div>
+    <div><div class="day-title">Domingo 30 de agosto — Regreso a Arica</div><div class="day-sub">Jujuy → Paso Jama → Calama → Arica</div></div>
+  </div>
+  <div class="timeline">
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">En ruta</div><div class="etitle">Desayuno a bordo</div><div class="edesc">Desayuno coordinado por la comisión de alimentación durante el viaje de regreso.</div><span class="etag t-food">Desayuno</span></div></div>
+    <div class="event"><div class="dot" style="background:#5B21B6"></div><div class="ecard"><div class="etime">~08:00 hrs</div><div class="etitle">Cruce fronterizo Paso Jama — regreso</div><div class="edesc">Control migratorio Argentina → Chile. Documentos a mano. Declaración de artesanías y compras en aduana.</div><span class="etag t-doc">Frontera</span></div></div>
+    <div class="event"><div class="dot" style="background:#166534"></div><div class="ecard"><div class="etime">~11:00 hrs</div><div class="etitle">Almuerzo en ruta</div><div class="edesc">Parada para almuerzo en territorio chileno. Ubicación exacta según tiempos reales del viaje.</div><span class="etag t-food">Almuerzo</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">~14:00 hrs</div><div class="etitle">Parada en Calama</div><div class="edesc">Descanso, baños y estiramiento. 30 minutos antes del tramo final.</div><span class="etag t-bus">Parada técnica</span></div></div>
+    <div class="event"><div class="dot" style="background:#B11226"></div><div class="ecard"><div class="etime">~18:00 hrs</div><div class="etitle">Llegada a Arica 🏠</div><div class="edesc">Llegada al Club Gigantes de Azapa. Descarga de equipaje. Reunión final y fin oficial de la Gira 2026.</div><span class="etag t-bus">Llegada</span></div></div>
+  </div>
+</div>
+
+<!-- EDITABLE -->
+<div class="day-panel" id="day5">
+  <div class="day-header">
+    <div class="day-circle blue">✏️</div>
+    <div><div class="day-title">Datos del viaje — Editar</div><div class="day-sub">Completa cuando la directiva confirme. Se guarda en tu dispositivo.</div></div>
+  </div>
+
+  <div class="edit-section">
+    <h3>🏨 Hotel en Salta (noches 26 y 27 ago)</h3>
+    <div class="field"><label>Nombre del hotel</label><input type="text" id="hotel1" placeholder="Ej: Hotel Almería Salta"></div>
+    <div class="field"><label>Dirección</label><input type="text" id="hotel1dir" placeholder="Ej: Av. Entre Ríos 1234, Salta"></div>
+    <div class="field"><label>Teléfono de contacto</label><input type="text" id="hotel1tel" placeholder="+54 387..."></div>
+    <div class="field"><label>Observaciones (habitaciones, régimen, piscina, etc.)</label><textarea id="hotel1obs" placeholder="Ej: 20 habitaciones dobles, desayuno incluido, check-in 15:00 hrs..."></textarea></div>
+  </div>
+
+  <div class="edit-section">
+    <h3>🚌 Bus principal (Arica ↔ Salta)</h3>
+    <div class="field"><label>Empresa de buses</label><input type="text" id="bus1" placeholder="Ej: Pullman Bus / empresa contratada"></div>
+    <div class="field"><label>Capacidad y patente</label><input type="text" id="bus1cap" placeholder="Ej: 56 pasajeros, patente ABC-123"></div>
+    <div class="field"><label>Conductor / contacto en ruta</label><input type="text" id="bus1conductor" placeholder="+56 9..."></div>
+    <div class="field"><label>Observaciones</label><textarea id="bus1obs" placeholder="Ej: WiFi a bordo, maletero amplio, salida confirmada 06:00 hrs..."></textarea></div>
+  </div>
+
+  <div class="edit-section">
+    <h3>🚌 Bus traslado Salta ↔ Jujuy (sábado 29)</h3>
+    <div class="field"><label>Empresa</label><input type="text" id="bus2" placeholder="Ej: Buses El Norte / empresa en Salta"></div>
+    <div class="field"><label>Capacidad</label><input type="text" id="bus2cap" placeholder="Ej: 50 pasajeros"></div>
+    <div class="field"><label>Conductor / contacto</label><input type="text" id="bus2conductor" placeholder="+54 9..."></div>
+  </div>
+
+  <div class="edit-section">
+    <h3>🏉 Club anfitrión en Salta</h3>
+    <div class="field"><label>Nombre del club</label><input type="text" id="clubsalta" placeholder="Ej: Club Atlético San Martín Rugby"></div>
+    <div class="field"><label>Contacto</label><input type="text" id="clubcontacto" placeholder="Nombre y teléfono del coordinador"></div>
+    <div class="field"><label>Dirección del complejo deportivo</label><input type="text" id="clubdir" placeholder="Dirección de las canchas"></div>
+  </div>
+
+  <div class="edit-section">
+    <h3>🏆 Entradas partido Los Pumas</h3>
+    <div class="field"><label>Responsable de las entradas</label><input type="text" id="entradasresp" placeholder="Nombre del responsable de la delegación"></div>
+    <div class="field"><label>Sector en el estadio</label><input type="text" id="sector" placeholder="Ej: Sector Norte, Fila 12"></div>
+    <div class="field"><label>Observaciones</label><textarea id="entradasobs" placeholder="Ej: 82 entradas confirmadas, retirar en boletería 2 hrs antes..."></textarea></div>
+  </div>
+
+  <button class="save-btn" onclick="guardar()">💾 Guardar todos los datos</button>
+  <div id="saved-ok" class="saved-ok">✅ Datos guardados correctamente</div>
+  <button class="wa-btn" onclick="compartirWA()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Compartir itinerario por WhatsApp
+  </button>
+</div>
+
+<script>
+function showDay(n){
+  document.querySelectorAll('.day-panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const CAMPOS=['hotel1','hotel1dir','hotel1tel','hotel1obs','bus1','bus1cap','bus1conductor','bus1obs','bus2','bus2cap','bus2conductor','clubsalta','clubcontacto','clubdir','entradasresp','sector','entradasobs'];
+
+function guardar(){
+  const d={};
+  CAMPOS.forEach(id=>{const el=document.getElementById(id);if(el)d[id]=el.value;});
+  try{localStorage.setItem('gigantes_itinerario',JSON.stringify(d));const ok=document.getElementById('saved-ok');ok.style.display='block';setTimeout(()=>ok.style.display='none',3000);}
+  catch(e){alert('Datos guardados (modo temporal).');}
+}
+
+function compartirWA(){
+  const g=id=>document.getElementById(id)?.value||'Por confirmar';
+  const txt=`🏉 *ITINERARIO GIRA GIGANTES DE AZAPA 2026*\n\n📅 *Mié 26 Ago — Salida*\n05:00 Concentración en el club\n06:00 Salida Arica en bus (${g('bus1')||'bus contratado'})\n07:30 Desayuno a bordo\n09:30 Parada Calama\n13:00 Frontera Paso Jama\n14:30 Almuerzo Purmamarca\n18:30 Check-in hotel Salta: ${g('hotel1')}\n20:30 Cena\n\n🏉 *Jue 27 Ago — Amistosos M10 y M12*\n07:30 Desayuno\n10:00 Partido M10 vs ${g('clubsalta')}\n11:00 Partido M12 vs ${g('clubsalta')}\n13:00 Almuerzo compartido\n15:00 Tarde libre Salta\n20:00 Cena hotel\n\n🏉 *Vie 28 Ago — Amistosos M14 y Classic*\n07:30 Desayuno\n09:30 Partido M14\n11:00 Partido Classic\n12:30 Acto protocolar\n19:30 Cena temprana\n22:00 Descanso total\n\n🏆 *Sáb 29 Ago — LOS PUMAS vs AUSTRALIA*\n07:00 Desayuno\n08:00 Check-out hotel\n08:30 Salida a Jujuy\n09:45 Recorrido libre Jujuy\n12:00 Almuerzo\n13:30 Traslado estadio\n16:00 ⭐ LOS PUMAS vs AUSTRALIA - Estadio 23 de Agosto\n19:30 Cena celebración\n21:30 Regreso a Arica\n\n🏠 *Dom 30 Ago — Llegada Arica ~18:00 hrs*\n\n📋 Documentos obligatorios: cédula, seguro de viaje.\n⚠️ Menores: autorización notarial imprescindible.\n\n🔗 ${window.location.href}`;
+  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
+}
+
+try{
+  const saved=JSON.parse(localStorage.getItem('gigantes_itinerario')||'null');
+  if(saved)CAMPOS.forEach(id=>{const el=document.getElementById(id);if(el&&saved[id])el.value=saved[id];});
+}catch(e){}
+</script>
+</body>
+</html>

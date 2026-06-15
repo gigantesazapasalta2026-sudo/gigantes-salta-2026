@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual de presentacion de la app - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e;--yellow:#f59e0b}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../Niños reunidos 2.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--green)}
+    .warn{border-left-color:var(--yellow)}
+    .tag{display:inline-flex;border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:900;margin-bottom:8px;background:#ecfdf5;color:#065f46}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    textarea{width:100%;box-sizing:border-box;border:1px solid rgba(15,23,42,.18);border-radius:8px;min-height:340px;padding:12px;font:inherit}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <span class="tag">Manual explicativo</span>
+      <h1>En que consiste la app</h1>
+      <p>Documento simple para explicar a Presidenta, Directiva, familias y colaboradores que hace la aplicacion, como se usa y como ayuda a administrar la gira Salta 2026.</p>
+      <a class="button" href="https://ephemeral-malasada-e90baf.netlify.app">Abrir app publicada</a>
+      <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+      <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+      <a class="button secondary" href="manual_uso.html">Manual de uso</a>
+      <button class="button secondary" onclick="window.print()">Imprimir manual</button>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Resumen</h2>
+      <div class="note">
+        La app es una herramienta digital de gestion para organizar la gira Salta 2026 de Gigantes de Azapa Rugby Club. Reune en un solo lugar la informacion del proyecto, inscripciones, documentos, actividades de recaudacion, aportes, sponsors, merchandising, comprobantes, avance de la meta y comunicaciones automaticas.
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Que problema resuelve</h2>
+      <div class="grid">
+        <article class="card"><h3>Orden</h3><p>Centraliza la informacion para que no quede dispersa en WhatsApp, papeles, correos o planillas separadas.</p></article>
+        <article class="card"><h3>Transparencia</h3><p>Permite revisar avances, aportes, comprobantes, sponsors y recaudacion de forma mas clara.</p></article>
+        <article class="card"><h3>Autogestion</h3><p>Familias y colaboradores pueden inscribirse, subir documentos, anotarse en actividades o comprar merchandising sin depender de una sola persona.</p></article>
+        <article class="card"><h3>Seguimiento</h3><p>La directiva puede revisar registros en el Centro Operativo y tomar decisiones con informacion ordenada.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Modulos principales</h2>
+      <ol>
+        <li><strong>Inicio y accesos publicos:</strong> menu principal para familias, jugadores, comunidad, sponsors y autoridades.</li>
+        <li><strong>Inscripcion:</strong> ficha digital para registrar jugadores y datos familiares.</li>
+        <li><strong>Documentos:</strong> carga de cedula, autorizaciones, ficha medica, seguro, RSH u otros documentos necesarios.</li>
+        <li><strong>Mi Estado:</strong> consulta privada para saber que documentos estan recibidos o pendientes.</li>
+        <li><strong>Actividades:</strong> organizacion de comisiones, insumos, turnos y cooperaciones.</li>
+        <li><strong>Bingos:</strong> control de premios, cartones, vendedores y responsables.</li>
+        <li><strong>Aportes:</strong> registro de aportes monetarios o valorizados, con comprobante y correo automatico.</li>
+        <li><strong>Merchandising:</strong> catalogo y carro de pedidos para productos del club y edicion especial de gira.</li>
+        <li><strong>Sponsors:</strong> informacion para empresas, beneficios, paquetes de apoyo y registro de interes.</li>
+        <li><strong>Avance:</strong> visualizacion de meta, recaudado y faltante.</li>
+        <li><strong>Correos automaticos:</strong> confirmaciones para aportes, compras, documentos y actividades.</li>
+        <li><strong>Panel interno:</strong> paginas de revision, auditoria, checklist y validacion directiva.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Como funciona la informacion</h2>
+      <p>Cuando una persona completa un formulario, la informacion se envia al Centro Operativo en Google Sheets. Segun el tipo de registro, puede quedar en hojas como inscripciones, documentos, actividades, aportes, sponsors o merchandising.</p>
+      <p>En los casos configurados, tambien se envia un correo automatico al usuario y una copia al correo oficial del proyecto:</p>
+      <p><strong>gigantesazapa.salta2026@gmail.com</strong></p>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Que recibe cada persona</h2>
+      <div class="grid">
+        <article class="card"><h3>Familia o jugador</h3><p>Puede inscribirse, subir documentos, revisar estado y anotarse en actividades.</p></article>
+        <article class="card"><h3>Colaborador</h3><p>Puede registrar aporte, subir comprobante y recibir agradecimiento con diploma automatico.</p></article>
+        <article class="card"><h3>Comprador</h3><p>Puede elegir productos de merchandising, agregar al carro y recibir confirmacion de pedido.</p></article>
+        <article class="card"><h3>Empresa</h3><p>Puede revisar beneficios de auspicio, propuesta comercial y espacios de publicidad.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Uso interno y privacidad</h2>
+      <p>La app tiene paginas publicas y paginas internas. Las paginas publicas son para familias, comunidad y empresas. Las internas son para directiva/equipo organizador: pruebas, copiadores, auditorias, validaciones, control de merchandising y configuracion.</p>
+      <div class="note">
+        Los documentos personales, ficha medica, RSH, cedulas y datos familiares deben ser tratados como informacion privada. La directiva debe validar responsables de acceso y uso de datos.
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Texto breve para explicar la app</h2>
+      <textarea readonly>La app Gigantes de Azapa Salta 2026 es una herramienta digital creada para administrar y ordenar la gira deportiva del club.
+
+Permite reunir en un solo lugar:
+- Informacion general de la gira.
+- Inscripcion de jugadores.
+- Carga de documentos.
+- Estado de documentos por familia.
+- Actividades de recaudacion.
+- Bingos y comisiones de trabajo.
+- Aportes y comprobantes.
+- Merchandising y pedidos.
+- Sponsors y propuestas para empresas.
+- Avance de la meta economica.
+- Correos automaticos y diplomas de agradecimiento.
+
+La idea es que la organizacion sea mas transparente, ordenada y autogestionable, evitando que toda la informacion quede dispersa en WhatsApp o en planillas separadas.
+
+Actualmente esta en etapa piloto interno para revision de Presidenta y Directiva antes de publicarla masivamente.</textarea>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Estado actual</h2>
+      <p>La app ya esta publicada como piloto en Netlify y puede revisarse desde celular. Falta revision formal de Presidenta/Directiva, ajustes solicitados, validacion de privacidad y definicion de publicacion masiva.</p>
+    </section>
+  </main>
+</body>
+</html>

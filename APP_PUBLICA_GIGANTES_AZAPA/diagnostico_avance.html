@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnostico avance - Gigantes</title>
+  <script src="config.js"></script>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f1f5f9;color:#0f172a;margin:0;padding:20px}
+    main{max-width:900px;margin:0 auto;background:#fff;border-radius:8px;padding:18px}
+    button,a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;border:0;border-radius:8px;padding:9px 12px;background:#0f766e;color:#fff;font-weight:800;text-decoration:none;margin:4px;cursor:pointer}
+    pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:8px;padding:12px;min-height:180px}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Diagnostico avance automatico</h1>
+    <p>Esta pagina prueba si Apps Script responde el resumen de avance.</p>
+    <button id="testBtn">Probar avance automatico</button>
+    <a id="directLink" target="_blank" rel="noopener">Abrir prueba directa</a>
+    <a href="avance.html">Volver a avance</a>
+    <pre id="output">Esperando prueba...</pre>
+  </main>
+
+  <script>
+    const output = document.getElementById("output");
+    const directLink = document.getElementById("directLink");
+    const testUrl = new URL(window.GIGANTES_APPS_SCRIPT_URL);
+    testUrl.searchParams.set("action", "avance");
+    testUrl.searchParams.set("meta", "70000000");
+    testUrl.searchParams.set("callback", "diagnosticoAvanceDirecto");
+    directLink.href = testUrl.toString();
+
+    document.getElementById("testBtn").addEventListener("click", () => {
+      output.textContent = "Probando...\nURL:\n" + testUrl.toString();
+      const callbackName = "diagnosticoAvance_" + Date.now();
+      const url = new URL(window.GIGANTES_APPS_SCRIPT_URL);
+      url.searchParams.set("action", "avance");
+      url.searchParams.set("meta", "70000000");
+      url.searchParams.set("callback", callbackName);
+
+      const script = document.createElement("script");
+      const timer = setTimeout(() => {
+        output.textContent += "\n\nTiempo agotado. Apps Script no devolvio respuesta ejecutable.";
+        cleanup();
+      }, 12000);
+
+      function cleanup() {
+        clearTimeout(timer);
+        delete window[callbackName];
+        script.remove();
+      }
+
+      window[callbackName] = (data) => {
+        output.textContent = "Respuesta recibida:\n\n" + JSON.stringify(data, null, 2);
+        cleanup();
+      };
+
+      script.onerror = () => {
+        output.textContent += "\n\nError de carga del script. Puede ser error interno de Apps Script o permisos.";
+        cleanup();
+      };
+
+      script.src = url.toString();
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>

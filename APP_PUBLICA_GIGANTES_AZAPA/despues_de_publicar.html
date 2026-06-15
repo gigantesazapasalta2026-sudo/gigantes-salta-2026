@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Despues de publicar - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e;--yellow:#f59e0b;--red:#dc2626}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../Niños reunidos.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--green)}
+    .warn{border-left-color:var(--yellow)}.danger{border-left-color:var(--red)}
+    label{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border-left:5px solid var(--green);border-radius:8px;padding:10px;margin:8px 0}
+    label.warn{border-left-color:var(--yellow)}
+    input[type="checkbox"]{width:20px;height:20px;flex:0 0 auto}
+    input[type="url"],textarea{width:100%;box-sizing:border-box;border:1px solid rgba(15,23,42,.18);border-radius:8px;padding:12px;font:inherit}
+    textarea{min-height:230px}
+    code{background:#f1f5f9;border-radius:6px;padding:2px 6px}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Despues de publicar</h1>
+      <p>Checklist para cuando Netlify entregue el enlace publico real de la app. Este paso transforma el piloto local en un sitio navegable desde celular.</p>
+      <a class="button" href="publicar_en_netlify.html">Volver a publicar</a>
+      <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+      <a class="button secondary" href="presentacion_presidenta.html">Presentacion Presidenta</a>
+      <button class="button secondary" onclick="window.print()">Imprimir</button>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Pegar aqui el enlace publico</h2>
+      <p>Cuando Netlify termine, pega aqui el enlace para tenerlo a mano:</p>
+      <input type="url" placeholder="https://gigantes-azapa-salta2026.netlify.app">
+      <div class="note" style="margin-top:12px">
+        El enlace que se debe compartir con Presidenta y directiva sera el de <strong>Accesos publicos</strong>, por ejemplo:
+        <br><code>https://TU-SITIO.netlify.app/APP_PUBLICA_GIGANTES_AZAPA/accesos_publicos.html</code>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Pruebas obligatorias con enlace publico</h2>
+      <div class="grid">
+        <div>
+          <label><input type="checkbox"> Abrir el sitio en celular con datos moviles.</label>
+          <label><input type="checkbox"> Revisar que carguen fotos de portada y galerias.</label>
+          <label><input type="checkbox"> Revisar que cargue merchandising con fotos separadas.</label>
+          <label><input type="checkbox"> Probar registro de aporte sin comprobante.</label>
+          <label><input type="checkbox"> Probar registro de aporte con comprobante.</label>
+        </div>
+        <div>
+          <label><input type="checkbox"> Probar pedido merchandising.</label>
+          <label><input type="checkbox"> Probar inscripcion de jugador.</label>
+          <label><input type="checkbox"> Probar carga de documentos.</label>
+          <label><input type="checkbox"> Probar avance de meta.</label>
+          <label class="warn"><input type="checkbox"> Confirmar que no se compartan pruebas ni copiadores.</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Actualizar diploma automatico</h2>
+      <p>Cuando tengamos el enlace publico real, hay que actualizar Apps Script para que el diploma enviado por correo use el link real.</p>
+      <ol>
+        <li>Abrir <a href="COPIAR_APPS_SCRIPT_ACTUALIZADO.html">COPIAR_APPS_SCRIPT_ACTUALIZADO</a>.</li>
+        <li>Buscar en el codigo: <code>https://TU_ENLACE_PUBLICO/diploma.html</code>.</li>
+        <li>Reemplazarlo por el enlace publico real, por ejemplo:
+          <br><code>https://TU-SITIO.netlify.app/APP_PUBLICA_GIGANTES_AZAPA/diploma.html</code>
+        </li>
+        <li>Copiar el codigo actualizado en Apps Script e implementar.</li>
+        <li>Probar aporte y revisar que el diploma abra desde el celular.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Mensaje para Presidenta con enlace publico</h2>
+      <textarea readonly>Hola Presidenta, le comparto el enlace piloto de la app de gestion de la gira Salta 2026.
+
+Enlace para revisar:
+PEGAR_AQUI_ENLACE_PUBLICO
+
+Esta version permite revisar la informacion de la gira, inscripciones, documentos, actividades, bingos, sponsors, aportes, merchandising, avance de meta, correos automaticos y comprobantes.
+
+Ya probamos:
+- Correo oficial del proyecto.
+- Pedido de merchandising.
+- Aporte con comprobante.
+- Diploma automatico de agradecimiento.
+- Registro en el Centro Operativo.
+
+Esto aun es piloto interno. La idea es que usted y la directiva lo revisen, indiquen ajustes y autoricen la siguiente etapa antes de publicarlo masivamente a familias y comunidad.</textarea>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">QR</h2>
+      <p>Cuando el enlace publico este confirmado, generar un QR que apunte a:</p>
+      <p><code>/APP_PUBLICA_GIGANTES_AZAPA/accesos_publicos.html</code></p>
+      <p>Ese QR sera el que se use en afiches, rifas, bingos, reuniones, Instagram y WhatsApp.</p>
+    </section>
+  </main>
+</body>
+</html>

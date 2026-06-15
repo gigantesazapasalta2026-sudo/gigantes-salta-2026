@@ -1,0 +1,77 @@
+GIGANTES DE AZAPA - ESTADO ACTUAL APP PUBLICA
+
+ARCHIVO PARA ABRIR EN CHROME
+APP_PUBLICA_GIGANTES_AZAPA/index.html
+
+QUE QUEDO RECUPERADO
+- Portada visual con el estilo del primer index.
+- Logo real del club conectado desde Drive.
+- Imagen hero real conectada desde Drive.
+- Imagenes de campana, poleron y merchandising conectadas desde Drive.
+- Seccion informativa de la gira, objetivo, meta y actividades.
+- Ficha de inscripcion de jugadores.
+- Pagina de documentos con checklist obligatorio.
+- Pagina privada para consultar estado documental del jugador.
+- Pagina de album motivacional con foto autorizada.
+- Acceso a planilla original de inscripciones y documentos.
+- Actividades interactivas para anotarse por tarea.
+- Ejemplo: llevar vianesas, llevar pan, cocinar, cobrar, conseguir premios.
+- Generacion de resumen y correo recordatorio manual desde la pagina.
+- Sponsors con paquetes Bronce, Plata, Oro y Principal.
+- Pagina de aportes y cooperaciones para dinero, insumos, premios y servicios.
+- Merchandising para conseguir, auspiciar y vender.
+- Acceso a informe imprimible semanal.
+- Acceso a diploma de agradecimiento.
+- Acceso al centro operativo y carpeta madre.
+
+LO QUE AUN FALTA PARA QUE SEA AUTOMATICO 100%
+- Publicar la app en una direccion web HTTPS.
+- Pegar la URL publicada de Apps Script en config.js.
+- Activar correo automatico al inscribirse en una actividad.
+- Activar correo automatico de diploma cuando se confirme una cooperacion.
+- Activar contador publico que se actualice solo con cada aporte validado.
+- Definir correo oficial desde donde saldran los avisos.
+- Agregar datos bancarios reales y QR final.
+
+AVANCE NUEVO - APPS SCRIPT Y GOOGLE SHEETS
+- Se crearon pestanas receptoras en el Centro Operativo:
+  WEB_INSCRIPCIONES
+  WEB_DOCUMENTOS
+  WEB_ACTIVIDADES
+  WEB_SPONSORS
+  WEB_APORTES_DIPLOMAS
+- Se creo el codigo listo para Apps Script:
+  APPS_SCRIPT_GIGANTES_WEBAPP.gs
+- Se creo el archivo de configuracion:
+  config.js
+- Se creo el puente de envio de formularios:
+  form-bridge.js
+- Se conectaron las fichas:
+  inscripcion.html
+  documentos.html
+  actividades.html
+  sponsors.html
+  aportes.html
+  mi_estado.html
+  album.html
+
+IMAGENES REALES USADAS DESDE DRIVE
+- logo-gigantes.jpg
+- hero-gigantes.jpg
+- campana-experiencia.jpg
+- campana-suenos.jpg
+- poleron-oficial.jpg
+- merchandising-oficial.jpg
+
+PAGINAS PRINCIPALES
+- index.html: portada publica de la gira.
+- inscripcion.html: ficha de jugador.
+- documentos.html: carga y control documental.
+- actividades.html: anotarse en comisiones y aportes.
+- sponsors.html: propuesta de empresas y merchandising.
+- aportes.html: ficha para registrar cooperaciones y activar agradecimientos.
+- mi_estado.html: consulta privada del checklist documental por RUT/DNI y codigo familiar.
+- album.html: ficha motivacional tipo album para jugadores, entrenadores, voluntarios y staff.
+
+NOTA IMPORTANTE
+La pagina ya no deberia verse en blanco porque las imagenes se conectaron usando los archivos reales encontrados en la carpeta inicial del proyecto en Google Drive.

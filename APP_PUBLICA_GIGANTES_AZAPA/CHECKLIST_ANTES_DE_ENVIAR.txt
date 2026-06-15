@@ -1,0 +1,29 @@
+CHECKLIST ANTES DE ENVIAR LA APP A TODOS
+
+1. Probar index.html en Chrome.
+2. Revisar que abran los botones:
+   - Inscripcion
+   - Martes completos
+   - Jueves hamburguesas
+   - Sabados eventos
+   - Sponsors
+   - Documentos
+   - Centro Operativo
+   - Planilla inscritos/documentos
+   - Carpeta documentos jugadores
+3. Probar los formularios visuales:
+   - Preparar registro
+   - Copiar datos
+   - Enviar por correo
+4. Conectar los formularios visuales con Apps Script si se quiere guardado automatico.
+5. Publicar la carpeta en un enlace HTTPS.
+6. Abrir el enlace desde un celular.
+7. En Android: Chrome > menu > Agregar a pantalla principal.
+8. En iPhone: Safari > compartir > Agregar a pantalla de inicio.
+9. Enviar el mensaje de WhatsApp listo.
+
+NO COMPARTIR MASIVAMENTE HASTA QUE:
+- El formulario de inscripcion no sea una planilla editable.
+- Los permisos del Centro Operativo esten limitados al comite.
+- Las familias tengan links simples, no acceso de edicion general.
+- La carga de documentos quede publicada como formulario o web app seguro.

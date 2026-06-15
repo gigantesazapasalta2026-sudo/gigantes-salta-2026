@@ -1,0 +1,118 @@
+REVISION GENERAL DESDE EL INICIO - GIGANTES DE AZAPA
+
+FECHA REVISION: 2026-06-03
+
+1. OBJETIVO ORIGINAL
+Crear una herramienta guia para la gira Gigantes de Azapa Jujuy / Salta 2026:
+- Pagina publica atractiva para informar y motivar.
+- Inscripcion de jugadores.
+- Carga y control de documentos.
+- Actividades de recaudacion con personas anotandose por turnos.
+- Sponsors y merchandising.
+- Control de ingresos, gastos, avances y meta.
+- Reportes imprimibles.
+- Correos automaticos y diplomas por aporte.
+
+2. LO QUE QUEDO BIEN DEL PRIMER INDEX
+- Imagen y relato de campana.
+- Logo del club.
+- Secciones claras: gira, meta, actividades, sponsors, aportes, documentos.
+- Piezas visuales de poleron y merchandising.
+- Sensacion de pagina para vender el sueno, no solo planilla.
+
+3. LO QUE SE HABIA DESORDENADO
+- El sistema se volvio muy administrativo.
+- Las paginas abrian como formularios simples.
+- Las imagenes no cargaban porque estaban en otra carpeta.
+- La planilla original de inscripcion/documentos quedo poco visible.
+- Faltaba conectar Google Sheets / Apps Script.
+
+4. CORRECCIONES YA REALIZADAS
+- Se recupero una portada visual en:
+  index.html
+- Se conectaron imagenes locales desde:
+  ../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/
+- Se recuperaron logo, hero, campana, poleron y merchandising.
+- Se creo ficha visual de inscripcion:
+  inscripcion.html
+- Se creo pagina de documentos:
+  documentos.html
+- Se creo pagina privada de estado documental:
+  mi_estado.html
+- Se creo pagina de actividades y turnos:
+  actividades.html
+- Se creo pagina de sponsors y merchandising:
+  sponsors.html
+- Se dejaron accesos al Centro Operativo, carpeta madre, planilla original y documentos.
+
+5. GOOGLE SHEETS / CENTRO OPERATIVO
+Se crearon pestanas receptoras para formularios web:
+- WEB_INSCRIPCIONES
+- WEB_DOCUMENTOS
+- WEB_ACTIVIDADES
+- WEB_SPONSORS
+- WEB_APORTES_DIPLOMAS
+
+6. APPS SCRIPT
+Se creo codigo base:
+- APPS_SCRIPT_GIGANTES_WEBAPP.gs
+
+Este codigo recibe:
+- inscripcion
+- documentos
+- actividad
+- sponsor
+- aporte
+
+Y puede enviar correos:
+- confirmacion de inscripcion
+- recordatorio de actividad
+- contacto de sponsor
+- agradecimiento por aporte
+
+7. PUENTE WEB
+Se crearon:
+- config.js
+- form-bridge.js
+
+Las paginas ya llaman a ese puente:
+- inscripcion.html
+- documentos.html
+- actividades.html
+- sponsors.html
+
+8. LO QUE FALTA ACTIVAR
+- Publicar APPS_SCRIPT_GIGANTES_WEBAPP.gs como aplicacion web.
+- Copiar la URL publicada.
+- Pegarla en config.js:
+  window.GIGANTES_APPS_SCRIPT_URL = "URL_PUBLICADA";
+- Probar una ficha real.
+- Revisar que llegue a la pestana correcta.
+- Confirmar que llegue correo.
+- Probar consulta privada en mi_estado.html.
+
+9. LO QUE TODAVIA FALTA MEJORAR EN LA APP
+- Crear formulario de aporte/cooperacion directa para que dispare diploma.
+- Crear contador publico real que lea meta, recaudado y faltante.
+- Agregar datos bancarios y QR.
+- Agregar seccion de galeria con fotos reales de los ninos del club.
+- Agregar boton para generar reporte imprimible por actividad desde los datos.
+- Agregar estado visual de tareas: pendiente, asignado, completado.
+- Agregar lista de insumos faltantes por actividad.
+- Preparar version publicada HTTPS para compartir por WhatsApp.
+
+10. SIGUIENTE PASO RECOMENDADO
+No seguir agregando mas diseno todavia.
+El siguiente paso debe ser:
+1. Publicar Apps Script.
+2. Pegar URL en config.js.
+3. Probar inscripcion de jugador.
+4. Probar actividad: "llevar vianesas".
+5. Confirmar que aparece en WEB_INSCRIPCIONES y WEB_ACTIVIDADES.
+6. Confirmar correo automatico.
+
+Cuando eso funcione, seguimos con:
+- formulario de aportes
+- diploma automatico
+- contador de meta
+- publicacion final para compartir.

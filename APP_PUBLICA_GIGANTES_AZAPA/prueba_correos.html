@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prueba de correos - Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../entrenamiento.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:980px;margin:0 auto;padding:24px}
+    section{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.1rem,5vw,3.9rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button,button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:0;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font:inherit;font-weight:900;text-decoration:none;margin:4px 6px 4px 0;cursor:pointer}
+    .button.secondary,button.secondary{background:var(--orange)}
+    label{display:grid;gap:6px;font-weight:800;margin:10px 0}
+    input,select,textarea{width:100%;box-sizing:border-box;border:1px solid rgba(15,23,42,.18);border-radius:8px;padding:11px;font:inherit;background:#fff}
+    textarea{resize:vertical}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    .result{margin-top:12px;border-radius:8px;padding:12px;border:1px solid #a7f3d0;background:#ecfdf5;color:#065f46;white-space:pre-wrap}
+    .result:empty{display:none}
+    code{background:#f1f5f9;border-radius:6px;padding:2px 6px}
+    @media(max-width:800px){main{padding:14px}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Prueba de correos</h1>
+      <p>Esta prueba envia un registro simple al sistema para confirmar que Apps Script guarda datos y que llega correo al usuario y al correo oficial del proyecto.</p>
+      <div class="note">
+        Correo oficial del proyecto: <code>gigantesazapa.salta2026@gmail.com</code>
+      </div>
+      <a class="button" href="correos_automaticos.html">Ver configuracion correos</a>
+      <a class="button secondary" href="merchandising.html">Volver a merchandising</a>
+      <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Enviar prueba</h2>
+      <form id="testForm">
+        <input type="hidden" name="type" value="actividad">
+        <input type="hidden" name="actividad" value="PRUEBA CORREO OFICIAL">
+        <input type="hidden" name="comision" value="Validacion correos automaticos">
+        <input type="hidden" name="tarea" value="Confirmar recepcion de correo">
+        <div class="grid">
+          <label>Nombre
+            <input name="nombre" value="Prueba correo Gigantes" required>
+          </label>
+          <label>Correo para recibir prueba
+            <input name="email" type="email" required placeholder="tu correo o el correo oficial">
+          </label>
+          <label>Telefono
+            <input name="telefono" placeholder="+56 9...">
+          </label>
+          <label>Horario
+            <input name="horario" value="Prueba tecnica">
+          </label>
+        </div>
+        <label>Observaciones
+          <textarea name="observaciones" rows="4">Prueba de correo automatico y copia al correo oficial del proyecto.</textarea>
+        </label>
+        <button type="submit">Enviar prueba de correo</button>
+        <div id="result" class="result"></div>
+      </form>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Donde revisar</h2>
+      <ol>
+        <li>En Gmail: bandeja de entrada de <strong>gigantesazapa.salta2026@gmail.com</strong>.</li>
+        <li>En el correo que escribiste en el formulario.</li>
+        <li>En el Centro Operativo, hoja <strong>WEB_ACTIVIDADES</strong>, buscando <strong>PRUEBA CORREO OFICIAL</strong>.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("testForm");
+    const result = document.getElementById("result");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const url = window.GIGANTES_APPS_SCRIPT_URL;
+      if (!url || url.includes("PEGAR")) {
+        result.textContent = "Falta configurar la URL de Apps Script en config.js.";
+        return;
+      }
+      result.textContent = "Enviando prueba...";
+      try {
+        await fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+        result.textContent = "Prueba enviada. Revisa Gmail y la hoja WEB_ACTIVIDADES.";
+      } catch (error) {
+        result.textContent = "No se pudo enviar la prueba. Revisa Apps Script o conexion.";
+      }
+    });
+  </script>
+</body>
+</html>

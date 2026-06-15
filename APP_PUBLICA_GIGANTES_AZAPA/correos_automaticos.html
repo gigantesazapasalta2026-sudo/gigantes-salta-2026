@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Correos automaticos - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../entrenamiento.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--orange)}
+    .important{border-left-color:var(--green)}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    code{background:#f1f5f9;border-radius:6px;padding:2px 6px}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Correos automaticos</h1>
+      <p>Correo oficial definido para recibir copia de registros y centralizar respuestas automaticas del proyecto.</p>
+      <a class="button" href="panel_lanzamiento.html">Panel lanzamiento</a>
+      <a class="button secondary" href="prueba_correos.html">Probar correos</a>
+      <a class="button secondary" href="merchandising.html">Probar compra</a>
+      <a class="button secondary" href="simulacion_piloto.html">Simulacion piloto</a>
+      <button class="button secondary" onclick="window.print()">Imprimir</button>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Correo recomendado</h2>
+      <div class="note">
+        Correo oficial del proyecto: <code>gigantesazapa.salta2026@gmail.com</code>. Lo ideal es usar este correo para inscripciones, documentos, compras, aportes, sponsors y comunicaciones generales de la gira.
+      </div>
+    </section>
+
+    <div class="grid">
+      <article class="card important">
+        <h2>Compra merchandising</h2>
+        <p>Al enviar pedido, la familia debe recibir:</p>
+        <ul>
+          <li>Resumen de productos, tallas y total.</li>
+          <li>Mensaje de que la entrega sera en entrenamientos o actividades del club.</li>
+          <li>Indicar que directiva confirmara pago, stock y fecha.</li>
+        </ul>
+      </article>
+
+      <article class="card important">
+        <h2>Aportes monetarios</h2>
+        <p>Al registrar aporte, el colaborador debe recibir:</p>
+        <ul>
+          <li>Agradecimiento formal.</li>
+          <li>Monto registrado.</li>
+          <li>Enlace automatico al diploma de agradecimiento.</li>
+          <li>Confirmacion de comprobante recibido si adjunto transferencia o deposito.</li>
+        </ul>
+      </article>
+
+      <article class="card important">
+        <h2>Grupos de trabajo</h2>
+        <p>Al anotarse en una actividad, la persona debe recibir:</p>
+        <ul>
+          <li>Actividad y comision elegida.</li>
+          <li>Insumo o turno comprometido.</li>
+          <li>Recordatorio de que la coordinacion confirmara detalles.</li>
+        </ul>
+      </article>
+
+      <article class="card important">
+        <h2>Inscripcion y documentos</h2>
+        <p>Al inscribirse o subir documentos, la familia debe recibir:</p>
+        <ul>
+          <li>Confirmacion de recepcion.</li>
+          <li>Recordatorio de revisar Mi Estado.</li>
+          <li>Indicacion de documentos pendientes si corresponde.</li>
+        </ul>
+      </article>
+    </div>
+
+    <section>
+      <h2 style="margin-top:0">Pendiente tecnico</h2>
+      <p>El correo oficial ya quedo escrito en el archivo de Apps Script de la app. Falta copiar la version actualizada en Apps Script, implementar nuevamente y probar que lleguen mensajes al comprador, al aportante y al correo del proyecto.</p>
+      <p><strong>Importante:</strong> cuando tengamos enlace publico real de la app, hay que reemplazar <code>https://TU_ENLACE_PUBLICO/diploma.html</code> en Apps Script para que el diploma llegue con un link que funcione desde cualquier celular.</p>
+    </section>
+  </main>
+</body>
+</html>

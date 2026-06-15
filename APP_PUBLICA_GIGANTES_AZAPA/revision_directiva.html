@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revision Directiva - App Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../Entrenadores.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .card,
+    .status {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.76)),
+        url("../entrenamiento.jpg") center/cover;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .status-grid,
+    .module-grid,
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .status,
+    .card {
+      padding: 14px;
+      border-left: 5px solid #0f766e;
+    }
+    .status.warn,
+    .card.warn {
+      border-left-color: #facc15;
+    }
+    .status strong {
+      display: block;
+      color: #0f766e;
+      font-size: 1.25rem;
+      margin-top: 4px;
+    }
+    .card a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #065f46;
+      padding: 5px 9px;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .tag.warn {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      .hero,
+      .button,
+      button {
+        display: none;
+      }
+      main {
+        padding: 0;
+      }
+      .panel,
+      .card,
+      .status {
+        box-shadow: none;
+      }
+    }
+    @media (max-width: 920px) {
+      main {
+        padding: 14px;
+      }
+      .hero,
+      .status-grid,
+      .module-grid,
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Revision interna directiva</span>
+        </div>
+        <h1>App de gestion Salta 2026</h1>
+        <p>Resumen ejecutivo para Presidenta y Directiva. Esta version es piloto interno: permite revisar estructura, contenidos, flujo de datos, privacidad y modulos antes de publicar a familias y comunidad.</p>
+        <a class="button" href="index.html">Abrir app principal</a>
+        <a class="button secondary" href="auditoria_general_20260604.html">Auditoria general</a>
+        <a class="button secondary" href="manual_uso.html">Manual de uso</a>
+        <a class="button secondary" href="respaldo_institucional.html">Respaldo institucional</a>
+        <a class="button secondary" href="avance.html">Avance de meta</a>
+        <a class="button secondary" href="galeria_club.html">Galeria del club</a>
+        <a class="button secondary" href="material_difusion.html">Material de difusion</a>
+        <a class="button secondary" href="acta_validacion_directiva.html">Acta validacion</a>
+        <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+        <a class="button secondary" href="checklist_final.html">Checklist final</a>
+        <a class="button secondary" href="cierre_para_publicar.html">Cierre para publicar</a>
+        <button class="secondary" onclick="window.print()">Imprimir revision</button>
+      </div>
+      <div class="photo">
+        <div>
+          <strong>Proyecto en etapa piloto</strong>
+          <p>Listo para revision interna, aun no para publicacion masiva.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Estado general</h2>
+      <div class="status-grid">
+        <article class="status"><span>Etapa</span><strong>Piloto interno</strong><p>Construccion avanzada para revision de presidenta/directiva.</p></article>
+        <article class="status"><span>Destino</span><strong>Salta 2026</strong><p>Con carta de invitacion de Tigres Rugby Club.</p></article>
+        <article class="status warn"><span>Publicacion</span><strong>Pendiente</strong><p>Falta hosting/enlace publico final para celulares.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Modulos listos para revisar</h2>
+      <div class="module-grid">
+        <article class="card"><span class="tag">Formulario</span><a href="inscripcion.html"><h3>Inscripcion</h3><p>Ficha de jugador y datos familiares.</p></a></article>
+        <article class="card"><span class="tag">Guia</span><a href="manual_uso.html"><h3>Manual de uso</h3><p>Instrucciones simples por perfil de usuario.</p></a></article>
+        <article class="card"><span class="tag">Privado</span><a href="documentos_carga.html"><h3>Documentos</h3><p>Carga de archivos, ficha medica, seguro y RSH.</p></a></article>
+        <article class="card"><span class="tag">Privado</span><a href="mi_estado.html"><h3>Mi Estado</h3><p>Consulta por RUT/DNI y codigo familiar.</p></a></article>
+        <article class="card"><span class="tag">Organizacion</span><a href="actividades.html"><h3>Actividades</h3><p>Comisiones, insumos y recaudacion.</p></a></article>
+        <article class="card"><span class="tag">Ventas</span><a href="merchandising.html"><h3>Merchandising</h3><p>Tienda solidaria con carro, tallas y pedidos.</p></a></article>
+        <article class="card"><span class="tag warn">Interno</span><a href="control_merchandising.html"><h3>Control merchandising</h3><p>Pedidos, pagos, produccion y entregas.</p></a></article>
+        <article class="card"><span class="tag warn">Interno</span><a href="validacion_merchandising.html"><h3>Validacion merchandising</h3><p>Precios, costos, stock y entrega antes de publicar.</p></a></article>
+        <article class="card"><span class="tag">Recaudacion</span><a href="bingos.html"><h3>Bingos</h3><p>Premios, cartones, comisiones y tablero.</p></a></article>
+        <article class="card"><span class="tag">Empresas</span><a href="sponsors.html"><h3>Sponsors</h3><p>Paquetes, beneficios y formulario de apoyo.</p></a></article>
+        <article class="card"><span class="tag">Empresas</span><a href="propuesta_sponsors.html"><h3>Propuesta sponsors</h3><p>Documento visual imprimible para presentar a empresas.</p></a></article>
+        <article class="card"><span class="tag">Transparencia</span><a href="avance.html"><h3>Avance</h3><p>Meta, recaudado, faltante e impresion.</p></a></article>
+        <article class="card"><span class="tag">Formal</span><a href="carta_invitacion_salta.html"><h3>Carta</h3><p>Invitacion formal de Tigres Rugby Club.</p></a></article>
+        <article class="card"><span class="tag">Reconocimiento</span><a href="diploma.html"><h3>Diploma</h3><p>Diploma imprimible para colaboradores.</p></a></article>
+        <article class="card"><span class="tag">Validacion</span><a href="acta_validacion_directiva.html"><h3>Acta directiva</h3><p>Documento para aprobar piloto, ajustes o publicacion.</p></a></article>
+        <article class="card"><span class="tag warn">Interno</span><a href="auditoria_general_20260604.html"><h3>Auditoria general</h3><p>Faltantes, riesgos y prioridades antes de publicar.</p></a></article>
+        <article class="card"><span class="tag">Publicacion</span><a href="panel_lanzamiento.html"><h3>Panel lanzamiento</h3><p>Separacion de paginas publicas, privadas e internas.</p></a></article>
+        <article class="card warn"><span class="tag warn">Decision</span><a href="cierre_para_publicar.html"><h3>Cierre para publicar</h3><p>Resumen rapido para decidir piloto, ajustes o lanzamiento.</p></a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Puntos que debe validar la directiva</h2>
+      <div class="review-grid">
+        <article class="card warn"><h3>Privacidad</h3><p>Confirmar tratamiento de cedulas, ficha medica, RSH y datos familiares como informacion privada.</p></article>
+        <article class="card warn"><h3>Texto oficial</h3><p>Validar nombre publico: Gira deportiva a Salta 2026.</p></article>
+        <article class="card warn"><h3>Sponsors</h3><p>Confirmar montos Bronce, Plata, Oro y beneficios ofrecidos.</p></article>
+        <article class="card warn"><h3>Actividades</h3><p>Validar bingos, completos, rifas, merchandising y responsables.</p></article>
+        <article class="card warn"><h3>Fotos y video</h3><p>Confirmar autorizacion de uso de imagenes del club en app/campana.</p></article>
+        <article class="card warn"><h3>Publicacion</h3><p>Definir donde se publicara la app para acceso simple desde celulares.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Proximos pasos sugeridos</h2>
+      <ol>
+        <li>Revision de presidenta.</li>
+        <li>Ajustes de contenido y privacidad.</li>
+        <li>Revision de directiva.</li>
+        <li>Prueba piloto con pocas familias.</li>
+        <li>Publicacion web oficial.</li>
+        <li>Lanzamiento a familias, sponsors y comunidad.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

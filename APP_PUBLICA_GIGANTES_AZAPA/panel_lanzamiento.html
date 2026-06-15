@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de Lanzamiento - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../entrenamiento.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .card, .status {
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: #0f766e; font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.1rem, 5vw, 3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+      color: #fff;
+    }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82)); }
+    .photo div { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: #facc15; color: #0f172a; }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .status-grid, .link-grid { display: grid; gap: 12px; margin-top: 14px; }
+    .status-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .link-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .status, .card { padding: 14px; border-left: 5px solid #0f766e; }
+    .status.warn, .card.warn { border-left-color: #facc15; }
+    .status.stop, .card.stop { border-left-color: #dc2626; }
+    .status strong { display: block; color: #0f766e; font-size: 1.25rem; margin-top: 4px; }
+    .card a { color: inherit; text-decoration: none; }
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: #ecfdf5;
+      color: #065f46;
+    }
+    .tag.warn { background: #fef3c7; color: #92400e; }
+    .tag.stop { background: #fee2e2; color: #991b1b; }
+    .qr-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+    .qr-box {
+      min-height: 170px;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 14px;
+      color: #475569;
+      background: #f8fafc;
+    }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .card, .status { box-shadow: none; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .status-grid, .link-grid, .qr-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Control antes de publicar</span>
+        </div>
+        <h1>Panel de lanzamiento</h1>
+        <p>Vista de control para decidir que se puede compartir, que debe quedar interno y que pruebas faltan antes de publicar la app a familias, sponsors y comunidad.</p>
+        <a class="button" href="index.html">Abrir app</a>
+        <a class="button secondary" href="presentacion_presidenta.html">Presentacion Presidenta</a>
+        <a class="button secondary" href="publicar_en_netlify.html">Publicar web</a>
+        <a class="button secondary" href="despues_de_publicar.html">Despues de publicar</a>
+        <a class="button secondary" href="orden_medios_publicacion.html">Orden medios</a>
+        <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+        <a class="button secondary" href="admin_maestro.html">Administrador maestro</a>
+        <a class="button secondary" href="auditoria_general_20260604.html">Auditoria general</a>
+        <a class="button secondary" href="auditoria_final_piloto.html">Auditoria final</a>
+        <a class="button secondary" href="manual_uso.html">Manual de uso</a>
+        <a class="button secondary" href="manual_presentacion_app.html">Manual explicativo</a>
+        <a class="button secondary" href="revision_directiva.html">Revision directiva</a>
+        <a class="button secondary" href="checklist_final.html">Checklist final</a>
+        <a class="button secondary" href="cierre_para_publicar.html">Cierre para publicar</a>
+        <a class="button secondary" href="simulacion_piloto.html">Simulacion piloto</a>
+        <a class="button secondary" href="faltantes_finales.html">Faltantes finales</a>
+        <a class="button secondary" href="correos_automaticos.html">Correos automaticos</a>
+        <a class="button secondary" href="prueba_correos.html">Probar correos</a>
+        <a class="button secondary" href="acta_validacion_directiva.html">Acta validacion</a>
+        <button class="secondary" onclick="window.print()">Imprimir panel</button>
+      </div>
+      <div class="photo">
+        <img src="../Niños reunidos 2.jpg" alt="Equipo Gigantes de Azapa">
+        <div>
+          <strong>Antes de compartir, ordenar</strong>
+          <p>Una publicacion clara evita errores y protege datos privados.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Estado de lanzamiento</h2>
+      <div class="status-grid">
+        <article class="status"><span>Contenido</span><strong>Avanzado</strong><p>La app ya comunica, organiza y recauda.</p></article>
+        <article class="status warn"><span>Publicacion</span><strong>Pendiente</strong><p>Falta enlace publico real para celulares.</p></article>
+        <article class="status warn"><span>Privacidad</span><strong>Validar</strong><p>Directiva debe aprobar uso de datos e imagenes.</p></article>
+        <article class="status stop"><span>Interno</span><strong>No publicar</strong><p>Ocultar pruebas, copiadores y diagnosticos.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Paginas publicas recomendadas</h2>
+      <div class="link-grid">
+        <article class="card"><span class="tag">Publico</span><a href="index.html"><h3>Inicio</h3><p>Portada principal de la gira.</p></a></article>
+        <article class="card"><span class="tag">Publico</span><a href="accesos_publicos.html"><h3>Accesos publicos</h3><p>Menu limpio para familias, comunidad, sponsors y autoridades.</p></a></article>
+        <article class="card"><span class="tag">Familias</span><a href="guia_familias.html"><h3>Guia familias</h3><p>Pasos para inscribirse y apoyar.</p></a></article>
+        <article class="card"><span class="tag">Publico</span><a href="manual_uso.html"><h3>Manual de uso</h3><p>Instrucciones simples para todos los perfiles.</p></a></article>
+        <article class="card warn"><span class="tag warn">Directiva</span><a href="manual_presentacion_app.html"><h3>Manual explicativo</h3><p>Que es la app, como funciona y como se administra la informacion.</p></a></article>
+        <article class="card"><span class="tag">Formulario</span><a href="inscripcion.html"><h3>Inscripcion</h3><p>Ficha de jugador.</p></a></article>
+        <article class="card"><span class="tag">Privado</span><a href="documentos_carga.html"><h3>Carga documentos</h3><p>Solo para familias inscritas.</p></a></article>
+        <article class="card"><span class="tag">Privado</span><a href="mi_estado.html"><h3>Mi estado</h3><p>Consulta por RUT/DNI y codigo.</p></a></article>
+        <article class="card"><span class="tag">Comunidad</span><a href="actividades.html"><h3>Actividades</h3><p>Comisiones e insumos.</p></a></article>
+        <article class="card"><span class="tag">Ventas</span><a href="merchandising.html"><h3>Merchandising</h3><p>Tienda solidaria con carro de pedidos.</p></a></article>
+        <article class="card"><span class="tag">Ventas</span><a href="catalogo_merchandising.html"><h3>Catalogo merchandising</h3><p>Version imprimible para PDF, reuniones y difusion.</p></a></article>
+        <article class="card"><span class="tag">Sponsors</span><a href="sponsors.html"><h3>Sponsors</h3><p>Paquetes y registro de apoyo.</p></a></article>
+        <article class="card"><span class="tag">Sponsors</span><a href="propuesta_sponsors.html"><h3>Propuesta imprimible</h3><p>PDF o presentacion a empresas.</p></a></article>
+        <article class="card"><span class="tag">Transparencia</span><a href="avance.html"><h3>Avance</h3><p>Meta, recaudado y faltante.</p></a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Paginas internas o de administracion</h2>
+      <div class="link-grid">
+        <article class="card warn"><span class="tag warn">Interno</span><a href="revision_directiva.html"><h3>Revision directiva</h3><p>Solo presidenta/directiva/equipo organizador.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="presentacion_presidenta.html"><h3>Presentacion Presidenta</h3><p>Resumen ejecutivo, pruebas realizadas y mensaje listo para enviar.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="acta_validacion_directiva.html"><h3>Acta validacion</h3><p>Registro formal de aprobacion.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="checklist_final.html"><h3>Checklist final</h3><p>Control antes de publicar.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="cierre_para_publicar.html"><h3>Cierre para publicar</h3><p>Resumen claro de lo listo, lo pendiente y la recomendacion de lanzamiento.</p></a></article>
+        <article class="card warn"><span class="tag warn">Piloto</span><a href="simulacion_piloto.html"><h3>Simulacion piloto</h3><p>Prueba guiada de inscripcion, documentos, actividad, merchandising y avance.</p></a></article>
+        <article class="card warn"><span class="tag warn">Cierre</span><a href="faltantes_finales.html"><h3>Faltantes finales</h3><p>Lista ejecutiva de lo que falta antes de publicar masivamente.</p></a></article>
+        <article class="card warn"><span class="tag warn">Publicacion</span><a href="publicar_en_netlify.html"><h3>Publicar en Netlify</h3><p>Guia para crear enlace publico real y QR.</p></a></article>
+        <article class="card warn"><span class="tag warn">Publicacion</span><a href="despues_de_publicar.html"><h3>Despues de publicar</h3><p>Pruebas, diploma automatico, mensaje a Presidenta y QR.</p></a></article>
+        <article class="card warn"><span class="tag warn">Publicacion</span><a href="orden_medios_publicacion.html"><h3>Orden de medios</h3><p>Inventario de fotos, logos, video y productos antes de publicar.</p></a></article>
+        <article class="card warn"><span class="tag warn">Correo</span><a href="correos_automaticos.html"><h3>Correos automaticos</h3><p>Correo oficial del proyecto y respuestas automaticas por compras, aportes y comisiones.</p></a></article>
+        <article class="card warn"><span class="tag warn">Correo</span><a href="prueba_correos.html"><h3>Prueba correos</h3><p>Envio de prueba para revisar Gmail y WEB_ACTIVIDADES.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="material_difusion.html"><h3>Material difusion</h3><p>Textos para copiar cuando exista enlace publico.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="control_merchandising.html"><h3>Control merchandising</h3><p>Seguimiento de pedidos, pagos y entregas.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="validacion_merchandising.html"><h3>Validacion merchandising</h3><p>Precios, costos, stock y fecha de entrega.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="espacios_sponsor_merchandising.html"><h3>Espacios sponsor merch</h3><p>Definicion de logos de empresas en productos.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="compromiso_sponsor_merchandising.html"><h3>Compromiso sponsor merch</h3><p>Acuerdo simple de aporte, logo y condiciones.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="manual_merchandising_sponsors.html"><h3>Manual merch/sponsor</h3><p>Ruta completa para gestionar productos y empresas.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="auditoria_general_20260604.html"><h3>Auditoria general</h3><p>Revision de faltantes, riesgos y prioridades.</p></a></article>
+        <article class="card warn"><span class="tag warn">Interno</span><a href="auditoria_final_piloto.html"><h3>Auditoria final piloto</h3><p>Semaforo general, pruebas aprobadas y pendientes antes de presentar.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="pruebas.html"><h3>Pruebas</h3><p>Herramienta tecnica interna.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="COPIAR_APPS_SCRIPT_ACTUALIZADO.html"><h3>Copiador Apps Script</h3><p>Solo para actualizar el sistema interno.</p></a></article>
+        <article class="card stop"><span class="tag stop">No publicar</span><a href="diagnostico_avance.html"><h3>Diagnostico avance</h3><p>Solo para revisar Apps Script.</p></a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">QR pendientes</h2>
+      <p>Cuando la app tenga enlace publico, aqui se deben pegar los QR oficiales para imprimir y compartir.</p>
+      <div class="qr-row">
+        <div class="qr-box">QR app principal<br>pendiente de enlace publico</div>
+        <div class="qr-box">QR sponsors<br>pendiente de enlace publico</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

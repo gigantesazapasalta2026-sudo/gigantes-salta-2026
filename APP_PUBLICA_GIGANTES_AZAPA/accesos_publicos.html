@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gigantes de Azapa — Gira Salta 2026</title>
+  <script src="config.js"></script>
+  <style>
+    :root{--red:#B11226;--gold:#D4AF37;--white:#fff;--text:#111827;--line:rgba(255,255,255,.26)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:#05080c;color:var(--white)}
+    .topbar{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(180deg,rgba(5,8,12,.92),rgba(5,8,12,.38));backdrop-filter:blur(10px)}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:900}
+    .brand img{width:48px;height:48px;object-fit:contain;background:#fff;border-radius:8px;padding:5px}
+    .brand small{display:block;color:var(--gold);text-transform:uppercase;font-size:.72rem}
+    .menu-btn{width:48px;height:48px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.12);color:#fff;font-size:1.7rem;cursor:pointer}
+    .scrim{position:fixed;z-index:25;inset:0;background:rgba(2,6,23,.58);opacity:0;pointer-events:none;transition:.22s ease}
+    .scrim.open{opacity:1;pointer-events:auto}
+    .drawer{position:fixed;z-index:30;top:0;right:0;width:min(360px,92vw);height:100vh;background:#fff;color:var(--text);padding:18px;box-shadow:-24px 0 60px rgba(0,0,0,.34);transform:translateX(110%);transition:.22s ease;overflow:auto}
+    .drawer.open{transform:translateX(0)}
+    .drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .drawer button{width:42px;height:42px;border:0;border-radius:8px;background:#111827;color:#fff;font-size:1.4rem;cursor:pointer}
+    .drawer-section{margin:14px 0}
+    .drawer-section h3{margin:0 0 8px;color:#64748b;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+    .drawer a{display:block;color:inherit;text-decoration:none;border-left:5px solid var(--red);background:#f8fafc;border-radius:8px;padding:12px;margin:8px 0;font-weight:900}
+    .drawer a small{display:block;margin-top:3px;color:#64748b;font-weight:700;line-height:1.35}
+    .hero{min-height:100vh;display:grid;align-items:end;background:linear-gradient(180deg,rgba(5,8,12,.12),rgba(5,8,12,.94)),url("../Niños reunidos 2.jpg") center/cover;padding:96px 20px 24px}
+    .hero-inner{width:min(1180px,100%);margin:0 auto}
+    .hero-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.78fr);gap:22px;align-items:end}
+    .hero-copy{min-width:0}
+    h1{margin:0;font-size:clamp(2.7rem,8vw,6.4rem);line-height:.9;text-wrap:balance}
+    .lead{max-width:720px;font-size:clamp(1rem,2.4vw,1.35rem);line-height:1.45;color:#f8fafc}
+    .pumas-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#B11226,#8B0D1C);border:1px solid var(--gold);border-radius:99px;padding:8px 16px;font-size:.85rem;font-weight:900;color:#fff;margin-bottom:16px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+    .hero-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:8px;padding:11px 15px;text-decoration:none;font-weight:900;border:1px solid rgba(255,255,255,.24)}
+    .hero-actions .primary{background:var(--gold);color:#111827}
+    .hero-actions .secondary{background:rgba(255,255,255,.12);color:#fff}
+    .video-feature{position:relative;min-height:430px;border-radius:8px;overflow:hidden;background:#020617 url("../Niños reunidos 2.jpg") center/cover;border:1px solid rgba(255,255,255,.22);box-shadow:0 26px 70px rgba(0,0,0,.42)}
+    .video-feature video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .video-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,23,.02),rgba(2,6,23,.82))}
+    .video-caption{position:absolute;z-index:1;left:18px;right:18px;bottom:18px;color:#fff}
+    .video-caption strong{display:block;font-size:clamp(1.25rem,3vw,2rem);line-height:1;margin-bottom:8px}
+    .video-caption span{display:block;color:#f8fafc;line-height:1.4}
+    .itinerario{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+    .paso{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:12px;font-size:.82rem;line-height:1.5}
+    .paso strong{display:block;color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+    .goal-card{margin-top:22px;background:rgba(255,255,255,.96);color:var(--text);border-radius:8px;padding:16px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .goal-head{display:flex;justify-content:space-between;gap:12px;align-items:start;flex-wrap:wrap}
+    .goal-head h2{margin:0;font-size:clamp(1.35rem,3vw,2rem);line-height:1}
+    .goal-head a{display:inline-flex;align-items:center;min-height:38px;border-radius:8px;background:#111827;color:#fff;text-decoration:none;font-weight:900;padding:8px 12px}
+    .goal-track{height:18px;border-radius:999px;background:#e5e7eb;overflow:hidden;margin:14px 0 12px}
+    .goal-fill{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:999px;transition:width .4s ease}
+    .goal-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .goal-step{background:#f8fafc;border-left:5px solid var(--red);border-radius:8px;padding:10px}
+    .goal-step span{display:block;color:#64748b;font-size:.82rem;font-weight:900;text-transform:uppercase}
+    .goal-step strong{display:block;font-size:clamp(1.25rem,3vw,1.8rem);line-height:1;margin-top:4px}
+    .goal-status{margin:10px 0 0;color:#475569;font-size:.92rem}
+    .ind-note{background:#FEF3C7;border:1px solid #F59E0B;border-radius:6px;padding:10px 12px;font-size:.82rem;color:#92400E;margin-top:10px}
+    .routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+    .route{min-height:250px;position:relative;overflow:hidden;border-radius:8px;border:1px solid var(--line);color:#fff;text-decoration:none;background:#111827;box-shadow:0 18px 46px rgba(0,0,0,.32)}
+    .route img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.22s ease}
+    .route::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,12,.08),rgba(5,8,12,.9))}
+    .route:hover img{transform:scale(1.04)}
+    .route-content{position:absolute;z-index:1;left:18px;right:18px;bottom:18px}
+    .tag{display:inline-flex;background:var(--red);color:#fff;border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:900;margin-bottom:10px}
+    .route .tag{background:rgba(177,18,38,.92);border:1px solid rgba(255,255,255,.18)}
+    .route h2{margin:0 0 8px;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1}
+    .route p{margin:0;line-height:1.45;color:#f8fafc}
+    .note{margin-top:18px;background:rgba(255,247,237,.95);color:#111827;border-left:5px solid var(--gold);border-radius:8px;padding:14px;max-width:980px}
+    @media(max-width:1020px){.hero-layout{grid-template-columns:1fr}.video-feature{min-height:300px}}
+    @media(max-width:900px){.routes,.goal-steps,.itinerario{grid-template-columns:1fr}.hero{padding:88px 14px 18px}.route{min-height:220px}.brand span{display:none}.video-feature{min-height:260px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="accesos_publicos.html">
+      <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+      <span><small>Gigantes de Azapa</small>Salta 2026</span>
+    </a>
+    <button class="menu-btn" type="button" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <div class="scrim" id="scrim" onclick="closeMenu()"></div>
+  <nav class="drawer" id="drawer">
+    <div class="drawer-head">
+      <strong>Menú principal</strong>
+      <button type="button" aria-label="Cerrar menú" onclick="closeMenu()">x</button>
+    </div>
+    <div class="drawer-section">
+      <h3>Participar</h3>
+      <a href="ruta_familias.html">Familias y jugadores<small>Inscripción, documentos, estado y actividades.</small></a>
+      <a href="ruta_comunidad.html">Comunidad y aportes<small>Aportes, merchandising, bingos y avance.</small></a>
+      <a href="ruta_empresas.html">Empresas y sponsors<small>Propuesta comercial, carta y respaldo.</small></a>
+    </div>
+    <div class="drawer-section">
+      <h3>Viaje</h3>
+      <a href="itinerario.html">Itinerario del viaje<small>Ruta por día desde Arica, Salta y Jujuy.</small></a>
+      <a href="avance.html">Avance de la meta<small>Recaudado, faltante y transparencia.</small></a>
+    </div>
+    <div class="drawer-section">
+      <h3>Ayuda</h3>
+      <a href="manual_uso.html">Manual de uso<small>Guía rápida para entrar y completar pasos.</small></a>
+    </div>
+  </nav>
+
+  <main class="hero">
+    <div class="hero-inner">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="pumas-badge">Gira deportiva · Salta 2026 · Los Pumas vs Australia</div>
+          <h1>Gigantes de Azapa rumbo a Salta</h1>
+          <p class="lead">Una app simple para organizar el viaje, sumar a las familias y mostrar el avance real de la campaña. Inscripciones, documentos, actividades, aportes, ventas y sponsors quedan reunidos en un solo lugar.</p>
+          <div class="hero-actions">
+            <a class="primary" href="inscripcion.html">Inscribir jugador y familia</a>
+            <a class="secondary" href="documentos_carga.html">Subir documentos</a>
+            <a class="secondary" href="itinerario.html">Ver itinerario</a>
+          </div>
+          <div class="itinerario">
+            <div class="paso"><strong>Mié 26 Ago</strong>Salida en bus desde Arica hacia Salta</div>
+            <div class="paso"><strong>Jue-Vie 27-28</strong>Alojamiento y amistosos internacionales</div>
+            <div class="paso"><strong>Sáb 29 Ago</strong>Traslado a Jujuy · Los Pumas vs Australia</div>
+            <div class="paso"><strong>Dom 30 Ago</strong>Regreso a Arica</div>
+          </div>
+        </div>
+        <div class="video-feature">
+          <video src="../niños llegando a jugar.mov" autoplay muted loop playsinline poster="../Niños reunidos 2.jpg"></video>
+          <div class="video-caption">
+            <strong>La gira se construye en comunidad</strong>
+            <span>Jugadores, familias y club empujando juntos el mismo sueño.</span>
+          </div>
+        </div>
+      </div>
+      <section class="goal-card">
+        <div class="goal-head">
+          <div>
+            <span class="tag">Camino a la meta</span>
+            <h2>Entre todos acercamos al equipo a Salta</h2>
+          </div>
+          <a href="avance.html">Ver detalle</a>
+        </div>
+        <div class="goal-track"><div class="goal-fill" id="goalFill"></div></div>
+        <div class="goal-steps">
+          <div class="goal-step"><span>Meta estimada</span><strong id="goalMeta">$50.000.000</strong></div>
+          <div class="goal-step"><span>Recaudado</span><strong id="goalRaised">Por informar</strong></div>
+          <div class="goal-step"><span>Falta</span><strong id="goalMissing">Pendiente</strong></div>
+        </div>
+        <p class="goal-status" id="goalStatus">Estamos a la espera del primer informe oficial de recaudación. Cuando Finanzas confirme el monto, se actualizará el avance de la meta.</p>
+        <div class="ind-note">🏛️ <strong>Postulación IND en curso:</strong> Si el IND financia los pasajes de los niños, la meta puede reducirse significativamente.</div>
+      </section>
+      <div class="routes">
+        <a class="route" href="ruta_familias.html">
+          <img src="../m10m12.jpg" alt="Familias y jugadores">
+          <div class="route-content">
+            <span class="tag">Paso familiar</span>
+            <h2>Familias y jugadores</h2>
+            <p>Ficha, carga de documentos, estado personal y actividades.</p>
+          </div>
+        </a>
+        <a class="route" href="ruta_comunidad.html">
+          <img src="../Rugby estadio.jpg" alt="Comunidad">
+          <div class="route-content">
+            <span class="tag">Apoyo comunitario</span>
+            <h2>Comunidad y aportes</h2>
+            <p>Aportes, merchandising, avance de meta y galería del club.</p>
+          </div>
+        </a>
+        <a class="route" href="ruta_empresas.html">
+          <img src="../rugby playa.jpg" alt="Empresas">
+          <div class="route-content">
+            <span class="tag">Alianzas</span>
+            <h2>Empresas y sponsors</h2>
+            <p>Propuesta de auspicio, carta de invitación e IND.</p>
+          </div>
+        </a>
+      </div>
+      <div class="note">Portada oficial para compartir por WhatsApp, QR e Instagram.</div>
+    </div>
+  </main>
+  <script>
+    const GOAL_META=50000000;
+    function money(v){return"$"+Number(v||0).toLocaleString("es-CL");}
+    function updateGoal(data){
+      const meta=Number(data&&(data.meta||data.meta_total))||GOAL_META;
+      const raised=Number(data&&(data.recaudado||data.total))||0;
+      const missing=Math.max(meta-raised,0);
+      const pct=meta?Math.min((raised/meta)*100,100):0;
+      document.getElementById("goalMeta").textContent=money(meta);
+      document.getElementById("goalRaised").textContent=raised>0?money(raised):"Por informar";
+      document.getElementById("goalMissing").textContent=raised>0?money(missing):"Pendiente";
+      document.getElementById("goalFill").style.width=pct.toFixed(1)+"%";
+      document.getElementById("goalStatus").textContent=pct>0?"Avance actualizado automáticamente.":"Estamos a la espera del primer informe oficial de recaudación. Cuando Finanzas confirme el monto, se actualizará el avance de la meta.";
+    }
+    function loadGoal(){
+      updateGoal({meta:GOAL_META,recaudado:0});
+      if(!window.GIGANTES_APPS_SCRIPT_URL||window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR"))return;
+      const cb="gMeta_"+Date.now();
+      const s=document.createElement("script");
+      const url=new URL(window.GIGANTES_APPS_SCRIPT_URL);
+      url.searchParams.set("action","avance");
+      url.searchParams.set("meta",String(GOAL_META));
+      url.searchParams.set("callback",cb);
+      const t=setTimeout(()=>{cleanup();},10000);
+      function cleanup(){clearTimeout(t);delete window[cb];s.remove();}
+      window[cb]=(d)=>{updateGoal(d||{});cleanup();};
+      s.onerror=()=>cleanup();
+      s.src=url.toString();
+      document.body.appendChild(s);
+    }
+    function setMenu(open){
+      document.getElementById("drawer").classList.toggle("open",open);
+      document.getElementById("scrim").classList.toggle("open",open);
+      document.querySelector(".menu-btn").setAttribute("aria-expanded",String(open));
+    }
+    function toggleMenu(){setMenu(!document.getElementById("drawer").classList.contains("open"));}
+    function closeMenu(){setMenu(false);}
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu();});
+    loadGoal();
+  </script>
+</body>
+</html>

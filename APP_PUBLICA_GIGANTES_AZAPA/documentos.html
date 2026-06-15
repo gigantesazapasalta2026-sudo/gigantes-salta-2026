@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentos jugadores | Gigantes de Azapa</title>
+  <meta name="theme-color" content="#b11226" />
+  <style>
+    :root { --rojo:#b11226; --oscuro:#171717; --linea:#e5e7eb; --gris:#f3f4f6; --verde:#0f766e; --amarillo:#f7c948; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#171717; background:#fff; line-height:1.5; }
+    a { color:inherit; text-decoration:none; }
+    .hero { min-height:52vh; color:#fff; display:grid; align-content:end; padding:22px; background:linear-gradient(90deg,rgba(23,23,23,.9),rgba(15,118,110,.68)),url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-experiencia.jpg") center/cover no-repeat; }
+    .hero-inner { width:min(1100px,100%); margin:0 auto; padding:48px 0 28px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:58px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:900; }
+    .brand img { width:58px; height:58px; border-radius:50%; object-fit:cover; background:#fff; }
+    .top a, .btn { display:inline-flex; justify-content:center; align-items:center; min-height:42px; padding:11px 15px; border-radius:8px; font-weight:800; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.13); color:#fff; }
+    h1 { margin:0; font-size:clamp(2.2rem,6vw,4.7rem); line-height:.95; letter-spacing:0; max-width:860px; }
+    .hero p { max-width:720px; color:rgba(255,255,255,.88); font-size:1.12rem; }
+    main { width:min(1120px,calc(100% - 32px)); margin:28px auto 50px; display:grid; gap:22px; }
+    .section { border:1px solid var(--linea); border-radius:8px; padding:clamp(20px,4vw,34px); background:#fff; box-shadow:0 12px 28px rgba(17,24,39,.06); }
+    h2 { margin:0 0 10px; font-size:clamp(1.6rem,4vw,2.55rem); line-height:1.05; }
+    .lead { color:#4b5563; max-width:780px; margin-bottom:18px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .btn.red { background:var(--rojo); border-color:var(--rojo); color:#fff; }
+    .btn.green { background:var(--verde); border-color:var(--verde); color:#fff; }
+    .btn.yellow { background:var(--amarillo); border-color:var(--amarillo); color:#2b1d00; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .doc { border:1px solid var(--linea); border-radius:8px; padding:18px; display:grid; gap:12px; background:#fafafa; }
+    .doc strong { color:var(--rojo); font-size:1.08rem; }
+    .doc span { color:#4b5563; }
+    .status { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .status div { border-radius:8px; padding:16px; background:#f9fafb; border:1px solid var(--linea); }
+    .status b { display:block; color:var(--verde); margin-bottom:4px; }
+    label { display:grid; gap:6px; font-weight:800; color:#374151; }
+    input, select, textarea { width:100%; min-height:44px; border:1px solid #d1d5db; border-radius:8px; padding:11px 12px; font:inherit; background:#fff; }
+    textarea { min-height:92px; resize:vertical; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .wide { grid-column:1 / -1; }
+    .notice { background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:16px; color:#064e3b; font-weight:700; }
+    footer { text-align:center; padding:28px 16px; background:#171717; color:#fff; }
+    @media (max-width:800px){ .top{align-items:flex-start; flex-direction:column;} .grid,.status,.form-grid{grid-template-columns:1fr;} .actions .btn,.top a{width:100%;} }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="top">
+        <a class="brand" href="index.html"><img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Logo Gigantes" /> Gigantes de Azapa</a>
+        <a href="index.html">Volver a la portada</a>
+      </div>
+      <h1>Documentos de jugadores</h1>
+      <p>La carga de documentos vuelve a estar visible y ordenada: carpeta, planilla original, checklist y ficha de seguimiento para que el comite pueda validar caso por caso.</p>
+      <div class="actions">
+        <a class="btn yellow" href="https://drive.google.com/drive/folders/1tlxFR5UKjjSm12EqPC4bNJwukF44YZTI" target="_blank" rel="noopener">Abrir carpeta documentos</a>
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/17X5I67lWcGWNPa7q1pG3ZS0a_1K-eF2E3t_Q_igEsdE/edit" target="_blank" rel="noopener">Abrir planilla original</a>
+        <a class="btn" href="mi_estado.html">Consultar mi estado</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>Checklist obligatorio</h2>
+      <p class="lead">Cada jugador debe quedar con estado claro: pendiente, recibido, observado o completo.</p>
+      <div class="grid">
+        <article class="doc"><strong>Cedula frente y reverso</strong><span>Imagen legible del jugador y adulto responsable cuando corresponda.</span></article>
+        <article class="doc"><strong>Certificado de nacimiento</strong><span>Documento para validar datos familiares y autorizacion.</span></article>
+        <article class="doc"><strong>Autorizacion notarial</strong><span>Permiso de salida o viaje cuando aplique para menores de edad.</span></article>
+        <article class="doc"><strong>Autorizacion del club</strong><span>Documento interno de participacion en la gira.</span></article>
+        <article class="doc"><strong>Ficha medica</strong><span>Alergias, medicamentos, restricciones y contacto de emergencia.</span></article>
+        <article class="doc"><strong>Seguro de viaje</strong><span>Respaldo del seguro o estado pendiente para gestionarlo.</span></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Estados de control</h2>
+      <div class="status">
+        <div><b>Pendiente</b><span>Falta recibir el documento.</span></div>
+        <div><b>Recibido</b><span>Ya esta en carpeta, falta revision.</span></div>
+        <div><b>Observado</b><span>Hay que corregir o reenviar.</span></div>
+        <div><b>Completo</b><span>Validado por el comite.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Ficha rapida de seguimiento</h2>
+      <p class="notice">Completa el estado de los documentos para que el comite pueda revisar que falta y que ya esta recibido.</p>
+      <form id="docsForm">
+        <div class="form-grid">
+          <label>Nombre del jugador
+            <input name="jugador" required />
+          </label>
+          <label>Categoria
+            <select name="categoria">
+              <option>M10</option>
+              <option>M12</option>
+              <option>M14</option>
+              <option>Classic</option>
+              <option>Adultos</option>
+            </select>
+          </label>
+          <label>Cedula
+            <select name="cedula"><option>Pendiente</option><option>Recibido</option><option>Observado</option><option>Completo</option></select>
+          </label>
+          <label>Certificado nacimiento
+            <select name="certificado"><option>Pendiente</option><option>Recibido</option><option>Observado</option><option>Completo</option></select>
+          </label>
+          <label>Autorizacion notarial
+            <select name="notarial"><option>Pendiente</option><option>Recibido</option><option>Observado</option><option>Completo</option></select>
+          </label>
+          <label>Ficha medica
+            <select name="medica"><option>Pendiente</option><option>Recibido</option><option>Observado</option><option>Completo</option></select>
+          </label>
+          <label>Autorizacion club
+            <select name="club"><option>Pendiente</option><option>Recibido</option><option>Observado</option><option>Completo</option></select>
+          </label>
+          <label>Seguro de viaje
+            <select name="seguro"><option>Pendiente</option><option>Recibido</option><option>Observado</option><option>Completo</option></select>
+          </label>
+          <label class="wide">Observaciones del comite
+            <textarea name="observaciones"></textarea>
+          </label>
+        </div>
+        <div class="actions">
+          <button class="btn green" type="submit">Preparar resumen</button>
+          <a class="btn red" href="https://drive.google.com/drive/folders/1tlxFR5UKjjSm12EqPC4bNJwukF44YZTI" target="_blank" rel="noopener">Subir a carpeta</a>
+          <a class="btn yellow" href="https://docs.google.com/spreadsheets/d/17X5I67lWcGWNPa7q1pG3ZS0a_1K-eF2E3t_Q_igEsdE/edit" target="_blank" rel="noopener">Actualizar planilla</a>
+          <a class="btn green" href="mi_estado.html">Ver mi estado</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>Gigantes de Azapa Rugby Club | Ruta a Jujuy / Salta 2026</footer>
+
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <script>
+    document.getElementById("docsForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+      const sent = await sendToGigantes({ tipo: "documentos", ...data });
+      const texto = [
+        "CONTROL DOCUMENTOS - GIGANTES DE AZAPA",
+        `Jugador: ${data.jugador || ""}`,
+        `Categoria: ${data.categoria || ""}`,
+        `Cedula: ${data.cedula || ""}`,
+        `Certificado: ${data.certificado || ""}`,
+        `Autorizacion notarial: ${data.notarial || ""}`,
+        `Ficha medica: ${data.medica || ""}`,
+        `Autorizacion club: ${data.club || ""}`,
+        `Seguro de viaje: ${data.seguro || ""}`,
+        `Observaciones: ${data.observaciones || ""}`
+      ].join("\n");
+      navigator.clipboard?.writeText(texto);
+      alert(sent.configured ? "Resumen documental enviado correctamente al comite." : "Resumen documental preparado. El comite debe confirmar el estado en la planilla oficial.");
+    });
+  </script>
+</body>
+</html>

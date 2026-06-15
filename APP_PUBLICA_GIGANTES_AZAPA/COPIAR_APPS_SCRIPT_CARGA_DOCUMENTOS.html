@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copiar Apps Script - Carga de documentos</title>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#0f172a}
+    main{max-width:980px;margin:0 auto;padding:24px}
+    section{background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:18px;margin-bottom:16px}
+    h1{margin-top:0}
+    button,a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:0;border-radius:8px;padding:10px 14px;background:#0f172a;color:#fff;font-weight:700;text-decoration:none;cursor:pointer;margin:4px 6px 4px 0}
+    a.secondary{background:#e2e8f0;color:#0f172a}
+    textarea{width:100%;min-height:520px;box-sizing:border-box;border:1px solid #94a3b8;border-radius:8px;padding:12px;font-family:Consolas,monospace;font-size:13px;white-space:pre}
+    .msg{margin-top:10px;padding:10px;border-radius:8px;background:#ecfdf5;color:#166534;font-weight:700}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Apps Script actualizado</h1>
+      <p>Este codigo agrega carga real de documentos, guarda archivos en Drive y deja enlaces en el Centro Operativo.</p>
+      <button id="copyBtn">Copiar codigo completo</button>
+      <a href="https://script.google.com/home/projects/1qJsCYQwUCcfF9ZeYUkxCG75YZ3cRfs6tkWdwyjjMP-w6lIYt3hnDCsnG/edit" target="_blank">Abrir Apps Script</a>
+      <a class="secondary" href="documentos_carga.html">Probar carga</a>
+      <div id="msg" class="msg">Codigo listo para copiar.</div>
+    </section>
+    <section>
+      <textarea id="code" readonly>const SPREADSHEET_ID = "1rwfiS1pAt3ICNGRRFR0PUcwUFIw4WCKjZigOdfn8QaU";
+const ROOT_FOLDER_ID = "1Slq7bF2giWkpSkf2Jrs_p1yQ8DIgFtH_";
+const DOCUMENTOS_FOLDER_ID = "1tlxFR5UKjjSm12EqPC4bNJwukF44YZTI";
+
+const SHEETS = {
+  inscripcion: "WEB_INSCRIPCIONES",
+  documentos: "WEB_DOCUMENTOS",
+  actividad: "WEB_ACTIVIDADES",
+  sponsor: "WEB_SPONSORS",
+  aporte: "WEB_APORTES_DIPLOMAS",
+  album: "WEB_ALBUM_MOTIVACIONAL"
+};
+
+const DOC_KEYS = [
+  "cedula_frente",
+  "cedula_reverso",
+  "certificado",
+  "notarial",
+  "medica",
+  "club",
+  "seguro",
+  "rsh"
+];
+
+function doPost(e) {
+  try {
+    const data = e && e.parameter ? e.parameter : {};
+    const type = clean_(data.type || data.tipo || "");
+
+    if (type === "inscripcion") return saveInscripcion_(data);
+    if (type === "documentos") return saveDocumentos_(data);
+    if (type === "actividad") return saveActividad_(data);
+    if (type === "sponsor") return saveSponsor_(data);
+    if (type === "aporte") return saveAporte_(data);
+    if (type === "album") return saveAlbum_(data);
+
+    return json_({ ok: false, message: "Tipo no reconocido", receivedType: type });
+  } catch (error) {
+    return json_({ ok: false, message: String(error), stack: error && error.stack ? error.stack : "" });
+  }
+}
+
+function doGet(e) {
+  try {
+    const params = e && e.parameter ? e.parameter : {};
+    const action = clean_(params.action || "");
+    if (action === "estado") return javascript_(getEstadoJugador_(params), params);
+    if (action === "avance") return javascript_(getAvance_(params), params);
+    return json_({ ok: true, message: "Apps Script Gigantes activo" });
+  } catch (error) {
+    return json_({ ok: false, message: String(error) });
+  }
+}
+
+function saveInscripcion_(data) {
+  appendObject_(SHEETS.inscripcion, {
+    timestamp: new Date(),
+    jugador: clean_(data.jugador || data.nombre_jugador || data.nombre || ""),
+    rut: clean_(data.rut || data.dni || ""),
+    codigo_familiar: clean_(data.codigo_familiar || ""),
+    email: clean_(data.email || data.correo || ""),
+    telefono: clean_(data.telefono || ""),
+    categoria: clean_(data.categoria || ""),
+    apoderado: clean_(data.apoderado || ""),
+    observaciones: clean_(data.observaciones || "")
+  });
+  return json_({ ok: true, message: "Inscripcion guardada" });
+}
+
+function saveDocumentos_(data) {
+  const rut = clean_(data.rut || data.dni || "");
+  const jugador = clean_(data.jugador || data.nombre_jugador || "");
+  const playerFolder = getOrCreateFolder_(
+    DriveApp.getFolderById(DOCUMENTOS_FOLDER_ID),
+    sanitizeName_((rut || "sin_rut") + "_" + (jugador || "jugador"))
+  );
+
+  const row = {
+    fecha_registro: new Date(),
+    tipo: "documentos",
+    jugador: jugador,
+    categoria: clean_(data.categoria || ""),
+    cedula: "",
+    certificado: "",
+    notarial: "",
+    medica: "",
+    club: "",
+    seguro: "",
+    rsh: "",
+    observaciones: clean_(data.observaciones || ""),
+    estado_revision: "RECIBIDO WEB",
+    rut: rut,
+    codigo_familiar: clean_(data.codigo_familiar || ""),
+    correo: clean_(data.email || data.correo || ""),
+    modo: clean_(data.modo || "")
+  };
+
+  DOC_KEYS.forEach(function(key) {
+    const url = saveUploadedFile_(data, key, playerFolder, rut, jugador);
+    row[key] = url ? "SI" : clean_(data[key] || "");
+    row[key + "_url"] = url;
+  });
+  row.cedula = row.cedula_frente === "SI" || row.cedula_reverso === "SI" ? "SI" : clean_(data.cedula || "");
+
+  appendObject_(SHEETS.documentos, row);
+  sendEmail_(
+    row.correo,
+    "Documentos recibidos - Gigantes de Azapa",
+    "Hola. Recibimos la carga de documentos de " + jugador + ".\n\nPuedes revisar el estado en la pagina Mi Estado usando el RUT/DNI y el codigo familiar.\n\nGigantes de Azapa Rugby Club"
+  );
+  return json_({ ok: true, message: "Documentos guardados", folderUrl: playerFolder.getUrl() });
+}
+
+function saveActividad_(data) {
+  appendObject_(SHEETS.actividad, {
+    timestamp: new Date(),
+    actividad: clean_(data.actividad || ""),
+    fecha: clean_(data.fecha || ""),
+    nombre: clean_(data.nombre || data.jugador || ""),
+    rut: clean_(data.rut || ""),
+    email: clean_(data.email || data.correo || ""),
+    telefono: clean_(data.telefono || ""),
+    comision: clean_(data.comision || ""),
+    tarea: clean_(data.tarea || ""),
+    aporte: clean_(data.aporte || ""),
+    horario: clean_(data.horario || ""),
+    observaciones: clean_(data.observaciones || "")
+  });
+  sendEmail_(
+    clean_(data.email || data.correo || ""),
+    "Inscripcion en actividad - Gigantes de Azapa",
+    "Hola. Quedaste registrado/a en la actividad " + clean_(data.actividad || "") + ".\n\nTarea/comision: " + clean_(data.tarea || data.comision || "") + "\n\nGracias por apoyar la gira."
+  );
+  return json_({ ok: true, message: "Actividad guardada" });
+}
+
+function saveSponsor_(data) {
+  appendObject_(SHEETS.sponsor, {
+    timestamp: new Date(),
+    empresa: clean_(data.empresa || ""),
+    contacto: clean_(data.contacto || ""),
+    email: clean_(data.email || data.correo || ""),
+    telefono: clean_(data.telefono || ""),
+    categoria: clean_(data.categoria || ""),
+    aporte: clean_(data.aporte || ""),
+    beneficio: clean_(data.beneficio || ""),
+    observaciones: clean_(data.observaciones || "")
+  });
+  return json_({ ok: true, message: "Sponsor guardado" });
+}
+
+function saveAporte_(data) {
+  appendObject_(SHEETS.aporte, {
+    timestamp: new Date(),
+    nombre: clean_(data.nombre || ""),
+    email: clean_(data.email || data.correo || ""),
+    telefono: clean_(data.telefono || ""),
+    monto: clean_(data.monto || ""),
+    tipo_aporte: clean_(data.tipo_aporte || data.tipo || ""),
+    mensaje: clean_(data.mensaje || data.observaciones || "")
+  });
+  sendEmail_(
+    clean_(data.email || data.correo || ""),
+    "Gracias por tu aporte - Gigantes de Azapa",
+    "Hola " + clean_(data.nombre || "") + ".\n\nGracias por apoyar la gira Gigantes de Azapa Salta 2026.\n\nTu aporte fue registrado en el Centro Operativo del proyecto."
+  );
+  return json_({ ok: true, message: "Aporte guardado" });
+}
+
+function saveAlbum_(data) {
+  const folder = getOrCreateFolder_(DriveApp.getFolderById(ROOT_FOLDER_ID), "ALBUM_MOTIVACIONAL_WEB");
+  const photoUrl = saveUploadedFile_(data, "foto", folder);
+  appendObject_(SHEETS.album, {
+    timestamp: new Date(),
+    nombre: clean_(data.nombre || ""),
+    rut: clean_(data.rut || ""),
+    rol: clean_(data.rol || ""),
+    categoria: clean_(data.categoria || ""),
+    frase: clean_(data.frase || ""),
+    email: clean_(data.email || data.correo || ""),
+    autorizacion: clean_(data.autorizacion || ""),
+    foto_url: photoUrl
+  });
+  return json_({ ok: true, message: "Album guardado", foto_url: photoUrl });
+}
+
+function getEstadoJugador_(params) {
+  const rut = clean_(params.rut || params.dni || "");
+  const codigo = clean_(params.codigo_familiar || "");
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(SHEETS.documentos);
+  if (!sheet) return { ok: false, message: "No existe hoja de documentos" };
+
+  const values = sheet.getDataRange().getValues();
+  if (values.length < 2) return { ok: false, message: "Aun no hay documentos registrados" };
+
+  const headers = values[0].map(String);
+  const rutIndex = headers.indexOf("rut");
+  const codeIndex = headers.indexOf("codigo_familiar");
+  let found = null;
+
+  for (let i = values.length - 1; i >= 1; i--) {
+    const row = values[i];
+    if (clean_(row[rutIndex]) === rut && (!codigo || clean_(row[codeIndex]) === codigo)) {
+      found = row;
+      break;
+    }
+  }
+
+  if (!found) return { ok: false, message: "No se encontro registro para esos datos" };
+
+  const docs = {};
+  DOC_KEYS.forEach(function(key) {
+    const valueIndex = headers.indexOf(key);
+    const urlIndex = headers.indexOf(key + "_url");
+    docs[key] = {
+      estado: valueIndex >= 0 ? clean_(found[valueIndex]) : "",
+      url: urlIndex >= 0 ? clean_(found[urlIndex]) : ""
+    };
+  });
+
+  return {
+    ok: true,
+    jugador: getValue_(headers, found, "jugador"),
+    rut: rut,
+    documentos: docs,
+    observaciones: getValue_(headers, found, "observaciones")
+  };
+}
+
+function getAvance_(params) {
+  const meta = Number(clean_(params.meta || "0").replace(/[^\d]/g, "")) || 18000000;
+  const aportes = safeSumSheetAmount_(SHEETS.aporte, ["monto", "aporte", "valorizacion"]);
+  const sponsors = safeSumSheetAmount_(SHEETS.sponsor, ["aporte", "monto", "valorizacion"]);
+  const actividades = safeSumSheetAmount_(SHEETS.actividad, ["monto", "valorizacion"]);
+  const recaudado = aportes + sponsors + actividades;
+  const faltante = Math.max(meta - recaudado, 0);
+  const porcentaje = meta ? Math.min(Math.round((recaudado / meta) * 100), 100) : 0;
+  return {
+    ok: true,
+    meta: meta,
+    aportes: aportes,
+    sponsors: sponsors,
+    actividades: actividades,
+    recaudado: recaudado,
+    faltante: faltante,
+    porcentaje: porcentaje,
+    actualizado: new Date()
+  };
+}
+
+function safeSumSheetAmount_(sheetName, candidateHeaders) {
+  try {
+    return sumSheetAmount_(sheetName, candidateHeaders);
+  } catch (error) {
+    Logger.log("No se pudo sumar " + sheetName + ": " + error);
+    return 0;
+  }
+}
+
+function sumSheetAmount_(sheetName, candidateHeaders) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(sheetName);
+  if (!sheet) return 0;
+  const values = sheet.getDataRange().getValues();
+  if (values.length < 2) return 0;
+  const headers = values[0].map(function(header) { return clean_(header).toLowerCase(); });
+  let indexes = [];
+  candidateHeaders.forEach(function(name) {
+    const index = headers.indexOf(name.toLowerCase());
+    if (index >= 0) indexes.push(index);
+  });
+  if (!indexes.length) return 0;
+  let total = 0;
+  for (let i = 1; i < values.length; i++) {
+    for (let j = 0; j < indexes.length; j++) {
+      const amount = parseAmount_(values[i][indexes[j]]);
+      if (amount) {
+        total += amount;
+        break;
+      }
+    }
+  }
+  return total;
+}
+
+function parseAmount_(value) {
+  if (typeof value === "number") return value;
+  const text = clean_(value);
+  if (!text) return 0;
+  const digits = text.replace(/[^\d]/g, "");
+  return digits ? Number(digits) : 0;
+}
+
+function appendObject_(sheetName, rowObject) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(sheetName) || ss.insertSheet(sheetName);
+  const keys = Object.keys(rowObject);
+  let lastColumn = sheet.getLastColumn();
+  let headers = lastColumn ? sheet.getRange(1, 1, 1, lastColumn).getValues()[0].map(String) : [];
+
+  if (!headers.length || headers.every(function(h) { return !h; })) {
+    headers = keys;
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    lastColumn = headers.length;
+  }
+
+  const missing = keys.filter(function(key) { return headers.indexOf(key) === -1; });
+  if (missing.length) {
+    sheet.getRange(1, headers.length + 1, 1, missing.length).setValues([missing]);
+    headers = headers.concat(missing);
+  }
+
+  const row = headers.map(function(header) {
+    return rowObject.hasOwnProperty(header) ? rowObject[header] : "";
+  });
+  sheet.appendRow(row);
+}
+
+function saveUploadedFile_(data, key, folder, rut, jugador) {
+  const dataUrl = data[key + "_data"];
+  if (!dataUrl) return "";
+
+  const name = clean_(data[key + "_name"] || key);
+  const mime = clean_(data[key + "_mime"] || data[key + "_type"] || "application/octet-stream");
+  const parts = String(dataUrl).split(",");
+  const base64 = parts.length > 1 ? parts[1] : parts[0];
+  const bytes = Utilities.base64Decode(base64);
+  const safeName = [
+    Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd_HHmmss"),
+    sanitizeName_(rut || "sin_rut"),
+    sanitizeName_(jugador || "jugador"),
+    sanitizeName_(key),
+    sanitizeName_(name)
+  ].join("_");
+  const blob = Utilities.newBlob(bytes, mime, safeName);
+  const file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  return file.getUrl();
+}
+
+function getOrCreateFolder_(parent, name) {
+  const folders = parent.getFoldersByName(name);
+  if (folders.hasNext()) return folders.next();
+  return parent.createFolder(name);
+}
+
+function sendEmail_(email, subject, body) {
+  if (!email) return;
+  try {
+    MailApp.sendEmail(email, subject, body);
+  } catch (error) {
+    Logger.log("No se pudo enviar correo: " + error);
+  }
+}
+
+function getValue_(headers, row, key) {
+  const index = headers.indexOf(key);
+  return index >= 0 ? clean_(row[index]) : "";
+}
+
+function clean_(value) {
+  return String(value === null || value === undefined ? "" : value).trim();
+}
+
+function sanitizeName_(name) {
+  return clean_(name).replace(/[\\/:*?"<>|#%{}~&]/g, "_").slice(0, 120) || "archivo";
+}
+
+function json_(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function javascript_(obj, params) {
+  const callback = clean_(params && params.callback ? params.callback : "");
+  const payload = JSON.stringify(obj);
+  if (callback) {
+    return ContentService
+      .createTextOutput(callback + "(" + payload + ");")
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return json_(obj);
+}</textarea>
+    </section>
+  </main>
+  <script>
+    const textarea = document.getElementById("code");
+    const msg = document.getElementById("msg");
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+      try {
+        await navigator.clipboard.writeText(textarea.value);
+        msg.textContent = "Codigo copiado completo. Ahora pegalo en Codigo.gs.";
+      } catch (error) {
+        document.execCommand("copy");
+        msg.textContent = "Codigo seleccionado. Si no se copio automatico, presiona Ctrl+C.";
+      }
+    });
+  </script>
+</body>
+</html>

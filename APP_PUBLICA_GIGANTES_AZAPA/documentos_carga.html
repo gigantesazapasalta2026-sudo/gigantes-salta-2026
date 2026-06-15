@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carga de documentos - Gigantes de Azapa</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/hero-gigantes.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    .page-backdrop {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(250, 204, 21, .18), rgba(15, 118, 110, .14) 42%, rgba(2, 6, 23, .32));
+    }
+    .upload-page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .upload-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .upload-hero > div,
+    .upload-panel {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .upload-hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .brand-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand-strip img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, .2);
+    }
+    .brand-strip span {
+      display: block;
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+      letter-spacing: 0;
+    }
+    .upload-hero p {
+      margin: 0;
+      color: #475569;
+      line-height: 1.55;
+    }
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .button,
+    button.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+    }
+    .button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      color: #0f172a;
+      font-weight: 800;
+    }
+    input,
+    textarea,
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(15, 23, 42, .18);
+      border-radius: 8px;
+      padding: 11px;
+      font: inherit;
+      background: #fff;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .notice {
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid #a7f3d0;
+      background: #ecfdf5;
+      color: #065f46;
+      padding: 12px;
+      line-height: 1.45;
+    }
+    .upload-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .upload-item {
+      display: grid;
+      gap: 12px;
+      border: 1px solid rgba(15, 23, 42, .12);
+      border-left: 5px solid #0f766e;
+      border-radius: 8px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(248, 250, 252, .96));
+    }
+    .upload-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+    }
+    .upload-head h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .upload-head p {
+      margin: 4px 0 0;
+      color: #475569;
+      font-size: .92rem;
+      line-height: 1.4;
+    }
+    .status-pill {
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 6px 10px;
+      font-size: .82rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .status-pill.ready {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .upload-item input[type="file"] {
+      border-style: dashed;
+      background: #fff;
+      cursor: pointer;
+    }
+    .photo-banner {
+      min-height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, .18), rgba(15, 23, 42, .74)),
+        url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-suenos.jpg") center/cover;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      color: #fff;
+      margin-top: 16px;
+      box-sizing: border-box;
+    }
+    .photo-banner strong {
+      display: block;
+      font-size: 1.25rem;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .photo-banner p {
+      color: rgba(255, 255, 255, .88);
+      margin: 0;
+    }
+    .result-box {
+      margin-top: 16px;
+      white-space: pre-wrap;
+      border-radius: 8px;
+      border: 1px solid rgba(15, 23, 42, .14);
+      background: #f8fafc;
+      padding: 12px;
+      color: #0f172a;
+    }
+    .result-box:empty {
+      display: none;
+    }
+    @media (max-width: 820px) {
+      .upload-page {
+        padding: 14px;
+      }
+      .upload-hero,
+      .data-grid {
+        grid-template-columns: 1fr;
+      }
+      .upload-head {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-backdrop"></div>
+  <main class="upload-page">
+    <section class="upload-hero">
+      <div>
+        <div class="brand-strip">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Gigantes de Azapa Rugby Club</span>
+        </div>
+        <p class="eyebrow">Documentacion obligatoria</p>
+        <h1>Carga de archivos del jugador</h1>
+        <p>Esta pagina permite subir los documentos reales del jugador. Cada archivo quedara asociado al RUT/DNI y al codigo familiar para revisar luego el estado privado.</p>
+        <div class="quick-actions">
+          <a class="button secondary" href="index.html">Inicio</a>
+          <a class="button secondary" href="documentos.html">Checklist</a>
+          <a class="button secondary" href="mi_estado.html">Mi estado</a>
+        </div>
+      </div>
+      <div>
+        <h2 style="margin-top:0">Antes de enviar</h2>
+        <p>Usa archivos PDF, JPG o PNG. Cada archivo debe pesar menos de 5 MB. Si el documento tiene frente y reverso, sube ambos por separado.</p>
+        <div class="notice">Despues de enviar, revisa el Centro Operativo. Si la fila aparece con enlaces, la carga quedo lista.</div>
+        <div class="photo-banner">
+          <div>
+            <strong>Orden para cuidar la gira</strong>
+            <p>Cada documento deja al equipo un paso mas cerca de viajar tranquilos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="upload-panel">
+      <h2 style="margin-top:0">Datos del jugador</h2>
+      <form id="documentUploadForm">
+        <input type="hidden" name="type" value="documentos">
+        <input type="hidden" name="modo" value="carga_archivos">
+
+        <div class="data-grid">
+          <label>Nombre jugador
+            <input name="jugador" required placeholder="Nombre y apellido">
+          </label>
+          <label>RUT/DNI jugador
+            <input name="rut" required placeholder="Ej: 12.345.678-9">
+          </label>
+          <label>Categoria
+            <input name="categoria" placeholder="Ej: M12, M14, Classic">
+          </label>
+          <label>Codigo familiar privado
+            <input name="codigo_familiar" required placeholder="Clave que usara la familia">
+          </label>
+          <label>Correo contacto
+            <input name="email" type="email" required placeholder="correo@ejemplo.com">
+          </label>
+        </div>
+
+        <div class="upload-list">
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Cedula frente</h3><p>Imagen clara del frente del documento de identidad.</p></div>
+              <span class="status-pill" data-status="cedula_frente">Pendiente</span>
+            </div>
+            <input type="file" data-doc="cedula_frente" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Cedula reverso</h3><p>Imagen clara del reverso del documento de identidad.</p></div>
+              <span class="status-pill" data-status="cedula_reverso">Pendiente</span>
+            </div>
+            <input type="file" data-doc="cedula_reverso" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Certificado de nacimiento</h3><p>Documento para validar datos del jugador menor de edad.</p></div>
+              <span class="status-pill" data-status="certificado">Pendiente</span>
+            </div>
+            <input type="file" data-doc="certificado" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Autorizacion notarial</h3><p>Permiso firmado para participar en la gira.</p></div>
+              <span class="status-pill" data-status="notarial">Pendiente</span>
+            </div>
+            <input type="file" data-doc="notarial" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Ficha medica</h3><p>Antecedentes de salud, alergias y contactos de emergencia.</p></div>
+              <span class="status-pill" data-status="medica">Pendiente</span>
+            </div>
+            <input type="file" data-doc="medica" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Autorizacion del club</h3><p>Respaldo interno del club para participar en la actividad.</p></div>
+              <span class="status-pill" data-status="club">Pendiente</span>
+            </div>
+            <input type="file" data-doc="club" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Seguro o cobertura</h3><p>Comprobante de seguro, cobertura medica o respaldo equivalente.</p></div>
+              <span class="status-pill" data-status="seguro">Pendiente</span>
+            </div>
+            <input type="file" data-doc="seguro" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+
+          <article class="upload-item">
+            <div class="upload-head">
+              <div><h3>Cartola Registro Social de Hogares</h3><p>Documento sugerido para respaldar postulacion a proyectos publicos como IND. Se descarga desde el canal oficial con ClaveUnica.</p></div>
+              <span class="status-pill" data-status="rsh">Pendiente</span>
+            </div>
+            <input type="file" data-doc="rsh" accept=".pdf,.jpg,.jpeg,.png">
+          </article>
+        </div>
+
+        <label style="margin-top:14px">Observaciones
+          <textarea name="observaciones" rows="4" placeholder="Ej: documento en tramite, se entregara presencialmente, falta firma..."></textarea>
+        </label>
+
+        <div class="quick-actions">
+          <button class="button" type="submit">Enviar documentos</button>
+          <button class="button secondary" type="reset">Limpiar</button>
+        </div>
+        <div id="uploadResult" class="result-box"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const MAX_FILE_BYTES = 5 * 1024 * 1024;
+    const form = document.getElementById("documentUploadForm");
+    const result = document.getElementById("uploadResult");
+
+    document.querySelectorAll("input[type='file']").forEach((input) => {
+      input.addEventListener("change", () => {
+        const status = document.querySelector(`[data-status="${input.dataset.doc}"]`);
+        if (!input.files.length) {
+          status.textContent = "Pendiente";
+          status.classList.remove("ready");
+          return;
+        }
+        const file = input.files[0];
+        if (file.size > MAX_FILE_BYTES) {
+          status.textContent = "Muy pesado";
+          status.classList.remove("ready");
+          return;
+        }
+        status.textContent = "Adjunto";
+        status.classList.add("ready");
+      });
+    });
+
+    function readFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result));
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    form.addEventListener("reset", () => {
+      setTimeout(() => {
+        document.querySelectorAll("[data-status]").forEach((status) => {
+          status.textContent = "Pendiente";
+          status.classList.remove("ready");
+        });
+        result.textContent = "";
+      }, 0);
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      result.textContent = "Preparando documentos...";
+
+      const url = window.GIGANTES_APPS_SCRIPT_URL;
+      if (!url || url.includes("PEGAR")) {
+        result.textContent = "Falta configurar la URL publicada de Apps Script en config.js.";
+        return;
+      }
+
+      const payload = new URLSearchParams();
+      const formData = new FormData(form);
+      for (const [key, value] of formData.entries()) {
+        if (typeof value === "string") payload.append(key, value);
+      }
+
+      let totalFiles = 0;
+      for (const input of document.querySelectorAll("input[type='file']")) {
+        if (!input.files.length) continue;
+        const file = input.files[0];
+        if (file.size > MAX_FILE_BYTES) {
+          result.textContent = `El archivo "${file.name}" supera 5 MB. Usa una version mas liviana.`;
+          return;
+        }
+        totalFiles++;
+        payload.append(`${input.dataset.doc}_name`, file.name);
+        payload.append(`${input.dataset.doc}_mime`, file.type || "application/octet-stream");
+        payload.append(`${input.dataset.doc}_data`, await readFileAsDataUrl(file));
+      }
+
+      if (!totalFiles) {
+        result.textContent = "Adjunta al menos un documento antes de enviar.";
+        return;
+      }
+
+      result.textContent = "Enviando archivos al proyecto...";
+      try {
+        await fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: payload.toString()
+        });
+        result.textContent = "Enviado. Ahora revisa el Centro Operativo para confirmar que aparezcan los enlaces.";
+      } catch (error) {
+        result.textContent = "No se pudo enviar. Revisa la conexion o la URL de Apps Script.";
+      }
+    });
+  </script>
+</body>
+</html>

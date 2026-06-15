@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avance de meta - Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <style>
+    body { min-height: 100vh; margin: 0; font-family: Arial, sans-serif; background: linear-gradient(115deg, rgba(5,16,31,.94), rgba(7,61,49,.84)), url("../rugby playa.jpg") center/cover fixed; color: #0f172a; }
+    main { max-width: 1160px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .metric, .item { background: rgba(255,255,255,.96); border: 1px solid rgba(255,255,255,.36); border-radius: 8px; box-shadow: 0 18px 46px rgba(2,6,23,.28); backdrop-filter: blur(10px); }
+    .hero { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(280px,.9fr); gap: 20px; padding: 20px; margin-bottom: 18px; }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 64px; height: 64px; object-fit: contain; border-radius:8px; background:#fff; padding:6px; }
+    .brand span { color: #0f766e; font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2rem,4vw,3rem); line-height: 1; }
+    p, li { line-height: 1.55; }
+    .button, button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; border: 0; border-radius: 8px; padding: 10px 14px; background: #B11226; color: #fff; font: inherit; font-weight: 900; text-decoration: none; cursor: pointer; margin: 4px 6px 4px 0; }
+    .button.secondary, button.secondary { background: #facc15; color: #0f172a; }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .controls { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; margin-top: 14px; }
+    label { display: grid; gap: 6px; font-weight: 800; }
+    input { width: 100%; box-sizing: border-box; border: 1px solid rgba(15,23,42,.18); border-radius: 8px; padding: 11px; font: inherit; background: #fff; }
+    .metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 18px 0; }
+    .metric { padding: 16px; border-left: 5px solid #B11226; }
+    .metric strong { display: block; font-size: 1.55rem; line-height: 1; color: #B11226; margin-top: 8px; }
+    .progress-wrap { background: #e2e8f0; border-radius: 999px; overflow: hidden; height: 28px; margin-top: 12px; }
+    .progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, #B11226, #D4AF37); transition: width .25s ease; }
+    .split { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+    .item { padding: 14px; margin-bottom: 10px; border-left: 5px solid #D4AF37; }
+    .item strong { display: flex; justify-content: space-between; gap: 12px; }
+    .note { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; border-radius: 8px; padding: 12px; }
+    @media print { body { background: #fff; } .button, button, .controls { display: none; } main { padding: 0; } .hero, .panel, .metric, .item { box-shadow: none; border: 1px solid #cbd5e1; } }
+    @media (max-width: 900px) { main { padding: 14px; } .hero, .controls, .metrics, .split { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Transparencia de la gira</span>
+        </div>
+        <h1>Avance hacia la meta</h1>
+        <p>Este tablero muestra cuánto se necesita, cuánto se ha reunido y cuánto falta para financiar la gira a Salta 2026.</p>
+        <a class="button" href="aportes.html">Registrar aporte</a>
+        <a class="button secondary" href="sponsors.html">Ver sponsors</a>
+        <a class="button secondary" href="accesos_publicos.html">Inicio</a>
+        <button class="secondary" onclick="window.print()">Imprimir reporte</button>
+      </div>
+      <div style="background:#111827; border-radius:8px; min-height:280px; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; padding:20px;">
+        <div><div style="font-size:3.5rem">🏆</div><strong>Los Pumas vs Australia</strong><p>Sáb 29 Ago — Jujuy</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Configurar avance</h2>
+      <p>Meta estimada: <strong>$50.000.000</strong> (puede bajar si el IND financia pasajes de los niños). Carga los datos desde el Centro Operativo para ver el avance real.</p>
+      <button type="button" id="loadAutoBtn">Cargar datos del Centro Operativo</button>
+      <span id="autoStatus" style="display:inline-block;margin-left:8px;font-weight:800;color:#B11226"></span>
+      <div class="controls">
+        <label>Meta total <input id="metaInput" type="number" min="0" value="50000000"></label>
+        <label>Aportes <input id="aportesInput" type="number" min="0" value="0"></label>
+        <label>Sponsors <input id="sponsorsInput" type="number" min="0" value="0"></label>
+        <label>Actividades <input id="actividadesInput" type="number" min="0" value="0"></label>
+        <label>Merchandising <input id="merchandisingInput" type="number" min="0" value="0"></label>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric"><span>Meta total</span><strong id="metaValue">$0</strong></article>
+      <article class="metric"><span>Recaudado</span><strong id="recaudadoValue">$0</strong></article>
+      <article class="metric"><span>Faltante</span><strong id="faltanteValue">$0</strong></article>
+      <article class="metric"><span>Avance</span><strong id="avanceValue">0%</strong></article>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Barra de avance</h2>
+      <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    </section>
+
+    <section class="split">
+      <div class="panel">
+        <h2 style="margin-top:0">Fuentes de ingreso</h2>
+        <div class="item"><strong><span>Aportes</span><span id="aportesValue">$0</span></strong><p>Cooperaciones de familias, personas y comunidad.</p></div>
+        <div class="item"><strong><span>Sponsors</span><span id="sponsorsValue">$0</span></strong><p>Empresas y auspiciadores.</p></div>
+        <div class="item"><strong><span>Actividades</span><span id="actividadesValue">$0</span></strong><p>Completos, rifas, ventas y eventos.</p></div>
+        <div class="item"><strong><span>Merchandising</span><span id="merchandisingValue">$0</span></strong><p>Poleras, gorros y pedidos del club.</p></div>
+      </div>
+      <div class="panel">
+        <h2 style="margin-top:0">Gastos principales esperados</h2>
+        <div class="item"><strong><span>Transporte/pasajes</span><span>Prioridad alta</span></strong><p>Principal foco de postulación IND y recaudación.</p></div>
+        <div class="item"><strong><span>Alojamiento Salta</span><span>2 noches</span></strong><p>Hotel para toda la delegación.</p></div>
+        <div class="item"><strong><span>Entradas Los Pumas</span><span>Jujuy</span></strong><p>Estadio 23 de Agosto. Reserva anticipada.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Mensaje de transparencia</h2>
+      <div class="note">Meta estimada: <strong>$50.000.000</strong> (puede reducirse si el IND financia los pasajes de los niños). Cada aporte, venta, sponsor o actividad solidaria se irá reflejando en este avance. Todos los registros quedan respaldados en el Centro Operativo del proyecto.</div>
+    </section>
+  </main>
+  <script>
+    const money = new Intl.NumberFormat("es-CL", {style:"currency",currency:"CLP",maximumFractionDigits:0});
+    const inputs = {meta:document.getElementById("metaInput"),aportes:document.getElementById("aportesInput"),sponsors:document.getElementById("sponsorsInput"),actividades:document.getElementById("actividadesInput"),merchandising:document.getElementById("merchandisingInput")};
+    function value(i) {return Number(i.value||0)}
+    function render() {
+      const meta=value(inputs.meta);
+      const recaudado=value(inputs.aportes)+value(inputs.sponsors)+value(inputs.actividades)+value(inputs.merchandising);
+      const faltante=Math.max(meta-recaudado,0);
+      const pct=meta?Math.min(Math.round((recaudado/meta)*100),100):0;
+      document.getElementById("metaValue").textContent=money.format(meta);
+      document.getElementById("recaudadoValue").textContent=money.format(recaudado);
+      document.getElementById("faltanteValue").textContent=money.format(faltante);
+      document.getElementById("avanceValue").textContent=pct+"%";
+      document.getElementById("aportesValue").textContent=money.format(value(inputs.aportes));
+      document.getElementById("sponsorsValue").textContent=money.format(value(inputs.sponsors));
+      document.getElementById("actividadesValue").textContent=money.format(value(inputs.actividades));
+      document.getElementById("merchandisingValue").textContent=money.format(value(inputs.merchandising));
+      document.getElementById("progressBar").style.width=pct+"%";
+      try{localStorage.setItem("gigantes_avance",JSON.stringify({meta:meta,aportes:value(inputs.aportes),sponsors:value(inputs.sponsors),actividades:value(inputs.actividades),merchandising:value(inputs.merchandising)}))}catch(e){}
+    }
+    document.getElementById("loadAutoBtn").addEventListener("click",async()=>{
+      const st = document.getElementById("autoStatus");
+      st.textContent="Cargando...";
+      if(!window.GIGANTES_APPS_SCRIPT_URL||window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR")){st.textContent="Falta configurar Apps Script.";return;}
+      try{
+        const cb="gAv_"+Date.now();
+        const s=document.createElement("script");
+        const url=new URL(window.GIGANTES_APPS_SCRIPT_URL);
+        url.searchParams.set("action","avance");
+        url.searchParams.set("callback",cb);
+        const t=setTimeout(()=>{st.textContent="Tiempo agotado.";s.remove();},8000);
+        window[cb]=(d)=>{clearTimeout(t);s.remove();if(d&&d.ok){inputs.meta.value=d.meta||50000000;inputs.aportes.value=d.aportes||0;inputs.sponsors.value=d.sponsors||0;inputs.actividades.value=d.actividades||0;inputs.merchandising.value=d.merchandising||0;render();st.textContent="Datos cargados automáticamente.";}else{st.textContent="No se pudo cargar.";}};
+        s.onerror=()=>{clearTimeout(t);st.textContent="Error al cargar.";};
+        s.src=url.toString();document.body.appendChild(s);
+      }catch(e){document.getElementById("autoStatus").textContent="Error.";}
+    });
+    try{const s=JSON.parse(localStorage.getItem("gigantes_avance")||"null");if(s){inputs.meta.value=s.meta||50000000;inputs.aportes.value=s.aportes||0;inputs.sponsors.value=s.sponsors||0;inputs.actividades.value=s.actividades||0;inputs.merchandising.value=s.merchandising||0;}}catch(e){}
+    Object.values(inputs).forEach(v=>v.addEventListener("input",render));
+    render();
+  </script>
+</body>
+</html>

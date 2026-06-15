@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual Merchandising y Sponsors - Gigantes de Azapa</title>
+  <style>
+    :root {
+      --club-black: #0b0f14;
+      --club-charcoal: #171717;
+      --club-orange: #f36b21;
+      --club-orange-dark: #c2410c;
+      --club-cream: #fff7ed;
+      --club-line: rgba(243, 107, 33, .32);
+      --club-text: #111827;
+      --club-success: #0f766e;
+      --club-danger: #dc2626;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 8, 12, .96), rgba(88, 28, 12, .84)),
+        url("file:///C:/Users/roger/Desktop/Pack_Completo_Gigantes_Azapa_Jujuy_2026/01_App_PWA/merchandising-oficial.jpg") center/cover fixed;
+      color: var(--club-text);
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .card, .step {
+      background: rgba(255,255,255,.97);
+      border: 1px solid var(--club-line);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: var(--club-orange-dark); font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.1rem, 5vw, 3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .photo { min-height: 320px; border-radius: 8px; overflow: hidden; background: #fff; }
+    .photo img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; display: block; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: var(--club-charcoal);
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: var(--club-orange); }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+    .steps { display: grid; gap: 12px; margin-top: 14px; }
+    .step, .card { padding: 15px; border-left: 5px solid var(--club-orange); }
+    .card strong, .step strong { display: block; color: var(--club-orange-dark); margin-bottom: 7px; }
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--club-orange);
+      color: #fff;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .warning { border-left-color: var(--club-danger); }
+    .success { border-left-color: var(--club-success); }
+    .note {
+      background: var(--club-cream);
+      border-left: 5px solid var(--club-orange);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .card, .step { box-shadow: none; break-inside: avoid; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Manual operativo</span>
+        </div>
+        <h1>Merchandising y sponsors</h1>
+        <p>Guia simple para que directiva, encargado de merchandising, empresas, proveedores y familias sepan exactamente que hacer y en que orden.</p>
+        <a class="button" href="merchandising.html">Tienda</a>
+        <a class="button secondary" href="validacion_merchandising.html">Validar precios</a>
+        <a class="button secondary" href="espacios_sponsor_merchandising.html">Espacios sponsor</a>
+        <a class="button secondary" href="compromiso_sponsor_merchandising.html">Compromiso</a>
+        <button class="secondary" onclick="window.print()">Imprimir manual</button>
+      </div>
+      <div class="photo">
+        <img src="file:///C:/Users/roger/Desktop/Pack_Completo_Gigantes_Azapa_Jujuy_2026/01_App_PWA/merchandising-oficial.jpg" alt="Merchandising oficial">
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Ruta completa</h2>
+      <div class="steps">
+        <article class="step"><span class="num">1</span><strong>Validar productos y precios</strong><p>Directiva revisa precio sugerido, costo proveedor, margen, stock, tallas y fecha de entrega en la pagina de validacion.</p></article>
+        <article class="step"><span class="num">2</span><strong>Definir si habra sponsor merchandising</strong><p>Si una empresa produce o financia productos, se revisan espacios de logo y beneficios antes de prometer ubicaciones.</p></article>
+        <article class="step"><span class="num">3</span><strong>Firmar compromiso simple</strong><p>Empresa y club dejan por escrito aporte, valor estimado, fecha, presencia de marca y condiciones.</p></article>
+        <article class="step"><span class="num">4</span><strong>Publicar catalogo y tienda</strong><p>Cuando valores y logos esten aprobados, se comparte catalogo PDF o enlace de tienda.</p></article>
+        <article class="step"><span class="num">5</span><strong>Recibir pedidos</strong><p>Familias eligen producto, talla, cantidad y forma de pago en la tienda.</p></article>
+        <article class="step"><span class="num">6</span><strong>Controlar pagos y entrega</strong><p>Encargado revisa WEB_MERCHANDISING y el control interno para marcar pagado, en produccion, listo o entregado.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Que hace cada persona</h2>
+      <div class="grid">
+        <article class="card"><strong>Directiva</strong><p>Aprueba precios, productos, uso de logo, sponsor merchandising y fecha de publicacion.</p></article>
+        <article class="card"><strong>Encargado merchandising</strong><p>Coordina proveedor, pedidos, pagos, produccion, entrega y control de stock.</p></article>
+        <article class="card"><strong>Empresa sponsor</strong><p>Entrega logo en buena calidad, confirma aporte, respeta plazos y valida ubicacion de marca.</p></article>
+        <article class="card"><strong>Proveedor</strong><p>Confirma costo, calidad, tallas, tiempos de entrega y muestra previa antes de producir.</p></article>
+        <article class="card"><strong>Familia compradora</strong><p>Compra por la tienda, revisa talla, deja telefono y confirma pago cuando corresponda.</p></article>
+        <article class="card"><strong>Tesoreria</strong><p>Confirma pagos, registra montos y reporta merchandising como ingreso para la meta.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Orden recomendado de paginas</h2>
+      <div class="grid">
+        <article class="card"><strong>1. Validacion</strong><p>Precios, costos, margen, stock y fecha.</p><a class="button secondary" href="validacion_merchandising.html">Abrir</a></article>
+        <article class="card"><strong>2. Espacios sponsor</strong><p>Donde puede ir el logo de empresa.</p><a class="button secondary" href="espacios_sponsor_merchandising.html">Abrir</a></article>
+        <article class="card"><strong>3. Compromiso</strong><p>Acuerdo imprimible entre empresa y club.</p><a class="button secondary" href="compromiso_sponsor_merchandising.html">Abrir</a></article>
+        <article class="card"><strong>4. Catalogo</strong><p>PDF o pagina para difundir productos.</p><a class="button secondary" href="catalogo_merchandising.html">Abrir</a></article>
+        <article class="card"><strong>5. Tienda</strong><p>Carro de compras y pedido familiar.</p><a class="button secondary" href="merchandising.html">Abrir</a></article>
+        <article class="card"><strong>6. Control interno</strong><p>Pedidos, pagos, produccion y entrega.</p><a class="button secondary" href="control_merchandising.html">Abrir</a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Alertas importantes</h2>
+      <div class="grid">
+        <article class="card warning"><strong>No prometer logos sin aprobar</strong><p>Primero definir ubicacion, tamano y tipo de sponsor.</p></article>
+        <article class="card warning"><strong>No producir sin pago o compromiso</strong><p>Evita quedar con productos impagos o tallas equivocadas.</p></article>
+        <article class="card warning"><strong>No publicar precios referenciales como definitivos</strong><p>La directiva debe validar costos y margen antes de difundir.</p></article>
+        <article class="card success"><strong>Registrar todo</strong><p>Pedidos, sponsors y aportes deben quedar en el Centro Operativo.</p></article>
+        <article class="card success"><strong>Separar preventa de entrega</strong><p>Primero pedido/pago, luego produccion, luego entrega.</p></article>
+        <article class="card success"><strong>Usar el catalogo</strong><p>Sirve para vender sin explicar todo de nuevo cada vez.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="note">
+        <strong>Resumen:</strong> validar primero, comprometer por escrito, vender ordenado, producir con respaldo y entregar registrando todo. Asi el merchandising ayuda a recaudar sin transformarse en desorden.
+      </div>
+    </section>
+  </main>
+</body>
+</html>

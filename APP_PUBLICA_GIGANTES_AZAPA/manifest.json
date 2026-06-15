@@ -1,0 +1,23 @@
+{
+  "name": "Gigantes de Azapa - Gira Jujuy 2026",
+  "short_name": "Gira Jujuy",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b11226",
+  "description": "Inscripcion, actividades, sponsors y avance de la Gira Gigantes de Azapa Jujuy 2026.",
+  "icons": [
+    {
+      "src": "logo-gigantes.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "logo-gigantes.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

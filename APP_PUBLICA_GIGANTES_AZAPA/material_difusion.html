@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material de Difusion - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../m10m12.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .message-card,
+    .asset-card {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .hero-photo {
+      min-height: 330px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+      color: #fff;
+    }
+    .hero-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82));
+    }
+    .hero-photo div {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .message-grid,
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .message-card {
+      padding: 16px;
+      border-left: 5px solid #0f766e;
+    }
+    .message-card h3 {
+      margin-top: 0;
+    }
+    textarea {
+      width: 100%;
+      min-height: 210px;
+      box-sizing: border-box;
+      border: 1px solid rgba(15, 23, 42, .18);
+      border-radius: 8px;
+      padding: 12px;
+      font: inherit;
+      line-height: 1.45;
+      resize: vertical;
+      background: #f8fafc;
+    }
+    .asset-card {
+      overflow: hidden;
+      background: #fff;
+    }
+    .asset-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      background: #020617;
+    }
+    .asset-card div {
+      padding: 12px;
+    }
+    .status {
+      margin-top: 10px;
+      color: #065f46;
+      font-weight: 900;
+      min-height: 20px;
+    }
+    .note {
+      background: #ecfeff;
+      border-left: 5px solid #0f766e;
+      padding: 14px;
+      border-radius: 8px;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      .hero,
+      button,
+      .button {
+        display: none;
+      }
+      main {
+        padding: 0;
+      }
+      .panel,
+      .message-card,
+      .asset-card {
+        box-shadow: none;
+      }
+    }
+    @media (max-width: 880px) {
+      main {
+        padding: 14px;
+      }
+      .hero,
+      .message-grid,
+      .asset-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Campana lista para compartir</span>
+        </div>
+        <h1>Material de difusion</h1>
+        <p>Mensajes preparados para que la directiva, entrenadores y familias puedan compartir la gira de forma ordenada, clara y emotiva.</p>
+        <p>Antes de enviar masivamente, la presidenta/directiva debe validar textos, montos, fotos y enlaces finales.</p>
+        <a class="button" href="index.html">Inicio</a>
+        <a class="button secondary" href="merchandising.html">Merchandising</a>
+        <a class="button secondary" href="catalogo_merchandising.html">Catalogo merch</a>
+        <a class="button secondary" href="sponsors.html">Sponsors</a>
+        <a class="button secondary" href="propuesta_sponsors.html">Propuesta sponsors</a>
+        <a class="button secondary" href="galeria_club.html">Galeria</a>
+        <button class="secondary" onclick="window.print()">Imprimir material</button>
+      </div>
+      <div class="hero-photo">
+        <img src="../entrenamiento.jpg" alt="Entrenamiento Gigantes de Azapa">
+        <div>
+          <strong>Compartir bien tambien organiza</strong>
+          <p>Un mismo mensaje evita dudas y muestra seriedad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Mensajes listos</h2>
+      <div class="message-grid">
+        <article class="message-card">
+          <h3>WhatsApp para familias</h3>
+          <textarea id="msgFamilias">Hola familias Gigantes:
+
+Estamos organizando la gira deportiva de Gigantes de Azapa Rugby Club a Salta, Argentina, programada del 26 al 30 de agosto de 2026.
+
+Para trabajar ordenados, tenemos una app de gestion donde cada familia podra inscribir al jugador, subir documentos, revisar su estado, anotarse en actividades y ver el avance de la meta.
+
+Les pedimos revisar la informacion, completar la ficha y apoyar las actividades de recaudacion segun sus tiempos y posibilidades.
+
+Enlace de la app: PEGAR_ENLACE_PUBLICO_AQUI
+
+Muchas gracias por ser parte de esta gira. Cada aporte, documento y tarea nos acerca a Salta.</textarea>
+          <button onclick="copyText('msgFamilias', 'statusFamilias')">Copiar mensaje</button>
+          <div class="status" id="statusFamilias"></div>
+        </article>
+
+        <article class="message-card">
+          <h3>Mensaje para empresas</h3>
+          <textarea id="msgEmpresas">Estimados/as:
+
+Junto con saludar, queremos invitarlos a apoyar la gira deportiva de Gigantes de Azapa Rugby Club a Salta, Argentina, que se realizara del 26 al 30 de agosto de 2026.
+
+Esta gira busca entregar a nuestros jugadores una experiencia deportiva, cultural y formativa. Contamos con respaldo institucional e invitacion formal del club anfitrion en Argentina.
+
+Su empresa puede apoyar mediante auspicio economico, productos, servicios, premios para actividades o difusion. Todo aporte sera registrado de forma transparente y reconocido en la campana segun el tipo de colaboracion.
+
+Informacion para auspiciadores: PEGAR_ENLACE_PUBLICO_SPONSORS_AQUI
+
+Nos encantaria contar con ustedes en esta experiencia que une deporte, familias y comunidad.</textarea>
+          <button onclick="copyText('msgEmpresas', 'statusEmpresas')">Copiar mensaje</button>
+          <div class="status" id="statusEmpresas"></div>
+        </article>
+
+        <article class="message-card">
+          <h3>Publicacion Instagram/Facebook</h3>
+          <textarea id="msgRedes">Gigantes de Azapa rumbo a Salta 2026.
+
+Nuestros jugadores fueron invitados a vivir una experiencia deportiva y formativa en Argentina, del 26 al 30 de agosto de 2026.
+
+Estamos organizando actividades, sponsors, aportes y documentacion para que esta gira sea posible con orden, transparencia y trabajo en comunidad.
+
+Si quieres apoyar, puedes colaborar con aportes, productos, premios, servicios o difusion.
+
+Cada ayuda cuenta. Cada familia suma. Cada entrenamiento nos acerca a Salta.
+
+#GigantesDeAzapa #RugbyFormativo #Salta2026 #DeporteYComunidad</textarea>
+          <button onclick="copyText('msgRedes', 'statusRedes')">Copiar texto</button>
+          <div class="status" id="statusRedes"></div>
+        </article>
+
+        <article class="message-card">
+          <h3>Mensaje sponsor merchandising</h3>
+          <textarea id="msgMerchSponsor">Estimados/as:
+
+Estamos preparando la linea de merchandising solidario de Gigantes de Azapa Rugby Club para apoyar la gira Salta 2026.
+
+Si su empresa no puede aportar dinero directo, existe una alternativa muy valiosa: apoyar produciendo o financiando productos como poleras, polerones, jockeys, vasos, botellas, banderines o mochilas.
+
+A cambio, podemos evaluar la presencia de su logo en espacios definidos del merchandising, catalogo y publicaciones oficiales de la campana, previa validacion de la directiva.
+
+Esta colaboracion nos ayuda a vender productos con margen para la gira y permite que su marca quede asociada a deporte, familia y comunidad.
+
+Informacion de sponsors: PEGAR_ENLACE_PUBLICO_SPONSORS_AQUI</textarea>
+          <button onclick="copyText('msgMerchSponsor', 'statusMerchSponsor')">Copiar mensaje</button>
+          <div class="status" id="statusMerchSponsor"></div>
+        </article>
+
+        <article class="message-card">
+          <h3>Mensaje corto para pedir premios</h3>
+          <textarea id="msgPremios">Hola, somos parte de Gigantes de Azapa Rugby Club.
+
+Estamos reuniendo premios para actividades de recaudacion de la gira deportiva a Salta 2026.
+
+El premio puede ser un producto, gift card, servicio, estadia, cena, atencion profesional, merchandising u otro aporte que podamos sortear o usar en bingos/rifas.
+
+La empresa o persona donante quedara registrada y podremos agradecer publicamente su apoyo.
+
+Muchas gracias por ayudarnos a que nuestros jugadores vivan esta experiencia.</textarea>
+          <button onclick="copyText('msgPremios', 'statusPremios')">Copiar mensaje</button>
+          <div class="status" id="statusPremios"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Fotos sugeridas para acompanar publicaciones</h2>
+      <div class="asset-grid">
+        <article class="asset-card"><img src="../m10m12.jpg" alt="M10 M12"><div><strong>Post familiar</strong><p>Usar para mensajes a apoderados y comunidad.</p></div></article>
+        <article class="asset-card"><img src="../entrenamiento.jpg" alt="Entrenamiento"><div><strong>Post esfuerzo</strong><p>Usar para sponsors y publicaciones de avance.</p></div></article>
+        <article class="asset-card"><img src="../Entrenadores.jpg" alt="Entrenadores"><div><strong>Post seriedad</strong><p>Usar para directiva, gobierno regional, IND o empresas.</p></div></article>
+        <article class="asset-card"><img src="../3er tiempo.jpg" alt="Tercer tiempo"><div><strong>Post comunidad</strong><p>Usar para reforzar valores del rugby y convivencia.</p></div></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="note">
+        <strong>Antes de publicar:</strong> reemplazar los textos PEGAR_ENLACE_PUBLICO_AQUI y PEGAR_ENLACE_PUBLICO_SPONSORS_AQUI por el enlace real cuando la app este publicada para celular.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function copyText(textareaId, statusId) {
+      const field = document.getElementById(textareaId);
+      const status = document.getElementById(statusId);
+      try {
+        await navigator.clipboard.writeText(field.value);
+        status.textContent = "Copiado. Listo para pegar.";
+      } catch (error) {
+        field.select();
+        document.execCommand("copy");
+        status.textContent = "Copiado. Listo para pegar.";
+      }
+      setTimeout(() => {
+        status.textContent = "";
+      }, 2600);
+    }
+  </script>
+</body>
+</html>

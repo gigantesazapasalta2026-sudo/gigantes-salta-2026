@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espacios Sponsor Merchandising - Gigantes de Azapa</title>
+  <style>
+    :root {
+      --club-black: #0b0f14;
+      --club-charcoal: #171717;
+      --club-orange: #f36b21;
+      --club-orange-dark: #c2410c;
+      --club-cream: #fff7ed;
+      --club-line: rgba(243, 107, 33, .32);
+      --club-text: #111827;
+      --club-muted: #4b5563;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 8, 12, .96), rgba(88, 28, 12, .84)),
+        url("file:///C:/Users/roger/Desktop/Pack_Completo_Gigantes_Azapa_Jujuy_2026/01_App_PWA/merchandising-oficial.jpg") center/cover fixed;
+      color: var(--club-text);
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .tier, .placement, .mockup {
+      background: rgba(255,255,255,.97);
+      border: 1px solid var(--club-line);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: var(--club-orange-dark); font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.1rem, 5vw, 3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: var(--club-charcoal);
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: var(--club-orange); }
+    .mockup {
+      min-height: 330px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .mockup img { width: 100%; height: 100%; min-height: 330px; object-fit: cover; display: block; }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .tier-grid, .placement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .tier, .placement { padding: 15px; border-left: 5px solid var(--club-orange); }
+    .tier strong, .placement strong { display: block; color: var(--club-orange-dark); margin-bottom: 8px; font-size: 1.08rem; }
+    .price { display: block; font-size: 1.35rem; font-weight: 900; color: var(--club-orange-dark); margin: 8px 0; }
+    .note {
+      background: var(--club-cream);
+      border-left: 5px solid var(--club-orange);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .approval-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .approval-grid label {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid var(--club-line);
+      border-radius: 8px;
+      padding: 12px;
+      line-height: 1.45;
+    }
+    input[type="checkbox"] { width: 18px; height: 18px; flex: 0 0 auto; }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .tier, .placement { box-shadow: none; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .tier-grid, .placement-grid, .approval-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Marca en productos oficiales</span>
+        </div>
+        <h1>Espacios sponsor en merchandising</h1>
+        <p>Propuesta para empresas que financian, producen o aportan merchandising. Define donde puede aparecer su logo y que beneficios recibe sin desordenar la identidad del club.</p>
+        <a class="button" href="sponsors.html">Sponsors</a>
+        <a class="button secondary" href="compromiso_sponsor_merchandising.html">Compromiso</a>
+        <a class="button secondary" href="validacion_merchandising.html">Validacion merch</a>
+        <a class="button secondary" href="catalogo_merchandising.html">Catalogo</a>
+        <button class="secondary" onclick="window.print()">Imprimir propuesta</button>
+      </div>
+      <div class="mockup">
+        <img src="file:///C:/Users/roger/Desktop/Pack_Completo_Gigantes_Azapa_Jujuy_2026/01_App_PWA/merchandising-oficial.jpg" alt="Merchandising oficial">
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Categorias de presencia de marca</h2>
+      <div class="tier-grid">
+        <article class="tier"><strong>Auspiciador principal</strong><span class="price">Produccion mayor</span><p>Logo destacado en camiseta/poleron, catalogo, pagina de sponsors y publicaciones principales.</p></article>
+        <article class="tier"><strong>Auspiciador oro/plata</strong><span class="price">Produccion parcial</span><p>Logo en espacios secundarios, catalogo y agradecimientos segun aporte valorizado.</p></article>
+        <article class="tier"><strong>Colaborador producto</strong><span class="price">Aporte puntual</span><p>Logo en agradecimientos, catalogo o redes cuando aporta productos especificos.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Espacios sugeridos</h2>
+      <div class="placement-grid">
+        <article class="placement"><strong>Camiseta gira</strong><p>Espalda baja, manga o bloque de auspiciadores segun nivel de aporte.</p></article>
+        <article class="placement"><strong>Poleron oficial</strong><p>Espalda, manga o parte inferior posterior sin tapar logo del club.</p></article>
+        <article class="placement"><strong>Catalogo PDF</strong><p>Logo en pagina de sponsors y bloque de empresas colaboradoras.</p></article>
+        <article class="placement"><strong>Banderin</strong><p>Logo pequeno en zona inferior o reverso si directiva lo aprueba.</p></article>
+        <article class="placement"><strong>Vasos / botellas</strong><p>Logo de empresa como colaborador de produccion, separado del escudo principal.</p></article>
+        <article class="placement"><strong>Redes y app</strong><p>Agradecimiento publico con foto del producto y enlace a sponsor.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Condiciones que debe aprobar la directiva</h2>
+      <div class="approval-grid">
+        <label><input type="checkbox"> El logo del club mantiene prioridad visual sobre marcas externas.</label>
+        <label><input type="checkbox"> La ubicacion del logo sponsor se aprueba antes de mandar a producir.</label>
+        <label><input type="checkbox"> El aporte queda valorizado y registrado en el Centro Operativo.</label>
+        <label><input type="checkbox"> La empresa entrega logo en buena calidad antes de la fecha limite.</label>
+        <label><input type="checkbox"> La directiva valida si el sponsor aparece en polera, catalogo, redes o todos.</label>
+        <label><input type="checkbox"> Si el producto no cumple calidad/plazo, no se publica como sponsor confirmado.</label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="note">
+        <strong>Recomendacion:</strong> usar esta pagina para negociar con empresas. Es mejor ofrecer espacios definidos que prometer "logo donde quieran", porque despues complica el diseno y la produccion.
+      </div>
+    </section>
+  </main>
+</body>
+</html>

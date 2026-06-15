@@ -1,0 +1,9 @@
+Carpeta para documentos y logos institucionales que deben verse dentro de la app publica.
+
+Poner aqui:
+- carta-invitacion-salta.pdf
+- logo-tigres-rugby-club.jpg
+- logos de entidades, auspiciadores o respaldo oficial
+
+Evitar rutas a Google Drive privado o archivos sueltos en la carpeta madre cuando la app se publique.
+

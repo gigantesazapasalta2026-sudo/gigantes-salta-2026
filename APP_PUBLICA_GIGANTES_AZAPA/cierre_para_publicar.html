@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cierre para publicar - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../Rugby estadio.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{background:#f8fafc;border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    .ok{border-left-color:#16a34a}.warn{border-left-color:#f59e0b}.danger{border-left-color:#dc2626}
+    .status{display:inline-flex;border-radius:999px;padding:6px 10px;font-weight:900;background:var(--cream);color:var(--orange-dark)}
+    ul{padding-left:20px}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <span class="status">Estado general: listo para piloto, no para lanzamiento masivo todavia</span>
+      <h1>Cierre para publicar</h1>
+      <p>La app ya tiene estructura completa para mostrar la gira, recibir inscripciones, ordenar documentos, actividades, aportes, sponsors, bingos, merchandising y avance. Antes de enviarla masivamente, falta cerrar pruebas y publicacion.</p>
+      <a class="button" href="index.html">Ver inicio publico</a>
+      <a class="button secondary" href="presentacion_presidenta.html">Presentacion Presidenta</a>
+      <a class="button secondary" href="publicar_en_netlify.html">Publicar web</a>
+      <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+      <a class="button secondary" href="checklist_final.html">Checklist final</a>
+      <a class="button secondary" href="simulacion_piloto.html">Simulacion piloto</a>
+      <a class="button secondary" href="faltantes_finales.html">Faltantes finales</a>
+      <a class="button secondary" href="auditoria_final_piloto.html">Auditoria final</a>
+      <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+      <a class="button secondary" href="revision_directiva.html">Revision directiva</a>
+      <a class="button secondary" href="merchandising.html">Tienda merchandising</a>
+      <button class="button secondary" onclick="window.print()">Imprimir cierre</button>
+    </section>
+
+    <div class="grid">
+      <section class="card ok">
+        <h2 style="margin-top:0">Ya esta fuerte</h2>
+        <ul>
+          <li>Inscripcion de jugadores.</li>
+          <li>Carga y control de documentos.</li>
+          <li>Estado personal por jugador/familia.</li>
+          <li>Actividades, bingos y comisiones.</li>
+          <li>Aportes, sponsors y avance recaudado.</li>
+          <li>Merchandising con carro, catalogo y validacion.</li>
+          <li>Manual, checklist, acta y revision directiva.</li>
+        </ul>
+      </section>
+
+      <section class="card warn">
+        <h2 style="margin-top:0">Falta antes del piloto</h2>
+        <ul>
+          <li>Probar un pedido real de merchandising.</li>
+          <li>Confirmar que llegue a WEB_MERCHANDISING.</li>
+          <li>Actualizar Apps Script si falta la ultima version.</li>
+          <li>Probar inscripcion, documentos, mi estado y avance.</li>
+          <li>Revisar precios, costos y stock con directiva.</li>
+        </ul>
+      </section>
+
+      <section class="card danger">
+        <h2 style="margin-top:0">Falta antes del lanzamiento masivo</h2>
+        <ul>
+          <li>Publicar la app en un enlace real, no file:///.</li>
+          <li>Dejar fotos finales dentro de carpetas publicas.</li>
+          <li>Ocultar herramientas internas y paginas de prueba.</li>
+          <li>Crear QR oficial para familias y sponsors.</li>
+          <li>Validar privacidad de documentos personales.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section>
+      <h2 style="margin-top:0">Mi recomendacion</h2>
+      <p><strong>No lanzarla todavia a todo el publico.</strong> Si la enviaria a Presidenta y 2 o 3 personas de confianza como piloto controlado, para que revisen flujo, textos, imagenes y pedidos. Despues de esa prueba, se corrige lo final y ahi si se publica masivamente.</p>
+    </section>
+  </main>
+</body>
+</html>

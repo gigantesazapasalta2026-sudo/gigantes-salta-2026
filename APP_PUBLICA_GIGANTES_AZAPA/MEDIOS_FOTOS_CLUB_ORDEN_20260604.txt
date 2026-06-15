@@ -1,0 +1,47 @@
+MEDIOS FOTOS CLUB - GIGANTES DE AZAPA SALTA 2026
+
+Fotos nuevas integradas en la app:
+- Entrenadores.jpg
+- entrenador 1.jpg
+- entrenador 2.jpg
+- entrenador 3.jpg
+- entrenamiento.jpg
+- m10m12.jpg
+- 1 m10m12.jpg
+- m14.jpg
+- Niños reunidos 2.jpg
+- 3er tiempo.jpg
+- fogata formando club.jpg
+- Niños reunidos.jpg
+- Rugby estadio.jpg
+- rugby playa.jpg
+- niños llegando a jugar.mov
+
+Paginas donde quedaron visibles:
+- index.html
+- galeria_club.html
+- album_visual.html
+- sponsors.html
+- aportes.html
+- respaldo_institucional.html
+
+Orden recomendado para publicacion final:
+Crear una carpeta de medios dentro de la app y renombrar sin espacios, acentos ni mayusculas:
+- medios/club/m10-m12-01.jpg
+- medios/club/m10-m12-02.jpg
+- medios/club/m14-01.jpg
+- medios/club/entrenadores-01.jpg
+- medios/club/entrenador-01.jpg
+- medios/club/entrenador-02.jpg
+- medios/club/entrenador-03.jpg
+- medios/club/entrenamiento-01.jpg
+- medios/club/tercer-tiempo-01.jpg
+- medios/club/fogata-formando-club-01.jpg
+- medios/club/ninos-reunidos-01.jpg
+- medios/club/ninos-reunidos-02.jpg
+- medios/club/rugby-estadio-01.jpg
+- medios/club/rugby-playa-01.jpg
+- medios/club/ninos-llegando-a-jugar.mp4
+
+Nota:
+En este momento la app local usa rutas hacia las fotos que estan en la carpeta madre. Para publicar en internet conviene mover/copiar todo a la carpeta de la app y ajustar las rutas a medios/club/.

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publicar en Netlify - Gigantes de Azapa Salta 2026</title>
+  <style>
+    :root{--black:#0b0f14;--orange:#f36b21;--orange-dark:#c2410c;--cream:#fff7ed;--line:rgba(243,107,33,.32);--text:#111827;--green:#0f766e;--yellow:#f59e0b;--red:#dc2626}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(115deg,rgba(5,8,12,.96),rgba(88,28,12,.84)),url("../Rugby estadio.jpg") center/cover fixed;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:24px}
+    section,.card{background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px;box-shadow:0 18px 46px rgba(2,6,23,.28)}
+    h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:.95;letter-spacing:0}
+    p,li{line-height:1.55}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:8px;padding:10px 14px;background:var(--black);color:#fff;font-weight:900;text-decoration:none;margin:4px 6px 4px 0}
+    .button.secondary{background:var(--orange)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border-left:5px solid var(--green)}
+    .warn{border-left-color:var(--yellow)}.danger{border-left-color:var(--red)}
+    label{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border-left:5px solid var(--green);border-radius:8px;padding:10px;margin:8px 0}
+    label.warn{border-left-color:var(--yellow)}
+    input{width:20px;height:20px;flex:0 0 auto}
+    code{background:#f1f5f9;border-radius:6px;padding:2px 6px}
+    .note{background:var(--cream);border-left:5px solid var(--orange);border-radius:8px;padding:14px}
+    @media(max-width:900px){main{padding:14px}.grid{grid-template-columns:1fr}}
+    @media print{body{background:#fff}main{padding:0}.button{display:none}section,.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Publicar en Netlify</h1>
+      <p>Guia para convertir la app local en un enlace real que la Presidenta, familias y sponsors puedan abrir desde cualquier celular.</p>
+      <a class="button" href="https://app.netlify.com/drop">Abrir Netlify Drop</a>
+      <a class="button secondary" href="presentacion_presidenta.html">Presentacion Presidenta</a>
+      <a class="button secondary" href="manual_presentacion_app.html">Manual explicativo</a>
+      <a class="button secondary" href="orden_medios_publicacion.html">Orden medios</a>
+      <a class="button secondary" href="despues_de_publicar.html">Despues de publicar</a>
+      <a class="button secondary" href="accesos_publicos.html">Accesos publicos</a>
+      <a class="button secondary" href="auditoria_final_piloto.html">Auditoria final</a>
+      <button class="button secondary" onclick="window.print()">Imprimir guia</button>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Resumen corto</h2>
+      <div class="note">
+        Netlify permite publicar un sitio estatico arrastrando una carpeta con archivos HTML. Al terminar entrega un enlace publico tipo <code>https://nombre.netlify.app</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Antes de arrastrar la carpeta</h2>
+      <div class="grid">
+        <article class="card warn">
+          <h3>Carpeta que se arrastra</h3>
+          <p>La carpeta a publicar sera la carpeta madre:</p>
+          <p><code>GIGANTES_AZAPA_JUJUY_2026</code></p>
+          <p>Asi quedan disponibles la app publica, las fotos sueltas y la carpeta de merchandising.</p>
+        </article>
+        <article class="card warn">
+          <h3>Imagenes importantes</h3>
+          <p>Si una imagen no queda dentro de la carpeta publicada, en internet no se vera. Por eso hay que confirmar fotos, logos, video y merchandising antes de subir.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Checklist de archivos visuales</h2>
+      <p>Antes de publicar, confirma que estos archivos esten disponibles dentro de la carpeta que se subira o en rutas que el sitio pueda leer.</p>
+      <label class="warn"><input type="checkbox"> Fotos del club: Niños reunidos, Rugby estadio, rugby playa, entrenadores, entrenamiento, m10/m12, m14.</label>
+      <label class="warn"><input type="checkbox"> Video: niños llegando a jugar.mov.</label>
+      <label class="warn"><input type="checkbox"> Logo Gigantes y logo Tigres Rugby Club.</label>
+      <label class="warn"><input type="checkbox"> Carpeta 09_DISENO_MERCHANDISING con productos separados.</label>
+      <label class="warn"><input type="checkbox"> Carta de invitacion o pagina carta_invitacion_salta.html funcionando.</label>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Pasos en Netlify</h2>
+      <ol>
+        <li>Entrar a <a href="https://app.netlify.com/drop">https://app.netlify.com/drop</a>.</li>
+        <li>Iniciar sesion o crear cuenta Netlify.</li>
+        <li>Arrastrar la carpeta madre completa <code>GIGANTES_AZAPA_JUJUY_2026</code> al recuadro de Netlify Drop.</li>
+        <li>Esperar que termine la publicacion.</li>
+        <li>Copiar el enlace que termina en <code>netlify.app</code>.</li>
+        <li>Abrir ese enlace en el celular.</li>
+        <li>Probar <strong>Accesos publicos</strong>, <strong>Aportes</strong>, <strong>Merchandising</strong> y <strong>Avance</strong>.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Despues de publicar</h2>
+      <label><input type="checkbox"> Guardar el enlace publico oficial.</label>
+      <label><input type="checkbox"> Cambiar el nombre del sitio en Netlify a algo simple, por ejemplo <code>gigantes-azapa-salta2026</code>.</label>
+      <label><input type="checkbox"> Actualizar Apps Script para que el diploma automatico use el enlace publico real.</label>
+      <label><input type="checkbox"> Completar el checklist de <a href="despues_de_publicar.html">Despues de publicar</a>.</label>
+      <label><input type="checkbox"> Generar QR con el enlace publico.</label>
+      <label><input type="checkbox"> Enviar a Presidenta como piloto interno.</label>
+    </section>
+
+    <section>
+      <h2 style="margin-top:0">Importante</h2>
+      <p>Se recomienda publicar la carpeta madre completa porque varias paginas usan fotos ubicadas fuera de <code>APP_PUBLICA_GIGANTES_AZAPA</code>, por ejemplo fotos del club y la carpeta <code>09_DISENO_MERCHANDISING</code>. El archivo <code>index.html</code> de la carpeta madre redirige automaticamente a los accesos publicos.</p>
+      <p>No publicar enlaces internos como pruebas, copiadores o diagnosticos. Para compartir usar primero:</p>
+      <p><code>accesos_publicos.html</code></p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Control Merchandising - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5,16,31,.94), rgba(7,61,49,.84)),
+        url("../Entrenadores.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero, .panel, .metric, .task {
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2,6,23,.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(280px,.9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand img { width: 68px; height: 68px; object-fit: contain; border-radius: 8px; background: #fff; padding: 6px; }
+    .brand span { color: #0f766e; font-weight: 900; text-transform: uppercase; font-size: .82rem; }
+    h1 { margin: 0 0 10px; font-size: clamp(2.1rem,5vw,3.9rem); line-height: .96; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      background: #020617;
+      color: #fff;
+    }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82)); }
+    .photo div { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+    .button, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary, button.secondary { background: #facc15; color: #0f172a; }
+    .panel { padding: 18px; margin-bottom: 18px; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .metric { padding: 16px; border-left: 5px solid #0f766e; }
+    .metric strong { display: block; color: #0f766e; font-size: 1.35rem; margin-top: 6px; }
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .task { padding: 14px; border-left: 5px solid #facc15; }
+    .task strong { display: block; margin-bottom: 8px; }
+    .task label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    input[type="checkbox"] { width: 18px; height: 18px; flex: 0 0 auto; }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #0f766e; color: #fff; }
+    td input, td select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 7px;
+      font: inherit;
+    }
+    .note {
+      background: #ecfeff;
+      border-left: 5px solid #0f766e;
+      padding: 14px;
+      border-radius: 8px;
+    }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .hero, .button, button { display: none; }
+      .panel, .metric, .task { box-shadow: none; }
+      table { min-width: 0; font-size: 11px; }
+    }
+    @media (max-width: 900px) {
+      main { padding: 14px; }
+      .hero, .metrics, .task-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Control interno de ventas</span>
+        </div>
+        <h1>Control merchandising</h1>
+        <p>Panel interno para ordenar preventa, pagos, produccion y entregas de productos del club. Sirve como guia de control junto con la hoja WEB_MERCHANDISING.</p>
+        <a class="button" href="merchandising.html">Tienda</a>
+        <a class="button secondary" href="validacion_merchandising.html">Validar precios</a>
+        <a class="button secondary" href="avance.html">Avance</a>
+        <a class="button secondary" href="panel_lanzamiento.html">Panel lanzamiento</a>
+        <button class="secondary" onclick="addRow()">Agregar fila</button>
+        <button class="secondary" onclick="window.print()">Imprimir control</button>
+      </div>
+      <div class="photo">
+        <img src="../entrenamiento.jpg" alt="Entrenamiento">
+        <div>
+          <strong>Vender tambien requiere orden</strong>
+          <p>Pedido, pago, produccion y entrega deben quedar claros.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric"><span>Pedidos</span><strong id="metricPedidos">0</strong></article>
+      <article class="metric"><span>Pagados</span><strong id="metricPagados">0</strong></article>
+      <article class="metric"><span>Entregados</span><strong id="metricEntregados">0</strong></article>
+      <article class="metric"><span>Total estimado</span><strong id="metricTotal">$0</strong></article>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Checklist de gestion</h2>
+      <div class="task-grid">
+        <article class="task"><strong>Antes de vender</strong><label><input type="checkbox">Directiva valida precios finales.</label><label><input type="checkbox">Proveedor confirma costos y tiempos.</label><label><input type="checkbox">Se definen tallas disponibles.</label></article>
+        <article class="task"><strong>Durante preventa</strong><label><input type="checkbox">Registrar cada pedido en WEB_MERCHANDISING.</label><label><input type="checkbox">Confirmar pago antes de producir.</label><label><input type="checkbox">Revisar pedidos duplicados.</label></article>
+        <article class="task"><strong>Entrega</strong><label><input type="checkbox">Separar por familia/jugador.</label><label><input type="checkbox">Marcar pedido como entregado.</label><label><input type="checkbox">Guardar comprobantes o respaldo.</label></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Control manual rapido</h2>
+      <p>Esta tabla es de apoyo visual. El registro formal debe quedar en la planilla del Centro Operativo cuando Apps Script este actualizado.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Comprador</th>
+              <th>Jugador/Familia</th>
+              <th>Producto</th>
+              <th>Talla</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th>Pago</th>
+              <th>Estado</th>
+              <th>Entrega</th>
+            </tr>
+          </thead>
+          <tbody id="orderRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="note">
+        <strong>Uso recomendado:</strong> cuando llegue un pedido desde la tienda, revisar la hoja WEB_MERCHANDISING, confirmar pago, agrupar por producto/talla y recien ahi enviar a produccion. La edicion especial de gira usa precios referenciales y debe ser validada por directiva/proveedor antes de publicarse masivamente.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const rows = document.getElementById("orderRows");
+    const money = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+
+    function addRow(data = {}) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><input value="${data.comprador || ""}" oninput="updateMetrics()"></td>
+        <td><input value="${data.familia || ""}" oninput="updateMetrics()"></td>
+        <td><input value="${data.producto || ""}" oninput="updateMetrics()"></td>
+        <td><input value="${data.talla || ""}" oninput="updateMetrics()"></td>
+        <td><input type="number" min="0" value="${data.cantidad || 1}" oninput="updateMetrics()"></td>
+        <td><input type="number" min="0" value="${data.total || 0}" oninput="updateMetrics()"></td>
+        <td><select onchange="updateMetrics()"><option>Pendiente</option><option>Pagado</option><option>Parcial</option></select></td>
+        <td><select onchange="updateMetrics()"><option>Recibido</option><option>En produccion</option><option>Listo</option><option>Entregado</option></select></td>
+        <td><input placeholder="Fecha / observacion"></td>
+      `;
+      rows.appendChild(tr);
+      updateMetrics();
+    }
+
+    function updateMetrics() {
+      const trs = Array.from(rows.querySelectorAll("tr"));
+      const pedidos = trs.length;
+      let pagados = 0;
+      let entregados = 0;
+      let total = 0;
+      trs.forEach((tr) => {
+        const selects = tr.querySelectorAll("select");
+        if (selects[0].value === "Pagado") pagados += 1;
+        if (selects[1].value === "Entregado") entregados += 1;
+        total += Number(tr.querySelectorAll("input")[5].value || 0);
+      });
+      document.getElementById("metricPedidos").textContent = pedidos;
+      document.getElementById("metricPagados").textContent = pagados;
+      document.getElementById("metricEntregados").textContent = entregados;
+      document.getElementById("metricTotal").textContent = money.format(total);
+    }
+
+    addRow({ producto: "Polera de juego", talla: "M", cantidad: 1, total: 25000 });
+    addRow({ producto: "Gorro Gigantes", talla: "Unica", cantidad: 1, total: 9000 });
+  </script>
+</body>
+</html>

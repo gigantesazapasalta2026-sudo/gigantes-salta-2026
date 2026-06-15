@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acta Validacion Directiva - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../Entrenadores.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .decision,
+    .module {
+      background: rgba(255, 255, 255, .97);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.1rem, 5vw, 3.9rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+      color: #fff;
+    }
+    .photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.82));
+    }
+    .photo div {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .form-grid,
+    .module-grid,
+    .decision-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .module-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .decision-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 800;
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(15, 23, 42, .18);
+      border-radius: 8px;
+      padding: 11px;
+      font: inherit;
+      background: #fff;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .module,
+    .decision {
+      padding: 14px;
+      border-left: 5px solid #0f766e;
+    }
+    .decision.warn,
+    .module.warn {
+      border-left-color: #facc15;
+    }
+    .module strong,
+    .decision strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+    .module label,
+    .decision label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      margin: 7px 0;
+    }
+    .module input,
+    .decision input {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+    .signature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .signature {
+      border-top: 2px solid #0f172a;
+      padding-top: 8px;
+      min-height: 58px;
+      color: #475569;
+    }
+    .summary {
+      white-space: pre-wrap;
+      background: #f8fafc;
+      border-left: 5px solid #0f766e;
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 12px;
+      display: none;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      main {
+        padding: 0;
+      }
+      .hero,
+      .button,
+      button {
+        display: none;
+      }
+      .panel,
+      .module,
+      .decision {
+        box-shadow: none;
+      }
+      .panel {
+        break-inside: avoid;
+      }
+      .summary {
+        display: block;
+      }
+    }
+    @media (max-width: 900px) {
+      main {
+        padding: 14px;
+      }
+      .hero,
+      .form-grid,
+      .module-grid,
+      .decision-grid,
+      .signature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Validacion institucional</span>
+        </div>
+        <h1>Acta de revision directiva</h1>
+        <p>Documento de trabajo para dejar constancia de lo revisado, aprobado y pendiente antes de enviar la app a familias, sponsors o comunidad.</p>
+        <a class="button" href="revision_directiva.html">Volver a revision</a>
+        <a class="button secondary" href="checklist_final.html">Checklist final</a>
+        <button class="secondary" onclick="buildSummary()">Generar resumen</button>
+        <button class="secondary" onclick="window.print()">Imprimir / PDF</button>
+      </div>
+      <div class="photo">
+        <img src="../Entrenadores.jpg" alt="Equipo tecnico Gigantes de Azapa">
+        <div>
+          <strong>Orden antes de publicar</strong>
+          <p>Una validacion clara evita confusiones cuando la app salga a la comunidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Datos de la revision</h2>
+      <div class="form-grid">
+        <label>Fecha de revision
+          <input id="fecha" type="date">
+        </label>
+        <label>Lugar o modalidad
+          <input id="modalidad" placeholder="Ej: reunion directiva / WhatsApp / presencial">
+        </label>
+        <label>Responsable de la revision
+          <input id="responsable" placeholder="Nombre de quien lidera la revision">
+        </label>
+        <label>Version revisada
+          <input id="version" value="Piloto interno Salta 2026">
+        </label>
+      </div>
+      <label style="margin-top:12px">Participantes
+        <textarea id="participantes" rows="3" placeholder="Presidenta, directiva, entrenadores, encargados..."></textarea>
+      </label>
+    </section>
+
+    <section class="panel">
+      <h2>Modulos revisados</h2>
+      <div class="module-grid">
+        <article class="module"><strong>Inscripcion</strong><label><input type="checkbox" data-module="Inscripcion aprobada">Aprobado</label><label><input type="checkbox" data-module="Inscripcion requiere ajustes">Requiere ajustes</label></article>
+        <article class="module warn"><strong>Documentos privados</strong><label><input type="checkbox" data-module="Documentos aprobados">Aprobado</label><label><input type="checkbox" data-module="Documentos requieren ajustes">Requiere ajustes</label></article>
+        <article class="module"><strong>Mi Estado</strong><label><input type="checkbox" data-module="Mi Estado aprobado">Aprobado</label><label><input type="checkbox" data-module="Mi Estado requiere ajustes">Requiere ajustes</label></article>
+        <article class="module"><strong>Actividades y bingos</strong><label><input type="checkbox" data-module="Actividades aprobadas">Aprobado</label><label><input type="checkbox" data-module="Actividades requieren ajustes">Requiere ajustes</label></article>
+        <article class="module"><strong>Sponsors y aportes</strong><label><input type="checkbox" data-module="Sponsors aprobados">Aprobado</label><label><input type="checkbox" data-module="Sponsors requieren ajustes">Requiere ajustes</label></article>
+        <article class="module"><strong>Difusion y propuesta</strong><label><input type="checkbox" data-module="Difusion aprobada">Aprobado</label><label><input type="checkbox" data-module="Difusion requiere ajustes">Requiere ajustes</label></article>
+        <article class="module warn"><strong>Fotos y videos</strong><label><input type="checkbox" data-module="Imagenes autorizadas">Autorizado</label><label><input type="checkbox" data-module="Imagenes pendientes de autorizacion">Pendiente</label></article>
+        <article class="module warn"><strong>Privacidad</strong><label><input type="checkbox" data-module="Privacidad validada">Validada</label><label><input type="checkbox" data-module="Privacidad pendiente">Pendiente</label></article>
+        <article class="module"><strong>Publicacion</strong><label><input type="checkbox" data-module="Lista para piloto">Lista para piloto</label><label><input type="checkbox" data-module="Lista para publicacion">Lista para publicacion</label></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Decision</h2>
+      <div class="decision-grid">
+        <article class="decision"><strong>Aprobar piloto interno</strong><label><input name="decision" type="radio" value="Aprobada para piloto interno">Seleccionar</label></article>
+        <article class="decision"><strong>Aprobar prueba con familias</strong><label><input name="decision" type="radio" value="Aprobada para prueba con familias">Seleccionar</label></article>
+        <article class="decision"><strong>Aprobar publicacion</strong><label><input name="decision" type="radio" value="Aprobada para publicacion">Seleccionar</label></article>
+        <article class="decision warn"><strong>Requiere ajustes</strong><label><input name="decision" type="radio" value="Requiere ajustes antes de publicar">Seleccionar</label></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Observaciones y acuerdos</h2>
+      <label>Observaciones principales
+        <textarea id="observaciones" rows="5" placeholder="Ej: corregir montos, confirmar autorizacion de imagenes, definir enlace publico..."></textarea>
+      </label>
+      <label style="margin-top:12px">Tareas pendientes y responsables
+        <textarea id="pendientes" rows="5" placeholder="Ej: Roger publica app; Presidenta valida texto; Encargado sponsors confirma montos..."></textarea>
+      </label>
+      <div class="signature-grid">
+        <div class="signature">Presidenta / Directiva</div>
+        <div class="signature">Encargado proyecto</div>
+        <div class="signature">Entrenador / Coordinacion</div>
+      </div>
+      <div class="summary" id="summary"></div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("fecha").valueAsDate = new Date();
+
+    function buildSummary() {
+      const picked = Array.from(document.querySelectorAll("[data-module]:checked")).map((item) => "- " + item.dataset.module);
+      const decision = document.querySelector("input[name='decision']:checked");
+      const text = [
+        "ACTA DE VALIDACION DIRECTIVA - GIGANTES DE AZAPA SALTA 2026",
+        "",
+        "Fecha: " + document.getElementById("fecha").value,
+        "Modalidad: " + document.getElementById("modalidad").value,
+        "Responsable: " + document.getElementById("responsable").value,
+        "Version: " + document.getElementById("version").value,
+        "",
+        "Participantes:",
+        document.getElementById("participantes").value || "Pendiente de completar",
+        "",
+        "Modulos revisados:",
+        picked.length ? picked.join("\n") : "Pendiente de marcar",
+        "",
+        "Decision:",
+        decision ? decision.value : "Pendiente de seleccionar",
+        "",
+        "Observaciones:",
+        document.getElementById("observaciones").value || "Sin observaciones registradas",
+        "",
+        "Tareas pendientes:",
+        document.getElementById("pendientes").value || "Sin pendientes registrados"
+      ].join("\n");
+      const summary = document.getElementById("summary");
+      summary.textContent = text;
+      summary.style.display = "block";
+      summary.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  </script>
+</body>
+</html>

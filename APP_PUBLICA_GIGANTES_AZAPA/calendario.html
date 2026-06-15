@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendario - Gigantes de Azapa Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../rugby playa.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .metric,
+    .event {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .photo {
+      min-height: 280px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.76)),
+        url("../rugby estadio.jpg") center/cover;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font-weight: 900;
+      text-decoration: none;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .metric {
+      padding: 16px;
+      border-left: 5px solid #0f766e;
+    }
+    .metric strong {
+      display: block;
+      color: #0f766e;
+      font-size: 1.65rem;
+      margin-top: 6px;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .event {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 14px;
+      padding: 14px;
+      border-left: 5px solid #facc15;
+    }
+    .event time {
+      font-weight: 900;
+      color: #0f766e;
+    }
+    .event h3 {
+      margin: 0 0 6px;
+    }
+    .martes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .martes-grid div {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+      font-weight: 800;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      .hero,
+      .button {
+        display: none;
+      }
+      main {
+        padding: 0;
+      }
+      .panel,
+      .metric,
+      .event {
+        box-shadow: none;
+      }
+    }
+    @media (max-width: 900px) {
+      main {
+        padding: 14px;
+      }
+      .hero,
+      .metrics,
+      .event,
+      .martes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Calendario de trabajo</span>
+        </div>
+        <h1>Camino a Salta</h1>
+        <p>Fechas clave, cuenta regresiva y actividades de recaudacion para ordenar el trabajo de familias, jugadores, entrenadores y voluntarios.</p>
+        <a class="button" href="actividades.html">Anotarse en actividades</a>
+        <a class="button secondary" href="avance.html">Ver avance</a>
+        <a class="button secondary" href="index.html">Inicio</a>
+        <button class="button secondary" onclick="window.print()">Imprimir calendario</button>
+      </div>
+      <div class="photo">
+        <div>
+          <strong>La organizacion tambien se entrena</strong>
+          <p>Si todos sabemos lo que viene, el equipo avanza mejor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric"><span>Dias para viajar</span><strong id="daysLeft">0</strong></article>
+      <article class="metric"><span>Semanas restantes</span><strong id="weeksLeft">0</strong></article>
+      <article class="metric"><span>Martes disponibles</span><strong id="tuesdaysLeft">0</strong></article>
+      <article class="metric"><span>Fecha gira</span><strong>26 ago</strong></article>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Linea de tiempo principal</h2>
+      <div class="timeline">
+        <article class="event"><time>Junio 2026</time><div><h3>Orden documental</h3><p>Inscripciones, cedulas, autorizaciones, ficha medica, seguro y RSH si corresponde.</p></div></article>
+        <article class="event"><time>Junio - Julio</time><div><h3>Recaudacion fuerte</h3><p>Completos solidarios, rifas, venta de comida, merchandising y sponsors.</p></div></article>
+        <article class="event"><time>Junio - Agosto</time><div><h3>4 bingos solidarios</h3><p>Organizar cuatro bingos grandes con venta de cartones, premios, comida, bebidas, animacion y sponsors.</p></div></article>
+        <article class="event"><time>Julio 2026</time><div><h3>Postulacion y respaldos</h3><p>Preparar antecedentes IND, carta de invitacion, listado de jugadores y presupuesto de transporte.</p></div></article>
+        <article class="event"><time>Agosto 2026</time><div><h3>Cierre operativo</h3><p>Confirmar pasajeros, documentos, pagos, equipaje, contactos de emergencia y plan de viaje.</p></div></article>
+        <article class="event"><time>26 al 30 agosto</time><div><h3>Gira Salta 2026</h3><p>Intercambio deportivo, cultural y formativo con Tigres Rugby Club.</p></div></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Proximos martes solidarios</h2>
+      <p>Fechas disponibles para organizar completos, ventas o actividades de recaudacion.</p>
+      <div class="martes-grid" id="martesGrid"></div>
+    </section>
+  </main>
+
+  <script>
+    const travelDate = new Date("2026-08-26T08:00:00");
+    const today = new Date();
+    const msDay = 24 * 60 * 60 * 1000;
+    const days = Math.max(Math.ceil((travelDate - today) / msDay), 0);
+    document.getElementById("daysLeft").textContent = days;
+    document.getElementById("weeksLeft").textContent = Math.max(Math.ceil(days / 7), 0);
+
+    function countTuesdays(start, end) {
+      let count = 0;
+      const d = new Date(start);
+      d.setHours(12,0,0,0);
+      while (d <= end) {
+        if (d.getDay() === 2) count++;
+        d.setDate(d.getDate() + 1);
+      }
+      return count;
+    }
+
+    function nextTuesdays(start, end, max = 12) {
+      const dates = [];
+      const d = new Date(start);
+      d.setHours(12,0,0,0);
+      while (d <= end && dates.length < max) {
+        if (d.getDay() === 2) dates.push(new Date(d));
+        d.setDate(d.getDate() + 1);
+      }
+      return dates;
+    }
+
+    const tuesdays = countTuesdays(today, travelDate);
+    document.getElementById("tuesdaysLeft").textContent = tuesdays;
+    const formatter = new Intl.DateTimeFormat("es-CL", { weekday: "long", day: "2-digit", month: "long" });
+    document.getElementById("martesGrid").innerHTML = nextTuesdays(today, travelDate).map((date) => `<div>${formatter.format(date)}</div>`).join("");
+  </script>
+</body>
+</html>

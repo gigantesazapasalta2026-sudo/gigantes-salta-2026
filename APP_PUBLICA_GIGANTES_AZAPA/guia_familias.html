@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guia para familias - Salta 2026</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../niños reunidos.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .step,
+    .doc {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
+    .brand span {
+      color: #0f766e;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    p,
+    li {
+      line-height: 1.55;
+    }
+    .photo {
+      min-height: 300px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.76)),
+        url("../rugby playa.jpg") center/cover;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    .button,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 4px 6px 4px 0;
+    }
+    .button.secondary,
+    button.secondary {
+      background: #facc15;
+      color: #0f172a;
+    }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .steps,
+    .docs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .step,
+    .doc {
+      padding: 14px;
+      border-left: 5px solid #0f766e;
+    }
+    .step strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #facc15;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .doc {
+      border-left-color: #facc15;
+    }
+    .notice {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    @media print {
+      body {
+        background: #fff;
+      }
+      .hero,
+      .button,
+      button {
+        display: none;
+      }
+      main {
+        padding: 0;
+      }
+      .panel,
+      .step,
+      .doc {
+        box-shadow: none;
+      }
+    }
+    @media (max-width: 900px) {
+      main {
+        padding: 14px;
+      }
+      .hero,
+      .steps,
+      .docs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
+          <span>Guia para familias</span>
+        </div>
+        <h1>Como participar en Salta 2026</h1>
+        <p>Esta guia explica los pasos principales para inscribir al jugador, subir documentos, revisar pendientes y sumarse a las actividades de apoyo.</p>
+        <a class="button" href="inscripcion.html">Inscribir jugador</a>
+        <a class="button secondary" href="documentos_carga.html">Subir documentos</a>
+        <a class="button secondary" href="mi_estado.html">Mi estado</a>
+        <button class="secondary" onclick="window.print()">Imprimir guia</button>
+      </div>
+      <div class="photo">
+        <div>
+          <strong>Familias informadas, gira ordenada</strong>
+          <p>Mientras mas claro el proceso, menos dudas y mas tiempo para trabajar juntos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Pasos principales</h2>
+      <div class="steps">
+        <article class="step"><strong>1</strong><h3>Inscribir jugador</h3><p>Completa la ficha con datos del jugador, adulto responsable, contacto y codigo familiar.</p><a class="button" href="inscripcion.html">Ir a inscripcion</a></article>
+        <article class="step"><strong>2</strong><h3>Guardar codigo familiar</h3><p>Ese codigo permite revisar el estado documental sin exponer datos personales.</p></article>
+        <article class="step"><strong>3</strong><h3>Subir documentos</h3><p>Adjunta cedula, autorizaciones, ficha medica, seguro y otros respaldos requeridos.</p><a class="button" href="documentos_carga.html">Subir documentos</a></article>
+        <article class="step"><strong>4</strong><h3>Revisar Mi Estado</h3><p>Consulta que documentos estan recibidos y cuales faltan.</p><a class="button" href="mi_estado.html">Consultar estado</a></article>
+        <article class="step"><strong>5</strong><h3>Anotarse en actividades</h3><p>Elige comisiones, turnos, insumos o aportes para apoyar la recaudacion.</p><a class="button" href="actividades.html">Ver actividades</a></article>
+        <article class="step"><strong>6</strong><h3>Apoyar la meta</h3><p>Puedes cooperar con aportes, productos, premios, sponsors o difusion.</p><a class="button" href="aportes.html">Registrar aporte</a></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Documentos que se solicitaran</h2>
+      <div class="docs">
+        <article class="doc"><h3>Cedula frente y reverso</h3><p>Imagen clara del documento de identidad.</p></article>
+        <article class="doc"><h3>Certificado de nacimiento</h3><p>Documento de respaldo para datos del menor.</p></article>
+        <article class="doc"><h3>Autorizacion notarial</h3><p>Permiso formal para participar en la gira.</p></article>
+        <article class="doc"><h3>Ficha medica</h3><p>Antecedentes de salud y emergencia.</p></article>
+        <article class="doc"><h3>Seguro o cobertura</h3><p>Respaldo medico o cobertura de viaje.</p></article>
+        <article class="doc"><h3>RSH si corresponde</h3><p>Puede solicitarse para postulacion a apoyos publicos como IND.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Privacidad</h2>
+      <div class="notice">Cedulas, ficha medica, RSH y documentos familiares son privados. La app publica solo muestra el estado de avance mediante RUT/DNI y codigo familiar. Los archivos quedan en el Centro Operativo privado del proyecto.</div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Tambien puedes ayudar</h2>
+      <a class="button" href="bingos.html">Bingos solidarios</a>
+      <a class="button" href="sponsors.html">Buscar sponsor</a>
+      <a class="button" href="avance.html">Ver avance</a>
+      <a class="button secondary" href="respaldo_institucional.html">Carta oficial</a>
+    </section>
+  </main>
+</body>
+</html>

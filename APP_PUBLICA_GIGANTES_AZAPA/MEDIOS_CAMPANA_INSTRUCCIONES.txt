@@ -1,0 +1,31 @@
+MEDIOS DE CAMPANA - FOTOS Y VIDEO
+
+Para que la app no dependa de Google Drive y no pida permisos, conviene guardar las fotos y videos publicos dentro de la carpeta de la app:
+
+APP_PUBLICA_GIGANTES_AZAPA/medios/
+
+Nombres sugeridos:
+
+foto-antofagasta-01.jpg
+foto-antofagasta-02.jpg
+foto-antofagasta-03.jpg
+foto-antofagasta-04.jpg
+video-antofagasta-sabado.mp4
+
+Uso recomendado:
+
+1. Sponsors:
+   - Video o foto emocional de los ninos viajando a Antofagasta.
+   - Modal de Bronce/Plata/Oro con imagen real del club.
+
+2. Portada:
+   - Hero con foto real del equipo.
+
+3. Actividades:
+   - Fotos de viajes, entrenamientos y ventas solidarias.
+
+4. Respaldo institucional:
+   - Foto/video como prueba de que el club ya se moviliza y participa en encuentros.
+
+Importante:
+Los medios publicos no deben mostrar documentos, RUT, fichas medicas ni datos personales.

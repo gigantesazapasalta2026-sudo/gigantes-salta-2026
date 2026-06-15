@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copiar codigo Apps Script | Gigantes de Azapa</title>
+  <style>
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#f8fafc; color:#111827; }
+    header { background:#b11226; color:#fff; padding:28px 18px; }
+    main { width:min(1100px, calc(100% - 28px)); margin:24px auto; display:grid; gap:16px; }
+    h1 { margin:0; font-size:clamp(1.8rem, 4vw, 3rem); }
+    .box { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:18px; box-shadow:0 12px 28px rgba(17,24,39,.08); }
+    button, a { display:inline-flex; align-items:center; justify-content:center; min-height:42px; border:0; border-radius:8px; padding:11px 15px; font-weight:900; background:#b11226; color:#fff; text-decoration:none; cursor:pointer; }
+    a { background:#171717; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; }
+    textarea { width:100%; min-height:62vh; border:1px solid #d1d5db; border-radius:8px; padding:14px; font-family:Consolas, monospace; font-size:14px; line-height:1.45; white-space:pre; }
+    .ok { display:none; color:#166534; background:#dcfce7; border:1px solid #86efac; padding:12px; border-radius:8px; font-weight:800; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Copiar codigo Apps Script</h1>
+    <p>Presiona el boton rojo. Luego vuelve a Apps Script, borra todo en Codigo.gs y pega.</p>
+  </header>
+  <main>
+    <section class="box">
+      <div class="actions">
+        <button id="copy">Copiar codigo completo</button>
+        <a href="https://script.google.com/home/projects/1qJsCYQwUCcfF9ZeYUkxCG75YZ3cRfs6tkWdwyjjMP-w6lIYt3hnDCsnG/edit" target="_blank" rel="noopener">Abrir Apps Script</a>
+      </div>
+      <p class="ok" id="ok">Codigo copiado. Ahora pegalo en Codigo.gs con Ctrl + V.</p>
+    </section>
+    <section class="box">
+      <textarea id="code" readonly>const SPREADSHEET_ID = "1rwfiS1pAt3ICNGRRFR0PUcwUFIw4WCKjZigOdfn8QaU";
+const ROOT_FOLDER_ID = "1Slq7bF2giWkpSkf2Jrs_p1yQ8DIgFtH_";
+
+const SHEETS = {
+  inscripcion: "WEB_INSCRIPCIONES",
+  documentos: "WEB_DOCUMENTOS",
+  actividad: "WEB_ACTIVIDADES",
+  sponsor: "WEB_SPONSORS",
+  aporte: "WEB_APORTES_DIPLOMAS",
+  album: "WEB_ALBUM_MOTIVACIONAL"
+};
+
+function doPost(e) {
+  const data = getPayload_(e);
+  const tipo = data.tipo || data.type || "";
+  if (!tipo) return json_({ ok: false, message: "Falta tipo de formulario" });
+
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+  if (tipo === "inscripcion") {
+    append_(ss, SHEETS.inscripcion, [new Date(), tipo, data.jugador || "", data.categoria || "", data.rut || "", data.nacimiento || "", data.adulto || "", data.telefono || "", data.correo || "", data.pago || "", data.observaciones || "", "RECIBIDO WEB", data.codigo || ""]);
+    sendEmail_(data.correo, "Inscripcion recibida - Gigantes de Azapa", "Recibimos la inscripcion de " + (data.jugador || "jugador/a") + ".\n\nGigantes de Azapa Rugby Club");
+  }
+
+  if (tipo === "documentos") {
+    append_(ss, SHEETS.documentos, [new Date(), tipo, data.jugador || "", data.categoria || "", data.cedula || "", data.certificado || "", data.notarial || "", data.medica || "", data.club || "", data.seguro || "", data.observaciones || "", "RECIBIDO WEB"]);
+  }
+
+  if (tipo === "actividad") {
+    append_(ss, SHEETS.actividad, [new Date(), tipo, data.nombre || "", data.correo || "", data.telefono || "", data.fecha || "", data.actividad || "", data.tarea || "", data.detalle || "", "SI", "ANOTADO"]);
+    sendEmail_(data.correo, "Recordatorio apoyo Gira Gigantes de Azapa", "Hola " + (data.nombre || "") + ",\n\nGracias por apoyar la gira.\n\nActividad: " + (data.actividad || "") + "\nTarea: " + (data.tarea || "") + "\nFecha: " + (data.fecha || "") + "\nDetalle: " + (data.detalle || "") + "\n\nGigantes de Azapa Rugby Club");
+  }
+
+  if (tipo === "sponsor") {
+    append_(ss, SHEETS.sponsor, [new Date(), tipo, data.empresa || "", data.contacto || "", data.correo || "", data.telefono || "", data.tipo_apoyo || data.tipoApoyo || "", data.paquete || "", data.detalle || "", "CONTACTAR"]);
+    sendEmail_(data.correo, "Gracias por querer apoyar a Gigantes de Azapa", "Gracias por interesarte en apoyar la gira. El equipo de sponsors se pondra en contacto.\n\nGigantes de Azapa Rugby Club");
+  }
+
+  if (tipo === "aporte") {
+    append_(ss, SHEETS.aporte, [new Date(), tipo, data.nombre || "", data.correo || "", data.monto_o_aporte || "", data.actividad || "", data.detalle || "", "PENDIENTE", "RECIBIDO WEB"]);
+    sendEmail_(data.correo, "Gracias por tu aporte - Gigantes de Azapa", "Gracias por tu aporte a la gira.\n\nAporte: " + (data.monto_o_aporte || "") + "\n\nGigantes de Azapa Rugby Club");
+  }
+
+  if (tipo === "album") {
+    const fotoUrl = saveAlbumPhoto_(data.nombre || "album", data.foto_base64 || "");
+    append_(ss, SHEETS.album, [new Date(), tipo, data.nombre || "", data.rol || "", data.categoria || "", data.apodo || "", data.frase || "", data.sueno_gira || "", data.adulto_autoriza || "", data.correo || "", fotoUrl, "PENDIENTE REVISION"]);
+    sendEmail_(data.correo, "Ficha de album recibida - Gigantes de Azapa", "Recibimos la ficha de album motivacional de " + (data.nombre || "") + ".\n\nGigantes de Azapa Rugby Club");
+  }
+
+  return json_({ ok: true, tipo: tipo });
+}
+
+function doGet(e) {
+  const data = (e && e.parameter) ? e.parameter : {};
+  if (data.action === "estado") {
+    const result = getEstadoJugador_(data.rut || "", data.codigo || "");
+    return data.callback ? javascript_(data.callback, result) : json_(result);
+  }
+  const response = { ok: false, message: "Accion no reconocida" };
+  return data.callback ? javascript_(data.callback, response) : json_(response);
+}
+
+function getPayload_(e) {
+  return (e && e.parameter) ? e.parameter : {};
+}
+
+function append_(ss, sheetName, row) {
+  const sheet = ss.getSheetByName(sheetName);
+  if (!sheet) throw new Error("No existe la hoja: " + sheetName);
+  sheet.appendRow(row);
+}
+
+function getEstadoJugador_(rut, codigo) {
+  if (!rut || !codigo) return { ok: false, message: "Falta RUT/DNI o codigo familiar" };
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(SHEETS.inscripcion);
+  if (!sheet) return { ok: false, message: "No existe hoja de inscripciones" };
+
+  const rows = sheet.getDataRange().getValues();
+  const wantedRut = clean_(rut);
+  const wantedCode = clean_(codigo);
+  let found = null;
+
+  for (let i = rows.length - 1; i >= 1; i--) {
+    const row = rows[i];
+    if (clean_(row[4]) === wantedRut && clean_(row[12]) === wantedCode) {
+      found = row;
+      break;
+    }
+  }
+
+  if (!found) return { ok: false, message: "No se encontro registro con esos datos" };
+
+  return {
+    ok: true,
+    jugador: found[2] || "",
+    categoria: found[3] || "",
+    resumen: "Estado documental informado por el comite organizador.",
+    documentos: getDocs_(ss, found[2], found[3])
+  };
+}
+
+function getDocs_(ss, jugador, categoria) {
+  const defaults = { cedula: "Pendiente", certificado: "Pendiente", notarial: "Pendiente", medica: "Pendiente", club: "Pendiente", seguro: "Pendiente" };
+  const sheet = ss.getSheetByName(SHEETS.documentos);
+  if (!sheet) return defaults;
+
+  const rows = sheet.getDataRange().getValues();
+  for (let i = rows.length - 1; i >= 1; i--) {
+    const row = rows[i];
+    if (clean_(row[2]) === clean_(jugador) && clean_(row[3]) === clean_(categoria)) {
+      return {
+        cedula: row[4] || "Pendiente",
+        certificado: row[5] || "Pendiente",
+        notarial: row[6] || "Pendiente",
+        medica: row[7] || "Pendiente",
+        club: row[8] || "Pendiente",
+        seguro: row[9] || "Pendiente"
+      };
+    }
+  }
+  return defaults;
+}
+
+function saveAlbumPhoto_(name, dataUrl) {
+  if (!dataUrl || String(dataUrl).indexOf("base64,") === -1) return "";
+  const parts = String(dataUrl).split("base64,");
+  const mimeType = parts[0].replace("data:", "").replace(";", "") || "image/jpeg";
+  const bytes = Utilities.base64Decode(parts[1]);
+  const safeName = String(name || "album").replace(/[^\w\s-]/g, "").trim() || "album";
+  const folder = getOrCreateFolder_("FOTOS_ALBUM_MOTIVACIONAL");
+  const file = folder.createFile(Utilities.newBlob(bytes, mimeType, safeName + "_album.jpg"));
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  return file.getUrl();
+}
+
+function getOrCreateFolder_(folderName) {
+  const root = DriveApp.getFolderById(ROOT_FOLDER_ID);
+  const folders = root.getFoldersByName(folderName);
+  return folders.hasNext() ? folders.next() : root.createFolder(folderName);
+}
+
+function sendEmail_(email, subject, body) {
+  if (!email) return;
+  MailApp.sendEmail({ to: email, subject: subject, body: body, name: "Gigantes de Azapa Rugby Club" });
+}
+
+function clean_(value) {
+  return String(value || "").toLowerCase().replace(/\s+/g, "").replace(/[.\-_/]/g, "").trim();
+}
+
+function json_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function javascript_(callback, obj) {
+  const safeCallback = String(callback || "callback").replace(/[^\w.$]/g, "");
+  return ContentService.createTextOutput(safeCallback + "(" + JSON.stringify(obj) + ");").setMimeType(ContentService.MimeType.JAVASCRIPT);
+}</textarea>
+    </section>
+  </main>
+  <script>
+    document.getElementById("copy").addEventListener("click", async () => {
+      const code = document.getElementById("code").value;
+      await navigator.clipboard.writeText(code);
+      document.getElementById("ok").style.display = "block";
+    });
+  </script>
+</body>
+</html>

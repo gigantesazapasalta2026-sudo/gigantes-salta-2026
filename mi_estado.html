@@ -20,10 +20,10 @@
     label{display:grid;gap:6px;font-weight:800;font-size:.9rem}
     input{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;width:100%;box-sizing:border-box}
     .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-    button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:0;border-radius:8px;padding:10px 18px;background:#f36b21;color:#fff;font:inherit;font-weight:900;cursor:pointer}
+    button{min-height:42px;border:0;border-radius:8px;padding:10px 18px;background:#f36b21;color:#fff;font:inherit;font-weight:900;cursor:pointer}
     button.sec{background:#111827}
-    .message{margin-top:12px;border-radius:8px;padding:12px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;white-space:pre-wrap}
-    .message.error{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+    .message{margin-top:12px;border-radius:8px;padding:12px;background:#ecfdf5;color:#065f46;font-size:.92rem}
+    .message.error{background:#fef2f2;color:#991b1b}
     .docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
     .doc-card{background:#f8fafc;border-left:5px solid #f59e0b;border-radius:8px;padding:14px}
     .doc-card.ready{border-left-color:#f36b21}
@@ -71,39 +71,31 @@
     </section>
   </div>
 <script>
-const DOCS=[["cedula_frente","Cédula frente","Imagen del frente del documento de identidad."],["cedula_reverso","Cédula reverso","Imagen del reverso del documento de identidad."],["certificado","Certificado de nacimiento","Documento para validar datos del menor."],["notarial","Autorización notarial","Permiso firmado para la gira."],["medica","Ficha médica","Antecedentes de salud y contactos de emergencia."],["club","Autorización del club","Respaldo interno del club."],["seguro","Seguro o cobertura","Comprobante de seguro médico."],["rsh","RSH","Cartola para postulación IND."]];
+const DOCS=[["cedula_frente","Cédula frente","Imagen del frente del documento."],["cedula_reverso","Cédula reverso","Imagen del reverso del documento."],["certificado","Certificado de nacimiento","Para validar datos del menor."],["notarial","Autorización notarial","Permiso firmado para la gira."],["medica","Ficha médica","Antecedentes de salud y emergencia."],["club","Autorización del club","Respaldo interno del club."],["seguro","Seguro o cobertura","Comprobante de seguro médico."],["rsh","RSH","Cartola para postulación IND."]];
 const form=document.getElementById("stateForm"),msg=document.getElementById("message"),resultPanel=document.getElementById("resultPanel"),docsGrid=document.getElementById("docsGrid");
 function setMsg(t,err=false){msg.hidden=!t;msg.textContent=t||"";msg.classList.toggle("error",err);}
 function isReady(d){return Boolean(d&&(d.url||String(d.estado||"").toUpperCase().match(/SI|RECIBIDO/)));}
 function renderState(data){
   const docs=data.documentos||{};let ready=0;docsGrid.innerHTML="";
-  DOCS.forEach(([key,title,help])=>{
-    const doc=docs[key]||{},ok=isReady(doc);if(ok)ready++;
+  DOCS.forEach(([key,title,help])=>{const doc=docs[key]||{},ok=isReady(doc);if(ok)ready++;
     const c=document.createElement("article");c.className="doc-card"+(ok?" ready":"");
     c.innerHTML=`<h3>${title}</h3><p style="font-size:.8rem;color:#6b7280;margin:0 0 8px">${help}</p><span class="pill${ok?" ready":""}">${ok?"✅ Recibido":"⏳ Pendiente"}</span>${doc.url?`<br><a href="${doc.url}" target="_blank" style="font-size:.8rem;color:#f36b21;margin-top:6px;display:inline-block">Abrir archivo</a>`:""}${!ok?`<br><a href="documentos_carga.html" style="font-size:.8rem;color:#6b7280;margin-top:4px;display:inline-block">Subir ahora</a>`:""}`;
-    docsGrid.appendChild(c);
-  });
+    docsGrid.appendChild(c);});
   document.getElementById("playerName").textContent=data.jugador||"Jugador";
   document.getElementById("readyCount").textContent=ready;
   document.getElementById("pendingCount").textContent=DOCS.length-ready;
-  resultPanel.hidden=false;setMsg("Estado encontrado. Revisa el detalle de cada documento.");
-}
-function queryState(rut,code){
-  return new Promise((resolve,reject)=>{
-    const cb="gigEst_"+Date.now(),s=document.createElement("script");
-    const url=new URL(window.GIGANTES_APPS_SCRIPT_URL);
-    url.searchParams.set("action","estado");url.searchParams.set("rut",rut);url.searchParams.set("codigo_familiar",code);url.searchParams.set("callback",cb);
-    window[cb]=(d)=>{delete window[cb];s.remove();resolve(d);};
-    s.onerror=()=>{delete window[cb];s.remove();reject(new Error("Error de conexión."));};
-    s.src=url.toString();document.body.appendChild(s);
-  });
+  resultPanel.hidden=false;setMsg("Estado encontrado.");
 }
 form.addEventListener("submit",async(e)=>{
   e.preventDefault();const d=new FormData(form);const rut=d.get("rut"),code=d.get("codigo_familiar");
-  resultPanel.hidden=true;setMsg("Consultando estado documental...");
-  if(!window.GIGANTES_APPS_SCRIPT_URL||window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR")){setMsg("Falta configurar la URL de Apps Script.",true);return;}
-  try{const state=await queryState(rut,code);if(!state||!state.ok){setMsg((state&&state.message)||"No se encontró estado para esos datos.",true);return;}renderState(state);}
-  catch(err){setMsg("No se pudo consultar. Verifica tu conexión.",true);}
+  resultPanel.hidden=true;setMsg("Consultando...");
+  if(!window.GIGANTES_APPS_SCRIPT_URL||window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR")){setMsg("Falta configurar la URL.",true);return;}
+  const cb="gigEst_"+Date.now(),s=document.createElement("script");
+  const url=new URL(window.GIGANTES_APPS_SCRIPT_URL);
+  url.searchParams.set("action","estado");url.searchParams.set("rut",rut);url.searchParams.set("codigo_familiar",code);url.searchParams.set("callback",cb);
+  window[cb]=(data)=>{delete window[cb];s.remove();if(!data||!data.ok){setMsg((data&&data.message)||"No se encontró estado.",true);return;}renderState(data);};
+  s.onerror=()=>{delete window[cb];s.remove();setMsg("Error de conexión.",true);};
+  s.src=url.toString();document.body.appendChild(s);
 });
 form.addEventListener("reset",()=>{setMsg("");resultPanel.hidden=true;docsGrid.innerHTML="";});
 </script>

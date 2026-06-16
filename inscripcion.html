@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscripción jugador | Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:48vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
+    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:20px;line-height:1.5;max-width:600px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
+    .panel{background:rgba(255,255,255,.97);color:#111;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .panel h2{margin:0 0 6px;font-size:1.3rem;color:#111}
+    .panel p{color:#475569;font-size:.9rem;margin:0 0 20px;line-height:1.5}
+    .seccion{font-size:.78rem;font-weight:900;text-transform:uppercase;color:#f36b21;letter-spacing:.5px;margin:20px 0 12px;padding-top:16px;border-top:1px solid #f3f4f6}
+    .seccion:first-child{border-top:none;margin-top:0;padding-top:0}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .wide{grid-column:1/-1}
+    label{display:grid;gap:5px;font-weight:800;font-size:.85rem;color:#374151}
+    input,select,textarea{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;font-size:.9rem;width:100%;box-sizing:border-box;background:#fff;color:#111}
+    input:focus,select:focus,textarea:focus{outline:2px solid #f36b21;border-color:#f36b21}
+    textarea{min-height:80px;resize:vertical}
+    .info-box{background:#fef3ec;border:1px solid #f36b21;border-radius:8px;padding:14px;font-size:.85rem;line-height:1.7;margin-bottom:16px}
+    .info-box strong{color:#c2410c}
+    .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+    button{min-height:44px;border:0;border-radius:10px;padding:12px 24px;background:#f36b21;color:#fff;font:inherit;font-size:.95rem;font-weight:900;cursor:pointer}
+    button:hover{background:#c2410c}
+    button.sec{background:#111827}
+    .result{margin-top:16px;border-radius:10px;padding:16px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;display:none;line-height:1.6}
+    @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Inscripción <em>jugador</em></h1>
+    <p class="lead">Registra los datos del jugador y del adulto responsable para participar en la Gira Gigantes de Azapa Salta 2026.</p>
+  </div>
+</section>
+<div class="main">
+  <div class="panel">
+    <div class="info-box">
+      📅 <strong>Gira:</strong> 26 al 30 de agosto 2026<br>
+      🚌 <strong>Ruta:</strong> Arica → Calama → Salta → Jujuy → Arica<br>
+      👥 <strong>Delegación:</strong> ~80 personas<br>
+      💰 <strong>Cuenta aportes:</strong> Angélica Urbina González · BCI Cta. Cte. 01-999-124695-7<br>
+      📧 <strong>Contacto:</strong> gigantesazapa.salta2026@gmail.com
+    </div>
+    <form id="inscripcionForm">
+      <div class="seccion">🏉 Datos del jugador</div>
+      <div class="form-grid">
+        <label>Nombre completo<input name="nombre_jugador" required placeholder="Nombre y apellido del jugador"></label>
+        <label>RUT / DNI<input name="rut_jugador" required placeholder="Ej: 12.345.678-9"></label>
+        <label>Fecha de nacimiento<input type="date" name="fecha_nacimiento" required></label>
+        <label>Categoría
+          <select name="categoria" required>
+            <option value="">Seleccionar...</option>
+            <option>M10</option>
+            <option>M12</option>
+            <option>M14</option>
+            <option>Classic</option>
+            <option>Adultos / Delegación</option>
+          </select>
+        </label>
+        <label>Talla camiseta
+          <select name="talla">
+            <option>XS</option><option>S</option><option selected>M</option>
+            <option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </label>
+        <label>Correo jugador (si tiene)<input type="email" name="correo_jugador" placeholder="opcional"></label>
+      </div>
+
+      <div class="seccion">👨‍👩‍👦 Adulto responsable</div>
+      <div class="form-grid">
+        <label>Nombre del apoderado<input name="nombre_apoderado" required placeholder="Nombre completo"></label>
+        <label>RUT apoderado<input name="rut_apoderado" required placeholder="Ej: 12.345.678-9"></label>
+        <label>WhatsApp (principal)<input name="telefono" required placeholder="+56 9..." type="tel"></label>
+        <label>WhatsApp alternativo<input name="telefono2" placeholder="+56 9..." type="tel"></label>
+        <label class="wide">Correo electrónico<input type="email" name="correo" required placeholder="tu@correo.cl"></label>
+      </div>
+
+      <div class="seccion">🏥 Salud y emergencia</div>
+      <div class="form-grid">
+        <label class="wide">Alergias o condiciones médicas<textarea name="alergias" placeholder="Ej: alergia a penicilina, asma leve... Si no tiene, escribe 'Sin antecedentes'"></textarea></label>
+        <label>Contacto de emergencia<input name="contacto_emergencia" required placeholder="Nombre y teléfono"></label>
+        <label>Previsión de salud<input name="prevision" placeholder="Ej: Fonasa A, Isapre Cruz Blanca"></label>
+      </div>
+
+      <div class="seccion">📋 Información adicional</div>
+      <div class="form-grid">
+        <label>¿Tiene pasaporte vigente?
+          <select name="pasaporte">
+            <option>Sí, vigente</option>
+            <option>No, solo cédula</option>
+            <option>En trámite</option>
+          </select>
+        </label>
+        <label>¿Requiere habitación especial?
+          <select name="habitacion">
+            <option>No</option>
+            <option>Sí (indicar en observaciones)</option>
+          </select>
+        </label>
+        <label class="wide">Observaciones generales<textarea name="observaciones" placeholder="Cualquier información relevante para la organización..."></textarea></label>
+      </div>
+
+      <div class="actions">
+        <button type="submit">🏉 Inscribir jugador</button>
+        <button type="reset" class="sec">Limpiar</button>
+      </div>
+      <div class="result" id="result"></div>
+    </form>
+  </div>
+</div>
+<script>
+document.getElementById("inscripcionForm").addEventListener("submit", async(e)=>{
+  e.preventDefault();
+  const res = document.getElementById("result");
+  const btn = e.currentTarget.querySelector('button[type="submit"]');
+  res.style.display = "block";
+  res.textContent = "Enviando inscripción...";
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+  const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+  data.action = "inscripcion";
+  const sent = await sendToGigantes(data);
+  if(sent.ok){
+    res.textContent = "✅ Inscripción registrada correctamente. La directiva revisará los datos y te contactará por WhatsApp con el código familiar y los pasos a seguir. ¡Bienvenido a la Gira Gigantes Salta 2026!";
+    e.currentTarget.reset();
+  } else {
+    res.textContent = "📋 Inscripción preparada. La directiva la procesará manualmente. Envía estos datos al WhatsApp del club: gigantesazapa.salta2026@gmail.com";
+  }
+  btn.disabled = false;
+  btn.textContent = "🏉 Inscribir jugador";
+});
+</script>
+</body>
+</html>

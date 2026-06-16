@@ -3,335 +3,91 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aportes - Gigantes de Azapa Salta 2026</title>
+  <title>Hacer un aporte | Gigantes de Azapa Salta 2026</title>
   <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
   <style>
-    body {
-      min-height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background:
-        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
-        url("../rugby estadio.jpg") center/cover fixed;
-      color: #0f172a;
-    }
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-    .hero,
-    .panel,
-    .card {
-      background: rgba(255, 255, 255, .96);
-      border: 1px solid rgba(255, 255, 255, .36);
-      border-radius: 8px;
-      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
-      backdrop-filter: blur(10px);
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
-      gap: 20px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .brand img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      padding: 6px;
-    }
-    .brand span {
-      color: #0f766e;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: .82rem;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3.35rem);
-      line-height: 1;
-      letter-spacing: 0;
-    }
-    p,
-    li {
-      line-height: 1.55;
-    }
-    .video-card {
-      position: relative;
-      min-height: 280px;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #020617;
-      color: #fff;
-    }
-    .video-card video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .video-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.78));
-    }
-    .video-card div {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      z-index: 1;
-    }
-    .button,
-    button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border: 0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      background: #0f766e;
-      color: #fff;
-      font: inherit;
-      font-weight: 900;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 4px 6px 4px 0;
-    }
-    .button.secondary,
-    button.secondary {
-      background: #facc15;
-      color: #0f172a;
-    }
-    .panel {
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-    .card {
-      padding: 14px;
-      border-left: 5px solid #0f766e;
-      cursor: pointer;
-    }
-    .card.active {
-      outline: 2px solid #facc15;
-    }
-    .amount {
-      display: block;
-      color: #0f766e;
-      font-size: 1.25rem;
-      font-weight: 900;
-      margin: 6px 0;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    label {
-      display: grid;
-      gap: 6px;
-      font-weight: 800;
-    }
-    input,
-    select,
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid rgba(15, 23, 42, .18);
-      border-radius: 8px;
-      padding: 11px;
-      font: inherit;
-      background: #fff;
-    }
-    textarea {
-      resize: vertical;
-    }
-    .result {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #a7f3d0;
-      background: #ecfdf5;
-      color: #065f46;
-      white-space: pre-wrap;
-    }
-    .result:empty {
-      display: none;
-    }
-    .note {
-      background: #fefce8;
-      border-left: 5px solid #facc15;
-      border-radius: 8px;
-      padding: 12px;
-      margin: 12px 0;
-    }
-    @media (max-width: 900px) {
-      main {
-        padding: 14px;
-      }
-      .hero,
-      .cards,
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:48vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
+    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:20px;line-height:1.5;max-width:600px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
+    .panel{background:rgba(255,255,255,.97);color:#111;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .panel h2{margin:0 0 6px;font-size:1.3rem}
+    .panel p{color:#475569;font-size:.9rem;margin:0 0 16px;line-height:1.5}
+    .transf{background:#fef3ec;border:1px solid #f36b21;border-radius:10px;padding:16px;margin-bottom:16px;font-size:.9rem;line-height:1.9}
+    .transf strong{color:#c2410c}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:grid;gap:6px;font-weight:800;font-size:.9rem;color:#374151}
+    input,select,textarea{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;width:100%;box-sizing:border-box;background:#fff}
+    textarea{min-height:80px;resize:vertical}
+    .wide{grid-column:1/-1}
+    .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:0;border-radius:8px;padding:10px 20px;background:#f36b21;color:#fff;font:inherit;font-weight:900;cursor:pointer}
+    .result{margin-top:12px;border-radius:8px;padding:12px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;display:none}
+    @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <div>
-        <div class="brand">
-          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
-          <span>Aportes y cooperaciones</span>
-        </div>
-        <h1>Ayuda a que el equipo llegue a Salta</h1>
-        <p>Cada aporte queda registrado en el Centro Operativo y ayuda a reducir el costo familiar de la gira. Puede ser dinero, productos, servicios, premios para rifas o apoyo logistico.</p>
-        <a class="button" href="avance.html">Ver avance de meta</a>
-        <a class="button secondary" href="respaldo_institucional.html">Ver respaldo institucional</a>
-        <a class="button secondary" href="index.html">Inicio</a>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hacer un <em>aporte</em></h1>
+      <p class="lead">Cada peso que aportas acerca al equipo a Salta. Transfiere y registra tu aporte aquí para que quede en el avance de la meta.</p>
+    </div>
+  </section>
+  <div class="main">
+    <div class="panel">
+      <h2>Datos de transferencia</h2>
+      <p>Transfiere primero y luego registra tu aporte abajo.</p>
+      <div class="transf">
+        <strong>Angélica Urbina González</strong><br>
+        RUT: 13.013.011-9<br>
+        BCI Cuenta Corriente: <strong>01-999-124695-7</strong><br>
+        Correo: <strong>gigantesazapa.salta2026@gmail.com</strong><br>
+        Motivo: <strong>Aporte Gira Gigantes de Azapa Salta 2026</strong>
       </div>
-      <div class="video-card">
-        <video src="../niños llegando a jugar.mov" autoplay muted loop playsinline></video>
-        <div>
-          <strong>Cuando apoyas, tambien viajas con ellos</strong>
-          <p>La comunidad empuja para que los ninos vivan una experiencia deportiva real.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Aportes sugeridos</h2>
-      <p>Estos montos son referenciales. Tambien se puede aportar en productos o servicios.</p>
-      <div class="cards" id="amountCards">
-        <article class="card" data-type="Aporte monetario" data-amount="10000"><strong>Impulso inicial</strong><span class="amount">$10.000</span><p>Ayuda concreta para gastos menores.</p></article>
-        <article class="card" data-type="Aporte monetario" data-amount="25000"><strong>Apoyo familiar</strong><span class="amount">$25.000</span><p>Un paso mas cerca de la meta.</p></article>
-        <article class="card" data-type="Aporte monetario" data-amount="50000"><strong>Apoyo destacado</strong><span class="amount">$50.000</span><p>Aporte fuerte para transporte y logistica.</p></article>
-        <article class="card" data-type="Productos o servicios" data-amount=""><strong>Productos o servicios</strong><span class="amount">Otro aporte</span><p>Premios, alimentos, impresion, transporte.</p></article>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Registrar aporte</h2>
-      <div class="note">
-        <strong>Comprobante:</strong> si el aporte es transferencia o deposito, adjunta una foto o PDF del comprobante para cuadrar caja y confirmar el aporte.
-      </div>
+    </div>
+    <div class="panel">
+      <h2>Registrar tu aporte</h2>
+      <p>Después de transferir, completa este formulario para que tu aporte quede registrado en el avance de la meta.</p>
       <form id="aporteForm">
-        <input type="hidden" name="type" value="aporte">
         <div class="form-grid">
-          <label>Nombre
-            <input name="nombre" required placeholder="Nombre de persona o empresa">
-          </label>
-          <label>Correo
-            <input name="email" type="email" required placeholder="correo@ejemplo.com">
-          </label>
-          <label>Telefono
-            <input name="telefono" placeholder="+56 9...">
-          </label>
+          <label>Nombre completo<input name="nombre" required placeholder="Tu nombre"></label>
+          <label>WhatsApp<input name="telefono" required placeholder="+56 9..."></label>
+          <label>Correo<input type="email" name="correo" placeholder="tu@correo.cl"></label>
+          <label>Monto aportado (CLP)<input type="number" name="monto" required placeholder="Ej: 10000" min="1"></label>
+          <label>Fecha de transferencia<input type="date" name="fecha"></label>
           <label>Tipo de aporte
-            <select name="tipo_aporte" id="tipoInput">
-              <option>Aporte monetario</option>
-              <option>Productos o servicios</option>
-              <option>Premio para rifa</option>
+            <select name="tipo">
+              <option>Transferencia bancaria</option>
+              <option>Efectivo</option>
               <option>Merchandising</option>
-              <option>Logistica</option>
+              <option>Sponsor</option>
+              <option>Actividad solidaria</option>
+              <option>Otro</option>
             </select>
           </label>
-          <label>Monto o valorizacion
-            <input name="monto" id="montoInput" placeholder="$10.000 / aporte valorizado">
-          </label>
-          <label>Comprobante deposito/transferencia
-            <input id="comprobanteInput" type="file" accept="image/*,.pdf">
-          </label>
+          <label class="wide">Observaciones<textarea name="observaciones" placeholder="Ej: comprobante enviado al WhatsApp, aporte en nombre de familia González..."></textarea></label>
         </div>
-        <label style="margin-top:12px">Mensaje o detalle del aporte
-          <textarea name="mensaje" rows="4" placeholder="Ej: aporte para pasajes, premio para rifa, 20 bebidas, servicio de impresion..."></textarea>
-        </label>
-        <button type="submit">Registrar aporte</button>
-        <button class="secondary" type="reset">Limpiar</button>
-        <div id="result" class="result"></div>
+        <div class="actions">
+          <button type="submit">Registrar aporte</button>
+        </div>
+        <div class="result" id="result"></div>
       </form>
-    </section>
-  </main>
-
-  <script>
-    const form = document.getElementById("aporteForm");
-    const result = document.getElementById("result");
-    const tipoInput = document.getElementById("tipoInput");
-    const montoInput = document.getElementById("montoInput");
-    const comprobanteInput = document.getElementById("comprobanteInput");
-
-    function attachFileToPayload(payload, input, key) {
-      const file = input.files && input.files[0];
-      if (!file) return Promise.resolve();
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          payload.set(key + "_data", reader.result);
-          payload.set(key + "_name", file.name);
-          payload.set(key + "_mime", file.type || "application/octet-stream");
-          resolve();
-        };
-        reader.onerror = () => reject(reader.error);
-        reader.readAsDataURL(file);
-      });
-    }
-
-    document.querySelectorAll(".card[data-type]").forEach((card) => {
-      card.addEventListener("click", () => {
-        document.querySelectorAll(".card").forEach((item) => item.classList.remove("active"));
-        card.classList.add("active");
-        tipoInput.value = card.dataset.type;
-        montoInput.value = card.dataset.amount ? `$${Number(card.dataset.amount).toLocaleString("es-CL")}` : "Aporte valorizado";
-      });
-    });
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      result.textContent = "Registrando aporte...";
-      const url = window.GIGANTES_APPS_SCRIPT_URL;
-      if (!url || url.includes("PEGAR")) {
-        result.textContent = "Falta configurar Apps Script.";
-        return;
-      }
-      const payload = new URLSearchParams(new FormData(form));
-      try {
-        await attachFileToPayload(payload, comprobanteInput, "comprobante");
-        await fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: payload.toString()
-        });
-        result.textContent = "Aporte enviado. Recibiras confirmacion por correo. Si solicitaste diploma, se generara automaticamente con los datos registrados.";
-      } catch (error) {
-        result.textContent = "No se pudo enviar el aporte.";
-      }
-    });
-
-    form.addEventListener("reset", () => {
-      result.textContent = "";
-      document.querySelectorAll(".card").forEach((item) => item.classList.remove("active"));
-    });
-  </script>
+    </div>
+  </div>
+<script>
+document.getElementById("aporteForm").addEventListener("submit", async(e)=>{
+  e.preventDefault();
+  const res=document.getElementById("result");
+  res.style.display="block";res.textContent="Registrando...";
+  const data=Object.fromEntries(new FormData(e.currentTarget).entries());
+  data.action="aporte";
+  const sent=await sendToGigantes(data);
+  res.textContent=sent.ok?"✅ Aporte registrado correctamente. ¡Gracias por apoyar a los Gigantes!":"📋 Aporte preparado. Envía el comprobante al WhatsApp del club para confirmar.";
+});
+</script>
 </body>
 </html>

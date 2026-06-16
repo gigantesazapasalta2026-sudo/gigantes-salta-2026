@@ -3,394 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mi estado documental - Gigantes de Azapa</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Mi estado documental | Gigantes de Azapa Salta 2026</title>
   <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
   <style>
-    body {
-      min-height: 100vh;
-      margin: 0;
-      background:
-        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
-        url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-experiencia.jpg") center/cover fixed;
-      color: #0f172a;
-    }
-    .state-page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-    .state-hero,
-    .state-panel,
-    .state-card {
-      background: rgba(255, 255, 255, .96);
-      border: 1px solid rgba(255, 255, 255, .36);
-      border-radius: 8px;
-      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
-      backdrop-filter: blur(10px);
-    }
-    .state-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
-      gap: 20px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-    .brand-strip {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .brand-strip img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      padding: 6px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, .18);
-    }
-    .brand-strip span {
-      color: #0f766e;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: .82rem;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 1;
-      letter-spacing: 0;
-    }
-    p {
-      line-height: 1.5;
-    }
-    .state-panel {
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    label {
-      display: grid;
-      gap: 6px;
-      font-weight: 800;
-    }
-    input {
-      border: 1px solid rgba(15, 23, 42, .18);
-      border-radius: 8px;
-      padding: 12px;
-      font: inherit;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    button,
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border: 0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      background: #0f766e;
-      color: #fff;
-      font: inherit;
-      font-weight: 900;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .button.secondary {
-      background: #facc15;
-      color: #0f172a;
-    }
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0;
-    }
-    .summary .state-card {
-      padding: 16px;
-    }
-    .summary strong {
-      display: block;
-      font-size: 1.8rem;
-      line-height: 1;
-      color: #0f766e;
-    }
-    .docs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .doc-card {
-      border-left: 5px solid #f59e0b;
-      padding: 14px;
-    }
-    .doc-card.ready {
-      border-left-color: #0f766e;
-    }
-    .doc-card h3 {
-      margin: 0 0 6px;
-      font-size: 1rem;
-    }
-    .pill {
-      display: inline-flex;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: .82rem;
-      font-weight: 900;
-      background: #fef3c7;
-      color: #92400e;
-    }
-    .pill.ready {
-      background: #dcfce7;
-      color: #166534;
-    }
-    .doc-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-    .doc-actions a {
-      font-size: .9rem;
-      min-height: 36px;
-    }
-    .message {
-      margin-top: 12px;
-      border-radius: 8px;
-      padding: 12px;
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #a7f3d0;
-      white-space: pre-wrap;
-    }
-    .message.error {
-      background: #fef2f2;
-      color: #991b1b;
-      border-color: #fecaca;
-    }
-    .private-note {
-      background:
-        linear-gradient(180deg, rgba(15, 23, 42, .1), rgba(15, 23, 42, .74)),
-        url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-suenos.jpg") center/cover;
-      border-radius: 8px;
-      min-height: 220px;
-      padding: 18px;
-      display: flex;
-      align-items: end;
-      color: #fff;
-      box-sizing: border-box;
-    }
-    .private-note p {
-      margin: 6px 0 0;
-      color: rgba(255,255,255,.9);
-    }
-    @media (max-width: 820px) {
-      .state-page {
-        padding: 14px;
-      }
-      .state-hero,
-      .form-grid,
-      .summary,
-      .docs-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:48vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
+    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:20px;line-height:1.5;max-width:600px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
+    .panel{background:rgba(255,255,255,.97);color:#111;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .panel h2{margin:0 0 16px;font-size:1.3rem}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:grid;gap:6px;font-weight:800;font-size:.9rem}
+    input{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;width:100%;box-sizing:border-box}
+    .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:0;border-radius:8px;padding:10px 18px;background:#f36b21;color:#fff;font:inherit;font-weight:900;cursor:pointer}
+    button.sec{background:#111827}
+    .message{margin-top:12px;border-radius:8px;padding:12px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;white-space:pre-wrap}
+    .message.error{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+    .docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .doc-card{background:#f8fafc;border-left:5px solid #f59e0b;border-radius:8px;padding:14px}
+    .doc-card.ready{border-left-color:#f36b21}
+    .doc-card h3{margin:0 0 6px;font-size:.95rem}
+    .pill{display:inline-flex;border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:900;background:#fef3c7;color:#92400e}
+    .pill.ready{background:#fef3ec;color:#c2410c}
+    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+    .sum-card{background:#fef3ec;border-left:4px solid #f36b21;border-radius:8px;padding:12px}
+    .sum-card span{font-size:.75rem;font-weight:800;text-transform:uppercase;color:#6b7280}
+    .sum-card strong{display:block;font-size:1.6rem;font-weight:900;color:#c2410c;line-height:1;margin-top:4px}
+    @media(max-width:640px){.form-grid,.docs-grid,.summary{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <main class="state-page">
-    <section class="state-hero">
-      <div>
-        <div class="brand-strip">
-          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
-          <span>Portal familiar privado</span>
-        </div>
-        <h1>Mi estado documental</h1>
-        <p>Consulta que documentos estan recibidos y cuales faltan. Para proteger los datos, solo se muestra el estado usando RUT/DNI y codigo familiar.</p>
-        <div class="actions">
-          <a class="button secondary" href="index.html">Inicio</a>
-          <a class="button secondary" href="documentos_carga.html">Subir documentos</a>
-        </div>
-      </div>
-      <div class="private-note">
-        <div>
-          <strong>Orden y tranquilidad para viajar</strong>
-          <p>Cada familia puede revisar su avance sin depender de mensajes sueltos.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="state-panel">
-      <h2 style="margin-top:0">Consultar estado</h2>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Mi estado <em>documental</em></h1>
+      <p class="lead">Consulta qué documentos están recibidos y cuáles faltan. Solo necesitas tu RUT/DNI y código familiar.</p>
+    </div>
+  </section>
+  <div class="main">
+    <div class="panel">
+      <h2>Consultar estado</h2>
       <form id="stateForm">
         <div class="form-grid">
-          <label>RUT/DNI jugador
-            <input name="rut" required placeholder="Ej: 12.345.678-9">
-          </label>
-          <label>Codigo familiar
-            <input name="codigo_familiar" required placeholder="Clave familiar privada">
-          </label>
+          <label>RUT / DNI jugador<input name="rut" required placeholder="Ej: 12.345.678-9"></label>
+          <label>Código familiar<input name="codigo_familiar" required placeholder="Clave privada familiar"></label>
         </div>
         <div class="actions">
           <button type="submit">Consultar</button>
-          <button class="button secondary" type="reset">Limpiar</button>
+          <button class="sec" type="reset">Limpiar</button>
         </div>
       </form>
       <div id="message" class="message" hidden></div>
-    </section>
-
+    </div>
     <section id="resultPanel" hidden>
-      <div class="summary">
-        <div class="state-card">
-          <span>Jugador</span>
-          <strong id="playerName">-</strong>
+      <div class="panel">
+        <div class="summary">
+          <div class="sum-card"><span>Jugador</span><strong id="playerName" style="font-size:1rem;margin-top:6px">-</strong></div>
+          <div class="sum-card"><span>Listos</span><strong id="readyCount">0</strong></div>
+          <div class="sum-card"><span>Pendientes</span><strong id="pendingCount">0</strong></div>
         </div>
-        <div class="state-card">
-          <span>Documentos listos</span>
-          <strong id="readyCount">0</strong>
-        </div>
-        <div class="state-card">
-          <span>Pendientes</span>
-          <strong id="pendingCount">0</strong>
-        </div>
+        <div class="docs-grid" id="docsGrid"></div>
       </div>
-      <div id="docsGrid" class="docs-grid"></div>
     </section>
-  </main>
-
-  <script>
-    const DOCS = [
-      ["cedula_frente", "Cedula frente", "Imagen frontal del documento de identidad."],
-      ["cedula_reverso", "Cedula reverso", "Imagen posterior del documento de identidad."],
-      ["certificado", "Certificado de nacimiento", "Documento de identificacion del menor."],
-      ["notarial", "Autorizacion notarial", "Permiso firmado para la gira."],
-      ["medica", "Ficha medica", "Antecedentes de salud y emergencia."],
-      ["club", "Autorizacion del club", "Respaldo interno del club."],
-      ["seguro", "Seguro o cobertura", "Comprobante de cobertura o respaldo medico."],
-      ["rsh", "Registro Social de Hogares", "Cartola sugerida para postulaciones a proyectos publicos."]
-    ];
-
-    const form = document.getElementById("stateForm");
-    const message = document.getElementById("message");
-    const resultPanel = document.getElementById("resultPanel");
-    const docsGrid = document.getElementById("docsGrid");
-
-    function setMessage(text, isError = false) {
-      message.hidden = !text;
-      message.textContent = text || "";
-      message.classList.toggle("error", isError);
-    }
-
-    function normalize(value) {
-      return String(value || "").trim().toUpperCase();
-    }
-
-    function isReady(doc) {
-      return Boolean(doc && (doc.url || normalize(doc.estado) === "SI" || normalize(doc.estado) === "RECIBIDO" || normalize(doc.estado) === "RECIBIDO WEB"));
-    }
-
-    function renderState(data) {
-      const docs = data.documentos || {};
-      let ready = 0;
-      docsGrid.innerHTML = "";
-
-      DOCS.forEach(([key, title, help]) => {
-        const doc = docs[key] || {};
-        const ok = isReady(doc);
-        if (ok) ready++;
-
-        const card = document.createElement("article");
-        card.className = "state-card doc-card" + (ok ? " ready" : "");
-        card.innerHTML = `
-          <h3>${title}</h3>
-          <p>${help}</p>
-          <span class="pill ${ok ? "ready" : ""}">${ok ? "Recibido" : "Pendiente"}</span>
-          <div class="doc-actions">
-            ${doc.url ? `<a class="button" href="${doc.url}" target="_blank" rel="noopener">Abrir archivo</a>` : ""}
-            ${!ok ? `<a class="button secondary" href="documentos_carga.html">Subir ahora</a>` : ""}
-          </div>
-        `;
-        docsGrid.appendChild(card);
-      });
-
-      document.getElementById("playerName").textContent = data.jugador || "Jugador";
-      document.getElementById("readyCount").textContent = ready;
-      document.getElementById("pendingCount").textContent = DOCS.length - ready;
-      resultPanel.hidden = false;
-      setMessage("Estado encontrado. Revisa el detalle de cada documento.");
-    }
-
-    function queryState(rut, code) {
-      return new Promise((resolve, reject) => {
-        const callbackName = "gigantesEstado_" + Date.now();
-        const script = document.createElement("script");
-        const url = new URL(window.GIGANTES_APPS_SCRIPT_URL);
-        url.searchParams.set("action", "estado");
-        url.searchParams.set("rut", rut);
-        url.searchParams.set("codigo_familiar", code);
-        url.searchParams.set("callback", callbackName);
-
-        window[callbackName] = (data) => {
-          delete window[callbackName];
-          script.remove();
-          resolve(data);
-        };
-
-        script.onerror = () => {
-          delete window[callbackName];
-          script.remove();
-          reject(new Error("No se pudo consultar el estado."));
-        };
-
-        script.src = url.toString();
-        document.body.appendChild(script);
-      });
-    }
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const rut = data.get("rut");
-      const code = data.get("codigo_familiar");
-      resultPanel.hidden = true;
-      setMessage("Consultando estado documental...");
-
-      if (!window.GIGANTES_APPS_SCRIPT_URL || window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR")) {
-        setMessage("Falta configurar la URL de Apps Script en config.js.", true);
-        return;
-      }
-
-      try {
-        const state = await queryState(rut, code);
-        if (!state || !state.ok) {
-          setMessage((state && state.message) || "No se encontro estado para esos datos.", true);
-          return;
-        }
-        renderState(state);
-      } catch (error) {
-        setMessage("No se pudo consultar. Revisa la conexion o la implementacion de Apps Script.", true);
-      }
-    });
-
-    form.addEventListener("reset", () => {
-      setMessage("");
-      resultPanel.hidden = true;
-      docsGrid.innerHTML = "";
-    });
-  </script>
+  </div>
+<script>
+const DOCS=[["cedula_frente","Cédula frente","Imagen del frente del documento de identidad."],["cedula_reverso","Cédula reverso","Imagen del reverso del documento de identidad."],["certificado","Certificado de nacimiento","Documento para validar datos del menor."],["notarial","Autorización notarial","Permiso firmado para la gira."],["medica","Ficha médica","Antecedentes de salud y contactos de emergencia."],["club","Autorización del club","Respaldo interno del club."],["seguro","Seguro o cobertura","Comprobante de seguro médico."],["rsh","RSH","Cartola para postulación IND."]];
+const form=document.getElementById("stateForm"),msg=document.getElementById("message"),resultPanel=document.getElementById("resultPanel"),docsGrid=document.getElementById("docsGrid");
+function setMsg(t,err=false){msg.hidden=!t;msg.textContent=t||"";msg.classList.toggle("error",err);}
+function isReady(d){return Boolean(d&&(d.url||String(d.estado||"").toUpperCase().match(/SI|RECIBIDO/)));}
+function renderState(data){
+  const docs=data.documentos||{};let ready=0;docsGrid.innerHTML="";
+  DOCS.forEach(([key,title,help])=>{
+    const doc=docs[key]||{},ok=isReady(doc);if(ok)ready++;
+    const c=document.createElement("article");c.className="doc-card"+(ok?" ready":"");
+    c.innerHTML=`<h3>${title}</h3><p style="font-size:.8rem;color:#6b7280;margin:0 0 8px">${help}</p><span class="pill${ok?" ready":""}">${ok?"✅ Recibido":"⏳ Pendiente"}</span>${doc.url?`<br><a href="${doc.url}" target="_blank" style="font-size:.8rem;color:#f36b21;margin-top:6px;display:inline-block">Abrir archivo</a>`:""}${!ok?`<br><a href="documentos_carga.html" style="font-size:.8rem;color:#6b7280;margin-top:4px;display:inline-block">Subir ahora</a>`:""}`;
+    docsGrid.appendChild(c);
+  });
+  document.getElementById("playerName").textContent=data.jugador||"Jugador";
+  document.getElementById("readyCount").textContent=ready;
+  document.getElementById("pendingCount").textContent=DOCS.length-ready;
+  resultPanel.hidden=false;setMsg("Estado encontrado. Revisa el detalle de cada documento.");
+}
+function queryState(rut,code){
+  return new Promise((resolve,reject)=>{
+    const cb="gigEst_"+Date.now(),s=document.createElement("script");
+    const url=new URL(window.GIGANTES_APPS_SCRIPT_URL);
+    url.searchParams.set("action","estado");url.searchParams.set("rut",rut);url.searchParams.set("codigo_familiar",code);url.searchParams.set("callback",cb);
+    window[cb]=(d)=>{delete window[cb];s.remove();resolve(d);};
+    s.onerror=()=>{delete window[cb];s.remove();reject(new Error("Error de conexión."));};
+    s.src=url.toString();document.body.appendChild(s);
+  });
+}
+form.addEventListener("submit",async(e)=>{
+  e.preventDefault();const d=new FormData(form);const rut=d.get("rut"),code=d.get("codigo_familiar");
+  resultPanel.hidden=true;setMsg("Consultando estado documental...");
+  if(!window.GIGANTES_APPS_SCRIPT_URL||window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR")){setMsg("Falta configurar la URL de Apps Script.",true);return;}
+  try{const state=await queryState(rut,code);if(!state||!state.ok){setMsg((state&&state.message)||"No se encontró estado para esos datos.",true);return;}renderState(state);}
+  catch(err){setMsg("No se pudo consultar. Verifica tu conexión.",true);}
+});
+form.addEventListener("reset",()=>{setMsg("");resultPanel.hidden=true;docsGrid.innerHTML="";});
+</script>
 </body>
 </html>

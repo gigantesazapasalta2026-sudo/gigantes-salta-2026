@@ -3,684 +3,81 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bingos solidarios - Gigantes de Azapa Salta 2026</title>
+  <title>Bingos solidarios | Gigantes de Azapa Salta 2026</title>
   <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
   <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background:
-        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
-        url("../niños reunidos.jpg") center/cover fixed;
-      color: #0f172a;
-    }
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-    .hero,
-    .panel,
-    .bingo-card,
-    .task-card {
-      background: rgba(255, 255, 255, .96);
-      border: 1px solid rgba(255, 255, 255, .36);
-      border-radius: 8px;
-      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
-      backdrop-filter: blur(10px);
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
-      gap: 20px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .brand img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      padding: 6px;
-    }
-    .brand span {
-      color: #0f766e;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: .82rem;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: .96;
-      letter-spacing: 0;
-    }
-    p,
-    li {
-      line-height: 1.55;
-    }
-    .photo {
-      min-height: 280px;
-      border-radius: 8px;
-      background:
-        linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,.76)),
-        url("../rugby estadio.jpg") center/cover;
-      display: flex;
-      align-items: end;
-      padding: 18px;
-      color: #fff;
-      box-sizing: border-box;
-    }
-    .button,
-    button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border: 0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      background: #0f766e;
-      color: #fff;
-      font: inherit;
-      font-weight: 900;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 4px 6px 4px 0;
-    }
-    .button.secondary,
-    button.secondary {
-      background: #facc15;
-      color: #0f172a;
-    }
-    .panel {
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-    .bingo-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .bingo-card {
-      padding: 14px;
-      border-left: 5px solid #facc15;
-      cursor: pointer;
-    }
-    .bingo-card.active {
-      outline: 2px solid #0f766e;
-      border-left-color: #0f766e;
-    }
-    .bingo-card strong {
-      display: block;
-      font-size: 1.15rem;
-    }
-    .calc-grid,
-    .form-grid,
-    .task-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-    label {
-      display: grid;
-      gap: 6px;
-      font-weight: 800;
-    }
-    input,
-    select,
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid rgba(15, 23, 42, .18);
-      border-radius: 8px;
-      padding: 11px;
-      font: inherit;
-      background: #fff;
-    }
-    textarea {
-      resize: vertical;
-    }
-    .metric {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-left: 5px solid #0f766e;
-      border-radius: 8px;
-      padding: 12px;
-    }
-    .metric strong {
-      display: block;
-      color: #0f766e;
-      font-size: 1.35rem;
-      margin-top: 4px;
-    }
-    .task-card {
-      padding: 12px;
-      border-left: 5px solid #facc15;
-      cursor: pointer;
-    }
-    .task-card.active {
-      outline: 2px solid #0f766e;
-      border-left-color: #0f766e;
-    }
-    .commission-panel {
-      display: none;
-      margin-top: 14px;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-left: 5px solid #0f766e;
-      border-radius: 8px;
-      padding: 14px;
-    }
-    .commission-panel.active {
-      display: block;
-    }
-    .table-wrap {
-      overflow-x: auto;
-      margin-top: 12px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    th,
-    td {
-      border-bottom: 1px solid #e2e8f0;
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th {
-      background: #0f766e;
-      color: #fff;
-    }
-    .logo-preview {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      border: 1px solid #cbd5e1;
-      padding: 4px;
-    }
-    .result {
-      margin-top: 12px;
-      border-radius: 8px;
-      padding: 12px;
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
-      color: #065f46;
-      white-space: pre-wrap;
-    }
-    .result:empty {
-      display: none;
-    }
-    @media print {
-      body {
-        background: #fff;
-      }
-      .hero,
-      .button,
-      button {
-        display: none;
-      }
-      main {
-        padding: 0;
-      }
-      .panel,
-      .bingo-card,
-      .task-card {
-        box-shadow: none;
-      }
-    }
-    @media (max-width: 980px) {
-      main {
-        padding: 14px;
-      }
-      .hero,
-      .bingo-grid,
-      .calc-grid,
-      .form-grid,
-      .task-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:48vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
+    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:20px;line-height:1.5;max-width:600px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
+    .panel{background:rgba(255,255,255,.97);color:#111;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .panel h2{margin:0 0 8px;font-size:1.3rem}
+    .panel p{color:#475569;font-size:.9rem;margin:0 0 14px;line-height:1.5}
+    .bingos{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px}
+    .bingo{background:#fef3ec;border:1px solid #f36b21;border-radius:10px;padding:16px;text-align:center}
+    .bingo .fecha{font-size:.75rem;font-weight:900;text-transform:uppercase;color:#6b7280;letter-spacing:.3px;margin-bottom:4px}
+    .bingo .num{font-size:2.5rem;font-weight:900;color:#f36b21;line-height:1}
+    .bingo .desc{font-size:.82rem;color:#374151;margin-top:6px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:grid;gap:6px;font-weight:800;font-size:.9rem;color:#374151}
+    input,select,textarea{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;width:100%;box-sizing:border-box;background:#fff}
+    .wide{grid-column:1/-1}
+    .actions{display:flex;gap:10px;margin-top:14px}
+    button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:0;border-radius:8px;padding:10px 20px;background:#f36b21;color:#fff;font:inherit;font-weight:900;cursor:pointer}
+    .result{margin-top:12px;border-radius:8px;padding:12px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;display:none}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <div>
-        <div class="brand">
-          <img src="../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/logo-gigantes.jpg" alt="Gigantes de Azapa">
-          <span>Recaudacion grande</span>
-        </div>
-        <h1>4 Bingos solidarios</h1>
-        <p>Tablero para organizar cuatro bingos grandes: venta de cartones, premios, caja, comida, bebidas, animacion y logistica.</p>
-        <a class="button" href="actividades.html">Actividades</a>
-        <a class="button secondary" href="avance.html">Ver avance</a>
-        <a class="button secondary" href="index.html">Inicio</a>
-        <button class="secondary" onclick="window.print()">Imprimir tablero</button>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bingos <em>solidarios</em></h1>
+      <p class="lead">4 eventos grandes para recaudar fondos. Compra cartones, gana premios y apoya a los Gigantes a llegar a Salta 2026.</p>
+    </div>
+  </section>
+  <div class="main">
+    <div class="panel">
+      <h2>Próximos bingos</h2>
+      <p>Fechas a confirmar por la directiva. Te avisamos por WhatsApp.</p>
+      <div class="bingos">
+        <div class="bingo"><div class="fecha">Bingo</div><div class="num">1</div><div class="desc">Fecha a confirmar · Sede del club</div></div>
+        <div class="bingo"><div class="fecha">Bingo</div><div class="num">2</div><div class="desc">Fecha a confirmar · Sede del club</div></div>
+        <div class="bingo"><div class="fecha">Bingo</div><div class="num">3</div><div class="desc">Fecha a confirmar · Sede del club</div></div>
+        <div class="bingo"><div class="fecha">Bingo</div><div class="num">4</div><div class="desc">Fecha a confirmar · Sede del club</div></div>
       </div>
-      <div class="photo">
-        <div>
-          <strong>Un bingo bien organizado puede mover la meta</strong>
-          <p>Premios, cartones y comunidad trabajando juntos.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bingo-grid" id="bingoGrid"></section>
-
-    <section class="panel">
-      <h2 id="selectedTitle" style="margin-top:0">Bingo 1</h2>
-      <div class="calc-grid">
-        <label>Fecha tentativa
-          <input id="fechaInput" type="date">
-        </label>
-        <label>Cartones meta
-          <input id="cartonesInput" type="number" min="1" value="300">
-        </label>
-        <label>Precio carton
-          <input id="precioInput" type="number" min="0" value="2000">
-        </label>
-        <label>Gasto estimado
-          <input id="gastoInput" type="number" min="0" value="150000">
-        </label>
-      </div>
-      <div class="calc-grid" style="margin-top:12px">
-        <div class="metric"><span>Ingreso esperado</span><strong id="ingresoOut">$0</strong></div>
-        <div class="metric"><span>Gasto estimado</span><strong id="gastoOut">$0</strong></div>
-        <div class="metric"><span>Utilidad esperada</span><strong id="utilidadOut">$0</strong></div>
-        <div class="metric"><span>Meta cartones</span><strong id="cartonesOut">0</strong></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Comisiones del bingo</h2>
-      <div class="task-grid" id="taskGrid"></div>
-
-      <div class="commission-panel active" id="premiosPanel">
-        <h3>Premios conseguidos</h3>
-        <p>Registra premio, donante, valor estimado y responsable. El listado se ordena automaticamente por valor del premio.</p>
-        <div class="form-grid">
-          <label>Premio
-            <input id="premioNombre" placeholder="Ej: estadia hotel, cena, canasta familiar">
-          </label>
-          <label>Donante
-            <input id="premioDonante" placeholder="Ej: Hotel XXX">
-          </label>
-          <label>Valor estimado
-            <input id="premioValor" type="number" min="0" placeholder="Ej: 150000">
-          </label>
-          <label>Responsable
-            <input id="premioResponsable" placeholder="Ej: Juan Perez">
-          </label>
-        </div>
-        <div class="form-grid" style="margin-top:12px">
-          <label>Logo o imagen del donante
-            <input id="premioLogo" type="file" accept=".jpg,.jpeg,.png,.webp">
-          </label>
-          <label>Publicidad sugerida
-            <input id="premioPublicidad" placeholder="Ej: agradecer en redes, mencionar en bingo">
-          </label>
-          <label>Estado
-            <select id="premioEstado">
-              <option>Comprometido</option>
-              <option>Recibido</option>
-              <option>Pendiente retiro</option>
-            </select>
-          </label>
-          <label>Bingo asociado
-            <input id="premioBingo" readonly value="Bingo 1">
-          </label>
-        </div>
-        <button type="button" id="addPremioBtn">Agregar premio</button>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Logo</th><th>Premio</th><th>Donante</th><th>Valor</th><th>Responsable</th><th>Estado</th><th>Publicidad</th></tr></thead>
-            <tbody id="premiosBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="commission-panel" id="cartonesPanel">
-        <h3>Vendedores de cartones</h3>
-        <p>Controla quien vende cartones, cuantos recibe, cuantos vende y cuanto debe rendir.</p>
-        <div class="form-grid">
-          <label>Vendedor
-            <input id="vendedorNombre" placeholder="Nombre responsable">
-          </label>
-          <label>Cartones asignados
-            <input id="cartonesAsignados" type="number" min="0" placeholder="Ej: 30">
-          </label>
-          <label>Cartones vendidos
-            <input id="cartonesVendidos" type="number" min="0" placeholder="Ej: 20">
-          </label>
-          <label>Telefono
-            <input id="vendedorTelefono" placeholder="+56 9...">
-          </label>
-        </div>
-        <button type="button" id="addVendedorBtn">Agregar vendedor</button>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Vendedor</th><th>Asignados</th><th>Vendidos</th><th>Pendientes</th><th>Telefono</th></tr></thead>
-            <tbody id="vendedoresBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="commission-panel" id="generalPanel">
-        <h3 id="generalTitle">Detalle de comision</h3>
-        <p>Registra responsables, recursos y observaciones para esta comision.</p>
-        <div class="form-grid">
-          <label>Responsable
-            <input id="generalResponsable" placeholder="Nombre responsable">
-          </label>
-          <label>Recurso o tarea
-            <input id="generalRecurso" placeholder="Ej: parlante, mesa, caja, afiche">
-          </label>
-          <label>Estado
-            <select id="generalEstado">
-              <option>Pendiente</option>
-              <option>Comprometido</option>
-              <option>Listo</option>
-            </select>
-          </label>
-          <label>Contacto
-            <input id="generalContacto" placeholder="Telefono o correo">
-          </label>
-        </div>
-        <button type="button" id="addGeneralBtn">Agregar registro</button>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Comision</th><th>Responsable</th><th>Recurso/Tarea</th><th>Estado</th><th>Contacto</th></tr></thead>
-            <tbody id="generalBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Anotarse en bingo</h2>
+    </div>
+    <div class="panel">
+      <h2>Reservar cartones</h2>
+      <p>Reserva tus cartones con anticipación. La directiva te confirma por WhatsApp.</p>
       <form id="bingoForm">
-        <input type="hidden" name="type" value="actividad">
-        <input type="hidden" name="actividad" id="actividadInput" value="Bingo 1">
-        <input type="hidden" name="comision" id="comisionInput" value="Conseguir premios">
         <div class="form-grid">
-          <label>Nombre
-            <input name="nombre" required placeholder="Nombre y apellido">
+          <label>Nombre completo<input name="nombre" required placeholder="Tu nombre"></label>
+          <label>WhatsApp<input name="telefono" required placeholder="+56 9..."></label>
+          <label>¿Para qué bingo?
+            <select name="bingo"><option>Bingo 1</option><option>Bingo 2</option><option>Bingo 3</option><option>Bingo 4</option><option>Todos</option></select>
           </label>
-          <label>Correo
-            <input name="email" type="email" required placeholder="correo@ejemplo.com">
-          </label>
-          <label>Telefono
-            <input name="telefono" placeholder="+56 9...">
-          </label>
-          <label>Tarea
-            <input name="tarea" id="tareaInput" value="Conseguir premios">
-          </label>
+          <label>Cantidad de cartones<input type="number" name="cartones" min="1" value="1"></label>
+          <label class="wide">Observaciones<textarea name="observaciones" placeholder="Comentarios, si quieres llevar a alguien, etc."></textarea></label>
         </div>
-        <div class="form-grid" style="margin-top:12px">
-          <label>Aporte o recurso
-            <input name="aporte" placeholder="Ej: premio, 20 cartones vendidos, parlante, mesa">
-          </label>
-          <label>Horario disponible
-            <input name="horario" placeholder="Ej: tarde, desde las 18:00">
-          </label>
-          <label>Fecha
-            <input name="fecha" id="fechaFormInput">
-          </label>
-          <label>Bingo
-            <input name="bingo" id="bingoNameInput" value="Bingo 1">
-          </label>
-        </div>
-        <label style="margin-top:12px">Observaciones
-          <textarea name="observaciones" rows="4" placeholder="Ej: puedo conseguir premio, presto parlante, vendo 30 cartones..."></textarea>
-        </label>
-        <button type="submit">Anotarme</button>
-        <button class="secondary" type="reset">Limpiar</button>
-        <div id="result" class="result"></div>
+        <div class="actions"><button type="submit">Reservar cartones</button></div>
+        <div class="result" id="result"></div>
       </form>
-    </section>
-  </main>
-
-  <script>
-    const BINGOS = ["Bingo 1", "Bingo 2", "Bingo 3", "Bingo 4"];
-    const TASKS = [
-      ["Conseguir premios", "Premios principales y secundarios."],
-      ["Vender cartones", "Preventas, pagos y control."],
-      ["Animacion", "Cantar numeros y dirigir rondas."],
-      ["Caja y vuelto", "Control de dinero y registro."],
-      ["Comida y bebidas", "Venta adicional para recaudar mas."],
-      ["Difusion", "Afiche, redes y contactos."],
-      ["Logistica", "Mesas, sillas, sonido y limpieza."],
-      ["Registro ganadores", "Anotar ganadores y entregar premios."]
-    ];
-
-    const money = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
-    const bingoGrid = document.getElementById("bingoGrid");
-    const taskGrid = document.getElementById("taskGrid");
-    const result = document.getElementById("result");
-    const form = document.getElementById("bingoForm");
-    let selectedBingo = 0;
-    let selectedTask = 0;
-    let premios = JSON.parse(localStorage.getItem("gigantes_bingo_premios") || "[]");
-    let vendedores = JSON.parse(localStorage.getItem("gigantes_bingo_vendedores") || "[]");
-    let generales = JSON.parse(localStorage.getItem("gigantes_bingo_generales") || "[]");
-
-    function renderBingos() {
-      bingoGrid.innerHTML = "";
-      BINGOS.forEach((name, index) => {
-        const card = document.createElement("article");
-        card.className = "bingo-card" + (index === selectedBingo ? " active" : "");
-        card.innerHTML = `<strong>${name}</strong><span>Planificar fecha, cartones, premios y comisiones.</span>`;
-        card.addEventListener("click", () => selectBingo(index));
-        bingoGrid.appendChild(card);
-      });
-    }
-
-    function renderTasks() {
-      taskGrid.innerHTML = "";
-      TASKS.forEach(([name, help], index) => {
-        const card = document.createElement("article");
-        card.className = "task-card" + (index === selectedTask ? " active" : "");
-        card.innerHTML = `<strong>${name}</strong><p>${help}</p>`;
-        card.addEventListener("click", () => selectTask(index));
-        taskGrid.appendChild(card);
-      });
-    }
-
-    function selectBingo(index) {
-      selectedBingo = index;
-      const name = BINGOS[index];
-      document.getElementById("selectedTitle").textContent = name;
-      document.getElementById("actividadInput").value = name;
-      document.getElementById("bingoNameInput").value = name;
-      document.getElementById("premioBingo").value = name;
-      renderBingos();
-      renderPremios();
-      renderVendedores();
-      renderGenerales();
-    }
-
-    function selectTask(index) {
-      selectedTask = index;
-      const name = TASKS[index][0];
-      document.getElementById("comisionInput").value = name;
-      document.getElementById("tareaInput").value = name;
-      renderTasks();
-      renderCommissionPanel(name);
-    }
-
-    function renderCommissionPanel(name) {
-      document.querySelectorAll(".commission-panel").forEach((panel) => panel.classList.remove("active"));
-      if (name === "Conseguir premios") {
-        document.getElementById("premiosPanel").classList.add("active");
-      } else if (name === "Vender cartones") {
-        document.getElementById("cartonesPanel").classList.add("active");
-      } else {
-        document.getElementById("generalPanel").classList.add("active");
-        document.getElementById("generalTitle").textContent = name;
-      }
-    }
-
-    function readLogo(file) {
-      return new Promise((resolve) => {
-        if (!file) return resolve("");
-        const reader = new FileReader();
-        reader.onload = () => resolve(String(reader.result));
-        reader.readAsDataURL(file);
-      });
-    }
-
-    async function addPremio() {
-      const logoFile = document.getElementById("premioLogo").files[0];
-      const premio = {
-        bingo: BINGOS[selectedBingo],
-        nombre: document.getElementById("premioNombre").value,
-        donante: document.getElementById("premioDonante").value,
-        valor: Number(document.getElementById("premioValor").value || 0),
-        responsable: document.getElementById("premioResponsable").value,
-        publicidad: document.getElementById("premioPublicidad").value,
-        estado: document.getElementById("premioEstado").value,
-        logo: await readLogo(logoFile)
-      };
-      if (!premio.nombre || !premio.donante) return;
-      premios.push(premio);
-      localStorage.setItem("gigantes_bingo_premios", JSON.stringify(premios));
-      ["premioNombre","premioDonante","premioValor","premioResponsable","premioPublicidad"].forEach((id) => document.getElementById(id).value = "");
-      document.getElementById("premioLogo").value = "";
-      renderPremios();
-    }
-
-    function renderPremios() {
-      const body = document.getElementById("premiosBody");
-      const list = premios.filter((item) => item.bingo === BINGOS[selectedBingo]).sort((a, b) => b.valor - a.valor);
-      body.innerHTML = list.map((item) => `
-        <tr>
-          <td>${item.logo ? `<img class="logo-preview" src="${item.logo}" alt="${item.donante}">` : ""}</td>
-          <td>${item.nombre}</td>
-          <td>${item.donante}</td>
-          <td>${money.format(item.valor || 0)}</td>
-          <td>${item.responsable || ""}</td>
-          <td>${item.estado || ""}</td>
-          <td>${item.publicidad || ""}</td>
-        </tr>
-      `).join("");
-    }
-
-    function addVendedor() {
-      const asignados = Number(document.getElementById("cartonesAsignados").value || 0);
-      const vendidos = Number(document.getElementById("cartonesVendidos").value || 0);
-      const item = {
-        bingo: BINGOS[selectedBingo],
-        nombre: document.getElementById("vendedorNombre").value,
-        asignados,
-        vendidos,
-        telefono: document.getElementById("vendedorTelefono").value
-      };
-      if (!item.nombre) return;
-      vendedores.push(item);
-      localStorage.setItem("gigantes_bingo_vendedores", JSON.stringify(vendedores));
-      ["vendedorNombre","cartonesAsignados","cartonesVendidos","vendedorTelefono"].forEach((id) => document.getElementById(id).value = "");
-      renderVendedores();
-    }
-
-    function renderVendedores() {
-      const body = document.getElementById("vendedoresBody");
-      const list = vendedores.filter((item) => item.bingo === BINGOS[selectedBingo]);
-      body.innerHTML = list.map((item) => `
-        <tr><td>${item.nombre}</td><td>${item.asignados}</td><td>${item.vendidos}</td><td>${Math.max(item.asignados - item.vendidos, 0)}</td><td>${item.telefono || ""}</td></tr>
-      `).join("");
-    }
-
-    function addGeneral() {
-      const item = {
-        bingo: BINGOS[selectedBingo],
-        comision: TASKS[selectedTask][0],
-        responsable: document.getElementById("generalResponsable").value,
-        recurso: document.getElementById("generalRecurso").value,
-        estado: document.getElementById("generalEstado").value,
-        contacto: document.getElementById("generalContacto").value
-      };
-      if (!item.responsable && !item.recurso) return;
-      generales.push(item);
-      localStorage.setItem("gigantes_bingo_generales", JSON.stringify(generales));
-      ["generalResponsable","generalRecurso","generalContacto"].forEach((id) => document.getElementById(id).value = "");
-      renderGenerales();
-    }
-
-    function renderGenerales() {
-      const body = document.getElementById("generalBody");
-      const list = generales.filter((item) => item.bingo === BINGOS[selectedBingo]);
-      body.innerHTML = list.map((item) => `
-        <tr><td>${item.comision}</td><td>${item.responsable || ""}</td><td>${item.recurso || ""}</td><td>${item.estado || ""}</td><td>${item.contacto || ""}</td></tr>
-      `).join("");
-    }
-
-    function renderCalc() {
-      const cartones = Number(document.getElementById("cartonesInput").value || 0);
-      const precio = Number(document.getElementById("precioInput").value || 0);
-      const gasto = Number(document.getElementById("gastoInput").value || 0);
-      const ingreso = cartones * precio;
-      const utilidad = Math.max(ingreso - gasto, 0);
-      document.getElementById("ingresoOut").textContent = money.format(ingreso);
-      document.getElementById("gastoOut").textContent = money.format(gasto);
-      document.getElementById("utilidadOut").textContent = money.format(utilidad);
-      document.getElementById("cartonesOut").textContent = cartones;
-    }
-
-    ["cartonesInput", "precioInput", "gastoInput"].forEach((id) => {
-      document.getElementById(id).addEventListener("input", renderCalc);
-    });
-    document.getElementById("addPremioBtn").addEventListener("click", addPremio);
-    document.getElementById("addVendedorBtn").addEventListener("click", addVendedor);
-    document.getElementById("addGeneralBtn").addEventListener("click", addGeneral);
-
-    document.getElementById("fechaInput").addEventListener("input", (event) => {
-      document.getElementById("fechaFormInput").value = event.target.value;
-    });
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      result.textContent = "Registrando apoyo al bingo...";
-      const url = window.GIGANTES_APPS_SCRIPT_URL;
-      if (!url || url.includes("PEGAR")) {
-        result.textContent = "Falta configurar Apps Script.";
-        return;
-      }
-      const payload = new URLSearchParams(new FormData(form));
-      try {
-        await fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: payload.toString()
-        });
-        result.textContent = "Registro enviado. Revisa WEB_ACTIVIDADES en el Centro Operativo.";
-      } catch (error) {
-        result.textContent = "No se pudo enviar.";
-      }
-    });
-
-    renderBingos();
-    renderTasks();
-    renderCalc();
-    selectBingo(0);
-    selectTask(0);
-  </script>
+    </div>
+  </div>
+<script>
+document.getElementById("bingoForm").addEventListener("submit",async(e)=>{
+  e.preventDefault();
+  const res=document.getElementById("result");
+  res.style.display="block";res.textContent="Registrando reserva...";
+  const data=Object.fromEntries(new FormData(e.currentTarget).entries());
+  data.action="bingo";
+  const sent=await sendToGigantes(data);
+  res.textContent=sent.ok?"✅ Reserva registrada. La directiva te confirma por WhatsApp.":"📋 Reserva preparada. Contacta al club por WhatsApp para confirmar tus cartones.";
+});
+</script>
 </body>
 </html>

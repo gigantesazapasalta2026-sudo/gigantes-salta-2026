@@ -3,359 +3,128 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Gigantes de Azapa Rugby Club — Gira internacional Salta 2026. Inscripciones, documentos, sponsors y avance de meta.">
-  <title>Gigantes de Azapa — Salta 2026</title>
+  <title>Gigantes de Azapa — Gira Salta 2026</title>
   <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
   <style>
-    :root{--naranja:#f36b21;--naranja-oscuro:#c2410c;--negro:#0b0f14;--negro2:#171717;--blanco:#fff;--line:rgba(255,255,255,.2)}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,sans-serif;background:var(--negro);color:#fff;min-height:100vh}
-
-    /* TOPBAR */
-    .topbar{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(11,15,20,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
-    .brand img{width:46px;height:46px;object-fit:contain;background:#fff;border-radius:8px;padding:4px}
-    .brand-text small{display:block;color:var(--naranja);text-transform:uppercase;font-size:.66rem;letter-spacing:.5px}
-    .brand-text span{font-size:.95rem;font-weight:900}
-    .menu-btn{width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;font-size:1.5rem;cursor:pointer}
-
-    /* DRAWER */
-    .drawer{position:fixed;z-index:40;top:0;right:0;width:min(320px,90vw);height:100vh;background:#fff;color:var(--negro);padding:18px;box-shadow:-20px 0 60px rgba(0,0,0,.5);transform:translateX(110%);transition:.2s ease;overflow-y:auto}
-    .drawer.open{transform:translateX(0)}
-    .drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-    .drawer-close{width:38px;height:38px;border:0;border-radius:8px;background:var(--negro);color:#fff;font-size:1.2rem;cursor:pointer}
-    .drawer a{display:flex;align-items:center;gap:10px;color:var(--negro);text-decoration:none;border-left:4px solid var(--naranja);background:#fef3ec;border-radius:0 8px 8px 0;padding:11px 14px;margin:7px 0;font-weight:700;font-size:.9rem}
-
-    /* HERO VIDEO */
-    .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
-    .hero-media{position:absolute;inset:0;z-index:0}
-    .hero-media video{width:100%;height:100%;object-fit:cover}
-    .hero-media img{width:100%;height:100%;object-fit:cover}
-    .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,15,20,.2) 0%,rgba(11,15,20,.5) 40%,rgba(11,15,20,.97) 100%)}
-    .hero-content{position:relative;z-index:2;width:min(1180px,100%);margin:0 auto;padding:96px 20px 32px}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--naranja),var(--naranja-oscuro));border-radius:99px;padding:7px 18px;font-size:.82rem;font-weight:900;margin-bottom:14px}
-    h1{font-size:clamp(3rem,9vw,6.5rem);line-height:.9;font-weight:900;margin-bottom:14px}
-    h1 em{color:var(--naranja);font-style:normal}
-    .hero-lead{max-width:640px;font-size:clamp(.95rem,2vw,1.2rem);line-height:1.55;color:rgba(255,255,255,.85);margin-bottom:24px}
-
-    /* ITINERARIO */
-    .itin{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
-    .itin-day{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:11px 13px;font-size:.78rem;line-height:1.5}
-    .itin-day strong{display:block;color:var(--naranja);font-size:.7rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
-
-    /* META */
-    .meta-card{background:rgba(255,255,255,.97);color:var(--negro);border-radius:12px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-    .meta-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-    .meta-label{display:inline-block;background:#fef3ec;color:var(--naranja-oscuro);border-radius:99px;padding:4px 12px;font-size:.72rem;font-weight:900;margin-bottom:6px}
-    .meta-top h2{font-size:clamp(1.1rem,2.5vw,1.6rem);line-height:1.15;margin:0}
-    .meta-link{background:var(--negro);color:#fff;text-decoration:none;border-radius:8px;padding:9px 16px;font-weight:900;font-size:.85rem;white-space:nowrap;flex-shrink:0}
-    .bar-wrap{height:16px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin-bottom:12px}
-    .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--naranja),var(--naranja-oscuro));border-radius:99px;transition:width .6s ease}
-    .meta-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-    .meta-num{background:#fef3ec;border-left:4px solid var(--naranja);border-radius:8px;padding:10px 12px}
-    .meta-num span{display:block;font-size:.68rem;font-weight:900;text-transform:uppercase;color:#6b7280;letter-spacing:.3px}
-    .meta-num strong{display:block;font-size:clamp(1.1rem,2.5vw,1.55rem);font-weight:900;line-height:1;margin-top:4px;color:var(--naranja-oscuro)}
-    .ind-note{background:#fef9ec;border:1px solid #f59e0b;border-radius:6px;padding:9px 12px;font-size:.78rem;color:#92400e;margin-top:10px;line-height:1.5}
-
-    /* SECCIÓN 2 — RUTAS */
-    .section{padding:32px 20px;background:var(--negro2)}
+    body{font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:92vh;display:flex;align-items:flex-end;padding:80px 20px 48px;position:relative;overflow:hidden}
+    .hero-inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}
+    .hero-tag{display:inline-block;background:#f36b21;border-radius:99px;padding:6px 16px;font-size:.78rem;font-weight:900;margin-bottom:14px;letter-spacing:.3px}
+    h1{font-size:clamp(2.8rem,8vw,6rem);font-weight:900;line-height:.92;margin-bottom:14px}
+    h1 em{color:#f36b21;font-style:normal}
+    .subtitle{font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,.78);max-width:560px;line-height:1.5;margin-bottom:28px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:13px 22px;font-weight:900;font-size:.92rem;text-decoration:none;cursor:pointer;border:none;font-family:inherit}
+    .btn-naranja{background:#f36b21;color:#fff}
+    .btn-dark{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+    .section{padding:48px 20px;background:#0b0f14}
+    .section:nth-child(even){background:#111827}
     .section-inner{width:min(1180px,100%);margin:0 auto}
-    .section-title{font-size:clamp(1.2rem,3vw,1.8rem);font-weight:900;margin-bottom:6px}
-    .section-sub{color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:20px}
-
-    .rutas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
-    .ruta{min-height:280px;position:relative;overflow:hidden;border-radius:12px;text-decoration:none;color:#fff;background:#000}
-    .ruta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
-    .ruta::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,20,.05),rgba(11,15,20,.88))}
-    .ruta:hover img{transform:scale(1.06)}
-    .ruta-body{position:absolute;z-index:1;left:18px;right:18px;bottom:18px}
-    .ruta-tag{display:inline-block;background:var(--naranja);border-radius:99px;padding:4px 12px;font-size:.72rem;font-weight:900;margin-bottom:8px}
-    .ruta h2{font-size:clamp(1.3rem,2.5vw,1.8rem);line-height:1.05;margin-bottom:6px}
-    .ruta p{font-size:.82rem;line-height:1.45;color:rgba(255,255,255,.82)}
-    .ruta-arrow{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--naranja);border-radius:8px;padding:8px 14px;font-size:.82rem;font-weight:900}
-
-    /* FOTOS GALERÍA */
-    .galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:8px;margin-bottom:32px}
-    .foto{overflow:hidden;border-radius:8px;background:#000}
-    .foto img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;display:block}
-    .foto:hover img{transform:scale(1.07)}
-    .foto.tall{grid-row:span 2}
-    .foto.wide{grid-column:span 2}
-
-    /* SPONSORS CTA */
-    .sponsor-cta{background:linear-gradient(135deg,var(--naranja),var(--naranja-oscuro));border-radius:12px;padding:28px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:32px}
-    .sponsor-cta h3{font-size:clamp(1.2rem,3vw,1.8rem);font-weight:900;margin-bottom:6px}
-    .sponsor-cta p{font-size:.9rem;opacity:.9;max-width:500px;line-height:1.5}
-    .sponsor-btn{background:#fff;color:var(--naranja-oscuro);text-decoration:none;border-radius:10px;padding:14px 24px;font-weight:900;font-size:.95rem;white-space:nowrap;flex-shrink:0}
-
-    /* PAQUETES SPONSORS */
-    .paquetes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
-    .paquete{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:18px;text-align:center}
-    .paquete.destacado{background:linear-gradient(135deg,rgba(243,107,33,.15),rgba(194,65,12,.15));border-color:var(--naranja)}
-    .paquete-nombre{font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--naranja);margin-bottom:8px}
-    .paquete-monto{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin-bottom:10px}
-    .paquete ul{list-style:none;font-size:.8rem;line-height:1.8;color:rgba(255,255,255,.8);text-align:left}
-    .paquete ul li::before{content:"✓ ";color:var(--naranja);font-weight:900}
-    .paquete a{display:block;margin-top:14px;background:var(--naranja);color:#fff;text-decoration:none;border-radius:8px;padding:9px;font-weight:900;font-size:.85rem}
-    .paquete.destacado a{background:#fff;color:var(--naranja-oscuro)}
-
-    /* GRID ACCESOS */
-    .accesos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:24px}
-    .acceso{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-left:4px solid var(--naranja);border-radius:8px;padding:13px;color:#fff;text-decoration:none;font-size:.85rem;font-weight:700;transition:background .2s}
-    .acceso:hover{background:rgba(243,107,33,.15)}
-
-    /* FOOTER */
-    footer{text-align:center;padding:24px 20px;color:rgba(255,255,255,.4);font-size:.78rem;border-top:1px solid var(--line)}
-    footer strong{color:rgba(255,255,255,.7)}
-
-    @media(max-width:900px){
-      .itin,.rutas,.paquetes{grid-template-columns:1fr 1fr}
-      .galeria{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
-      .foto.tall{grid-row:span 1}
-    }
-    @media(max-width:580px){
-      .itin,.rutas,.paquetes{grid-template-columns:1fr}
-      .meta-nums{grid-template-columns:1fr}
-      .galeria{grid-template-columns:1fr 1fr;grid-auto-rows:140px}
-    }
+    .section-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;margin-bottom:6px}
+    .section-sub{color:rgba(255,255,255,.5);font-size:.88rem;margin-bottom:28px}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .card{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px;transition:transform .2s}
+    .card:hover{transform:translateY(-3px)}
+    .card-icon{font-size:2rem;margin-bottom:10px}
+    .card h3{font-size:1.05rem;font-weight:900;margin-bottom:6px}
+    .card p{font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.55;margin-bottom:14px}
+    .card a{display:inline-flex;background:#f36b21;color:#fff;text-decoration:none;border-radius:8px;padding:8px 14px;font-weight:900;font-size:.82rem}
+    .fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px}
+    .foto{overflow:hidden;border-radius:10px;aspect-ratio:4/3}
+    .foto img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+    .foto:hover img{transform:scale(1.05)}
+    .transf{background:rgba(243,107,33,.1);border:1px solid rgba(243,107,33,.3);border-radius:12px;padding:22px;line-height:1.9;font-size:.92rem}
+    .transf strong{color:#f36b21}
+    .meta-box{background:linear-gradient(135deg,#111827,#1a0a00);border:1px solid rgba(243,107,33,.3);border-radius:14px;padding:28px;text-align:center;margin-bottom:20px}
+    .meta-num{font-size:clamp(2.5rem,7vw,5rem);font-weight:900;color:#f36b21;line-height:1}
+    .meta-label{color:rgba(255,255,255,.6);font-size:.9rem;margin-top:6px}
+    footer{text-align:center;padding:28px 20px;color:rgba(255,255,255,.3);font-size:.78rem;border-top:1px solid rgba(255,255,255,.08)}
+    @media(max-width:600px){.hero-btns{flex-direction:column}}
   </style>
-<script src="config.js"></script>
-<script src="form-bridge.js"></script>
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="index.html">
-    <img src="https://lh3.googleusercontent.com/d/1xXGqa0I_sw6C6QPcD_G-1fblDQlr9-Ae" alt="Logo Gigantes de Azapa" onerror="this.src='https://placehold.co/46x46/fff/f36b21?text=G'">
-    <div class="brand-text">
-      <small>Gigantes de Azapa</small>
-      <span>Salta 2026</span>
-    </div>
-  </a>
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
-</header>
-
-<nav class="drawer" id="drawer">
-  <div class="drawer-head">
-    <strong>Menú</strong>
-    <button class="drawer-close" onclick="toggleMenu()">✕</button>
-  </div>
-  <a href="inscripcion.html">🏉 Inscribir jugador</a>
-  <a href="documentos_carga.html">📄 Subir documentos</a>
-  <a href="mi_estado.html">🔍 Mi estado</a>
-  <a href="itinerario.html">🗓 Itinerario del viaje</a>
-  <a href="actividades.html">🤝 Actividades solidarias</a>
-  <a href="aportes.html">💛 Hacer un aporte</a>
-  <a href="merchandising.html">👕 Merchandising</a>
-  <a href="bingos.html">🎰 Bingos</a>
-  <a href="sponsors.html">🏢 Sponsors</a>
-  <a href="avance.html">📊 Avance de meta</a>
-  <a href="galeria_club.html">📸 Galería del club</a>
-  <a href="manual_uso.html">📋 Manual de uso</a>
-</nav>
-
-<!-- HERO CON VIDEO -->
 <section class="hero">
-  <div class="hero-media">
-    <video autoplay muted loop playsinline poster="https://lh3.googleusercontent.com/d/1xV3V7SsFf0vFQHFeZyYR-QaQU3P6SWHs">
-      <source src="https://lh3.googleusercontent.com/d/1gWdHZ5Kzy02qj6sXE5jR7t2-3oJqkET0" type="video/mp4">
-      <img src="https://lh3.googleusercontent.com/d/1xV3V7SsFf0vFQHFeZyYR-QaQU3P6SWHs" alt="Gigantes de Azapa">
-    </video>
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="badge">🏆 Los Pumas vs Australia · Sáb 29 Agosto · Jujuy</div>
-    <h1>Gigantes<br>a <em>Salta</em><br>2026</h1>
-    <p class="hero-lead">App oficial de la gira internacional del Club Gigantes de Azapa. Inscripciones, documentos, sponsors, actividades y avance de meta en un solo lugar.</p>
-
-    <div class="itin">
-      <div class="itin-day"><strong>🚌 Mié 26 Ago</strong>Salida desde Arica. Bus Arica → Calama → Salta</div>
-      <div class="itin-day"><strong>🏉 Jue-Vie 27-28</strong>Amistosos M10, M12, M14 y Classic en Salta</div>
-      <div class="itin-day"><strong>🏆 Sáb 29 Ago</strong>Los Pumas vs Australia — Estadio 23 Agosto, Jujuy</div>
-      <div class="itin-day"><strong>🏠 Dom 30 Ago</strong>Regreso a Arica</div>
-    </div>
-
-    <div class="meta-card">
-      <div class="meta-top">
-        <div>
-          <span class="meta-label">Meta de recaudación</span>
-          <h2>Entre todos llevamos al equipo a Salta</h2>
-        </div>
-        <a class="meta-link" href="avance.html">Ver detalle →</a>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill" id="barFill"></div></div>
-      <div class="meta-nums">
-        <div class="meta-num"><span>Meta estimada</span><strong id="metaMeta">$50.000.000</strong></div>
-        <div class="meta-num"><span>Recaudado</span><strong id="metaRaised">$0</strong></div>
-        <div class="meta-num"><span>Falta</span><strong id="metaMissing">$50.000.000</strong></div>
-      </div>
-      <div class="ind-note">🏛️ <strong>Postulación IND en curso:</strong> Si el IND financia los pasajes de los niños, la meta se reduce significativamente. Te avisaremos cuando haya novedades.</div>
+  <div class="hero-inner">
+    <span class="hero-tag">🏉 Gira internacional 2026</span>
+    <h1>Gigantes<br>de <em>Azapa</em></h1>
+    <p class="subtitle">Rugby Club Arica, Chile. Viajamos a Salta y Jujuy en agosto 2026. Amistosos, Los Pumas vs Australia y una experiencia única para nuestros jugadores.</p>
+    <div class="hero-btns">
+      <a href="inscripcion.html" class="btn btn-naranja">🏉 Inscribir jugador</a>
+      <a href="aportes.html" class="btn btn-dark">💛 Hacer un aporte</a>
+      <a href="avance.html" class="btn btn-dark">📊 Ver meta</a>
     </div>
   </div>
 </section>
 
-<!-- RUTAS PRINCIPALES -->
 <section class="section">
   <div class="section-inner">
-    <h2 class="section-title">¿Cómo quieres participar?</h2>
-    <p class="section-sub">Elige tu ruta. Todo queda registrado y ordenado en el sistema.</p>
-
-    <div class="rutas">
-      <a class="ruta" href="inscripcion.html">
-        <img src="https://lh3.googleusercontent.com/d/1KIAs8jwr5kv6XfsfcRulr6jjIvHaeU37" alt="Familias y jugadores Gigantes de Azapa">
-        <div class="ruta-body">
-          <span class="ruta-tag">Paso 1 — Familias</span>
-          <h2>Jugadores y familias</h2>
-          <p>Inscripción, documentos, estado personal y actividades solidarias.</p>
-          <span class="ruta-arrow">Inscribirse →</span>
-        </div>
-      </a>
-      <a class="ruta" href="aportes.html">
-        <img src="https://lh3.googleusercontent.com/d/1sM21bwM6ecxiCzx0hsn8qhnjPctsQcuJ" alt="Comunidad apoyando a Gigantes de Azapa">
-        <div class="ruta-body">
-          <span class="ruta-tag">Comunidad</span>
-          <h2>Aportes y ventas</h2>
-          <p>Cooperaciones, merchandising, bingos y avance de la meta.</p>
-          <span class="ruta-arrow">Apoyar →</span>
-        </div>
-      </a>
-      <a class="ruta" href="sponsors.html">
-        <img src="https://lh3.googleusercontent.com/d/1GwljunkxpOP0Er6a6IkRmC5AgFL7u9Ss" alt="Empresas y sponsors Gigantes de Azapa">
-        <div class="ruta-body">
-          <span class="ruta-tag">Empresas</span>
-          <h2>Sponsors y auspicios</h2>
-          <p>Paquetes Bronce, Plata, Oro y Principal. Visibilidad real.</p>
-          <span class="ruta-arrow">Ver paquetes →</span>
-        </div>
-      </a>
+    <h2 class="section-title">La gira</h2>
+    <p class="section-sub">26 al 30 de agosto 2026 · Arica → Calama → Salta → Jujuy → Arica</p>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">🏉</div><h3>Amistosos M10, M12, M14 y Classic</h3><p>Partidos vs Tigres Rugby Club Salta los días 27 y 28 de agosto.</p><a href="itinerario.html">Ver itinerario</a></div>
+      <div class="card"><div class="card-icon">🇦🇷</div><h3>Los Pumas vs Australia</h3><p>Estadio 23 de Agosto, Jujuy. Sábado 29 de agosto ~16:00 hrs.</p><a href="itinerario.html">Ver itinerario</a></div>
+      <div class="card"><div class="card-icon">🚌</div><h3>Viaje en bus</h3><p>Ruta Arica–Calama–Paso Jama–Salta. Delegación de 80 personas.</p><a href="itinerario.html">Ver itinerario</a></div>
     </div>
+  </div>
+</section>
 
-    <!-- GALERÍA FOTOS DEL CLUB -->
-    <h2 class="section-title">📸 El club en movimiento</h2>
-    <p class="section-sub">Gigantes de Azapa — Arica, Chile</p>
-    <div class="galeria">
-      <div class="foto tall"><img src="https://lh3.googleusercontent.com/d/1_Q_4Sx1NBksBFpPNEA2wYMusz5OHFUlM" alt="Entrenadores Gigantes de Azapa"></div>
-      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1KIAs8jwr5kv6XfsfcRulr6jjIvHaeU37" alt="M10 M12 Gigantes"></div>
-      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1kkrcFg-Xgh9OoItl5VuZq-Plf5Sfr6AL" alt="Entrenamiento Gigantes"></div>
-      <div class="foto wide"><img src="https://lh3.googleusercontent.com/d/1xV3V7SsFf0vFQHFeZyYR-QaQU3P6SWHs" alt="Niños reunidos Gigantes de Azapa"></div>
-      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1AUJVv1Vs_PxBHsQXWy2IaOaePhIZSZm2" alt="Tercer tiempo Gigantes"></div>
-      <div class="foto"><img src="https://lh3.googleusercontent.com/d/148VaNKj5RitxyA_-vt367D95yzbqgdQr" alt="M14 Gigantes de Azapa"></div>
-      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1pe5-hfPw4Ed5PkoRGg80pBlzWmoaN1UK" alt="Fogata formando club Gigantes"></div>
-      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1GwljunkxpOP0Er6a6IkRmC5AgFL7u9Ss" alt="Rugby playa Gigantes Azapa"></div>
-    </div>
-
-    <!-- SPONSORS CTA -->
-    <div class="sponsor-cta">
-      <div>
-        <h3>¿Tu empresa quiere estar en esta gira?</h3>
-        <p>Más de 80 personas viajan a Salta. Tu marca en la camiseta, la app, las redes y la carta oficial del club. Paquetes desde $50.000.</p>
-      </div>
-      <a class="sponsor-btn" href="sponsors.html">Ver paquetes de auspicio →</a>
-    </div>
-
-    <!-- PAQUETES SPONSORS -->
-    <h2 class="section-title">Paquetes de auspicio</h2>
-    <p class="section-sub">Visibilidad real con una comunidad comprometida</p>
-    <div class="paquetes">
-      <div class="paquete">
-        <div class="paquete-nombre">🥉 Bronce</div>
-        <div class="paquete-monto">$50.000</div>
-        <ul>
-          <li>Logo en app</li>
-          <li>Mención WhatsApp</li>
-          <li>Diploma digital</li>
-        </ul>
-        <a href="sponsors.html">Elegir →</a>
-      </div>
-      <div class="paquete">
-        <div class="paquete-nombre">🥈 Plata</div>
-        <div class="paquete-monto">$100.000</div>
-        <ul>
-          <li>Logo en app y redes</li>
-          <li>Mención en partido</li>
-          <li>Diploma enmarcado</li>
-        </ul>
-        <a href="sponsors.html">Elegir →</a>
-      </div>
-      <div class="paquete destacado">
-        <div class="paquete-nombre">🥇 Oro</div>
-        <div class="paquete-monto">$200.000</div>
-        <ul>
-          <li>Logo en camiseta</li>
-          <li>Banner en cancha</li>
-          <li>Todo lo anterior</li>
-          <li>Carta oficial</li>
-        </ul>
-        <a href="sponsors.html">Elegir →</a>
-      </div>
-      <div class="paquete">
-        <div class="paquete-nombre">⭐ Principal</div>
-        <div class="paquete-monto">$500.000</div>
-        <ul>
-          <li>Sponsor principal</li>
-          <li>Nombre en la gira</li>
-          <li>Máxima visibilidad</li>
-          <li>Personalizado</li>
-        </ul>
-        <a href="sponsors.html">Elegir →</a>
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Meta de recaudación</h2>
+    <p class="section-sub">Cada aporte nos acerca al viaje</p>
+    <div class="meta-box">
+      <div class="meta-num">$50.000.000</div>
+      <div class="meta-label">Meta total · Pasajes, alojamiento, alimentación, entradas y seguros</div>
+      <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="avance.html" class="btn btn-naranja">📊 Ver avance en tiempo real</a>
+        <a href="aportes.html" class="btn btn-dark">💛 Hacer un aporte</a>
       </div>
     </div>
+    <div class="transf">
+      <strong>Transferencias a:</strong><br>
+      Angélica Urbina González · RUT 13.013.011-9<br>
+      BCI Cuenta Corriente <strong>01-999-124695-7</strong><br>
+      Correo: <strong>gigantesazapa.salta2026@gmail.com</strong><br>
+      Motivo: <strong>Aporte Gira Gigantes de Azapa Salta 2026</strong>
+    </div>
+  </div>
+</section>
 
-    <!-- ACCESOS RÁPIDOS -->
-    <h2 class="section-title" style="margin-bottom:14px">Todos los accesos</h2>
-    <div class="accesos">
-      <a class="acceso" href="inscripcion.html">🏉 Inscripción</a>
-      <a class="acceso" href="documentos_carga.html">📄 Documentos</a>
-      <a class="acceso" href="mi_estado.html">🔍 Mi estado</a>
-      <a class="acceso" href="itinerario.html">🗓 Itinerario</a>
-      <a class="acceso" href="actividades.html">🤝 Actividades</a>
-      <a class="acceso" href="merchandising.html">👕 Merchandising</a>
-      <a class="acceso" href="bingos.html">🎰 Bingos</a>
-      <a class="acceso" href="aportes.html">💛 Aportes</a>
-      <a class="acceso" href="sponsors.html">🏢 Sponsors</a>
-      <a class="acceso" href="avance.html">📊 Avance meta</a>
-      <a class="acceso" href="galeria_club.html">📸 Galería</a>
-      <a class="acceso" href="manual_uso.html">📋 Manual</a>
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">El club</h2>
+    <p class="section-sub">Más que un club, una familia</p>
+    <div class="fotos">
+      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1xV3V7SsFf0vFQHFeZyYR-QaQU3P6SWHs" alt="Niños Gigantes de Azapa" loading="lazy"></div>
+      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1KIAs8jwr5kv6XfsfcRulr6jjIvHaeU37" alt="M10 M12" loading="lazy"></div>
+      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1kkrcFg-Xgh9OoItl5VuZq-Plf5Sfr6AL" alt="Entrenamiento" loading="lazy"></div>
+      <div class="foto"><img src="https://lh3.googleusercontent.com/d/1AUJVv1Vs_PxBHsQXWy2IaOaePhIZSZm2" alt="Tercer tiempo" loading="lazy"></div>
+    </div>
+    <a href="galeria_club.html" class="btn btn-naranja">📸 Ver galería completa</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">¿Cómo participar?</h2>
+    <p class="section-sub">Todo lo que necesitas para organizar el viaje</p>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">📝</div><h3>Inscribir jugador</h3><p>Registra los datos del jugador y adulto responsable.</p><a href="inscripcion.html">Inscribirse</a></div>
+      <div class="card"><div class="card-icon">📄</div><h3>Subir documentos</h3><p>Cédula, autorización notarial, ficha médica y seguro.</p><a href="documentos_carga.html">Subir docs</a></div>
+      <div class="card"><div class="card-icon">🔍</div><h3>Mi estado</h3><p>Consulta qué documentos están aprobados y cuáles faltan.</p><a href="mi_estado.html">Ver estado</a></div>
+      <div class="card"><div class="card-icon">👕</div><h3>Merchandising</h3><p>Poleras, gorros, vasos y más. Diseño exclusivo Salta 2026.</p><a href="merchandising.html">Ver tienda</a></div>
+      <div class="card"><div class="card-icon">🤝</div><h3>Actividades solidarias</h3><p>Bingos, completos, sponsors. Aporta con tu tiempo.</p><a href="actividades.html">Ver actividades</a></div>
+      <div class="card"><div class="card-icon">🏢</div><h3>Sponsors</h3><p>Tu empresa en la camiseta oficial. Paquetes desde $150.000.</p><a href="sponsors.html">Ver paquetes</a></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p><strong>Club Gigantes de Azapa</strong> · Arica, Chile · Gira Salta 2026</p>
-  <p style="margin-top:6px">Transferencias: <strong>Angélica Urbina González</strong> · RUT 13.013.011-9 · BCI Cta. Cte. 01-999-124695-7</p>
-  <p style="margin-top:4px">Correo: gigantesazapa.salta2026@gmail.com</p>
+  <p>Gigantes de Azapa Rugby Club · Arica, Chile · Gira Salta 2026</p>
+  <p style="margin-top:6px">Contacto: <strong style="color:#f36b21">gigantesazapa.salta2026@gmail.com</strong></p>
 </footer>
-
-<script>
-const GOAL = 50000000;
-function money(v){ return "$" + Number(v||0).toLocaleString("es-CL"); }
-function updateMeta(data){
-  const meta = Number(data&&(data.meta||data.meta_total))||GOAL;
-  const raised = Number(data&&(data.recaudado||data.total))||0;
-  const pct = meta ? Math.min((raised/meta)*100,100) : 0;
-  document.getElementById("metaMeta").textContent = money(meta);
-  document.getElementById("metaRaised").textContent = money(raised);
-  document.getElementById("metaMissing").textContent = money(Math.max(meta-raised,0));
-  document.getElementById("barFill").style.width = pct.toFixed(1)+"%";
-}
-function loadMeta(){
-  updateMeta({meta:GOAL,recaudado:0});
-  if(!window.GIGANTES_APPS_SCRIPT_URL||window.GIGANTES_APPS_SCRIPT_URL.includes("PEGAR")) return;
-  const cb="gM_"+Date.now();
-  const s=document.createElement("script");
-  const url=new URL(window.GIGANTES_APPS_SCRIPT_URL);
-  url.searchParams.set("action","avance");
-  url.searchParams.set("meta",String(GOAL));
-  url.searchParams.set("callback",cb);
-  const t=setTimeout(()=>{cleanup();},10000);
-  function cleanup(){clearTimeout(t);delete window[cb];s.remove();}
-  window[cb]=(d)=>{updateMeta(d||{});cleanup();};
-  s.onerror=()=>cleanup();
-  s.src=url.toString();
-  document.body.appendChild(s);
-}
-function toggleMenu(){ document.getElementById("drawer").classList.toggle("open"); }
-loadMeta();
-</script>
 </body>
 </html>

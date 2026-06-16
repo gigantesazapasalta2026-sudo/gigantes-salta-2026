@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actividades de recaudacion - Gigantes de Azapa</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        linear-gradient(115deg, rgba(5, 16, 31, .94), rgba(7, 61, 49, .84)),
+        url("../01_APP_SITIO_WEB/Gigantes_Azapa_Jujuy_2026_Sitio_Inscripcion/01_Sitio_Web_PWA/campana-suenos.jpg") center/cover fixed;
+      color: #0f172a;
+    }
+    .activity-page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero,
+    .panel,
+    .activity-card,
+    .role-card {
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px rgba(2, 6, 23, .28);
+      backdrop-filter: blur(10px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <main class="activity-page">
+    <section class="hero">
+      <div>
+        <h1>Actividades de recaudacion</h1>
+        <p>Elige una actividad y anotate en la comision que puedes ayudar.</p>
+        <div>
+          <a href="index.html">Inicio</a>
+          <a href="merchandising.html">Merchandising</a>
+          <a href="avance.html">Avance</a>
+        </div>
+      </div>
+    </section>
+    <section id="activityGrid"></section>
+  </main>
+<script src="config.js"></script>
+<script src="form-bridge.js"></script>
+</body>
+</html>

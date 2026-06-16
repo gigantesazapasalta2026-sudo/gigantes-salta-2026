@@ -1,17 +1,21 @@
 // ============================================================
 // form-bridge.js — Gigantes de Azapa Salta 2026
-// VERSIÓN FINAL — cargado por todas las páginas
-// Inyecta: logo, topbar, menú, video de fondo, fotos
+// REVISIÓN FINAL — Se autoinyecta en TODAS las páginas
 // ============================================================
 
 const GIGANTES = {
   LOGO: "https://lh3.googleusercontent.com/d/1xXGqa0I_sw6C6QPcD_G-1fblDQlr9-Ae",
-  VIDEO: "https://lh3.googleusercontent.com/d/1gWdHZ5Kzy02qj6sXE5jR7t2-3oJqkET0",
   BASE: "https://gigantesazapasalta2026-sudo.github.io/gigantes-salta-2026/APP_PUBLICA_GIGANTES_AZAPA/",
+  APPS_SCRIPT: null, // se llena desde config.js
   FOTOS: {
+    video:        "https://lh3.googleusercontent.com/d/1gWdHZ5Kzy02qj6sXE5jR7t2-3oJqkET0",
     m10m12:       "https://lh3.googleusercontent.com/d/1KIAs8jwr5kv6XfsfcRulr6jjIvHaeU37",
+    m10m12b:      "https://lh3.googleusercontent.com/d/1udE1rXMtgwCiLoupCF_QVo9ICkGuDCaE",
     entrenamiento:"https://lh3.googleusercontent.com/d/1kkrcFg-Xgh9OoItl5VuZq-Plf5Sfr6AL",
     entrenadores: "https://lh3.googleusercontent.com/d/1_Q_4Sx1NBksBFpPNEA2wYMusz5OHFUlM",
+    entrenador1:  "https://lh3.googleusercontent.com/d/1U6bC9wFFLcp6Y3SQeMySRBPlo8sh4Wh3",
+    entrenador2:  "https://lh3.googleusercontent.com/d/1KizLAGY__bH-DDvyytFe04_T9vL8HgbF",
+    entrenador3:  "https://lh3.googleusercontent.com/d/1kYRvTdeB8VAmIh0Pj8M6OwulU3SRMw_3",
     ninos2:       "https://lh3.googleusercontent.com/d/1xV3V7SsFf0vFQHFeZyYR-QaQU3P6SWHs",
     ninos:        "https://lh3.googleusercontent.com/d/12gdAbF7-b2U368QWZl-wkn_452w9i91G",
     m14:          "https://lh3.googleusercontent.com/d/148VaNKj5RitxyA_-vt367D95yzbqgdQr",
@@ -19,78 +23,73 @@ const GIGANTES = {
     fogata:       "https://lh3.googleusercontent.com/d/1pe5-hfPw4Ed5PkoRGg80pBlzWmoaN1UK",
     estadio:      "https://lh3.googleusercontent.com/d/1sM21bwM6ecxiCzx0hsn8qhnjPctsQcuJ",
     playa:        "https://lh3.googleusercontent.com/d/1GwljunkxpOP0Er6a6IkRmC5AgFL7u9Ss",
-    entrenador1:  "https://lh3.googleusercontent.com/d/1U6bC9wFFLcp6Y3SQeMySRBPlo8sh4Wh3",
-    entrenador2:  "https://lh3.googleusercontent.com/d/1KizLAGY__bH-DDvyytFe04_T9vL8HgbF",
-    entrenador3:  "https://lh3.googleusercontent.com/d/1kYRvTdeB8VAmIh0Pj8M6OwulU3SRMw_3"
+  },
+  // Foto de fondo por página
+  PAGINA_FOTO: {
+    "inscripcion":      "ninos2",
+    "documentos_carga": "entrenadores",
+    "mi_estado":        "m10m12",
+    "actividades":      "tercer",
+    "bingos":           "fogata",
+    "aportes":          "estadio",
+    "sponsors":         "playa",
+    "avance":           "estadio",
+    "galeria_club":     "entrenadores",
+    "manual_uso":       "m10m12",
+    "itinerario":       "ninos2",
+    "merchandising":    "m10m12",
+    "calendario":       "tercer",
+    "diploma":          "fogata",
+    "guia_familias":    "ninos",
+    "propuesta_sponsors":"playa",
+    "ruta_familias":    "m10m12",
+    "ruta_comunidad":   "tercer",
+    "ruta_empresas":    "playa",
+    "album":            "ninos2",
+    "album_visual":     "entrenadores",
+    "default":          "ninos2"
   }
 };
 
-// Mapa página → foto de fondo sugerida
-const HERO_BG = {
-  'inscripcion':     GIGANTES.FOTOS.ninos2,
-  'documentos_carga':GIGANTES.FOTOS.entrenamiento,
-  'documentos':      GIGANTES.FOTOS.entrenamiento,
-  'mi_estado':       GIGANTES.FOTOS.tercer,
-  'actividades':     GIGANTES.FOTOS.fogata,
-  'aportes':         GIGANTES.FOTOS.estadio,
-  'bingos':          GIGANTES.FOTOS.ninos,
-  'sponsors':        GIGANTES.FOTOS.m10m12,
-  'avance':          GIGANTES.FOTOS.playa,
-  'galeria_club':    GIGANTES.FOTOS.entrenadores,
-  'merchandising':   GIGANTES.FOTOS.m10m12,
-  'itinerario':      GIGANTES.FOTOS.ninos2,
-  'manual_uso':      GIGANTES.FOTOS.entrenadores,
-  'propuesta_sponsors': GIGANTES.FOTOS.estadio,
-  'aportes':         GIGANTES.FOTOS.fogata,
-  'calendario':      GIGANTES.FOTOS.tercer,
-  'album':           GIGANTES.FOTOS.ninos,
-  'album_visual':    GIGANTES.FOTOS.ninos,
-  'default':         GIGANTES.FOTOS.ninos2
-};
+// ─── TOPBAR + MENÚ (se inyecta en TODAS las páginas) ─────────────────────────
+function injectTopbar() {
+  if (document.getElementById('gb-topbar')) return;
 
-function getPageBg() {
-  const page = window.location.pathname.split('/').pop().replace('.html','');
-  return HERO_BG[page] || HERO_BG['default'];
-}
-
-// ─── 1. TOPBAR + MENÚ ────────────────────────────────────────
-(function injectTopbar() {
-  if (document.getElementById('gigantes-topbar')) return;
-
-  const style = document.createElement('style');
-  style.textContent = `
-    #gigantes-topbar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;background:rgba(11,15,20,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.15);box-shadow:0 2px 20px rgba(0,0,0,.3)}
-    #gigantes-topbar .gb-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:900;font-family:Arial,sans-serif}
-    #gigantes-topbar .gb-brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#fff;padding:2px;flex-shrink:0}
-    #gigantes-topbar .gb-brand-text small{display:block;color:#f36b21;font-size:.62rem;text-transform:uppercase;letter-spacing:.5px}
-    #gigantes-topbar .gb-brand-text span{font-size:.88rem}
-    #gigantes-topbar .gb-menu-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;font-size:1.4rem;cursor:pointer;flex-shrink:0}
-    #gigantes-drawer{display:none;position:fixed;top:0;right:0;z-index:99999;width:min(320px,90vw);height:100vh;background:#fff;color:#111;padding:18px;box-shadow:-20px 0 60px rgba(0,0,0,.4);overflow-y:auto;font-family:Arial,sans-serif}
-    #gigantes-drawer.gb-open{display:block}
-    #gigantes-drawer .gb-dhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-    #gigantes-drawer .gb-close{width:38px;height:38px;border:0;border-radius:8px;background:#111;color:#fff;font-size:1.2rem;cursor:pointer}
-    #gigantes-drawer a{display:flex;align-items:center;gap:10px;color:#111;text-decoration:none;border-left:4px solid #f36b21;background:#fef3ec;border-radius:0 8px 8px 0;padding:11px 14px;margin:6px 0;font-weight:700;font-size:.88rem}
-    #gigantes-drawer a:hover{background:#fee4cc}
+  const css = document.createElement('style');
+  css.textContent = `
+    #gb-topbar{position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;background:rgba(11,15,20,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.15);box-shadow:0 2px 20px rgba(0,0,0,.4);font-family:Arial,sans-serif}
+    #gb-topbar .gb-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:900}
+    #gb-topbar .gb-brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#fff;padding:2px;flex-shrink:0}
+    #gb-topbar .gb-brand small{display:block;color:#f36b21;font-size:.62rem;text-transform:uppercase;letter-spacing:.5px}
+    #gb-topbar .gb-brand span{font-size:.88rem}
+    #gb-topbar .gb-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;font-size:1.4rem;cursor:pointer;flex-shrink:0}
+    #gb-drawer{display:none;position:fixed;top:0;right:0;z-index:9999;width:min(320px,90vw);height:100vh;background:#fff;color:#111;padding:18px;box-shadow:-20px 0 60px rgba(0,0,0,.5);overflow-y:auto;font-family:Arial,sans-serif}
+    #gb-drawer.open{display:block}
+    #gb-drawer .gb-dh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    #gb-drawer .gb-dh strong{font-size:1rem}
+    #gb-drawer .gb-x{width:38px;height:38px;border:0;border-radius:8px;background:#111;color:#fff;font-size:1.2rem;cursor:pointer}
+    #gb-drawer a{display:flex;align-items:center;gap:10px;color:#111;text-decoration:none;border-left:4px solid #f36b21;background:#fef3ec;border-radius:0 8px 8px 0;padding:11px 14px;margin:6px 0;font-weight:700;font-size:.88rem}
+    #gb-drawer a:hover{background:#fee4cc}
     body{padding-top:62px!important}
   `;
-  document.head.appendChild(style);
+  document.head.appendChild(css);
 
   const B = GIGANTES.BASE;
-  const topbar = document.createElement('header');
-  topbar.id = 'gigantes-topbar';
-  topbar.innerHTML = `
+  const bar = document.createElement('header');
+  bar.id = 'gb-topbar';
+  bar.innerHTML = `
     <a class="gb-brand" href="${B}index.html">
-      <img src="${GIGANTES.LOGO}" alt="Logo Gigantes de Azapa" onerror="this.src='https://placehold.co/42x42/f36b21/fff?text=G'">
-      <div class="gb-brand-text"><small>Gigantes de Azapa</small><span>Salta 2026</span></div>
+      <img src="${GIGANTES.LOGO}" alt="Gigantes de Azapa" onerror="this.src='https://placehold.co/42/f36b21/fff?text=G'">
+      <div><small>Gigantes de Azapa</small><span>Salta 2026</span></div>
     </a>
-    <button class="gb-menu-btn" onclick="document.getElementById('gigantes-drawer').classList.toggle('gb-open')" aria-label="Menú">☰</button>
+    <button class="gb-btn" onclick="document.getElementById('gb-drawer').classList.toggle('open')" aria-label="Menú">☰</button>
   `;
-  document.body.insertBefore(topbar, document.body.firstChild);
+  document.body.insertBefore(bar, document.body.firstChild);
 
-  const drawer = document.createElement('nav');
-  drawer.id = 'gigantes-drawer';
-  drawer.innerHTML = `
-    <div class="gb-dhead"><strong>Menú</strong><button class="gb-close" onclick="document.getElementById('gigantes-drawer').classList.remove('gb-open')">✕</button></div>
+  const nav = document.createElement('nav');
+  nav.id = 'gb-drawer';
+  nav.innerHTML = `
+    <div class="gb-dh"><strong>Menú</strong><button class="gb-x" onclick="document.getElementById('gb-drawer').classList.remove('open')">✕</button></div>
     <a href="${B}inscripcion.html">🏉 Inscribir jugador</a>
     <a href="${B}documentos_carga.html">📄 Subir documentos</a>
     <a href="${B}mi_estado.html">🔍 Mi estado</a>
@@ -102,132 +101,146 @@ function getPageBg() {
     <a href="${B}sponsors.html">🏢 Sponsors</a>
     <a href="${B}avance.html">📊 Avance de meta</a>
     <a href="${B}galeria_club.html">📸 Galería del club</a>
+    <a href="${B}calendario.html">📅 Calendario</a>
     <a href="${B}manual_uso.html">📋 Manual de uso</a>
     <a href="${B}index.html">🏠 Portada</a>
   `;
-  document.body.appendChild(drawer);
+  document.body.appendChild(nav);
 
   document.addEventListener('click', e => {
-    const d = document.getElementById('gigantes-drawer');
-    if (d && !d.contains(e.target) && !e.target.closest('.gb-menu-btn')) d.classList.remove('gb-open');
+    const d = document.getElementById('gb-drawer');
+    if (d && !d.contains(e.target) && !e.target.classList.contains('gb-btn')) {
+      d.classList.remove('open');
+    }
   });
-})();
+}
 
-// ─── 2. VIDEO + FOTO DE FONDO EN HERO ───────────────────────
-(function injectHeroBg() {
-  const hero = document.querySelector('.hero, header.hero, section.hero');
+// ─── VIDEO + FOTO DE FONDO EN HERO ────────────────────────────────────────────
+function injectHeroBg() {
+  const hero = document.querySelector('.hero, header.hero, .hero-header');
   if (!hero) return;
 
-  // No duplicar
-  if (hero.querySelector('#gb-video-wrap')) return;
+  // Detectar qué foto usar según la página
+  const page = location.pathname.split('/').pop().replace('.html','').replace('.htm','');
+  const fotoKey = GIGANTES.PAGINA_FOTO[page] || GIGANTES.PAGINA_FOTO['default'];
+  const fotoUrl = GIGANTES.FOTOS[fotoKey];
 
-  const bgFoto = getPageBg();
   hero.style.position = 'relative';
   hero.style.overflow = 'hidden';
+  hero.style.minHeight = hero.style.minHeight || '54vh';
 
-  // Video de fondo
-  const wrap = document.createElement('div');
-  wrap.id = 'gb-video-wrap';
-  wrap.style.cssText = 'position:absolute;inset:0;z-index:0;overflow:hidden;';
+  // VIDEO de fondo
+  if (!hero.querySelector('.gb-video-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'gb-video-wrap';
+    wrap.style.cssText = 'position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none';
 
-  const vid = document.createElement('video');
-  vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
-  vid.style.cssText = 'width:100%;height:100%;object-fit:cover;opacity:.5;';
-  vid.innerHTML = `<source src="${GIGANTES.VIDEO}" type="video/mp4">`;
+    const vid = document.createElement('video');
+    vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
+    vid.style.cssText = 'width:100%;height:100%;object-fit:cover;opacity:.4;';
+    vid.innerHTML = `<source src="${GIGANTES.FOTOS.video}" type="video/mp4">`;
+    vid.onerror = () => { wrap.style.backgroundImage = `url("${fotoUrl}")`; wrap.style.backgroundSize='cover'; wrap.style.backgroundPosition='center'; vid.remove(); };
 
-  // Si video falla → foto específica de la página
-  vid.onerror = () => {
-    wrap.style.cssText += `background:url("${bgFoto}") center/cover no-repeat;`;
-    vid.remove();
-  };
-  vid.addEventListener('error', () => {
-    wrap.style.cssText += `background:url("${bgFoto}") center/cover no-repeat;`;
-    vid.remove();
-  });
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,20,.3) 0%,rgba(11,15,20,.65) 55%,rgba(11,15,20,.97) 100%);';
 
-  wrap.appendChild(vid);
+    wrap.appendChild(vid);
+    wrap.appendChild(overlay);
+    hero.insertBefore(wrap, hero.firstChild);
 
-  // Overlay
-  const overlay = document.createElement('div');
-  overlay.style.cssText = 'position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,15,20,.4) 0%,rgba(11,15,20,.65) 50%,rgba(11,15,20,.97) 100%);';
-
-  // Elevar hijos existentes sobre el video
-  Array.from(hero.children).forEach(c => {
-    if (c.id !== 'gb-video-wrap') { c.style.position = 'relative'; c.style.zIndex = '2'; }
-  });
-
-  hero.insertBefore(overlay, hero.firstChild);
-  hero.insertBefore(wrap, hero.firstChild);
-
-  // Si el hero tiene background-image local → reemplazarla con foto correcta
-  const bg = hero.style.backgroundImage || '';
-  if (bg && !bg.includes('lh3.google')) {
-    hero.style.backgroundImage = `linear-gradient(180deg,rgba(11,15,20,.4),rgba(11,15,20,.95)),url("${bgFoto}")`;
+    // Elevar contenido sobre el video
+    Array.from(hero.children).forEach(child => {
+      if (child !== wrap && !child.style.zIndex) {
+        child.style.position = 'relative';
+        child.style.zIndex = '1';
+      }
+    });
   }
-})();
 
-// ─── 3. CORREGIR LOGOS Y FOTOS ROTOS ────────────────────────
-window.addEventListener('DOMContentLoaded', function() {
+  // Asegurarse que el color de texto sea blanco
+  hero.style.color = '#fff';
+}
+
+// ─── CORREGIR LOGOS ROTOS ─────────────────────────────────────────────────────
+function fixLogos() {
   const FOTO_MAP = {
-    'm10m12.jpg':           GIGANTES.FOTOS.m10m12,
-    '1 m10m12.jpg':         GIGANTES.FOTOS.m10m12,
-    'entrenamiento.jpg':    GIGANTES.FOTOS.entrenamiento,
-    'Entrenadores.jpg':     GIGANTES.FOTOS.entrenadores,
-    'entrenador 1.jpg':     GIGANTES.FOTOS.entrenador1,
-    'entrenador 2.jpg':     GIGANTES.FOTOS.entrenador2,
-    'entrenador 3.jpg':     GIGANTES.FOTOS.entrenador3,
-    'Niños reunidos 2.jpg': GIGANTES.FOTOS.ninos2,
-    'Niños reunidos.jpg':   GIGANTES.FOTOS.ninos,
-    'niños reunidos.jpg':   GIGANTES.FOTOS.ninos,
-    'm14.jpg':              GIGANTES.FOTOS.m14,
-    '3er tiempo.jpg':       GIGANTES.FOTOS.tercer,
+    'm10m12.jpg':              GIGANTES.FOTOS.m10m12,
+    '1 m10m12.jpg':            GIGANTES.FOTOS.m10m12b,
+    'entrenamiento.jpg':        GIGANTES.FOTOS.entrenamiento,
+    'Entrenadores.jpg':         GIGANTES.FOTOS.entrenadores,
+    'entrenador 1.jpg':         GIGANTES.FOTOS.entrenador1,
+    'entrenador 2.jpg':         GIGANTES.FOTOS.entrenador2,
+    'entrenador 3.jpg':         GIGANTES.FOTOS.entrenador3,
+    'Niños reunidos 2.jpg':     GIGANTES.FOTOS.ninos2,
+    'Niños reunidos.jpg':       GIGANTES.FOTOS.ninos,
+    'niños reunidos.jpg':       GIGANTES.FOTOS.ninos,
+    'm14.jpg':                  GIGANTES.FOTOS.m14,
+    '3er tiempo.jpg':           GIGANTES.FOTOS.tercer,
     'fogata formando club.jpg': GIGANTES.FOTOS.fogata,
-    'Rugby estadio.jpg':    GIGANTES.FOTOS.estadio,
-    'rugby playa.jpg':      GIGANTES.FOTOS.playa,
+    'Rugby estadio.jpg':        GIGANTES.FOTOS.estadio,
+    'rugby playa.jpg':          GIGANTES.FOTOS.playa,
   };
 
   document.querySelectorAll('img').forEach(img => {
     const src = img.getAttribute('src') || '';
-    const filename = src.split('/').pop();
 
-    // Logos rotos
+    // Fix logos rotos
     if (src.includes('01_APP_SITIO_WEB') || src.includes('logo-gigantes') || src.includes('logo-tigres') || (img.alt && img.alt.toLowerCase().includes('logo gigantes'))) {
       img.src = GIGANTES.LOGO;
-      img.style.cssText += 'width:46px;height:46px;border-radius:50%;object-fit:cover;background:#fff;padding:3px;';
+      img.style.cssText += ';width:42px;height:42px;border-radius:50%;object-fit:cover;background:#fff;padding:2px;';
       return;
     }
 
-    // Fotos del club con rutas locales
-    if (FOTO_MAP[filename] && !src.startsWith('https://lh3')) {
-      img.src = FOTO_MAP[filename];
+    // Fix fotos del club con rutas locales
+    const fname = decodeURIComponent(src.split('/').pop());
+    if (FOTO_MAP[fname] && !src.startsWith('https://lh3')) {
+      img.src = FOTO_MAP[fname];
     }
   });
 
-  // Corregir background-image en hero con rutas locales
-  document.querySelectorAll('.hero, header').forEach(el => {
+  // Fix backgrounds con rutas rotas
+  document.querySelectorAll('[style]').forEach(el => {
     const bg = el.style.backgroundImage || '';
-    if (bg && (bg.includes('01_APP_SITIO_WEB') || bg.includes('campana') || bg.includes('../'))) {
-      const newBg = bg.replace(/url\(['"]?[^'"]*['"]?\)/g, `url("${getPageBg()}")`);
-      el.style.backgroundImage = `linear-gradient(180deg,rgba(11,15,20,.4),rgba(11,15,20,.95)),url("${getPageBg()}")`;
+    if (!bg) return;
+    if (bg.includes('01_APP_SITIO_WEB') || bg.includes('campana-suenos') || bg.includes('campana-rugby')) {
+      const page = location.pathname.split('/').pop().replace('.html','');
+      const fotoKey = GIGANTES.PAGINA_FOTO[page] || 'ninos2';
+      el.style.backgroundImage = bg.replace(/url\([^)]+\)/g, `url("${GIGANTES.FOTOS[fotoKey]}")`);
     }
   });
-});
+}
 
-// ─── 4. SEND TO GIGANTES (formularios → Apps Script) ─────────
+// ─── FUNCIÓN sendToGigantes (formularios → Apps Script) ──────────────────────
 async function sendToGigantes(data) {
   const url = window.GIGANTES_APPS_SCRIPT_URL;
   if (!url || url.includes('PEGAR')) return { ok: false, configured: false };
-  return new Promise((resolve) => {
-    const cb = 'gigCb_' + Date.now();
+  return new Promise(resolve => {
+    const cb = 'gCb_' + Date.now();
     const s = document.createElement('script');
     const u = new URL(url);
     Object.entries(data).forEach(([k,v]) => u.searchParams.set(k, String(v)));
     u.searchParams.set('callback', cb);
     const t = setTimeout(() => { cleanup(); resolve({ ok: false, configured: true }); }, 12000);
     function cleanup() { clearTimeout(t); delete window[cb]; s.remove(); }
-    window[cb] = (res) => { cleanup(); resolve({ ok: true, configured: true, ...res }); };
+    window[cb] = res => { cleanup(); resolve({ ok: true, configured: true, ...res }); };
     s.onerror = () => { cleanup(); resolve({ ok: false, configured: true }); };
     s.src = u.toString();
     document.body.appendChild(s);
   });
 }
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+function init() {
+  injectTopbar();
+  injectHeroBg();
+  fixLogos();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+// Re-run fixLogos cuando carguen imágenes lazy
+window.addEventListener('load', fixLogos);
